@@ -25,12 +25,14 @@ public class LibraryServiceApplication {
 
     /**
      * This method is launched at start, it can be used to perform utilities task during development
+     *
      * @param repository the bookrepo
      * @return CommandLineRunner
      */
     @Bean
     public CommandLineRunner demo(BookRepository repository) {
-        return (args) -> {};
+        return (args) -> {
+        };
     }
 }
 
