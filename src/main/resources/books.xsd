@@ -43,13 +43,14 @@
             <xs:element name="title" type="xs:string"/>
             <xs:element name="author" type="xs:string"/>
             <xs:element name="isbn" type="xs:string"/>
-            <xs:element name="topics" type="tns:topic"/>
-            <xs:element name="language_id" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" name="topics" type="tns:topic"/>
+            <xs:element name="language_id" type="xs:int"/>
             <xs:element name="quantity" type="xs:int"/>
             <xs:element name="publication_date" type="xs:date"/>
             <xs:element name="library_id" type="xs:int"/>
         </xs:sequence>
     </xs:complexType>
+
     <!-- a topic -->
     <xs:complexType name="topic">
         <xs:sequence>
@@ -57,4 +58,5 @@
             <xs:element name="name" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
+
 </xs:schema>

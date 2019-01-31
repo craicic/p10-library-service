@@ -2,6 +2,9 @@ package com.gg.proj.model;
 
 import javax.persistence.*;
 
+/**
+ * Base DTO class for the Language model
+ */
 @Entity
 @Table(name="language")
 public class LanguageEntity {

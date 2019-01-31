@@ -2,6 +2,9 @@ package com.gg.proj.model;
 
 import javax.persistence.*;
 
+/**
+ * Base DTO class for the Library model
+ */
 @Entity
 @Table(name = "library")
 public class LibraryEntity {

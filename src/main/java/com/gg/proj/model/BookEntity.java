@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Base class for the Book model
+ * Base DTO class for the Book model
  */
 @Entity
 @Table(name="book")

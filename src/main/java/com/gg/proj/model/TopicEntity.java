@@ -3,6 +3,9 @@ package com.gg.proj.model;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Base DTO class for the Topic model
+ */
 @Entity
 @Table(name="topic")
 public class TopicEntity {
@@ -14,7 +17,7 @@ public class TopicEntity {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "topics_of_book",
             joinColumns = @JoinColumn(name="book_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name="topic_id", referencedColumnName = "id")

@@ -2,12 +2,14 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.01.31 à 03:25:51 PM CET 
+// Généré le : 2019.01.31 à 05:41:15 PM CET 
 //
 
 
 package com.gg.proj.service.library;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -30,8 +32,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="isbn" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="topics" type="{http://proj.gg.com/service/library}topic"/>
- *         &lt;element name="language_id" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="topics" type="{http://proj.gg.com/service/library}topic" maxOccurs="unbounded"/>
+ *         &lt;element name="language_id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="quantity" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="publication_date" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="library_id" type="{http://www.w3.org/2001/XMLSchema}int"/>
@@ -65,9 +67,9 @@ public class Book {
     @XmlElement(required = true)
     protected String isbn;
     @XmlElement(required = true)
-    protected Topic topics;
-    @XmlElement(name = "language_id", required = true)
-    protected String languageId;
+    protected List<Topic> topics;
+    @XmlElement(name = "language_id")
+    protected int languageId;
     protected int quantity;
     @XmlElement(name = "publication_date", required = true)
     @XmlSchemaType(name = "date")
@@ -164,50 +166,47 @@ public class Book {
     }
 
     /**
-     * Obtient la valeur de la propriété topics.
+     * Gets the value of the topics property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Topic }
-     *     
-     */
-    public Topic getTopics() {
-        return topics;
-    }
-
-    /**
-     * Définit la valeur de la propriété topics.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the topics property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Topic }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getTopics().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Topic }
+     * 
+     * 
      */
-    public void setTopics(Topic value) {
-        this.topics = value;
+    public List<Topic> getTopics() {
+        if (topics == null) {
+            topics = new ArrayList<Topic>();
+        }
+        return this.topics;
     }
 
     /**
      * Obtient la valeur de la propriété languageId.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getLanguageId() {
+    public int getLanguageId() {
         return languageId;
     }
 
     /**
      * Définit la valeur de la propriété languageId.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setLanguageId(String value) {
+    public void setLanguageId(int value) {
         this.languageId = value;
     }
 
