@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.01.31 à 05:41:15 PM CET 
+// Généré le : 2019.02.01 à 01:46:44 PM CET 
 //
 
 
@@ -37,6 +37,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetLanguageResponse }
+     * 
+     */
+    public GetLanguageResponse createGetLanguageResponse() {
+        return new GetLanguageResponse();
+    }
+
+    /**
+     * Create an instance of {@link Language }
+     * 
+     */
+    public Language createLanguage() {
+        return new Language();
+    }
+
+    /**
      * Create an instance of {@link GetBookResponse }
      * 
      */
@@ -50,6 +66,62 @@ public class ObjectFactory {
      */
     public Book createBook() {
         return new Book();
+    }
+
+    /**
+     * Create an instance of {@link GetPagedBookListAdvRequest }
+     * 
+     */
+    public GetPagedBookListAdvRequest createGetPagedBookListAdvRequest() {
+        return new GetPagedBookListAdvRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetLibraryResponse }
+     * 
+     */
+    public GetLibraryResponse createGetLibraryResponse() {
+        return new GetLibraryResponse();
+    }
+
+    /**
+     * Create an instance of {@link Library }
+     * 
+     */
+    public Library createLibrary() {
+        return new Library();
+    }
+
+    /**
+     * Create an instance of {@link GetLanguageRequest }
+     * 
+     */
+    public GetLanguageRequest createGetLanguageRequest() {
+        return new GetLanguageRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetPagedBookListAdvResponse }
+     * 
+     */
+    public GetPagedBookListAdvResponse createGetPagedBookListAdvResponse() {
+        return new GetPagedBookListAdvResponse();
+    }
+
+    /**
+     * Create an instance of {@link Topic }
+     * 
+     */
+    public Topic createTopic() {
+        return new Topic();
+    }
+
+    /**
+     * Create an instance of {@link GetLibraryRequest }
+     * 
+     */
+    public GetLibraryRequest createGetLibraryRequest() {
+        return new GetLibraryRequest();
     }
 
     /**
@@ -74,14 +146,6 @@ public class ObjectFactory {
      */
     public GetPagedBookListResponse createGetPagedBookListResponse() {
         return new GetPagedBookListResponse();
-    }
-
-    /**
-     * Create an instance of {@link Topic }
-     * 
-     */
-    public Topic createTopic() {
-        return new Topic();
     }
 
 }

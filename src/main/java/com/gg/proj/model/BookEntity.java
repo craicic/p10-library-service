@@ -42,10 +42,13 @@ public class BookEntity {
     @JoinColumn(name = "library_id", nullable = false)
     private LibraryEntity library;
 
+    private String summary;
+
     public BookEntity() {
     }
 
-    public BookEntity(String title, String author, String isbn, List<TopicEntity> topics, LanguageEntity language, Integer quantity, Date publicationDate, LibraryEntity library) {
+    public BookEntity(String title, String author, String isbn, List<TopicEntity> topics, LanguageEntity language,
+                      Integer quantity, Date publicationDate, LibraryEntity library, String summary) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
@@ -54,6 +57,7 @@ public class BookEntity {
         this.quantity = quantity;
         this.publicationDate = publicationDate;
         this.library = library;
+        this.summary = summary;
     }
 
     public Integer getId() {
@@ -128,6 +132,14 @@ public class BookEntity {
         this.library = library;
     }
 
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
     @Override
     public String toString() {
         return "BookEntity{" +
@@ -140,6 +152,7 @@ public class BookEntity {
                 ", quantity=" + quantity +
                 ", publicationDate=" + publicationDate +
                 ", library=" + library +
+                ", summary='" + summary + '\'' +
                 '}';
     }
 }

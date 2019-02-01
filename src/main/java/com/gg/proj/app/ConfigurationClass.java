@@ -38,7 +38,7 @@ public class ConfigurationClass {
     }
 
     @Bean(name = "books")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema booksSchema) {
+    public DefaultWsdl11Definition bookWsdl11Definition(XsdSchema booksSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("BookPort");
         wsdl11Definition.setLocationUri("/ws");
@@ -51,6 +51,7 @@ public class ConfigurationClass {
     public XsdSchema booksSchema() {
         return new SimpleXsdSchema(new ClassPathResource("books.xsd"));
     }
+
 
     //    SPRING DATA / JPA
     @Bean

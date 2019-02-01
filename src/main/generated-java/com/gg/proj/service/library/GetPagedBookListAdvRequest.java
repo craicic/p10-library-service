@@ -10,6 +10,7 @@ package com.gg.proj.service.library;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -26,6 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="page" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="size" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="keyWord" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,13 +39,16 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "page",
-    "size"
+    "size",
+    "keyWord"
 })
-@XmlRootElement(name = "getPagedBookListRequest")
-public class GetPagedBookListRequest {
+@XmlRootElement(name = "getPagedBookListAdvRequest")
+public class GetPagedBookListAdvRequest {
 
     protected int page;
     protected int size;
+    @XmlElement(required = true)
+    protected String keyWord;
 
     /**
      * Obtient la valeur de la propriété page.
@@ -75,6 +80,30 @@ public class GetPagedBookListRequest {
      */
     public void setSize(int value) {
         this.size = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété keyWord.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getKeyWord() {
+        return keyWord;
+    }
+
+    /**
+     * Définit la valeur de la propriété keyWord.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setKeyWord(String value) {
+        this.keyWord = value;
     }
 
 }

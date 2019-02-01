@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.01.31 à 05:41:15 PM CET 
+// Généré le : 2019.02.01 à 01:46:44 PM CET 
 //
 
 
@@ -33,10 +33,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="isbn" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="topics" type="{http://proj.gg.com/service/library}topic" maxOccurs="unbounded"/>
- *         &lt;element name="language_id" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="languageId" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="quantity" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="publication_date" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="library_id" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="publicationDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         &lt;element name="libraryId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="summary" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -55,7 +56,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "languageId",
     "quantity",
     "publicationDate",
-    "libraryId"
+    "libraryId",
+    "summary"
 })
 public class Book {
 
@@ -68,14 +70,14 @@ public class Book {
     protected String isbn;
     @XmlElement(required = true)
     protected List<Topic> topics;
-    @XmlElement(name = "language_id")
     protected int languageId;
     protected int quantity;
-    @XmlElement(name = "publication_date", required = true)
+    @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar publicationDate;
-    @XmlElement(name = "library_id")
     protected int libraryId;
+    @XmlElement(required = true)
+    protected String summary;
 
     /**
      * Obtient la valeur de la propriété id.
@@ -264,6 +266,30 @@ public class Book {
      */
     public void setLibraryId(int value) {
         this.libraryId = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété summary.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSummary() {
+        return summary;
+    }
+
+    /**
+     * Définit la valeur de la propriété summary.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSummary(String value) {
+        this.summary = value;
     }
 
 }

@@ -39,21 +39,13 @@ public class BookManager {
      */
     public Book getBookById(Integer id) {
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Requesting a book by id : ");
-        sb.append(id);
-
         if (!bookRepository.findById(id).isPresent()) {
-            sb.append(" => id not found in database");
-            log.info(sb.toString());
+            log.info("getBookById : Requesting a book by id : " + id + " => id not found in database");
             return null;
         }
         BookEntity bookEntity = bookRepository.findById(id).get();
 
-        sb.append(" => found : ");
-        sb.append(bookEntity.getTitle());
-
-        log.info(sb.toString());
+        log.info("getBookById : Requesting a book by id : " + id + " => found : ");
         // Mapping
         return mapperWorker.bookEntityToBook(bookEntity);
     }
