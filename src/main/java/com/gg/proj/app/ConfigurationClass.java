@@ -96,7 +96,7 @@ public class ConfigurationClass {
     //    ADDITIONAL PROPERTIES
     private Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL9Dialect");
         properties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
         return properties;

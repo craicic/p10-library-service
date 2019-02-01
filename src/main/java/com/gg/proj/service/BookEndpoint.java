@@ -3,6 +3,8 @@ package com.gg.proj.service;
 import com.gg.proj.business.BookManager;
 import com.gg.proj.service.library.GetBookRequest;
 import com.gg.proj.service.library.GetBookResponse;
+import com.gg.proj.service.library.SearchBooksRequest;
+import com.gg.proj.service.library.SearchBooksResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,10 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import javax.transaction.Transactional;
+
 @Endpoint
+@Transactional
 public class BookEndpoint {
 
     private static final Logger log = LoggerFactory.getLogger(BookEndpoint.class);
@@ -38,6 +43,13 @@ public class BookEndpoint {
         log.info("getBook : calling the BookManager to fetch a book by id");
         GetBookResponse response = new GetBookResponse();
         response.setBook(bookManager.getBookById(request.getId()));
+        return response;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "searchBooksRequest")
+    @ResponsePayload
+    public SearchBooksResponse searchBooks(@RequestPayload SearchBooksRequest request){
+        SearchBooksResponse response = bookManager.searchBooks(request);
         return response;
     }
 }

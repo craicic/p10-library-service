@@ -38,7 +38,7 @@
 
     <!-- this is a more advanced search -->
     <!-- you request page, size, keyword, it return a book list plus a lot of infos to performs a filtered search -->
-    <xs:element name="getPagedBookListAdvRequest">
+    <xs:element name="searchBooksRequest">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="page" type="xs:int"/>
@@ -48,11 +48,12 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getPagedBookListAdvResponse">
+    <xs:element name="searchBooksResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="numberOfPages" type="xs:int"/>
+                <xs:element name="totalPages" type="xs:int"/>
                 <xs:element maxOccurs="unbounded" name="books" type="tns:book"/>
+                <!-- this search returns those 3 list in order to fill combo-lists for the filtered search -->
                 <xs:element maxOccurs="unbounded" name="libraries" type="tns:library"/>
                 <xs:element maxOccurs="unbounded" name="topics" type="tns:topic"/>
                 <xs:element maxOccurs="unbounded" name="languages" type="tns:language"/>

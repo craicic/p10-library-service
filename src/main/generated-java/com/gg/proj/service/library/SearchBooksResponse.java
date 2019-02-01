@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.01 à 01:46:44 PM CET 
+// Généré le : 2019.02.01 à 06:55:10 PM CET 
 //
 
 
@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="numberOfPages" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="totalPages" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="books" type="{http://proj.gg.com/service/library}book" maxOccurs="unbounded"/>
  *         &lt;element name="libraries" type="{http://proj.gg.com/service/library}library" maxOccurs="unbounded"/>
  *         &lt;element name="topics" type="{http://proj.gg.com/service/library}topic" maxOccurs="unbounded"/>
@@ -42,16 +42,16 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "numberOfPages",
+    "totalPages",
     "books",
     "libraries",
     "topics",
     "languages"
 })
-@XmlRootElement(name = "getPagedBookListAdvResponse")
-public class GetPagedBookListAdvResponse {
+@XmlRootElement(name = "searchBooksResponse")
+public class SearchBooksResponse {
 
-    protected int numberOfPages;
+    protected int totalPages;
     @XmlElement(required = true)
     protected List<Book> books;
     @XmlElement(required = true)
@@ -62,19 +62,19 @@ public class GetPagedBookListAdvResponse {
     protected List<Language> languages;
 
     /**
-     * Obtient la valeur de la propriété numberOfPages.
+     * Obtient la valeur de la propriété totalPages.
      * 
      */
-    public int getNumberOfPages() {
-        return numberOfPages;
+    public int getTotalPages() {
+        return totalPages;
     }
 
     /**
-     * Définit la valeur de la propriété numberOfPages.
+     * Définit la valeur de la propriété totalPages.
      * 
      */
-    public void setNumberOfPages(int value) {
-        this.numberOfPages = value;
+    public void setTotalPages(int value) {
+        this.totalPages = value;
     }
 
     /**

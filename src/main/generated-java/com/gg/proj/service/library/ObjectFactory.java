@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.01 à 01:46:44 PM CET 
+// Généré le : 2019.02.01 à 06:55:10 PM CET 
 //
 
 
@@ -69,14 +69,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetPagedBookListAdvRequest }
-     * 
-     */
-    public GetPagedBookListAdvRequest createGetPagedBookListAdvRequest() {
-        return new GetPagedBookListAdvRequest();
-    }
-
-    /**
      * Create an instance of {@link GetLibraryResponse }
      * 
      */
@@ -93,6 +85,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SearchBooksRequest }
+     * 
+     */
+    public SearchBooksRequest createSearchBooksRequest() {
+        return new SearchBooksRequest();
+    }
+
+    /**
      * Create an instance of {@link GetLanguageRequest }
      * 
      */
@@ -101,11 +101,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetPagedBookListAdvResponse }
+     * Create an instance of {@link SearchBooksResponse }
      * 
      */
-    public GetPagedBookListAdvResponse createGetPagedBookListAdvResponse() {
-        return new GetPagedBookListAdvResponse();
+    public SearchBooksResponse createSearchBooksResponse() {
+        return new SearchBooksResponse();
     }
 
     /**
