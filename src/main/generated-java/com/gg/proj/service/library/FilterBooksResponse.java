@@ -29,6 +29,9 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="totalPages" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="books" type="{http://proj.gg.com/service/library}book" maxOccurs="unbounded"/>
+ *         &lt;element name="library" type="{http://proj.gg.com/service/library}library"/>
+ *         &lt;element name="topic" type="{http://proj.gg.com/service/library}topic"/>
+ *         &lt;element name="language" type="{http://proj.gg.com/service/library}language"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,14 +43,23 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "totalPages",
-    "books"
+    "books",
+    "library",
+    "topic",
+    "language"
 })
-@XmlRootElement(name = "getPagedBookListResponse")
-public class GetPagedBookListResponse {
+@XmlRootElement(name = "filterBooksResponse")
+public class FilterBooksResponse {
 
     protected int totalPages;
     @XmlElement(required = true)
     protected List<Book> books;
+    @XmlElement(required = true)
+    protected Library library;
+    @XmlElement(required = true)
+    protected Topic topic;
+    @XmlElement(required = true)
+    protected Language language;
 
     /**
      * Obtient la valeur de la propriété totalPages.
@@ -92,6 +104,78 @@ public class GetPagedBookListResponse {
             books = new ArrayList<Book>();
         }
         return this.books;
+    }
+
+    /**
+     * Obtient la valeur de la propriété library.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Library }
+     *     
+     */
+    public Library getLibrary() {
+        return library;
+    }
+
+    /**
+     * Définit la valeur de la propriété library.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Library }
+     *     
+     */
+    public void setLibrary(Library value) {
+        this.library = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété topic.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Topic }
+     *     
+     */
+    public Topic getTopic() {
+        return topic;
+    }
+
+    /**
+     * Définit la valeur de la propriété topic.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Topic }
+     *     
+     */
+    public void setTopic(Topic value) {
+        this.topic = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété language.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Language }
+     *     
+     */
+    public Language getLanguage() {
+        return language;
+    }
+
+    /**
+     * Définit la valeur de la propriété language.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Language }
+     *     
+     */
+    public void setLanguage(Language value) {
+        this.language = value;
     }
 
 }

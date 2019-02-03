@@ -19,8 +19,8 @@ public class TopicEntity {
 
     @ManyToMany
     @JoinTable(name = "topics_of_book",
-            joinColumns = @JoinColumn(name="book_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name="topic_id", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name="topic_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="book_id", referencedColumnName = "id")
     )
     private List<BookEntity> books;
 

@@ -1,10 +1,7 @@
 package com.gg.proj.service;
 
 import com.gg.proj.business.BookManager;
-import com.gg.proj.service.library.GetBookRequest;
-import com.gg.proj.service.library.GetBookResponse;
-import com.gg.proj.service.library.SearchBooksRequest;
-import com.gg.proj.service.library.SearchBooksResponse;
+import com.gg.proj.service.library.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +46,16 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "searchBooksRequest")
     @ResponsePayload
     public SearchBooksResponse searchBooks(@RequestPayload SearchBooksRequest request){
+        log.info("SearchBooksResponse : calling the bookManager to search book");
         SearchBooksResponse response = bookManager.searchBooks(request);
+        return response;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "filterBooksRequest")
+    @ResponsePayload
+    public FilterBooksResponse filterBooks(@RequestPayload FilterBooksRequest request){
+        log.info("SearchBooksResponse : calling the bookManager to search book");
+        FilterBooksResponse response = bookManager.filterBooks(request);
         return response;
     }
 }

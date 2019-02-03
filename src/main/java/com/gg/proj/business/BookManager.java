@@ -5,6 +5,8 @@ import com.gg.proj.consumer.LanguageRepository;
 import com.gg.proj.consumer.LibraryRepository;
 import com.gg.proj.consumer.TopicRepository;
 import com.gg.proj.model.BookEntity;
+import com.gg.proj.model.LanguageEntity;
+import com.gg.proj.model.LibraryEntity;
 import com.gg.proj.service.library.*;
 import com.gg.proj.util.MapperWorker;
 import org.slf4j.Logger;
@@ -18,7 +20,9 @@ import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import com.gg.proj.util.Predicates;
 /**
  * This class apply business method
  */
@@ -67,6 +71,12 @@ public class BookManager {
         return mapperWorker.bookEntityToBook(bookEntity);
     }
 
+    /**
+     * This method take a request as parameter and build a response
+     *
+     * @param request a SearchBooksRequest
+     * @return a searchBooksResponse
+     */
     public SearchBooksResponse searchBooks(SearchBooksRequest request) {
 
         SearchBooksResponse response = new SearchBooksResponse();
@@ -78,29 +88,38 @@ public class BookManager {
         List<Topic> topics = response.getTopics();
         List<Library> libraries = response.getLibraries();
 
-        Page<BookEntity> page = bookRepository.search("%" + request.getKeyWord() + "%", pageRequest);
 
+        Page<BookEntity> page = bookRepository.search("%" + request.getKeyWord() + "%", pageRequest);
         List<BookEntity> bookEntities = page.getContent();
 
-        List<Integer> libraryIds = new ArrayList<>();
-        List<Integer> languageIds = new ArrayList<>();
-
-        for (BookEntity b: bookEntities)
-        {
-            libraryIds.add(b.getLibrary().getId());
-            languageIds.add(b.getLanguage().getId());
-        }
         // Here we access the book list by reference (no need for setter)
         books.addAll(mapperWorker.bookEntityListToBookList(bookEntities));
+
+        // Once we have a list of books, we can stream it to extract their OneToOne language and library
+        List<LanguageEntity> streamedLanguages = bookEntities.stream()
+                .filter(Predicates.distinctByKey(BookEntity::getLanguage))
+                .map(BookEntity::getLanguage)
+                .collect(Collectors.toList());
+
+        List<LibraryEntity> streamedLibraries = bookEntities.stream()
+                .filter(Predicates.distinctByKey(BookEntity::getLibrary))
+                .map(BookEntity::getLibrary)
+                .collect(Collectors.toList());
+
+        languages.addAll(mapperWorker.languageEntityListToLanguageList(streamedLanguages));
+        libraries.addAll(mapperWorker.libraryEntityListToLibraryList(streamedLibraries));
 
         // We now fetch all topics
         topics.addAll(mapperWorker.topicEntityListToTopicList(topicRepository.findDistinctByBooks(page.getContent())));
 
-        // We fetch all language in the range of found books
-        languages.addAll(mapperWorker.languageEntityListToLanguageList(languageRepository.findDistinctByIdIn(languageIds)));
+        // We add keyWord to the response
+        response.setKeyWord(request.getKeyWord());
 
-        libraries.addAll(mapperWorker.libraryEntityListToLibraryList(libraryRepository.findDistinctByIdIn(libraryIds)));
+        return response;
+    }
 
+    public FilterBooksResponse filterBooks(FilterBooksRequest request){
+        FilterBooksResponse response = new FilterBooksResponse();
         return response;
     }
 }

@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface BookRepository extends PagingAndSortingRepository<BookEntity, Integer> {
 
-    @Query("select b from BookEntity b where b.title like :x or b.author like :x or b.summary like :x")
+    @Query("select b from BookEntity b where upper(b.title) like upper(:x) or upper(b.author) like upper(:x) or upper(b.summary) like upper(:x)")
     public Page<BookEntity> search(@Param("x") String keyWord, Pageable pageable);
 }

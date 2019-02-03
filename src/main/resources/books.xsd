@@ -36,7 +36,7 @@
         </xs:complexType>
     </xs:element>
 
-    <!-- this is a more advanced search -->
+    <!-- this is search method -->
     <!-- you request page, size, keyword, it return a book list plus a lot of infos to performs a filtered search -->
     <xs:element name="searchBooksRequest">
         <xs:complexType>
@@ -57,6 +57,36 @@
                 <xs:element maxOccurs="unbounded" name="libraries" type="tns:library"/>
                 <xs:element maxOccurs="unbounded" name="topics" type="tns:topic"/>
                 <xs:element maxOccurs="unbounded" name="languages" type="tns:language"/>
+                <!-- then we pass back the keyWord -->
+                <xs:element name="keyWord" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Once a search has been performed, web service client can ask for a filter by passing various params -->
+    <xs:element name="filterBooksRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="page" type="xs:int"/>
+                <xs:element name="size" type="xs:int"/>
+                <xs:element name="keyWord" type="xs:string"/>
+                <!-- params coming from combobox-->
+                <xs:element name="library" type="tns:library"/>
+                <xs:element name="topic" type="tns:topic"/>
+                <xs:element name="language" type="tns:language"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="filterBooksResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="totalPages" type="xs:int"/>
+                <xs:element maxOccurs="unbounded" name="books" type="tns:book"/>
+                <!-- this search returns back the library, topic and language for the webapp to display filter terms -->
+                <xs:element name="library" type="tns:library"/>
+                <xs:element name="topic" type="tns:topic"/>
+                <xs:element name="language" type="tns:language"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -101,10 +131,10 @@
             <xs:element name="author" type="xs:string"/>
             <xs:element name="isbn" type="xs:string"/>
             <xs:element maxOccurs="unbounded" name="topics" type="tns:topic"/>
-            <xs:element name="languageId" type="xs:int"/>
+            <xs:element name="language" type="tns:language"/>
             <xs:element name="quantity" type="xs:int"/>
             <xs:element name="publicationDate" type="xs:date"/>
-            <xs:element name="libraryId" type="xs:int"/>
+            <xs:element name="library" type="tns:library"/>
             <xs:element name="summary" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>

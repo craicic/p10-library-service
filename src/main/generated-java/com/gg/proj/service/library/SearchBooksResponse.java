@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.01 à 06:55:10 PM CET 
+// Généré le : 2019.02.03 à 04:39:11 PM CET 
 //
 
 
@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="libraries" type="{http://proj.gg.com/service/library}library" maxOccurs="unbounded"/>
  *         &lt;element name="topics" type="{http://proj.gg.com/service/library}topic" maxOccurs="unbounded"/>
  *         &lt;element name="languages" type="{http://proj.gg.com/service/library}language" maxOccurs="unbounded"/>
+ *         &lt;element name="keyWord" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -46,7 +47,8 @@ import javax.xml.bind.annotation.XmlType;
     "books",
     "libraries",
     "topics",
-    "languages"
+    "languages",
+    "keyWord"
 })
 @XmlRootElement(name = "searchBooksResponse")
 public class SearchBooksResponse {
@@ -60,6 +62,8 @@ public class SearchBooksResponse {
     protected List<Topic> topics;
     @XmlElement(required = true)
     protected List<Language> languages;
+    @XmlElement(required = true)
+    protected String keyWord;
 
     /**
      * Obtient la valeur de la propriété totalPages.
@@ -191,6 +195,30 @@ public class SearchBooksResponse {
             languages = new ArrayList<Language>();
         }
         return this.languages;
+    }
+
+    /**
+     * Obtient la valeur de la propriété keyWord.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getKeyWord() {
+        return keyWord;
+    }
+
+    /**
+     * Définit la valeur de la propriété keyWord.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setKeyWord(String value) {
+        this.keyWord = value;
     }
 
 }
