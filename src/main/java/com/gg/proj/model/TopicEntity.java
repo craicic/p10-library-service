@@ -17,7 +17,7 @@ public class TopicEntity {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "topics_of_book",
             joinColumns = @JoinColumn(name="topic_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name="book_id", referencedColumnName = "id")

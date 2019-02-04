@@ -24,4 +24,10 @@ public interface MapperWorker {
     List<Topic> topicEntityListToTopicList(List<TopicEntity> topicEntities);
 
     List<Library> libraryEntityListToLibraryList(List<LibraryEntity> libraryEntities);
+
+    LibraryEntity libraryToLibraryEntity(Library library);
+
+    LanguageEntity languageToLanguageEntity(Language language);
+
+    TopicEntity topicToTopicEntity(Topic topic);
 }

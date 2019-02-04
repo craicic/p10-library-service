@@ -27,7 +27,7 @@ public class BookEntity {
     @Column(nullable = false)
     private List<TopicEntity> topics;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "language_id", nullable = false)
     private LanguageEntity language;
 
@@ -38,7 +38,7 @@ public class BookEntity {
         nullable = false)
     private Date publicationDate;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "library_id", nullable = false)
     private LibraryEntity library;
 

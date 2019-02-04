@@ -9,6 +9,7 @@ import com.gg.proj.model.LanguageEntity;
 import com.gg.proj.model.LibraryEntity;
 import com.gg.proj.service.library.*;
 import com.gg.proj.util.MapperWorker;
+import com.gg.proj.util.Predicates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import com.gg.proj.util.Predicates;
+
 /**
  * This class apply business method
  */
@@ -118,8 +117,107 @@ public class BookManager {
         return response;
     }
 
-    public FilterBooksResponse filterBooks(FilterBooksRequest request){
+    public FilterBooksResponse filterBooks(FilterBooksRequest request) {
         FilterBooksResponse response = new FilterBooksResponse();
+        PageRequest pageRequest = PageRequest.of(request.getPage(), request.getSize(), Sort.Direction.ASC, "title");
+        List<Book> books = response.getBooks();
+
+        Page<BookEntity> page = Page.empty(pageRequest);
+
+        int languageId = request.getLanguageId();
+        int libraryId = request.getLibraryId();
+        int topicId = request.getTopicId();
+
+        if (request.isAvailable()) {
+            if (languageId >= 0 && libraryId >= 0 && topicId >= 0) {
+                page = bookRepository.filterAvailable("%" + request.getKeyWord() + "%",
+                        request.getLanguageId(),
+                        request.getLibraryId(),
+                        request.getTopicId(),
+                        pageRequest);
+            } else if (languageId < 0 && libraryId >= 0 && topicId >= 0) {
+                page = bookRepository.filterAvailableByTopicLibrary("%" + request.getKeyWord() + "%",
+                        request.getLibraryId(),
+                        request.getTopicId(),
+                        pageRequest);
+            } else if (languageId < 0 && libraryId < 0 && topicId >= 0) {
+                page = bookRepository.filterAvailableByTopic("%" + request.getKeyWord() + "%",
+                        request.getTopicId(),
+                        pageRequest);
+            } else if (languageId >= 0 && libraryId >= 0) {
+                page = bookRepository.filterAvailableByLanguageLibrary("%" + request.getKeyWord() + "%",
+                        request.getLanguageId(),
+                        request.getLibraryId(),
+                        pageRequest);
+            } else if (languageId >= 0 && topicId >= 0) {
+                page = bookRepository.filterAvailableByTopicLanguage("%" + request.getKeyWord() + "%",
+                        request.getLanguageId(),
+                        request.getTopicId(),
+                        pageRequest);
+            } else if (languageId >= 0) {
+                page = bookRepository.filterAvailableByLanguage("%" + request.getKeyWord() + "%",
+                        request.getLanguageId(),
+                        pageRequest);
+            } else if (libraryId >= 0) {
+                page = bookRepository.filterAvailableByLibrary("%" + request.getKeyWord() + "%",
+                        request.getLibraryId(),
+                        pageRequest);
+            } else if (languageId < 0 && libraryId <0 && topicId <0){
+                page = bookRepository.searchAvailable("%" + request.getKeyWord() + "%",
+                        pageRequest
+                        );
+            }
+
+        } else if (!request.isAvailable()) {
+            if (languageId >= 0 && libraryId >= 0 && topicId >= 0) {
+                page = bookRepository.filter("%" + request.getKeyWord() + "%",
+                        request.getLanguageId(),
+                        request.getLibraryId(),
+                        request.getTopicId(),
+                        pageRequest);
+            } else if (languageId < 0 && libraryId >= 0 && topicId >= 0) {
+                page = bookRepository.filterByTopicLibrary("%" + request.getKeyWord() + "%",
+                        request.getLibraryId(),
+                        request.getTopicId(),
+                        pageRequest);
+            } else if (languageId < 0 && libraryId < 0 && topicId >= 0) {
+                page = bookRepository.filterByTopic("%" + request.getKeyWord() + "%",
+                        request.getTopicId(),
+                        pageRequest);
+            } else if (languageId >= 0 && libraryId >= 0) {
+                page = bookRepository.filterByLanguageLibrary("%" + request.getKeyWord() + "%",
+                        request.getLanguageId(),
+                        request.getLibraryId(),
+                        pageRequest);
+            } else if (languageId >= 0 && topicId >= 0) {
+                page = bookRepository.filterByTopicLanguage("%" + request.getKeyWord() + "%",
+                        request.getLanguageId(),
+                        request.getTopicId(),
+                        pageRequest);
+            } else if (languageId >= 0) {
+                page = bookRepository.filterByLanguage("%" + request.getKeyWord() + "%",
+                        request.getLanguageId(),
+                        pageRequest);
+            } else if (libraryId >= 0) {
+                page = bookRepository.filterByLibrary("%" + request.getKeyWord() + "%",
+                        request.getLibraryId(),
+                        pageRequest);
+            } else if (languageId < 0 && libraryId <0 && topicId <0) {
+                page = bookRepository.search("%" + request.getKeyWord() + "%",
+                        pageRequest
+                );
+            }
+        }
+
+        books.addAll(mapperWorker.bookEntityListToBookList(page.getContent()));
+        log.info("books.size() : " + books.size());
+        for (
+                Book b : books) {
+            log.info("book tile : " + b.getTitle());
+        }
+        response.setTotalPages(page.getTotalPages());
+
         return response;
     }
+
 }

@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.03 à 04:39:11 PM CET 
+// Généré le : 2019.02.04 à 01:50:07 PM CET 
 //
 
 
@@ -28,9 +28,10 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="page" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="size" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="keyWord" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="library" type="{http://proj.gg.com/service/library}library"/>
- *         &lt;element name="topic" type="{http://proj.gg.com/service/library}topic"/>
- *         &lt;element name="language" type="{http://proj.gg.com/service/library}language"/>
+ *         &lt;element name="libraryId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="topicId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="languageId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="available" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -44,9 +45,10 @@ import javax.xml.bind.annotation.XmlType;
     "page",
     "size",
     "keyWord",
-    "library",
-    "topic",
-    "language"
+    "libraryId",
+    "topicId",
+    "languageId",
+    "available"
 })
 @XmlRootElement(name = "filterBooksRequest")
 public class FilterBooksRequest {
@@ -55,12 +57,10 @@ public class FilterBooksRequest {
     protected int size;
     @XmlElement(required = true)
     protected String keyWord;
-    @XmlElement(required = true)
-    protected Library library;
-    @XmlElement(required = true)
-    protected Topic topic;
-    @XmlElement(required = true)
-    protected Language language;
+    protected int libraryId;
+    protected int topicId;
+    protected int languageId;
+    protected boolean available;
 
     /**
      * Obtient la valeur de la propriété page.
@@ -119,75 +119,67 @@ public class FilterBooksRequest {
     }
 
     /**
-     * Obtient la valeur de la propriété library.
+     * Obtient la valeur de la propriété libraryId.
      * 
-     * @return
-     *     possible object is
-     *     {@link Library }
-     *     
      */
-    public Library getLibrary() {
-        return library;
+    public int getLibraryId() {
+        return libraryId;
     }
 
     /**
-     * Définit la valeur de la propriété library.
+     * Définit la valeur de la propriété libraryId.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Library }
-     *     
      */
-    public void setLibrary(Library value) {
-        this.library = value;
+    public void setLibraryId(int value) {
+        this.libraryId = value;
     }
 
     /**
-     * Obtient la valeur de la propriété topic.
+     * Obtient la valeur de la propriété topicId.
      * 
-     * @return
-     *     possible object is
-     *     {@link Topic }
-     *     
      */
-    public Topic getTopic() {
-        return topic;
+    public int getTopicId() {
+        return topicId;
     }
 
     /**
-     * Définit la valeur de la propriété topic.
+     * Définit la valeur de la propriété topicId.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Topic }
-     *     
      */
-    public void setTopic(Topic value) {
-        this.topic = value;
+    public void setTopicId(int value) {
+        this.topicId = value;
     }
 
     /**
-     * Obtient la valeur de la propriété language.
+     * Obtient la valeur de la propriété languageId.
      * 
-     * @return
-     *     possible object is
-     *     {@link Language }
-     *     
      */
-    public Language getLanguage() {
-        return language;
+    public int getLanguageId() {
+        return languageId;
     }
 
     /**
-     * Définit la valeur de la propriété language.
+     * Définit la valeur de la propriété languageId.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Language }
-     *     
      */
-    public void setLanguage(Language value) {
-        this.language = value;
+    public void setLanguageId(int value) {
+        this.languageId = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété available.
+     * 
+     */
+    public boolean isAvailable() {
+        return available;
+    }
+
+    /**
+     * Définit la valeur de la propriété available.
+     * 
+     */
+    public void setAvailable(boolean value) {
+        this.available = value;
     }
 
 }

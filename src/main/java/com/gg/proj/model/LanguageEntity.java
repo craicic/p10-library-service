@@ -1,6 +1,7 @@
 package com.gg.proj.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Base DTO class for the Language model
@@ -15,15 +16,15 @@ public class LanguageEntity {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne(mappedBy = "language")
-    private BookEntity book;
+    @OneToMany(mappedBy = "language")
+    private List<BookEntity> books;
 
     public LanguageEntity() {
     }
 
-    public LanguageEntity(String name, BookEntity book) {
+    public LanguageEntity(String name, List<BookEntity> books) {
         this.name = name;
-        this.book = book;
+        this.books = books;
     }
 
     public Integer getId() {
@@ -42,12 +43,12 @@ public class LanguageEntity {
         this.name = name;
     }
 
-    public BookEntity getBook() {
-        return book;
+    public List<BookEntity> getBook() {
+        return books;
     }
 
-    public void setBook(BookEntity book) {
-        this.book = book;
+    public void setBook(List<BookEntity> books) {
+        this.books = books;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class LanguageEntity {
         return "LanguageEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", book=" + book +
+                ", books=" + books +
                 '}';
     }
 }

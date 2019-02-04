@@ -1,6 +1,7 @@
 package com.gg.proj.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Base DTO class for the Library model
@@ -13,8 +14,8 @@ public class LibraryEntity {
     @GeneratedValue
     private Integer id;
 
-    @OneToOne(mappedBy = "library")
-    private BookEntity book;
+    @OneToMany(mappedBy = "library")
+    private List<BookEntity> books;
 
     @Column(nullable = false)
     private String name;
@@ -34,8 +35,8 @@ public class LibraryEntity {
     public LibraryEntity() {
     }
 
-    public LibraryEntity(BookEntity book, String name, String city, Integer postalCode, String adress, String phoneNumber) {
-        this.book = book;
+    public LibraryEntity(List<BookEntity> books, String name, String city, Integer postalCode, String adress, String phoneNumber) {
+        this.books = books;
         this.name = name;
         this.city = city;
         this.postalCode = postalCode;
@@ -51,12 +52,12 @@ public class LibraryEntity {
         this.id = id;
     }
 
-    public BookEntity getBook() {
-        return book;
+    public List<BookEntity> getBook() {
+        return books;
     }
 
-    public void setBook(BookEntity book) {
-        this.book = book;
+    public void setBook(List<BookEntity> books) {
+        this.books = books;
     }
 
     public String getName() {
@@ -103,7 +104,7 @@ public class LibraryEntity {
     public String toString() {
         return "LibraryEntity{" +
                 "id=" + id +
-                ", book=" + book +
+                ", books=" + books +
                 ", name='" + name + '\'' +
                 ", city='" + city + '\'' +
                 ", postalCode=" + postalCode +

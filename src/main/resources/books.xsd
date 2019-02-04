@@ -71,9 +71,11 @@
                 <xs:element name="size" type="xs:int"/>
                 <xs:element name="keyWord" type="xs:string"/>
                 <!-- params coming from combobox-->
-                <xs:element name="library" type="tns:library"/>
-                <xs:element name="topic" type="tns:topic"/>
-                <xs:element name="language" type="tns:language"/>
+                <xs:element name="libraryId" type="xs:int"/>
+                <xs:element name="topicId" type="xs:int"/>
+                <xs:element name="languageId" type="xs:int"/>
+                <!-- is the book available -->
+                <xs:element name="available" type="xs:boolean"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -84,9 +86,9 @@
                 <xs:element name="totalPages" type="xs:int"/>
                 <xs:element maxOccurs="unbounded" name="books" type="tns:book"/>
                 <!-- this search returns back the library, topic and language for the webapp to display filter terms -->
-                <xs:element name="library" type="tns:library"/>
-                <xs:element name="topic" type="tns:topic"/>
-                <xs:element name="language" type="tns:language"/>
+                <!--<xs:element name="library" type="tns:library"/>-->
+                <!--<xs:element name="topic" type="tns:topic"/>-->
+                <!--<xs:element name="language" type="tns:language"/>-->
             </xs:sequence>
         </xs:complexType>
     </xs:element>
