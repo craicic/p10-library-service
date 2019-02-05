@@ -8,7 +8,7 @@ import java.util.List;
  * Base DTO class for the Book model
  */
 @Entity
-@Table(name="book")
+@Table(name = "book")
 public class BookEntity {
 
     @Id
@@ -35,7 +35,7 @@ public class BookEntity {
     private Integer quantity;
 
     @Column(name = "publication_date",
-        nullable = false)
+            nullable = false)
     private Date publicationDate;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -44,11 +44,14 @@ public class BookEntity {
 
     private String summary;
 
+    @OneToMany(mappedBy = "book")
+    private List<LoanEntity> loans;
+
     public BookEntity() {
     }
 
     public BookEntity(String title, String author, String isbn, List<TopicEntity> topics, LanguageEntity language,
-                      Integer quantity, Date publicationDate, LibraryEntity library, String summary) {
+                      Integer quantity, Date publicationDate, LibraryEntity library, String summary, List<LoanEntity> loans) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
@@ -58,6 +61,7 @@ public class BookEntity {
         this.publicationDate = publicationDate;
         this.library = library;
         this.summary = summary;
+        this.loans = loans;
     }
 
     public Integer getId() {
@@ -140,6 +144,14 @@ public class BookEntity {
         this.summary = summary;
     }
 
+    public List<LoanEntity> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<LoanEntity> loans) {
+        this.loans = loans;
+    }
+
     @Override
     public String toString() {
         return "BookEntity{" +
@@ -153,6 +165,9 @@ public class BookEntity {
                 ", publicationDate=" + publicationDate +
                 ", library=" + library +
                 ", summary='" + summary + '\'' +
+                ", loans=" + loans +
                 '}';
     }
+
+
 }

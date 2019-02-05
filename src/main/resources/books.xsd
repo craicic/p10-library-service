@@ -17,25 +17,6 @@
         </xs:complexType>
     </xs:element>
 
-    <!-- get a paged list of books -->
-    <!-- you request a page and a size it returns a list plus the amont of pages -->
-    <xs:element name="getPagedBookListRequest">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="page" type="xs:int"/>
-                <xs:element name="size" type="xs:int"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="getPagedBookListResponse">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="totalPages" type="xs:int"/>
-                <xs:element maxOccurs="unbounded" name="books" type="tns:book"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
     <!-- this is search method -->
     <!-- you request page, size, keyword, it return a book list plus a lot of infos to performs a filtered search -->
     <xs:element name="searchBooksRequest">
@@ -85,10 +66,7 @@
             <xs:sequence>
                 <xs:element name="totalPages" type="xs:int"/>
                 <xs:element maxOccurs="unbounded" name="books" type="tns:book"/>
-                <!-- this search returns back the library, topic and language for the webapp to display filter terms -->
-                <!--<xs:element name="library" type="tns:library"/>-->
-                <!--<xs:element name="topic" type="tns:topic"/>-->
-                <!--<xs:element name="language" type="tns:language"/>-->
+                <!-- this search could return the library, topic and language for the webapp to display filter terms -->
             </xs:sequence>
         </xs:complexType>
     </xs:element>
