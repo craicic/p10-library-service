@@ -2,6 +2,8 @@ package com.gg.proj.service;
 
 import com.gg.proj.business.BookManager;
 import com.gg.proj.business.UserManager;
+import com.gg.proj.service.exceptions.ServiceFaultException;
+import com.gg.proj.service.exceptions.UserNotFoundException;
 import com.gg.proj.service.library.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,10 +67,18 @@ public class BookEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "loginUserRequest")
     @ResponsePayload
-    public LoginUserResponse loginUser(@RequestPayload LoginUserRequest request) {
+    public LoginUserResponse loginUser(@RequestPayload LoginUserRequest request)  throws ServiceFaultException {
         log.debug("loginUser : calling the userManager to log a user in");
         LoginUserResponse response = new LoginUserResponse();
-        response.setUser(userManager.loginUser(request.getPseudo(), request.getPasswordHash()));
+        try {
+            response.setUser(userManager.loginUser(request.getPseudo(), request.getPasswordHash()));
+        } catch (UserNotFoundException e) {
+            String errorMessage = e.getMessage();
+            ServiceStatus serviceStatus = new ServiceStatus();
+            serviceStatus.setMessage("Wrong credentials");
+            serviceStatus.setStatusCode("NOT_FOUND");
+            throw new ServiceFaultException(errorMessage, serviceStatus);
+        }
         return response;
     }
 }

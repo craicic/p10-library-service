@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.06 à 05:08:20 PM CET 
+// Généré le : 2019.02.06 à 08:52:44 PM CET 
 //
 
 
@@ -37,22 +37,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetLanguageResponse }
-     * 
-     */
-    public GetLanguageResponse createGetLanguageResponse() {
-        return new GetLanguageResponse();
-    }
-
-    /**
-     * Create an instance of {@link Language }
-     * 
-     */
-    public Language createLanguage() {
-        return new Language();
-    }
-
-    /**
      * Create an instance of {@link GetBookResponse }
      * 
      */
@@ -69,35 +53,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetLibraryResponse }
-     * 
-     */
-    public GetLibraryResponse createGetLibraryResponse() {
-        return new GetLibraryResponse();
-    }
-
-    /**
-     * Create an instance of {@link Library }
-     * 
-     */
-    public Library createLibrary() {
-        return new Library();
-    }
-
-    /**
      * Create an instance of {@link SearchBooksRequest }
      * 
      */
     public SearchBooksRequest createSearchBooksRequest() {
         return new SearchBooksRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetLanguageRequest }
-     * 
-     */
-    public GetLanguageRequest createGetLanguageRequest() {
-        return new GetLanguageRequest();
     }
 
     /**
@@ -109,11 +69,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Library }
+     * 
+     */
+    public Library createLibrary() {
+        return new Library();
+    }
+
+    /**
      * Create an instance of {@link Topic }
      * 
      */
     public Topic createTopic() {
         return new Topic();
+    }
+
+    /**
+     * Create an instance of {@link Language }
+     * 
+     */
+    public Language createLanguage() {
+        return new Language();
     }
 
     /**
@@ -130,14 +106,6 @@ public class ObjectFactory {
      */
     public User createUser() {
         return new User();
-    }
-
-    /**
-     * Create an instance of {@link GetLibraryRequest }
-     * 
-     */
-    public GetLibraryRequest createGetLibraryRequest() {
-        return new GetLibraryRequest();
     }
 
     /**
@@ -170,6 +138,14 @@ public class ObjectFactory {
      */
     public FilterBooksRequest createFilterBooksRequest() {
         return new FilterBooksRequest();
+    }
+
+    /**
+     * Create an instance of {@link ServiceStatus }
+     * 
+     */
+    public ServiceStatus createServiceStatus() {
+        return new ServiceStatus();
     }
 
 }

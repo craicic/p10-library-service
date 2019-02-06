@@ -3,6 +3,7 @@ package com.gg.proj.business;
 import com.gg.proj.business.mapper.MapperWorker;
 import com.gg.proj.consumer.UserRepository;
 import com.gg.proj.model.UserEntity;
+import com.gg.proj.service.exceptions.UserNotFoundException;
 import com.gg.proj.service.library.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,15 +33,17 @@ public class UserManager {
         this.userRepository = userRepository;
     }
 
-    public User loginUser(String pseudo, String passwordHash) {
+    public User loginUser(String pseudo, String passwordHash) throws UserNotFoundException {
         log.debug("Entering loginUser method... " +
                 "   ... Requesting database for a user with pseudo : " + pseudo + " and hash : " + passwordHash);
         UserEntity userEntity = userRepository.findByPseudoAndPasswordHash(pseudo, passwordHash);
-        if (userEntity.getId() != null ) {
+        if (userEntity != null ) {
             log.debug("found user in database : " + userEntity);
             userEntity.setLastConnection(Timestamp.from(Instant.now()));
             userRepository.save(userEntity);
+        } else {
+            throw new UserNotFoundException("No such user in database");
         }
-        return mapperWorker.userEntityToUser(userEntity);
+            return mapperWorker.userEntityToUser(userEntity);
     }
 }

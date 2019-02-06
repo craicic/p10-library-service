@@ -45,7 +45,7 @@
             <artifactId>wsdl4j</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!-- We override springboot version due to project's constrain -->
+        <!-- We override postgresql version due to project's constrain -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
