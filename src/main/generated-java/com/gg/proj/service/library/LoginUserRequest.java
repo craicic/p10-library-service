@@ -25,7 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="language" type="{http://proj.gg.com/service/library}language"/>
+ *         &lt;element name="pseudo" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="passwordHash" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +37,63 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "language"
+    "pseudo",
+    "passwordHash"
 })
-@XmlRootElement(name = "getLanguageResponse")
-public class GetLanguageResponse {
+@XmlRootElement(name = "loginUserRequest")
+public class LoginUserRequest {
 
     @XmlElement(required = true)
-    protected Language language;
+    protected String pseudo;
+    @XmlElement(required = true)
+    protected String passwordHash;
 
     /**
-     * Obtient la valeur de la propriété language.
+     * Obtient la valeur de la propriété pseudo.
      * 
      * @return
      *     possible object is
-     *     {@link Language }
+     *     {@link String }
      *     
      */
-    public Language getLanguage() {
-        return language;
+    public String getPseudo() {
+        return pseudo;
     }
 
     /**
-     * Définit la valeur de la propriété language.
+     * Définit la valeur de la propriété pseudo.
      * 
      * @param value
      *     allowed object is
-     *     {@link Language }
+     *     {@link String }
      *     
      */
-    public void setLanguage(Language value) {
-        this.language = value;
+    public void setPseudo(String value) {
+        this.pseudo = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété passwordHash.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    /**
+     * Définit la valeur de la propriété passwordHash.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPasswordHash(String value) {
+        this.passwordHash = value;
     }
 
 }

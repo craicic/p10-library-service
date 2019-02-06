@@ -52,6 +52,7 @@ public class ConfigurationClass {
         return wsdl11Definition;
     }
 
+
     @Bean
     public XsdSchema booksSchema() {
         return new SimpleXsdSchema(new ClassPathResource("books.xsd"));

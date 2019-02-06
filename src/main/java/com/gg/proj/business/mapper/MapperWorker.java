@@ -1,20 +1,19 @@
-package com.gg.proj.util;
+package com.gg.proj.business.mapper;
 
-import com.gg.proj.model.BookEntity;
-import com.gg.proj.model.LanguageEntity;
-import com.gg.proj.model.LibraryEntity;
-import com.gg.proj.model.TopicEntity;
-import com.gg.proj.service.library.Book;
-import com.gg.proj.service.library.Language;
-import com.gg.proj.service.library.Library;
-import com.gg.proj.service.library.Topic;
+import com.gg.proj.model.*;
+import com.gg.proj.service.library.*;
 import org.mapstruct.Mapper;
 
 import java.util.List;
 
+/**
+ * This is the interface that drive MapStruct framework, you simply add the method signature and the framework drive the
+ * whole mapping by generating implementation classes.
+ */
 @Mapper(componentModel = "spring")
 public interface MapperWorker {
 
+    //    BOOK
     Book bookEntityToBook(BookEntity bookEntity);
 
     List<Book> bookEntityListToBookList(List<BookEntity> bookEntities);
@@ -30,4 +29,7 @@ public interface MapperWorker {
     LanguageEntity languageToLanguageEntity(Language language);
 
     TopicEntity topicToTopicEntity(Topic topic);
+
+    //    USER
+    User userEntityToUser(UserEntity userEntity);
 }

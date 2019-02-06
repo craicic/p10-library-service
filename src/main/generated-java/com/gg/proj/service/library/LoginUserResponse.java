@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="language" type="{http://proj.gg.com/service/library}language"/>
+ *         &lt;element name="user" type="{http://proj.gg.com/service/library}user"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "language"
+    "user"
 })
-@XmlRootElement(name = "getLanguageResponse")
-public class GetLanguageResponse {
+@XmlRootElement(name = "loginUserResponse")
+public class LoginUserResponse {
 
     @XmlElement(required = true)
-    protected Language language;
+    protected User user;
 
     /**
-     * Obtient la valeur de la propriété language.
+     * Obtient la valeur de la propriété user.
      * 
      * @return
      *     possible object is
-     *     {@link Language }
+     *     {@link User }
      *     
      */
-    public Language getLanguage() {
-        return language;
+    public User getUser() {
+        return user;
     }
 
     /**
-     * Définit la valeur de la propriété language.
+     * Définit la valeur de la propriété user.
      * 
      * @param value
      *     allowed object is
-     *     {@link Language }
+     *     {@link User }
      *     
      */
-    public void setLanguage(Language value) {
-        this.language = value;
+    public void setUser(User value) {
+        this.user = value;
     }
 
 }

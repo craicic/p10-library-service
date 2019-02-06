@@ -1,5 +1,6 @@
 package com.gg.proj.business;
 
+import com.gg.proj.business.mapper.MapperWorker;
 import com.gg.proj.consumer.BookRepository;
 import com.gg.proj.consumer.LanguageRepository;
 import com.gg.proj.consumer.LibraryRepository;
@@ -8,7 +9,6 @@ import com.gg.proj.model.BookEntity;
 import com.gg.proj.model.LanguageEntity;
 import com.gg.proj.model.LibraryEntity;
 import com.gg.proj.service.library.*;
-import com.gg.proj.util.MapperWorker;
 import com.gg.proj.util.Predicates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * This class apply business method
+ * This class contains business methods
  */
 @Component
 @Transactional
@@ -73,8 +73,8 @@ public class BookManager {
     /**
      * This method take a request as parameter and build a response
      *
-     * @param request a SearchBooksRequest
-     * @return a searchBooksResponse
+     * @param request a {@link SearchBooksResponse}
+     * @return a {@link SearchBooksResponse}
      */
     public SearchBooksResponse searchBooks(SearchBooksRequest request) {
 
@@ -117,8 +117,28 @@ public class BookManager {
         return response;
     }
 
+    /**
+     * This method take a request as parameter and build a response. It is coded to pick the adequate request to the
+     * bookRepository.
+     *
+     * The request is composed by 5 field :
+     * keyWord, size and page               => to build a Pageable
+     * languageId, libraryId and topicId    => to filter via combo box
+     * isAvailable                          => to filter in stock books
+     *
+     * The response consists in two field : totalPages and books
+     * books is accessed via reference.
+     *
+     * This method contains a long and poorly-maintainable list of conditions, cause by the fact that @Query content can't be
+     * dynamically changed. The other option is to build queries via the Spring Criteria API :
+     * (@link https://www.baeldung.com/spring-data-criteria-queries)
+     *
+     * @param request a {@link FilterBooksRequest}
+     * @return a {@link FilterBooksResponse}
+     */
     public FilterBooksResponse filterBooks(FilterBooksRequest request) {
         FilterBooksResponse response = new FilterBooksResponse();
+        // Preparing a PageRequest in order to get a sorted and paged list
         PageRequest pageRequest = PageRequest.of(request.getPage(), request.getSize(), Sort.Direction.ASC, "title");
         List<Book> books = response.getBooks();
 
@@ -128,6 +148,10 @@ public class BookManager {
         int libraryId = request.getLibraryId();
         int topicId = request.getTopicId();
 
+        /* A list of condition to check the filters state
+        * Webapp side, in example : if the user picks a combo box to "All" for language it result by a -1 on getLanguageId()
+        * Then we can test the presence or not of the filter by testing Id>=0
+        */
         if (request.isAvailable()) {
             if (languageId >= 0 && libraryId >= 0 && topicId >= 0) {
                 page = bookRepository.filterAvailable("%" + request.getKeyWord() + "%",
@@ -209,12 +233,9 @@ public class BookManager {
             }
         }
 
+        // Access via reference
         books.addAll(mapperWorker.bookEntityListToBookList(page.getContent()));
-        log.info("books.size() : " + books.size());
-        for (
-                Book b : books) {
-            log.info("book tile : " + b.getTitle());
-        }
+
         response.setTotalPages(page.getTotalPages());
 
         return response;
