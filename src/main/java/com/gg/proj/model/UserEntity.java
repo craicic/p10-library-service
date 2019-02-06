@@ -3,6 +3,7 @@ package com.gg.proj.model;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users",
@@ -68,6 +69,7 @@ public class UserEntity {
         this.registerDate = registerDate;
         this.loans = loans;
     }
+
 
     public Integer getId() {
         return id;
@@ -169,7 +171,44 @@ public class UserEntity {
         return loans;
     }
 
-    public void setLoans(List<LoanEntity> loans) {
-        this.loans = loans;
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", pseudo='" + pseudo + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", city='" + city + '\'' +
+                ", postalCode=" + postalCode +
+                ", address='" + address + '\'' +
+                ", mailAddress='" + mailAddress + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", lastConnection=" + lastConnection +
+                ", registerDate=" + registerDate +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return id.equals(that.id) &&
+                firstName.equals(that.firstName) &&
+                lastName.equals(that.lastName) &&
+                pseudo.equals(that.pseudo) &&
+                city.equals(that.city) &&
+                postalCode.equals(that.postalCode) &&
+                address.equals(that.address) &&
+                mailAddress.equals(that.mailAddress) &&
+                phoneNumber.equals(that.phoneNumber) &&
+                lastConnection.equals(that.lastConnection) &&
+                registerDate.equals(that.registerDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, pseudo, city, postalCode, address, mailAddress, phoneNumber, lastConnection, registerDate);
     }
 }

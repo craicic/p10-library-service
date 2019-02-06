@@ -2,6 +2,7 @@ package com.gg.proj.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "loan")
@@ -15,7 +16,7 @@ public class LoanEntity {
     @JoinColumn(name = "book_id", nullable = false)
     private BookEntity book;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name="user_id", nullable = false)
     private UserEntity user;
 
@@ -85,5 +86,23 @@ public class LoanEntity {
 
     public void setExtended(boolean extended) {
         this.extended = extended;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LoanEntity that = (LoanEntity) o;
+        return extended == that.extended &&
+                id.equals(that.id) &&
+                book.equals(that.book) &&
+                user.equals(that.user) &&
+                loanStartDate.equals(that.loanStartDate) &&
+                loanEndDate.equals(that.loanEndDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, book, user, loanStartDate, loanEndDate, extended);
     }
 }

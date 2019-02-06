@@ -2,12 +2,15 @@ package com.gg.proj.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 /**
- * Base DTO class for the Topic model
+ * Base DTO class for the Topic model, it has an index on name and it describe a ManyToMany relation between topic
+ * and book tables.
  */
 @Entity
-@Table(name="topic")
+@Table(name="topic",
+        indexes = {@Index(name = "topic_idx", columnList = "name")})
 public class TopicEntity {
 
     @Id
@@ -18,7 +21,7 @@ public class TopicEntity {
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "topics_of_book",
+    @JoinTable(name = "topic_book",
             joinColumns = @JoinColumn(name="topic_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name="book_id", referencedColumnName = "id")
     )
@@ -52,16 +55,24 @@ public class TopicEntity {
         return books;
     }
 
-    public void setBooks(List<BookEntity> books) {
-        this.books = books;
-    }
-
     @Override
     public String toString() {
         return "TopicEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", books=" + books +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TopicEntity that = (TopicEntity) o;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

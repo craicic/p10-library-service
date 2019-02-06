@@ -4,10 +4,12 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Base DTO class for the Library model
+ * Base DTO class for the Library model. Has an unique index on name column. Has a OneToMany relation with the book
+ * table
  */
 @Entity
-@Table(name = "library")
+@Table(name = "library",
+        indexes = {@Index(name = "library_idx", columnList = "name")})
 public class LibraryEntity {
 
     @Id
@@ -27,7 +29,7 @@ public class LibraryEntity {
     private Integer postalCode;
 
     @Column(nullable = false)
-    private String adress;
+    private String address;
 
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
@@ -35,12 +37,12 @@ public class LibraryEntity {
     public LibraryEntity() {
     }
 
-    public LibraryEntity(List<BookEntity> books, String name, String city, Integer postalCode, String adress, String phoneNumber) {
+    public LibraryEntity(List<BookEntity> books, String name, String city, Integer postalCode, String address, String phoneNumber) {
         this.books = books;
         this.name = name;
         this.city = city;
         this.postalCode = postalCode;
-        this.adress = adress;
+        this.address = address;
         this.phoneNumber = phoneNumber;
     }
 
@@ -54,10 +56,6 @@ public class LibraryEntity {
 
     public List<BookEntity> getBook() {
         return books;
-    }
-
-    public void setBook(List<BookEntity> books) {
-        this.books = books;
     }
 
     public String getName() {
@@ -84,12 +82,12 @@ public class LibraryEntity {
         this.postalCode = postalCode;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhoneNumber() {
@@ -104,11 +102,10 @@ public class LibraryEntity {
     public String toString() {
         return "LibraryEntity{" +
                 "id=" + id +
-                ", books=" + books +
                 ", name='" + name + '\'' +
                 ", city='" + city + '\'' +
                 ", postalCode=" + postalCode +
-                ", adress='" + adress + '\'' +
+                ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }

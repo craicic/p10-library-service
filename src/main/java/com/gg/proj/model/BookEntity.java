@@ -3,6 +3,7 @@ package com.gg.proj.model;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Base DTO class for the Book model
@@ -100,10 +101,6 @@ public class BookEntity {
         return topics;
     }
 
-    public void setTopics(List<TopicEntity> topics) {
-        this.topics = topics;
-    }
-
     public LanguageEntity getLanguage() {
         return language;
     }
@@ -148,10 +145,6 @@ public class BookEntity {
         return loans;
     }
 
-    public void setLoans(List<LoanEntity> loans) {
-        this.loans = loans;
-    }
-
     @Override
     public String toString() {
         return "BookEntity{" +
@@ -169,5 +162,23 @@ public class BookEntity {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BookEntity that = (BookEntity) o;
+        return title.equals(that.title) &&
+                author.equals(that.author) &&
+                Objects.equals(isbn, that.isbn) &&
+                language.equals(that.language) &&
+                quantity.equals(that.quantity) &&
+                publicationDate.equals(that.publicationDate) &&
+                library.equals(that.library) &&
+                Objects.equals(summary, that.summary);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, author, isbn, language, quantity, publicationDate, library, summary);
+    }
 }

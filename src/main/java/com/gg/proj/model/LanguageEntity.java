@@ -2,12 +2,14 @@ package com.gg.proj.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 /**
- * Base DTO class for the Language model
+ * Base DTO class for the Language model. Unique index on name. OneToMany relation with the book table.
  */
 @Entity
-@Table(name="language")
+@Table(name="language",
+        indexes = {@Index(name = "language_idx", columnList = "name")})
 public class LanguageEntity {
 
     @Id @GeneratedValue
@@ -47,16 +49,24 @@ public class LanguageEntity {
         return books;
     }
 
-    public void setBook(List<BookEntity> books) {
-        this.books = books;
-    }
-
     @Override
     public String toString() {
         return "LanguageEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", books=" + books +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LanguageEntity that = (LanguageEntity) o;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
