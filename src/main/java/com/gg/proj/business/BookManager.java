@@ -1,6 +1,6 @@
 package com.gg.proj.business;
 
-import com.gg.proj.business.mapper.MapperWorker;
+import com.gg.proj.business.mapper.BookMapper;
 import com.gg.proj.consumer.BookRepository;
 import com.gg.proj.consumer.LanguageRepository;
 import com.gg.proj.consumer.LibraryRepository;
@@ -31,7 +31,7 @@ public class BookManager {
 
     private static final Logger log = LoggerFactory.getLogger(BookManager.class);
 
-    private MapperWorker mapperWorker;
+    private BookMapper bookMapper;
 
     private BookRepository bookRepository;
 
@@ -42,8 +42,8 @@ public class BookManager {
     private LibraryRepository libraryRepository;
 
     @Autowired
-    public BookManager(MapperWorker mapperWorker, BookRepository bookRepository, LanguageRepository languageRepository, TopicRepository topicRepository, LibraryRepository libraryRepository) {
-        this.mapperWorker = mapperWorker;
+    public BookManager(BookMapper bookMapper, BookRepository bookRepository, LanguageRepository languageRepository, TopicRepository topicRepository, LibraryRepository libraryRepository) {
+        this.bookMapper = bookMapper;
         this.bookRepository = bookRepository;
         this.languageRepository = languageRepository;
         this.topicRepository = topicRepository;
@@ -67,7 +67,7 @@ public class BookManager {
 
         log.info("getBookById : Requesting a book by id : " + id + " => found : ");
         // Mapping
-        return mapperWorker.bookEntityToBook(bookEntity);
+        return bookMapper.bookEntityToBook(bookEntity);
     }
 
     /**
@@ -78,6 +78,7 @@ public class BookManager {
      */
     public SearchBooksResponse searchBooks(SearchBooksRequest request) {
 
+        log.debug("searchBooks");
         SearchBooksResponse response = new SearchBooksResponse();
         // We prepare a PageRequest with a default sort value
         PageRequest pageRequest = PageRequest.of(request.getPage(), request.getSize(), Sort.Direction.ASC, "title");
@@ -87,12 +88,11 @@ public class BookManager {
         List<Topic> topics = response.getTopics();
         List<Library> libraries = response.getLibraries();
 
-
         Page<BookEntity> page = bookRepository.search("%" + request.getKeyWord() + "%", pageRequest);
         List<BookEntity> bookEntities = page.getContent();
 
         // Here we access the book list by reference (no need for setter)
-        books.addAll(mapperWorker.bookEntityListToBookList(bookEntities));
+        books.addAll(bookMapper.bookEntityListToBookList(bookEntities));
 
         // Once we have a list of books, we can stream it to extract their OneToOne language and library
         List<LanguageEntity> streamedLanguages = bookEntities.stream()
@@ -105,11 +105,11 @@ public class BookManager {
                 .map(BookEntity::getLibrary)
                 .collect(Collectors.toList());
 
-        languages.addAll(mapperWorker.languageEntityListToLanguageList(streamedLanguages));
-        libraries.addAll(mapperWorker.libraryEntityListToLibraryList(streamedLibraries));
+        languages.addAll(bookMapper.languageEntityListToLanguageList(streamedLanguages));
+        libraries.addAll(bookMapper.libraryEntityListToLibraryList(streamedLibraries));
 
         // We now fetch all topics
-        topics.addAll(mapperWorker.topicEntityListToTopicList(topicRepository.findDistinctByBooks(page.getContent())));
+        topics.addAll(bookMapper.topicEntityListToTopicList(topicRepository.findDistinctByBooks(page.getContent())));
 
         // We add keyWord to the response
         response.setKeyWord(request.getKeyWord());
@@ -234,7 +234,7 @@ public class BookManager {
         }
 
         // Access via reference
-        books.addAll(mapperWorker.bookEntityListToBookList(page.getContent()));
+        books.addAll(bookMapper.bookEntityListToBookList(page.getContent()));
 
         response.setTotalPages(page.getTotalPages());
 

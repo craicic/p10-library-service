@@ -9,7 +9,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "library",
-        indexes = {@Index(name = "library_idx", columnList = "name")})
+        indexes = {@Index(name = "library_idx", columnList = "name", unique = true)})
 public class LibraryEntity {
 
     @Id

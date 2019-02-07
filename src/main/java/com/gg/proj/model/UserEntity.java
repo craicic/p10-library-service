@@ -7,8 +7,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users",
-        indexes = {@Index(name = "users_idx", columnList = "pseudo"),
-                @Index(name = "users_idx1", columnList = "mail_address")})
+        indexes = {@Index(name = "users_idx", columnList = "pseudo", unique = true),
+                @Index(name = "users_idx1", columnList = "mail_address", unique = true)})
 public class UserEntity {
 
     @Id

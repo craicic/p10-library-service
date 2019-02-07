@@ -11,7 +11,7 @@ import java.util.List;
  * whole mapping by generating implementation classes.
  */
 @Mapper(componentModel = "spring")
-public interface MapperWorker {
+public interface BookMapper {
 
     //    BOOK
     Book bookEntityToBook(BookEntity bookEntity);
@@ -24,12 +24,4 @@ public interface MapperWorker {
 
     List<Library> libraryEntityListToLibraryList(List<LibraryEntity> libraryEntities);
 
-    LibraryEntity libraryToLibraryEntity(Library library);
-
-    LanguageEntity languageToLanguageEntity(Language language);
-
-    TopicEntity topicToTopicEntity(Topic topic);
-
-    //    USER
-    User userEntityToUser(UserEntity userEntity);
 }

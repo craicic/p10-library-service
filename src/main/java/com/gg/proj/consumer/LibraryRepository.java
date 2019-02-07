@@ -1,11 +1,8 @@
 package com.gg.proj.consumer;
 
 import com.gg.proj.model.LibraryEntity;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+public interface LibraryRepository extends JpaRepository<LibraryEntity, Integer> {
 
-public interface LibraryRepository extends PagingAndSortingRepository<LibraryEntity, Integer> {
-
-    public List<LibraryEntity> findDistinctByIdIn(List<Integer> ids);
 }

@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name="topic",
-        indexes = {@Index(name = "topic_idx", columnList = "name")})
+        indexes = {@Index(name = "topic_idx", columnList = "name", unique = true)})
 public class TopicEntity {
 
     @Id

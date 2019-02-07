@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface TopicRepository extends JpaRepository<TopicEntity,Integer> {
 
-    public List<TopicEntity> findDistinctByBooks(List<BookEntity> books);
+    List<TopicEntity> findDistinctByBooks(List<BookEntity> books);
 }

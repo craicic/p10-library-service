@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name="language",
-        indexes = {@Index(name = "language_idx", columnList = "name")})
+        indexes = {@Index(name = "language_idx", columnList = "name", unique = true)})
 public class LanguageEntity {
 
     @Id @GeneratedValue

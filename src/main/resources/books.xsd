@@ -2,6 +2,14 @@
            targetNamespace="http://proj.gg.com/service/library" elementFormDefault="qualified">
 
     <!--================ BOOK RELATED METHODS ================-->
+    <!-- create a book -->
+    <xs:element name="createBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name=""
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
     <!-- get a specific book by id -->
     <xs:element name="getBookRequest">
         <xs:complexType>
@@ -83,6 +91,31 @@
         </xs:complexType>
     </xs:element>
     <xs:element name="loginUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- token ... -->
+                <xs:element name="user" type="tns:user"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- create a user -->
+    <xs:element name="createUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="address" type="xs:string"/>
+                <xs:element name="city" type="xs:string"/>
+                <xs:element name="firstName" type="xs:string"/>
+                <xs:element name="lastName" type="xs:string"/>
+                <xs:element name="mailAddress" type="xs:string"/>
+                <xs:element name="phoneNumber" type="xs:string"/>
+                <xs:element name="postalCode" type="xs:int"/>
+                <xs:element name="pseudo" type="xs:string"/>
+                <xs:element name="passwordHash" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createUserResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="user" type="tns:user"/>

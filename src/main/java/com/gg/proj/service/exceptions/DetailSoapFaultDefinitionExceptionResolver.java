@@ -14,7 +14,7 @@ public class DetailSoapFaultDefinitionExceptionResolver extends SoapFaultMapping
 
     @Override
     protected void customizeFault(Object endpoint, Exception ex, SoapFault fault) {
-        logger.warn("Exception processed ", ex);
+
         if (ex instanceof ServiceFaultException) {
             ServiceStatus status = ((ServiceFaultException) ex).getServiceStatus();
             SoapFaultDetail detail = fault.addFaultDetail();
