@@ -2,11 +2,11 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.07 à 04:11:02 PM CET 
+// Généré le : 2019.02.11 à 01:35:57 PM CET 
 //
 
 
-package com.gg.proj.service.library;
+package com.gg.proj.service.books;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +28,10 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="totalPages" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="books" type="{http://proj.gg.com/service/library}book" maxOccurs="unbounded"/>
- *         &lt;element name="libraries" type="{http://proj.gg.com/service/library}library" maxOccurs="unbounded"/>
- *         &lt;element name="topics" type="{http://proj.gg.com/service/library}topic" maxOccurs="unbounded"/>
- *         &lt;element name="languages" type="{http://proj.gg.com/service/library}language" maxOccurs="unbounded"/>
+ *         &lt;element name="books" type="{http://proj.gg.com/service/books}book" maxOccurs="unbounded"/>
+ *         &lt;element name="libraries" type="{http://proj.gg.com/service/books}library" maxOccurs="unbounded"/>
+ *         &lt;element name="topics" type="{http://proj.gg.com/service/books}topic" maxOccurs="unbounded"/>
+ *         &lt;element name="languages" type="{http://proj.gg.com/service/books}language" maxOccurs="unbounded"/>
  *         &lt;element name="keyWord" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>

@@ -1,6 +1,6 @@
 package com.gg.proj.service.exceptions;
 
-import com.gg.proj.service.library.ServiceStatus;
+import com.gg.proj.service.books.ServiceStatus;
 
 public class ServiceFaultException extends RuntimeException {
 

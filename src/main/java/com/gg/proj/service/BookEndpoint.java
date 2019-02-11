@@ -1,10 +1,7 @@
 package com.gg.proj.service;
 
 import com.gg.proj.business.BookManager;
-import com.gg.proj.business.UserManager;
-import com.gg.proj.service.exceptions.ServiceFaultException;
-import com.gg.proj.service.exceptions.UserNotFoundException;
-import com.gg.proj.service.library.*;
+import com.gg.proj.service.books.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +18,14 @@ public class BookEndpoint {
 
     private static final Logger log = LoggerFactory.getLogger(BookEndpoint.class);
 
-    private static final String NAMESPACE_URI = "http://proj.gg.com/service/library";
+    private static final String NAMESPACE_URI = "http://proj.gg.com/service/books";
 
     private BookManager bookManager;
 
-    private UserManager userManager;
 
     @Autowired
-    public BookEndpoint(BookManager bookManager, UserManager userManager) {
+    public BookEndpoint(BookManager bookManager) {
         this.bookManager = bookManager;
-        this.userManager = userManager;
     }
 
 
@@ -62,32 +57,6 @@ public class BookEndpoint {
     public FilterBooksResponse filterBooks(@RequestPayload FilterBooksRequest request) {
         log.debug("filterBooks : calling the bookManager to filter book");
         FilterBooksResponse response = bookManager.filterBooks(request);
-        return response;
-    }
-
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "loginUserRequest")
-    @ResponsePayload
-    public LoginUserResponse loginUser(@RequestPayload LoginUserRequest request)  throws ServiceFaultException {
-        log.debug("loginUser : calling the userManager to log a user in");
-        LoginUserResponse response = new LoginUserResponse();
-        try {
-            response.setUser(userManager.loginUser(request.getPseudo(), request.getPasswordHash()));
-        } catch (UserNotFoundException e) {
-            String errorMessage = e.getMessage();
-            ServiceStatus serviceStatus = new ServiceStatus();
-            serviceStatus.setMessage("Wrong credentials");
-            serviceStatus.setStatusCode("NOT_FOUND");
-            throw new ServiceFaultException(errorMessage, serviceStatus);
-        }
-        return response;
-    }
-
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createUserRequest")
-    @ResponsePayload
-    public CreateUserResponse createUser(@RequestPayload CreateUserRequest request){
-        log.debug("createUser : calling the userManager to create a new user");
-        CreateUserResponse response = new CreateUserResponse();
-        response.setUser(userManager.createUser(request));
         return response;
     }
 

@@ -8,7 +8,7 @@ import com.gg.proj.consumer.TopicRepository;
 import com.gg.proj.model.BookEntity;
 import com.gg.proj.model.LanguageEntity;
 import com.gg.proj.model.LibraryEntity;
-import com.gg.proj.service.library.*;
+import com.gg.proj.service.books.*;
 import com.gg.proj.util.Predicates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

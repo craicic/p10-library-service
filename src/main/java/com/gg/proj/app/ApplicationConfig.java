@@ -32,50 +32,11 @@ import java.util.Properties;
  * The application.properties that you can find in resources has the priority over this class.
  *
  */
-@EnableWs
+
 @Configuration
 @EnableTransactionManagement
-public class ConfigurationClass {
+public class ApplicationConfig {
 
-    //    WEB SERVICE
-    @Bean
-    public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
-        MessageDispatcherServlet servlet = new MessageDispatcherServlet();
-        servlet.setApplicationContext(applicationContext);
-        servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean(servlet, "/ws/*");
-    }
-
-    @Bean(name = "books")
-    public DefaultWsdl11Definition bookWsdl11Definition(XsdSchema booksSchema) {
-        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("BookPort");
-        wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://proj.gg.com/service/library");
-        wsdl11Definition.setSchema(booksSchema);
-        return wsdl11Definition;
-    }
-
-    @Bean
-    public XsdSchema booksSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("books.xsd"));
-    }
-
-    @Bean
-    public SoapFaultMappingExceptionResolver exceptionResolver() {
-        SoapFaultMappingExceptionResolver exceptionResolver = new DetailSoapFaultDefinitionExceptionResolver();
-
-        SoapFaultDefinition faultDefinition = new SoapFaultDefinition();
-        faultDefinition.setFaultCode(SoapFaultDefinition.SERVER);
-        exceptionResolver.setDefaultFault(faultDefinition);
-
-        Properties errorMappings = new Properties();
-        errorMappings.setProperty(Exception.class.getName(), SoapFaultDefinition.SERVER.toString());
-        errorMappings.setProperty(ServiceFaultException.class.getName(), SoapFaultDefinition.SERVER.toString());
-        exceptionResolver.setExceptionMappings(errorMappings);
-        exceptionResolver.setOrder(1);
-        return exceptionResolver;
-    }
 
     //    SPRING DATA / JPA
     @Bean

@@ -4,7 +4,7 @@ import com.gg.proj.business.BookManager;
 import com.gg.proj.business.UserManager;
 import com.gg.proj.service.exceptions.ServiceFaultException;
 import com.gg.proj.service.exceptions.UserNotFoundException;
-import com.gg.proj.service.library.*;
+import com.gg.proj.service.books.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class UserEndpoint {
 
     private static final Logger log = LoggerFactory.getLogger(BookEndpoint.class);
 
-    private static final String NAMESPACE_URI = "http://proj.gg.com/service/library";
+    private static final String NAMESPACE_URI = "http://proj.gg.com/service/users";
 
     private UserManager userManager;
 

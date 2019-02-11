@@ -1,7 +1,7 @@
 package com.gg.proj.business.mapper;
 
 import com.gg.proj.model.UserEntity;
-import com.gg.proj.service.library.User;
+import com.gg.proj.service.books.User;
 import org.mapstruct.Mapper;
 
 /**

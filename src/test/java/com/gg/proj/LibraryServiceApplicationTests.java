@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes = com.gg.proj.app.ConfigurationClass.class)
+@ContextConfiguration(classes = com.gg.proj.app.ApplicationConfig.class)
 public class LibraryServiceApplicationTests {
 
     @Test

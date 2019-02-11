@@ -2,11 +2,11 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.07 à 04:11:02 PM CET 
+// Généré le : 2019.02.11 à 01:35:57 PM CET 
 //
 
 
-package com.gg.proj.service.library;
+package com.gg.proj.service.books;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +32,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="isbn" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="topics" type="{http://proj.gg.com/service/library}topic" maxOccurs="unbounded"/>
- *         &lt;element name="language" type="{http://proj.gg.com/service/library}language"/>
+ *         &lt;element name="topics" type="{http://proj.gg.com/service/books}topic" maxOccurs="unbounded"/>
+ *         &lt;element name="language" type="{http://proj.gg.com/service/books}language"/>
  *         &lt;element name="quantity" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="publicationDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="library" type="{http://proj.gg.com/service/library}library"/>
+ *         &lt;element name="library" type="{http://proj.gg.com/service/books}library"/>
  *         &lt;element name="summary" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>

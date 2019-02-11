@@ -1,6 +1,6 @@
 package com.gg.proj.service.exceptions;
 
-import com.gg.proj.service.library.ServiceStatus;
+import com.gg.proj.service.books.ServiceStatus;
 import org.springframework.ws.soap.SoapFault;
 import org.springframework.ws.soap.SoapFaultDetail;
 import org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver;

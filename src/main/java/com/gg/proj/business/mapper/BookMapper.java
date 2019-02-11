@@ -1,7 +1,7 @@
 package com.gg.proj.business.mapper;
 
 import com.gg.proj.model.*;
-import com.gg.proj.service.library.*;
+import com.gg.proj.service.books.*;
 import org.mapstruct.Mapper;
 
 import java.util.List;
