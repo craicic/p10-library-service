@@ -24,7 +24,13 @@ public class BookEntity {
 
     private String isbn;
 
-    @ManyToMany(mappedBy = "books")
+//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+
+    @ManyToMany
+    @JoinTable(name = "topic_book",
+            joinColumns = {@JoinColumn(name = "book_id",  referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "topic_id", referencedColumnName = "id")}
+    )
     @Column(nullable = false)
     private List<TopicEntity> topics;
 
@@ -143,6 +149,10 @@ public class BookEntity {
 
     public List<LoanEntity> getLoans() {
         return loans;
+    }
+
+    public void setTopics(List<TopicEntity> topics) {
+        this.topics = topics;
     }
 
     @Override

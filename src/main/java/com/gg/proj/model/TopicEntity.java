@@ -9,7 +9,7 @@ import java.util.Objects;
  * and book tables.
  */
 @Entity
-@Table(name="topic",
+@Table(name = "topic",
         indexes = {@Index(name = "topic_idx", columnList = "name", unique = true)})
 public class TopicEntity {
 
@@ -20,11 +20,11 @@ public class TopicEntity {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "topic_book",
-            joinColumns = @JoinColumn(name="topic_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name="book_id", referencedColumnName = "id")
-    )
+    @ManyToMany(mappedBy = "topics")
+//    @JoinTable(name = "topic_book",
+//            joinColumns = @JoinColumn(name = "topic_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id")
+//    )
     private List<BookEntity> books;
 
     public TopicEntity() {
@@ -53,6 +53,10 @@ public class TopicEntity {
 
     public List<BookEntity> getBooks() {
         return books;
+    }
+
+    public void setBooks(List<BookEntity> books) {
+        this.books = books;
     }
 
     @Override

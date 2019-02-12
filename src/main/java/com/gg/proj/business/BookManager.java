@@ -236,7 +236,8 @@ public class BookManager {
     }
 
     public Book save(Book book) {
-        return bookMapper.bookEntityToBook(bookRepository.save(bookMapper.bookToBookEntity(book)));
+        BookEntity bookEntity = bookRepository.save(bookMapper.bookToBookEntity(book));
+        return bookMapper.bookEntityToBook(bookEntity);
     }
 
 
