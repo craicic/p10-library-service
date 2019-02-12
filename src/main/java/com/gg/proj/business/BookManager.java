@@ -19,7 +19,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -49,26 +51,6 @@ public class BookManager {
         this.languageRepository = languageRepository;
         this.topicRepository = topicRepository;
         this.libraryRepository = libraryRepository;
-    }
-
-    /**
-     * This method calls the repository in order to get a book by id. If a such book is present in database, it perform
-     * a mapping operation then return the book. Else it returns null.
-     *
-     * @param id this id of the book
-     * @return a unique book mapped into a Book
-     */
-    public Book getBookById(Integer id) {
-
-        if (!bookRepository.findById(id).isPresent()) {
-            log.info("getBookById : Requesting a book by id : " + id + " => id not found in database");
-            return null;
-        }
-        BookEntity bookEntity = bookRepository.findById(id).get();
-
-        log.info("getBookById : Requesting a book by id : " + id + " => found : ");
-        // Mapping
-        return bookMapper.bookEntityToBook(bookEntity);
     }
 
     /**
@@ -121,15 +103,15 @@ public class BookManager {
     /**
      * This method take a request as parameter and build a response. It is coded to pick the adequate request to the
      * bookRepository.
-     *
+     * <p>
      * The request is composed by 5 field :
      * keyWord, size and page               => to build a Pageable
      * languageId, libraryId and topicId    => to filter via combo box
      * isAvailable                          => to filter in stock books
-     *
+     * <p>
      * The response consists in two field : totalPages and books
      * books is accessed via reference.
-     *
+     * <p>
      * This method contains a long and poorly-maintainable list of conditions, cause by the fact that @Query content can't be
      * dynamically changed. The other option is to build queries via the Spring Criteria API :
      * (@link https://www.baeldung.com/spring-data-criteria-queries)
@@ -150,9 +132,9 @@ public class BookManager {
         int topicId = request.getTopicId();
 
         /* A list of condition to check the filters state
-        * Webapp side, in example : if the user picks a combo box to "All" for language it result by a -1 on getLanguageId()
-        * Then we can test the presence or not of the filter by testing Id>=0
-        */
+         * Webapp side, in example : if the user picks a combo box to "All" for language it result by a -1 on getLanguageId()
+         * Then we can test the presence or not of the filter by testing Id>=0
+         */
         if (request.isAvailable()) {
             if (languageId >= 0 && libraryId >= 0 && topicId >= 0) {
                 page = bookRepository.filterAvailable("%" + request.getKeyWord() + "%",
@@ -187,10 +169,10 @@ public class BookManager {
                 page = bookRepository.filterAvailableByLibrary("%" + request.getKeyWord() + "%",
                         request.getLibraryId(),
                         pageRequest);
-            } else if (languageId < 0 && libraryId <0 && topicId <0){
+            } else if (languageId < 0 && libraryId < 0 && topicId < 0) {
                 page = bookRepository.searchAvailable("%" + request.getKeyWord() + "%",
                         pageRequest
-                        );
+                );
             }
 
         } else if (!request.isAvailable()) {
@@ -227,7 +209,7 @@ public class BookManager {
                 page = bookRepository.filterByLibrary("%" + request.getKeyWord() + "%",
                         request.getLibraryId(),
                         pageRequest);
-            } else if (languageId < 0 && libraryId <0 && topicId <0) {
+            } else if (languageId < 0 && libraryId < 0 && topicId < 0) {
                 page = bookRepository.search("%" + request.getKeyWord() + "%",
                         pageRequest
                 );
@@ -242,4 +224,28 @@ public class BookManager {
         return response;
     }
 
+    // CRUD Methods
+    public Optional<Book> findById(Integer id) {
+        if (!bookRepository.findById(id).isPresent()) {
+            log.info("findById : Requesting a book by id : " + id + " => id not found in database");
+        }
+
+        BookEntity bookEntity = bookRepository.findById(id).get();
+        log.info("findById : Requesting a book by id : " + id + " => found : ");
+        return Optional.of(bookMapper.bookEntityToBook(bookEntity));
+    }
+
+    public Book save(Book book) {
+        return bookMapper.bookEntityToBook(bookRepository.save(bookMapper.bookToBookEntity(book)));
+    }
+
+
+    public void delete(Book book) {
+        bookRepository.delete(bookMapper.bookToBookEntity(book));
+    }
+
+    public List<Book> findAll() {
+        List<BookEntity> bookEntities = bookRepository.findAll();
+        return bookMapper.bookEntityListToBookList(bookEntities);
+    }
 }

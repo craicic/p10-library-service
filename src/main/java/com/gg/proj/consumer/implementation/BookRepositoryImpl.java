@@ -2,13 +2,10 @@ package com.gg.proj.consumer.implementation;
 
 import com.gg.proj.consumer.BookRepositoryCustom;
 import com.gg.proj.model.BookEntity;
-import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -23,11 +20,11 @@ import java.util.List;
 @Repository
 public class BookRepositoryImpl implements BookRepositoryCustom {
 
-    EntityManager em;
+    private EntityManager entityManager;
 
     @Autowired
-    public BookRepositoryImpl(EntityManager em) {
-        this.em = em;
+    public BookRepositoryImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     @Override
@@ -36,7 +33,7 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
         int pageNumber = pageable.getPageNumber();
         int pageSize = pageable.getPageSize();
 
-        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<BookEntity> criteriaQuery = criteriaBuilder.createQuery(BookEntity.class);
         Root<BookEntity> book = criteriaQuery.from(BookEntity.class);
 
@@ -56,9 +53,10 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
             predicates.add(criteriaBuilder.equal(book.get("library_id"), libraryId));
         if (topicId != null)
             predicates.add(criteriaBuilder.equal(book.get("topic_id"), topicId));
+
         criteriaQuery.where(predicates.toArray(new Predicate[0]));
 
-        List<BookEntity> listBook = em.createQuery(criteriaQuery).setFirstResult((pageNumber - 1) * pageSize).setMaxResults(pageSize).getResultList();
+        List<BookEntity> listBook = entityManager.createQuery(criteriaQuery).setFirstResult((pageNumber - 1) * pageSize).setMaxResults(pageSize).getResultList();
 
         return new PageImpl<>(listBook, pageable, listBook.size());
     }

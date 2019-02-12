@@ -4,7 +4,12 @@ import com.gg.proj.business.BookManager;
 import com.gg.proj.business.UserManager;
 import com.gg.proj.service.exceptions.ServiceFaultException;
 import com.gg.proj.service.exceptions.UserNotFoundException;
-import com.gg.proj.service.books.*;
+import com.gg.proj.service.books.ServiceStatus;
+import com.gg.proj.service.users.User;
+import com.gg.proj.service.users.CreateUserRequest;
+import com.gg.proj.service.users.CreateUserResponse;
+import com.gg.proj.service.users.LoginUserRequest;
+import com.gg.proj.service.users.LoginUserResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +41,12 @@ public class UserEndpoint {
         log.debug("loginUser : calling the userManager to log a user in");
         LoginUserResponse response = new LoginUserResponse();
         try {
+
             response.setUser(userManager.loginUser(request.getPseudo(), request.getPasswordHash()));
         } catch (UserNotFoundException e) {
             String errorMessage = e.getMessage();
             ServiceStatus serviceStatus = new ServiceStatus();
-            serviceStatus.setMessage("Wrong credentials");
+            serviceStatus.setMessage("Invalid credentials");
             serviceStatus.setStatusCode("NOT_FOUND");
             throw new ServiceFaultException(errorMessage, serviceStatus);
         }

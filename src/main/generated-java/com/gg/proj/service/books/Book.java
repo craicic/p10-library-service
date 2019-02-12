@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.11 à 01:35:57 PM CET 
+// Généré le : 2019.02.12 à 04:38:29 PM CET 
 //
 
 
@@ -28,16 +28,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="isbn" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="isbn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="topics" type="{http://proj.gg.com/service/books}topic" maxOccurs="unbounded"/>
  *         &lt;element name="language" type="{http://proj.gg.com/service/books}language"/>
  *         &lt;element name="quantity" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="publicationDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="library" type="{http://proj.gg.com/service/books}library"/>
- *         &lt;element name="summary" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="summary" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -61,12 +61,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class Book {
 
-    protected int id;
+    protected Integer id;
     @XmlElement(required = true)
     protected String title;
     @XmlElement(required = true)
     protected String author;
-    @XmlElement(required = true)
     protected String isbn;
     @XmlElement(required = true)
     protected List<Topic> topics;
@@ -78,22 +77,29 @@ public class Book {
     protected XMLGregorianCalendar publicationDate;
     @XmlElement(required = true)
     protected Library library;
-    @XmlElement(required = true)
     protected String summary;
 
     /**
      * Obtient la valeur de la propriété id.
      * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * Définit la valeur de la propriété id.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
      */
-    public void setId(int value) {
+    public void setId(Integer value) {
         this.id = value;
     }
 

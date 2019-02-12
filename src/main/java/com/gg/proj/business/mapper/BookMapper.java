@@ -16,6 +16,8 @@ public interface BookMapper {
     //    BOOK
     Book bookEntityToBook(BookEntity bookEntity);
 
+    BookEntity bookToBookEntity(Book book);
+
     List<Book> bookEntityListToBookList(List<BookEntity> bookEntities);
 
     List<Language> languageEntityListToLanguageList(List<LanguageEntity> languageEntities);

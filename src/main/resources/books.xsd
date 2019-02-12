@@ -2,17 +2,19 @@
            targetNamespace="http://proj.gg.com/service/books" elementFormDefault="qualified">
 
     <!--================ BOOK RELATED METHODS ================-->
-    <!-- create a book -->
-    <xs:element name="createBookRequest">
+    <!--==== CRUD methods ====-->
+    <!-- persist a book -->
+    <xs:element name="saveBookRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="book" type="tns:book"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="createBookResponse">
+    <xs:element name="saveBookResponse">
         <xs:complexType>
             <xs:sequence>
-
+                <xs:element name="book" type="tns:book"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -27,10 +29,37 @@
     <xs:element name="getBookResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="book" type="tns:book" />
+                <xs:element name="book" type="tns:book" minOccurs="0"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    <!-- list all books -->
+    <xs:element name="listAllBooksRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="listAllBooksResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="books" type="tns:book" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- delete a book -->
+    <xs:element name="deleteBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="book" type="tns:book"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteBookResponse">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+    <!--==== End of CRUD ====-->
 
     <!-- this is search method -->
     <!-- you request page, size, keyword, it return a book list plus a lot of infos to performs a filtered search -->
@@ -87,7 +116,6 @@
     </xs:element>
 
 
-
     <!--================ OBJECTS ================-->
     <!-- a single book -->
     <xs:complexType name="book">
@@ -101,7 +129,7 @@
             <xs:element name="quantity" type="xs:int"/>
             <xs:element name="publicationDate" type="xs:date"/>
             <xs:element name="library" type="tns:library"/>
-            <xs:element name="summary" type="xs:string"/>
+            <xs:element name="summary" type="xs:string" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 

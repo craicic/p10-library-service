@@ -6,7 +6,7 @@
 //
 
 
-package com.gg.proj.service.users;
+package com.gg.proj.service.books;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -25,8 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="pseudo" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="passwordHash" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="book" type="{http://proj.gg.com/service/books}book"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,63 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "pseudo",
-    "passwordHash"
+    "book"
 })
-@XmlRootElement(name = "loginUserRequest")
-public class LoginUserRequest {
+@XmlRootElement(name = "saveBookResponse")
+public class SaveBookResponse {
 
     @XmlElement(required = true)
-    protected String pseudo;
-    @XmlElement(required = true)
-    protected String passwordHash;
+    protected Book book;
 
     /**
-     * Obtient la valeur de la propriété pseudo.
+     * Obtient la valeur de la propriété book.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Book }
      *     
      */
-    public String getPseudo() {
-        return pseudo;
+    public Book getBook() {
+        return book;
     }
 
     /**
-     * Définit la valeur de la propriété pseudo.
+     * Définit la valeur de la propriété book.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Book }
      *     
      */
-    public void setPseudo(String value) {
-        this.pseudo = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété passwordHash.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    /**
-     * Définit la valeur de la propriété passwordHash.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPasswordHash(String value) {
-        this.passwordHash = value;
+    public void setBook(Book value) {
+        this.book = value;
     }
 
 }

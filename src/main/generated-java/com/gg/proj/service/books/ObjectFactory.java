@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.11 à 01:35:57 PM CET 
+// Généré le : 2019.02.12 à 04:38:29 PM CET 
 //
 
 
@@ -53,6 +53,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DeleteBookResponse }
+     * 
+     */
+    public DeleteBookResponse createDeleteBookResponse() {
+        return new DeleteBookResponse();
+    }
+
+    /**
      * Create an instance of {@link SearchBooksRequest }
      * 
      */
@@ -93,6 +101,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListAllBooksResponse }
+     * 
+     */
+    public ListAllBooksResponse createListAllBooksResponse() {
+        return new ListAllBooksResponse();
+    }
+
+    /**
+     * Create an instance of {@link DeleteBookRequest }
+     * 
+     */
+    public DeleteBookRequest createDeleteBookRequest() {
+        return new DeleteBookRequest();
+    }
+
+    /**
+     * Create an instance of {@link SaveBookResponse }
+     * 
+     */
+    public SaveBookResponse createSaveBookResponse() {
+        return new SaveBookResponse();
+    }
+
+    /**
      * Create an instance of {@link FilterBooksResponse }
      * 
      */
@@ -101,11 +133,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CreateBookResponse }
+     * Create an instance of {@link ListAllBooksRequest }
      * 
      */
-    public CreateBookResponse createCreateBookResponse() {
-        return new CreateBookResponse();
+    public ListAllBooksRequest createListAllBooksRequest() {
+        return new ListAllBooksRequest();
     }
 
     /**
@@ -117,11 +149,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CreateBookRequest }
+     * Create an instance of {@link SaveBookRequest }
      * 
      */
-    public CreateBookRequest createCreateBookRequest() {
-        return new CreateBookRequest();
+    public SaveBookRequest createSaveBookRequest() {
+        return new SaveBookRequest();
     }
 
     /**

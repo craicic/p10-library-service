@@ -42,7 +42,7 @@ public class WebServiceConfig {
 
     @Bean
     public XsdSchema booksSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("/xsd/books.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("books.xsd"));
     }
 
     @Bean(name = "users")
@@ -51,13 +51,13 @@ public class WebServiceConfig {
         wsdl11Definition.setPortTypeName("UserPort");
         wsdl11Definition.setLocationUri("/ws");
         wsdl11Definition.setTargetNamespace("http://proj.gg.com/service/users");
-        wsdl11Definition.setSchema(usersSchema());
+        wsdl11Definition.setSchema(usersSchema);
         return wsdl11Definition;
     }
 
     @Bean
     public XsdSchema usersSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("/xsd/users.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("users.xsd"));
     }
 
     @Bean
