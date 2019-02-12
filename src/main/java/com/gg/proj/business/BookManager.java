@@ -42,7 +42,8 @@ public class BookManager {
     private LibraryRepository libraryRepository;
 
     @Autowired
-    public BookManager(BookMapper bookMapper, BookRepository bookRepository, LanguageRepository languageRepository, TopicRepository topicRepository, LibraryRepository libraryRepository) {
+    public BookManager(BookMapper bookMapper, BookRepository bookRepository, LanguageRepository languageRepository,
+                       TopicRepository topicRepository, LibraryRepository libraryRepository) {
         this.bookMapper = bookMapper;
         this.bookRepository = bookRepository;
         this.languageRepository = languageRepository;
