@@ -10,6 +10,7 @@ package com.gg.proj.service.books;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="language" type="{http://proj.gg.com/service/books}language"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,9 +35,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "listAllBooksRequest")
-public class ListAllBooksRequest {
+@XmlType(name = "", propOrder = {
+    "language"
+})
+@XmlRootElement(name = "saveLanguageResponse")
+public class SaveLanguageResponse {
 
+    @XmlElement(required = true)
+    protected Language language;
+
+    /**
+     * Obtient la valeur de la propriété language.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Language }
+     *     
+     */
+    public Language getLanguage() {
+        return language;
+    }
+
+    /**
+     * Définit la valeur de la propriété language.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Language }
+     *     
+     */
+    public void setLanguage(Language value) {
+        this.language = value;
+    }
 
 }

@@ -10,6 +10,7 @@ package com.gg.proj.service.books;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="topic" type="{http://proj.gg.com/service/books}topic"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,9 +35,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "listAllBooksRequest")
-public class ListAllBooksRequest {
+@XmlType(name = "", propOrder = {
+    "topic"
+})
+@XmlRootElement(name = "saveTopicRequest")
+public class SaveTopicRequest {
 
+    @XmlElement(required = true)
+    protected Topic topic;
+
+    /**
+     * Obtient la valeur de la propriété topic.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Topic }
+     *     
+     */
+    public Topic getTopic() {
+        return topic;
+    }
+
+    /**
+     * Définit la valeur de la propriété topic.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Topic }
+     *     
+     */
+    public void setTopic(Topic value) {
+        this.topic = value;
+    }
 
 }

@@ -8,6 +8,8 @@
 
 package com.gg.proj.service.books;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -25,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="book" type="{http://proj.gg.com/service/books}book"/>
+ *         &lt;element name="topics" type="{http://proj.gg.com/service/books}topic" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +38,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "book"
+    "topics"
 })
-@XmlRootElement(name = "saveBookRequest")
-public class SaveBookRequest {
+@XmlRootElement(name = "listAllTopicsResponse")
+public class ListAllTopicsResponse {
 
     @XmlElement(required = true)
-    protected Book book;
+    protected List<Topic> topics;
 
     /**
-     * Obtient la valeur de la propriété book.
+     * Gets the value of the topics property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Book }
-     *     
-     */
-    public Book getBook() {
-        return book;
-    }
-
-    /**
-     * Définit la valeur de la propriété book.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the topics property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Book }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getTopics().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Topic }
+     * 
+     * 
      */
-    public void setBook(Book value) {
-        this.book = value;
+    public List<Topic> getTopics() {
+        if (topics == null) {
+            topics = new ArrayList<Topic>();
+        }
+        return this.topics;
     }
 
 }

@@ -19,7 +19,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -226,12 +225,14 @@ public class BookManager {
 
     // CRUD Methods
     public Optional<Book> findById(Integer id) {
-        if (!bookRepository.findById(id).isPresent()) {
+        Optional<BookEntity> optional = bookRepository.findById(id);
+        BookEntity bookEntity = bookRepository.findById(id).orElse(null);
+
+        if(optional.isPresent()){
+            log.info("findById : Requesting a book by id : " + id + " => found : " + bookEntity);
+        } else {
             log.info("findById : Requesting a book by id : " + id + " => id not found in database");
         }
-
-        BookEntity bookEntity = bookRepository.findById(id).get();
-        log.info("findById : Requesting a book by id : " + id + " => found : ");
         return Optional.of(bookMapper.bookEntityToBook(bookEntity));
     }
 

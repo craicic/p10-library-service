@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="topic" type="{http://proj.gg.com/service/books}topic" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,9 +34,36 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "listAllBooksRequest")
-public class ListAllBooksRequest {
+@XmlType(name = "", propOrder = {
+    "topic"
+})
+@XmlRootElement(name = "getTopicResponse")
+public class GetTopicResponse {
 
+    protected Topic topic;
+
+    /**
+     * Obtient la valeur de la propriété topic.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Topic }
+     *     
+     */
+    public Topic getTopic() {
+        return topic;
+    }
+
+    /**
+     * Définit la valeur de la propriété topic.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Topic }
+     *     
+     */
+    public void setTopic(Topic value) {
+        this.topic = value;
+    }
 
 }

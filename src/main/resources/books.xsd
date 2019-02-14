@@ -2,7 +2,7 @@
            targetNamespace="http://proj.gg.com/service/books" elementFormDefault="qualified">
 
     <!--================ BOOK RELATED METHODS ================-->
-    <!--==== CRUD methods ====-->
+    <!--==== CRUD Book methods ====-->
     <!-- persist a book -->
     <xs:element name="saveBookRequest">
         <xs:complexType>
@@ -56,6 +56,178 @@
         </xs:complexType>
     </xs:element>
     <xs:element name="deleteBookResponse">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+    <!--==== CRUD Topic methods ====-->
+    <!-- persist a topic -->
+    <xs:element name="saveTopicRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="topic" type="tns:topic"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="saveTopicResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="topic" type="tns:topic"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- get topic by id -->
+    <xs:element name="getTopicRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getTopicResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="topic" type="tns:topic" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- list all topics-->
+    <xs:element name="listAllTopicsRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="listAllTopicsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="topics" type="tns:topic" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- delete a topic -->
+    <xs:element name="deleteTopicRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="topic" type="tns:topic"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteTopicResponse">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+    <!--==== CRUD Library methods ====-->
+    <!-- persist a library -->
+    <xs:element name="saveLibraryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="library" type="tns:library"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="saveLibraryResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="library" type="tns:library"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- get library by id -->
+    <xs:element name="getLibraryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getLibraryResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="library" type="tns:library" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- list all libraries -->
+    <xs:element name="listAllLibrariesRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="listAllLibrariesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="libraries" type="tns:library" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- delete a library -->
+    <xs:element name="deleteLibraryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="library" type="tns:library"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteLibraryResponse">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+    <!--==== CRUD Language methods ====-->
+    <!-- persist a language -->
+    <xs:element name="saveLanguageRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="language" type="tns:language"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="saveLanguageResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="language" type="tns:language"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- get language by id -->
+    <xs:element name="getLanguageRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getLanguageResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="language" type="tns:language" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- list all languages-->
+    <xs:element name="listAllLanguagesRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="listAllLanguagesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="languages" type="tns:language" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- delete a language -->
+    <xs:element name="deleteLanguageRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="language" type="tns:language"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteLanguageResponse">
         <xs:complexType>
         </xs:complexType>
     </xs:element>
@@ -136,7 +308,7 @@
     <!-- a library -->
     <xs:complexType name="library">
         <xs:sequence>
-            <xs:element name="id" type="xs:int"/>
+            <xs:element name="id" type="xs:int" minOccurs="0"/>
             <xs:element name="name" type="xs:string"/>
             <xs:element name="city" type="xs:string"/>
             <xs:element name="postalCode" type="xs:int"/>
@@ -148,7 +320,7 @@
     <!-- a topic -->
     <xs:complexType name="topic">
         <xs:sequence>
-            <xs:element name="id" type="xs:int"/>
+            <xs:element name="id" type="xs:int" minOccurs="0"/>
             <xs:element name="name" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
@@ -156,7 +328,7 @@
     <!-- a language -->
     <xs:complexType name="language">
         <xs:sequence>
-            <xs:element name="id" type="xs:int"/>
+            <xs:element name="id" type="xs:int" minOccurs="0"/>
             <xs:element name="name" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
