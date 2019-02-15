@@ -78,7 +78,7 @@ public class BookEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllBooksRequest")
     @ResponsePayload
-    public ListAllBooksResponse listAllBooks(@RequestPayload ListAllBooksRequest request){
+    public ListAllBooksResponse listAllBooks(@RequestPayload ListAllBooksRequest request) {
         ListAllBooksResponse response = new ListAllBooksResponse();
         List<Book> books = response.getBooks();
         books.addAll(bookManager.findAll());
@@ -97,7 +97,16 @@ public class BookEndpoint {
     @ResponsePayload
     public FilterBooksResponse filterBooks(@RequestPayload FilterBooksRequest request) {
         log.debug("filterBooks : calling the bookManager to filter book");
-        FilterBooksResponse response = bookManager.filterBooks(request);
+
+        log.debug("keyWord : [" + request.getKeyWord() + "] ");
+        log.debug("languageId : [" + request.getLanguageId() + "] ");
+        log.debug("libraryId : [" + request.getLibraryId() + "] ");
+        log.debug("topicId : [" + request.getTopicId() + "] ");
+        log.debug("available : [" + request.isAvailable() + "] ");
+        log.debug("pageNumber : [" + request.getPage() + "] ");
+
+        FilterBooksResponse response = bookManager.search(request.getKeyWord(), request.getLanguageId(), request.getLibraryId()
+                , request.getTopicId(), request.isAvailable(), request.getPage(), request.getSize());
         return response;
     }
 
@@ -181,7 +190,7 @@ public class BookEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllLanguagesRequest")
     @ResponsePayload
-    public ListAllLanguagesResponse listAllLanguages(@RequestPayload ListAllLanguagesRequest request){
+    public ListAllLanguagesResponse listAllLanguages(@RequestPayload ListAllLanguagesRequest request) {
         ListAllLanguagesResponse response = new ListAllLanguagesResponse();
         List<Language> languages = response.getLanguages();
         languages.addAll(languageManager.findAll());
@@ -190,7 +199,7 @@ public class BookEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllLibrariesRequest")
     @ResponsePayload
-    public ListAllLibrariesResponse listAllLibraries(@RequestPayload ListAllLibrariesRequest request){
+    public ListAllLibrariesResponse listAllLibraries(@RequestPayload ListAllLibrariesRequest request) {
         ListAllLibrariesResponse response = new ListAllLibrariesResponse();
         List<Library> libraries = response.getLibraries();
         libraries.addAll(libraryManager.findAll());
@@ -199,7 +208,7 @@ public class BookEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllTopicsRequest")
     @ResponsePayload
-    public ListAllTopicsResponse listAllTopics(@RequestPayload ListAllTopicsRequest request){
+    public ListAllTopicsResponse listAllTopics(@RequestPayload ListAllTopicsRequest request) {
         ListAllTopicsResponse response = new ListAllTopicsResponse();
         List<Topic> topics = response.getTopics();
         topics.addAll(topicManager.findAll());

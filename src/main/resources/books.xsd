@@ -266,11 +266,11 @@
             <xs:sequence>
                 <xs:element name="page" type="xs:int"/>
                 <xs:element name="size" type="xs:int"/>
-                <xs:element name="keyWord" type="xs:string"/>
+                <xs:element name="keyWord" type="xs:string" minOccurs="0"/>
                 <!-- params coming from combobox-->
-                <xs:element name="libraryId" type="xs:int"/>
-                <xs:element name="topicId" type="xs:int"/>
-                <xs:element name="languageId" type="xs:int"/>
+                <xs:element name="libraryId" type="xs:int" minOccurs="0"/>
+                <xs:element name="topicId" type="xs:int" minOccurs="0"/>
+                <xs:element name="languageId" type="xs:int" minOccurs="0"/>
                 <!-- is the book available -->
                 <xs:element name="available" type="xs:boolean"/>
             </xs:sequence>

@@ -99,141 +99,17 @@ public class BookManager {
         return response;
     }
 
-    /**
-     * This method take a request as parameter and build a response. It is coded to pick the adequate request to the
-     * bookRepository.
-     * <p>
-     * The request is composed by 5 field :
-     * keyWord, size and page               => to build a Pageable
-     * languageId, libraryId and topicId    => to filter via combo box
-     * isAvailable                          => to filter in stock books
-     * <p>
-     * The response consists in two field : totalPages and books
-     * books is accessed via reference.
-     * <p>
-     * This method contains a long and poorly-maintainable list of conditions, cause by the fact that @Query content can't be
-     * dynamically changed. The other option is to build queries via the Spring Criteria API :
-     * (@link https://www.baeldung.com/spring-data-criteria-queries)
-     *
-     * @param request a {@link FilterBooksRequest}
-     * @return a {@link FilterBooksResponse}
-     */
-    public FilterBooksResponse filterBooks(FilterBooksRequest request) {
-        FilterBooksResponse response = new FilterBooksResponse();
-        // Preparing a PageRequest in order to get a sorted and paged list
-        PageRequest pageRequest = PageRequest.of(request.getPage(), request.getSize(), Sort.Direction.ASC, "title");
-        List<Book> books = response.getBooks();
-
-        Page<BookEntity> page = Page.empty(pageRequest);
-
-        int languageId = request.getLanguageId();
-        int libraryId = request.getLibraryId();
-        int topicId = request.getTopicId();
-
-        /* A list of condition to check the filters state
-         * Webapp side, in example : if the user picks a combo box to "All" for language it result by a -1 on getLanguageId()
-         * Then we can test the presence or not of the filter by testing Id>=0
-         */
-        if (request.isAvailable()) {
-            if (languageId >= 0 && libraryId >= 0 && topicId >= 0) {
-                page = bookRepository.filterAvailable("%" + request.getKeyWord() + "%",
-                        request.getLanguageId(),
-                        request.getLibraryId(),
-                        request.getTopicId(),
-                        pageRequest);
-            } else if (languageId < 0 && libraryId >= 0 && topicId >= 0) {
-                page = bookRepository.filterAvailableByTopicLibrary("%" + request.getKeyWord() + "%",
-                        request.getLibraryId(),
-                        request.getTopicId(),
-                        pageRequest);
-            } else if (languageId < 0 && libraryId < 0 && topicId >= 0) {
-                page = bookRepository.filterAvailableByTopic("%" + request.getKeyWord() + "%",
-                        request.getTopicId(),
-                        pageRequest);
-            } else if (languageId >= 0 && libraryId >= 0) {
-                page = bookRepository.filterAvailableByLanguageLibrary("%" + request.getKeyWord() + "%",
-                        request.getLanguageId(),
-                        request.getLibraryId(),
-                        pageRequest);
-            } else if (languageId >= 0 && topicId >= 0) {
-                page = bookRepository.filterAvailableByTopicLanguage("%" + request.getKeyWord() + "%",
-                        request.getLanguageId(),
-                        request.getTopicId(),
-                        pageRequest);
-            } else if (languageId >= 0) {
-                page = bookRepository.filterAvailableByLanguage("%" + request.getKeyWord() + "%",
-                        request.getLanguageId(),
-                        pageRequest);
-            } else if (libraryId >= 0) {
-                page = bookRepository.filterAvailableByLibrary("%" + request.getKeyWord() + "%",
-                        request.getLibraryId(),
-                        pageRequest);
-            } else if (languageId < 0 && libraryId < 0 && topicId < 0) {
-                page = bookRepository.searchAvailable("%" + request.getKeyWord() + "%",
-                        pageRequest
-                );
-            }
-
-        } else if (!request.isAvailable()) {
-            if (languageId >= 0 && libraryId >= 0 && topicId >= 0) {
-                page = bookRepository.filter("%" + request.getKeyWord() + "%",
-                        request.getLanguageId(),
-                        request.getLibraryId(),
-                        request.getTopicId(),
-                        pageRequest);
-            } else if (languageId < 0 && libraryId >= 0 && topicId >= 0) {
-                page = bookRepository.filterByTopicLibrary("%" + request.getKeyWord() + "%",
-                        request.getLibraryId(),
-                        request.getTopicId(),
-                        pageRequest);
-            } else if (languageId < 0 && libraryId < 0 && topicId >= 0) {
-                page = bookRepository.filterByTopic("%" + request.getKeyWord() + "%",
-                        request.getTopicId(),
-                        pageRequest);
-            } else if (languageId >= 0 && libraryId >= 0) {
-                page = bookRepository.filterByLanguageLibrary("%" + request.getKeyWord() + "%",
-                        request.getLanguageId(),
-                        request.getLibraryId(),
-                        pageRequest);
-            } else if (languageId >= 0 && topicId >= 0) {
-                page = bookRepository.filterByTopicLanguage("%" + request.getKeyWord() + "%",
-                        request.getLanguageId(),
-                        request.getTopicId(),
-                        pageRequest);
-            } else if (languageId >= 0) {
-                page = bookRepository.filterByLanguage("%" + request.getKeyWord() + "%",
-                        request.getLanguageId(),
-                        pageRequest);
-            } else if (libraryId >= 0) {
-                page = bookRepository.filterByLibrary("%" + request.getKeyWord() + "%",
-                        request.getLibraryId(),
-                        pageRequest);
-            } else if (languageId < 0 && libraryId < 0 && topicId < 0) {
-                page = bookRepository.search("%" + request.getKeyWord() + "%",
-                        pageRequest
-                );
-            }
-        }
-
-        // Access via reference
-        books.addAll(bookMapper.bookEntityListToBookList(page.getContent()));
-
-        response.setTotalPages(page.getTotalPages());
-
-        return response;
-    }
-
     // CRUD Methods
     public Optional<Book> findById(Integer id) {
         Optional<BookEntity> optional = bookRepository.findById(id);
         BookEntity bookEntity = bookRepository.findById(id).orElse(null);
 
-        if(optional.isPresent()){
+        if (optional.isPresent()) {
             log.info("findById : Requesting a book by id : " + id + " => found : " + bookEntity);
         } else {
             log.info("findById : Requesting a book by id : " + id + " => id not found in database");
         }
-        return Optional.of(bookMapper.bookEntityToBook(bookEntity));
+        return Optional.ofNullable(bookMapper.bookEntityToBook(bookEntity));
     }
 
     public Book save(Book book) {
@@ -249,5 +125,18 @@ public class BookManager {
     public List<Book> findAll() {
         List<BookEntity> bookEntities = bookRepository.findAll();
         return bookMapper.bookEntityListToBookList(bookEntities);
+    }
+
+    public FilterBooksResponse search(String keyWord, Integer languageId, Integer libraryId, Integer topicId, boolean available, Integer page, Integer size) {
+        FilterBooksResponse response = new FilterBooksResponse();
+        List<Book> books = response.getBooks();
+        // Preparing a PageRequest in order to get a sorted and paged list
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "title");
+        Page<BookEntity> pageBook = bookRepository.search(keyWord, languageId, libraryId, topicId, available, pageRequest);
+
+        // Access via reference
+        books.addAll(bookMapper.bookEntityListToBookList(pageBook.getContent()));
+        response.setTotalPages(pageBook.getTotalPages());
+        return response;
     }
 }

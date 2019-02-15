@@ -1,5 +1,7 @@
 package com.gg.proj.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +37,7 @@ public class BookEntity {
     private List<TopicEntity> topics;
 
     @ManyToOne
-    @JoinColumn(name = "language_id", nullable = false)
+//    @JoinColumn(name = "language_id", nullable = false)
     private LanguageEntity language;
 
     @Column(nullable = false)
@@ -46,7 +48,7 @@ public class BookEntity {
     private Date publicationDate;
 
     @ManyToOne
-    @JoinColumn(name = "library_id", nullable = false)
+//    @JoinColumn(name = "library_id", nullable = false)
     private LibraryEntity library;
 
     private String summary;

@@ -1,11 +1,9 @@
 package com.gg.proj.service;
 
-import com.gg.proj.business.BookManager;
 import com.gg.proj.business.UserManager;
+import com.gg.proj.service.books.ServiceStatus;
 import com.gg.proj.service.exceptions.ServiceFaultException;
 import com.gg.proj.service.exceptions.UserNotFoundException;
-import com.gg.proj.service.books.ServiceStatus;
-import com.gg.proj.service.users.User;
 import com.gg.proj.service.users.CreateUserRequest;
 import com.gg.proj.service.users.CreateUserResponse;
 import com.gg.proj.service.users.LoginUserRequest;
@@ -37,7 +35,7 @@ public class UserEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "loginUserRequest")
     @ResponsePayload
-    public LoginUserResponse loginUser(@RequestPayload LoginUserRequest request)  throws ServiceFaultException {
+    public LoginUserResponse loginUser(@RequestPayload LoginUserRequest request) throws ServiceFaultException {
         log.debug("loginUser : calling the userManager to log a user in");
         LoginUserResponse response = new LoginUserResponse();
         try {
@@ -55,7 +53,7 @@ public class UserEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createUserRequest")
     @ResponsePayload
-    public CreateUserResponse createUser(@RequestPayload CreateUserRequest request){
+    public CreateUserResponse createUser(@RequestPayload CreateUserRequest request) {
         log.debug("createUser : calling the userManager to create a new user");
         CreateUserResponse response = new CreateUserResponse();
         response.setUser(userManager.createUser(request));
