@@ -88,15 +88,15 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "searchBooksRequest")
     @ResponsePayload
     public SearchBooksResponse searchBooks(@RequestPayload SearchBooksRequest request) {
-        log.debug("SearchBooks : calling the bookManager to search book");
-        SearchBooksResponse response = bookManager.searchBooks(request);
+        log.debug("SearchBooks : calling the bookManager to filterBooks book");
+        SearchBooksResponse response = bookManager.searchBooks(request.getKeyWord(), request.getPage(), request.getSize());
         return response;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "filterBooksRequest")
     @ResponsePayload
     public FilterBooksResponse filterBooks(@RequestPayload FilterBooksRequest request) {
-        log.debug("filterBooks : calling the bookManager to filter book");
+        log.debug("filterBooks : calling the bookManager to filterBooks book");
 
         log.debug("keyWord : [" + request.getKeyWord() + "] ");
         log.debug("languageId : [" + request.getLanguageId() + "] ");
@@ -105,7 +105,7 @@ public class BookEndpoint {
         log.debug("available : [" + request.isAvailable() + "] ");
         log.debug("pageNumber : [" + request.getPage() + "] ");
 
-        FilterBooksResponse response = bookManager.search(request.getKeyWord(), request.getLanguageId(), request.getLibraryId()
+        FilterBooksResponse response = bookManager.filterBooks(request.getKeyWord(), request.getLanguageId(), request.getLibraryId()
                 , request.getTopicId(), request.isAvailable(), request.getPage(), request.getSize());
         return response;
     }

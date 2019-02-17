@@ -233,8 +233,8 @@
     </xs:element>
     <!--==== End of CRUD ====-->
 
-    <!-- this is search method -->
-    <!-- you request page, size, keyword, it return a book list plus a lot of infos to performs a filtered search -->
+    <!-- this is filterBooks method -->
+    <!-- you request page, size, keyword, it return a book list plus a lot of infos to performs a filtered filterBooks -->
     <xs:element name="searchBooksRequest">
         <xs:complexType>
             <xs:sequence>
@@ -250,7 +250,7 @@
             <xs:sequence>
                 <xs:element name="totalPages" type="xs:int"/>
                 <xs:element maxOccurs="unbounded" name="books" type="tns:book"/>
-                <!-- this search returns those 3 list in order to fill combo-lists for the filtered search -->
+                <!-- this filterBooks returns those 3 list in order to fill combo-lists for the filtered filterBooks -->
                 <xs:element maxOccurs="unbounded" name="libraries" type="tns:library"/>
                 <xs:element maxOccurs="unbounded" name="topics" type="tns:topic"/>
                 <xs:element maxOccurs="unbounded" name="languages" type="tns:language"/>
@@ -260,7 +260,7 @@
         </xs:complexType>
     </xs:element>
 
-    <!-- Once a search has been performed, web service client can ask for a filter by passing various params -->
+    <!-- Once a filterBooks has been performed, web service client can ask for a filterBooks by passing various params -->
     <xs:element name="filterBooksRequest">
         <xs:complexType>
             <xs:sequence>
@@ -282,7 +282,7 @@
             <xs:sequence>
                 <xs:element name="totalPages" type="xs:int"/>
                 <xs:element maxOccurs="unbounded" name="books" type="tns:book"/>
-                <!-- this search could return the library, topic and language for the webapp to display filter terms -->
+                <!-- this filterBooks could return the library, topic and language for the webapp to display filterBooks terms -->
             </xs:sequence>
         </xs:complexType>
     </xs:element>
