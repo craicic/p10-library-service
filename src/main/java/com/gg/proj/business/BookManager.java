@@ -50,6 +50,34 @@ public class BookManager {
         this.libraryRepository = libraryRepository;
     }
 
+    // CRUD Methods
+    public Optional<Book> findById(Integer id) {
+        Optional<BookEntity> optional = bookRepository.findById(id);
+        BookEntity bookEntity = bookRepository.findById(id).orElse(null);
+
+        if (optional.isPresent()) {
+            log.info("findById : Requesting a book by id : " + id + " => found : " + bookEntity);
+        } else {
+            log.info("findById : Requesting a book by id : " + id + " => id not found in database");
+        }
+        return Optional.ofNullable(bookMapper.bookEntityToBook(bookEntity));
+    }
+
+    public Book save(Book book) {
+        BookEntity bookEntity = bookRepository.save(bookMapper.bookToBookEntity(book));
+        return bookMapper.bookEntityToBook(bookEntity);
+    }
+
+
+    public void delete(Book book) {
+        bookRepository.delete(bookMapper.bookToBookEntity(book));
+    }
+
+    public List<Book> findAll() {
+        List<BookEntity> bookEntities = bookRepository.findAll();
+        return bookMapper.bookEntityListToBookList(bookEntities);
+    }
+
     public SearchBooksResponse searchBooks(String keyWord, Integer page, Integer size) {
 
         log.debug("searchBooks");
@@ -62,8 +90,8 @@ public class BookManager {
         List<Topic> topics = response.getTopics();
         List<Library> libraries = response.getLibraries();
 
-        Page<BookEntity> pagebBooks = bookRepository.searchPagedBooks("%" + keyWord + "%", pageRequest);
-        List<BookEntity> bookEntities = pagebBooks.getContent();
+        Page<BookEntity> pagedBooks = bookRepository.searchPagedBooks("%" + keyWord + "%", pageRequest);
+        List<BookEntity> bookEntities = pagedBooks.getContent();
         // Here we access the book list by reference (no need for setter)
         books.addAll(bookMapper.bookEntityListToBookList(bookEntities));
 
@@ -95,33 +123,7 @@ public class BookManager {
         return response;
     }
 
-    // CRUD Methods
-    public Optional<Book> findById(Integer id) {
-        Optional<BookEntity> optional = bookRepository.findById(id);
-        BookEntity bookEntity = bookRepository.findById(id).orElse(null);
 
-        if (optional.isPresent()) {
-            log.info("findById : Requesting a book by id : " + id + " => found : " + bookEntity);
-        } else {
-            log.info("findById : Requesting a book by id : " + id + " => id not found in database");
-        }
-        return Optional.ofNullable(bookMapper.bookEntityToBook(bookEntity));
-    }
-
-    public Book save(Book book) {
-        BookEntity bookEntity = bookRepository.save(bookMapper.bookToBookEntity(book));
-        return bookMapper.bookEntityToBook(bookEntity);
-    }
-
-
-    public void delete(Book book) {
-        bookRepository.delete(bookMapper.bookToBookEntity(book));
-    }
-
-    public List<Book> findAll() {
-        List<BookEntity> bookEntities = bookRepository.findAll();
-        return bookMapper.bookEntityListToBookList(bookEntities);
-    }
 
     public FilterBooksResponse filterBooks(String keyWord, Integer languageId, Integer libraryId, Integer topicId, boolean available, Integer page, Integer size) {
         FilterBooksResponse response = new FilterBooksResponse();

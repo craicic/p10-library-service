@@ -1,6 +1,7 @@
-package templates;
+package com.gg.proj.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "token")
@@ -12,16 +13,14 @@ public class TokenEntity {
 
     private String token;
 
-    @OneToOne
+    private Date expirationDate;
+
+    @OneToMany
     private UserEntity userEntity;
 
     public TokenEntity() {
     }
 
-    public TokenEntity(String token, UserEntity userEntity) {
-        this.token = token;
-        this.userEntity = userEntity;
-    }
 
     public Integer getId() {
         return id;
@@ -45,6 +44,14 @@ public class TokenEntity {
 
     public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
     }
 }
 

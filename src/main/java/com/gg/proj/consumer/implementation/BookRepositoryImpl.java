@@ -54,9 +54,9 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
 
         List<Predicate> predicates = new ArrayList<>();
 
-        Predicate authorPredicate = criteriaBuilder.like(book.get("author"), "%" + keyWord + "%");
-        Predicate summaryPredicate = criteriaBuilder.like(book.get("summary"), "%" + keyWord + "%");
-        Predicate titlePredicate = criteriaBuilder.like(book.get("title"), "%" + keyWord + "%");
+        Predicate authorPredicate = criteriaBuilder.like(criteriaBuilder.upper(book.get("author")), "%" + keyWord.toUpperCase() + "%");
+        Predicate summaryPredicate = criteriaBuilder.like(criteriaBuilder.upper(book.get("summary")), "%" + keyWord.toUpperCase() + "%");
+        Predicate titlePredicate = criteriaBuilder.like(criteriaBuilder.upper(book.get("title")), "%" + keyWord.toUpperCase() + "%");
 
         Predicate authorOrSummaryOrTitle = criteriaBuilder.or(authorPredicate, summaryPredicate, titlePredicate);
         predicates.add(authorOrSummaryOrTitle);
