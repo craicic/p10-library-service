@@ -51,6 +51,9 @@ public class UserEntity {
     @OneToMany(mappedBy = "user")
     private List<LoanEntity> loans;
 
+    @OneToMany(mappedBy = "user")
+    private List<TokenEntity> token;
+
     public UserEntity() {
     }
 

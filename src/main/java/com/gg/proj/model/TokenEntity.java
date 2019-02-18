@@ -1,7 +1,14 @@
 package com.gg.proj.model;
 
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
 import javax.persistence.*;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "token")
@@ -11,16 +18,29 @@ public class TokenEntity {
     @GeneratedValue
     private Integer id;
 
-    private String token;
+    private UUID token;
 
-    private Date expirationDate;
+    private LocalDate expirationDate;
 
-    @OneToMany
-    private UserEntity userEntity;
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable = false)
+    private UserEntity user;
 
     public TokenEntity() {
     }
 
+    public TokenEntity(UUID token, LocalDate expirationDate, UserEntity user) {
+        this.token = token;
+        this.expirationDate = expirationDate;
+        this.user = user;
+    }
+
+    @PrePersist
+    public void PrePersist(){
+        token = UUID.randomUUID();
+        LocalDate today = LocalDate.now();
+        expirationDate = today.plus(3, ChronoUnit.WEEKS);
+    }
 
     public Integer getId() {
         return id;
@@ -30,27 +50,27 @@ public class TokenEntity {
         this.id = id;
     }
 
-    public String getToken() {
+    public UUID getToken() {
         return token;
     }
 
-    public void setToken(String token) {
+    public void setToken(UUID token) {
         this.token = token;
     }
 
     public UserEntity getUserEntity() {
-        return userEntity;
+        return user;
     }
 
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
+    public void setUserEntity(UserEntity user) {
+        this.user = user;
     }
 
-    public Date getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 }

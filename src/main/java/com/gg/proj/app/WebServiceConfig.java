@@ -40,11 +40,6 @@ public class WebServiceConfig {
         return wsdl11Definition;
     }
 
-    @Bean
-    public XsdSchema booksSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("books.xsd"));
-    }
-
     @Bean(name = "users")
     public DefaultWsdl11Definition userWsdl11Definition(XsdSchema usersSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
@@ -55,11 +50,45 @@ public class WebServiceConfig {
         return wsdl11Definition;
     }
 
-    @Bean
-    public XsdSchema usersSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("users.xsd"));
+    @Bean(name = "profiles")
+    public DefaultWsdl11Definition profileWsdl11Definition(XsdSchema profilesSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("ProfilePort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace("http://proj.gg.com/service/profiles");
+        wsdl11Definition.setSchema(profilesSchema);
+        return wsdl11Definition;
     }
 
+    @Bean(name = "loans")
+    public DefaultWsdl11Definition loanWsdl11Definition(XsdSchema loansSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("LoanPort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace("http://proj.gg.com/service/loans");
+        wsdl11Definition.setSchema(loansSchema);
+        return wsdl11Definition;
+    }
+
+    @Bean
+    public XsdSchema booksSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("/xsd/books/books.xsd"));
+    }
+
+    @Bean
+    public XsdSchema usersSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("/xsd/users/users.xsd"));
+    }
+
+    @Bean
+    public XsdSchema loansSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("/xsd/loans/loans.xsd"));
+    }
+
+    @Bean
+    public XsdSchema profilesSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("/xsd/profiles/profiles.xsd"));
+    }
     @Bean
     public SoapFaultMappingExceptionResolver exceptionResolver() {
         SoapFaultMappingExceptionResolver exceptionResolver = new DetailSoapFaultDefinitionExceptionResolver();

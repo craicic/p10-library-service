@@ -101,17 +101,51 @@
                 <version>1.6</version>
                 <executions>
                     <execution>
-                        <id>xjc</id>
+                        <id>xjc1</id>
                         <goals>
                             <goal>xjc</goal>
                         </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/books/</schemaDirectory>
+                            <outputDirectory>${project.basedir}/src/main/generated-java</outputDirectory>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xjc2</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/loans/</schemaDirectory>
+                            <outputDirectory>${project.basedir}/src/main/generated-java</outputDirectory>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xjc3</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/profiles/</schemaDirectory>
+                            <outputDirectory>${project.basedir}/src/main/generated-java</outputDirectory>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xjc4</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/users/</schemaDirectory>
+                            <outputDirectory>${project.basedir}/src/main/generated-java</outputDirectory>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
-                    <outputDirectory>${project.basedir}/src/main/generated-java</outputDirectory>
-                    <clearOutputDir>false</clearOutputDir>
-                </configuration>
+
             </plugin>
             <!-- end::xsd[] -->
         </plugins>
