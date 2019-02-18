@@ -55,7 +55,12 @@ public class UserEndpoint {
         response.setLogoutStatus("FAILURE");
         try {
             response.setLogoutStatus(userManager.logoutUser(request.getTokenUUID()));
-
+        } catch (IllegalArgumentException e) {
+            String errorMessage = e.getMessage();
+            ServiceStatus serviceStatus = new ServiceStatus();
+            serviceStatus.setMessage("UUID input is not a valid UUID");
+            serviceStatus.setStatusCode("UUID_ERROR");
+            throw new ServiceFaultException(errorMessage, serviceStatus);
         } catch (UserNotFoundException e) {
             String errorMessage = e.getMessage();
             ServiceStatus serviceStatus = new ServiceStatus();

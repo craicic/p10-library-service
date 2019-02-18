@@ -7,9 +7,7 @@ import com.gg.proj.consumer.UserRepository;
 import com.gg.proj.model.TokenEntity;
 import com.gg.proj.model.UserEntity;
 import com.gg.proj.service.exceptions.UserNotFoundException;
-import com.gg.proj.service.users.CreateUserRequest;
 import com.gg.proj.service.users.Token;
-import com.gg.proj.service.users.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,10 +59,11 @@ public class UserManager {
         }
     }
 
-    public String logoutUser(String tokenUUID) throws UserNotFoundException {
+    public String logoutUser(String tokenUUID) throws UserNotFoundException, IllegalArgumentException {
         log.debug("Entering logoutUser method... Requesting database for a user with tokenUUID : " + tokenUUID);
 
         TokenEntity tokenEntity = tokenRepository.findByToken(UUID.fromString(tokenUUID));
+
         if (tokenEntity == null) {
             log.info("No user with token : " + tokenUUID + " found un database");
             throw new UserNotFoundException("No such user in database");
