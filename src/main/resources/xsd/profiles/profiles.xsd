@@ -6,6 +6,7 @@
     <xs:element name="saveProfileRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="user" type="tns:user"/>
             </xs:sequence>
         </xs:complexType>
@@ -21,6 +22,7 @@
     <xs:element name="getProfileRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="id" type="xs:int"/>
             </xs:sequence>
         </xs:complexType>
@@ -36,6 +38,7 @@
     <xs:element name="listAllProfilesRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -50,6 +53,7 @@
     <xs:element name="deleteProfileRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="user" type="tns:user"/>
             </xs:sequence>
         </xs:complexType>
@@ -61,7 +65,6 @@
 
     <!--================ OBJECTS ================-->
     <!-- a user -->
-    <!-- this type doesnt embed the passwordHash -->
     <xs:complexType name="user">
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>

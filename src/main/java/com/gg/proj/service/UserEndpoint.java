@@ -4,10 +4,10 @@ import com.gg.proj.business.UserManager;
 import com.gg.proj.service.books.ServiceStatus;
 import com.gg.proj.service.exceptions.ServiceFaultException;
 import com.gg.proj.service.exceptions.UserNotFoundException;
-import com.gg.proj.service.users.CreateUserRequest;
-import com.gg.proj.service.users.CreateUserResponse;
 import com.gg.proj.service.users.LoginUserRequest;
 import com.gg.proj.service.users.LoginUserResponse;
+import com.gg.proj.service.users.LogoutUserRequest;
+import com.gg.proj.service.users.LogoutUserResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,7 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import javax.transaction.Transactional;
-
 @Endpoint
-@Transactional
 public class UserEndpoint {
 
     private static final Logger log = LoggerFactory.getLogger(BookEndpoint.class);
@@ -36,11 +33,10 @@ public class UserEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "loginUserRequest")
     @ResponsePayload
     public LoginUserResponse loginUser(@RequestPayload LoginUserRequest request) throws ServiceFaultException {
-        log.debug("loginUser : calling the userManager to log a user in");
+        log.debug("loginUser : calling the userManager to login user : " + request.getPseudo() + " and hash : " + request.getPasswordHash());
         LoginUserResponse response = new LoginUserResponse();
         try {
-
-            response.setUser(userManager.loginUser(request.getPseudo(), request.getPasswordHash()));
+            response.setToken(userManager.loginUser(request.getPseudo(), request.getPasswordHash()));
         } catch (UserNotFoundException e) {
             String errorMessage = e.getMessage();
             ServiceStatus serviceStatus = new ServiceStatus();
@@ -51,12 +47,22 @@ public class UserEndpoint {
         return response;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createUserRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "logoutUserRequest")
     @ResponsePayload
-    public CreateUserResponse createUser(@RequestPayload CreateUserRequest request) {
-        log.debug("createUser : calling the userManager to create a new user");
-        CreateUserResponse response = new CreateUserResponse();
-        response.setUser(userManager.createUser(request));
+    public LogoutUserResponse logoutUser(@RequestPayload LogoutUserRequest request) throws ServiceFaultException {
+        log.debug("logoutUser : calling the userManager to log a user out with token :" + request.getTokenUUID());
+        LogoutUserResponse response = new LogoutUserResponse();
+        response.setLogoutStatus("FAILURE");
+        try {
+            response.setLogoutStatus(userManager.logoutUser(request.getTokenUUID()));
+
+        } catch (UserNotFoundException e) {
+            String errorMessage = e.getMessage();
+            ServiceStatus serviceStatus = new ServiceStatus();
+            serviceStatus.setMessage("Not Found");
+            serviceStatus.setStatusCode("NOT_FOUND");
+            throw new ServiceFaultException(errorMessage, serviceStatus);
+        }
         return response;
     }
 }

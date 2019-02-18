@@ -14,12 +14,10 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Endpoint
-@Transactional
 public class BookEndpoint {
 
     private static final Logger log = LoggerFactory.getLogger(BookEndpoint.class);

@@ -6,6 +6,7 @@
     <xs:element name="saveLoanRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="loan" type="tns:loan"/>
             </xs:sequence>
         </xs:complexType>
@@ -21,6 +22,7 @@
     <xs:element name="getLoanRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="id" type="xs:int"/>
             </xs:sequence>
         </xs:complexType>
@@ -36,6 +38,7 @@
     <xs:element name="listAllLoansRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -50,6 +53,7 @@
     <xs:element name="deleteLoanRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="loan" type="tns:loan"/>
             </xs:sequence>
         </xs:complexType>
@@ -116,7 +120,6 @@
     </xs:complexType>
 
     <!-- a user -->
-    <!-- this type doesn't embed the passwordHash -->
     <xs:complexType name="user">
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>
@@ -133,4 +136,5 @@
             <xs:element name="passwordHash" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
+
 </xs:schema>
