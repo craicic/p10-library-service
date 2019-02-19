@@ -13,9 +13,9 @@ public interface TokenMapper {
 
     TokenMapper INSTANCE = Mappers.getMapper( TokenMapper.class);
 
-    @Mapping(target= "token",  expression = "java(UUID.randomUUID().toString())")
+    @Mapping(target= "tokenUUID",  expression = "java(UUID.randomUUID().toString())")
     Token tokenEntityToToken(TokenEntity tokenEntity);
-//
-//    @Mapping(target= "token", source="token", defaultValue = "java(UUID.fromString(token))")
-//    TokenEntity TokenToTokenEntity(Token token);
+
+    @Mapping(target= "tokenUUID", expression = "java(UUID.fromString(token.getTokenUUID()))")
+    TokenEntity TokenToTokenEntity(Token token);
 }

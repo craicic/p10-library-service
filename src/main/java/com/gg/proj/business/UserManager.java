@@ -1,7 +1,6 @@
 package com.gg.proj.business;
 
 import com.gg.proj.business.mapper.TokenMapper;
-import com.gg.proj.business.mapper.UserMapper;
 import com.gg.proj.consumer.TokenRepository;
 import com.gg.proj.consumer.UserRepository;
 import com.gg.proj.model.TokenEntity;
@@ -14,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.UUID;
 
 /**
@@ -27,22 +24,22 @@ public class UserManager {
 
     private static final Logger log = LoggerFactory.getLogger(UserManager.class);
 
-    private UserMapper userMapper;
 
     private TokenMapper tokenMapper;
 
     private UserRepository userRepository;
 
+    private TokenManager tokenManager;
+
     private TokenRepository tokenRepository;
 
     @Autowired
-    public UserManager(UserMapper userMapper, TokenMapper tokenMapper, UserRepository userRepository, TokenRepository tokenRepository) {
-        this.userMapper = userMapper;
+    public UserManager(TokenMapper tokenMapper, UserRepository userRepository, TokenRepository tokenRepository, TokenManager tokenManager) {
         this.tokenMapper = tokenMapper;
         this.userRepository = userRepository;
         this.tokenRepository = tokenRepository;
+        this.tokenManager = tokenManager;
     }
-
 
     public Token loginUser(String pseudo, String passwordHash) throws UserNotFoundException {
         log.debug("Entering loginUser method... Requesting database for a user with pseudo : " + pseudo + " and hash : " + passwordHash);
@@ -52,9 +49,9 @@ public class UserManager {
             throw new UserNotFoundException("No such user in database");
         } else {
             log.debug("Found user in database : " + userEntity);
-            userEntity.setLastConnection(Timestamp.from(Instant.now()));
+            // using save method to trigger @PreUpdate
             userRepository.save(userEntity);
-            TokenEntity tokenEntity = tokenRepository.findByUserId(userEntity.getId());
+            TokenEntity tokenEntity = tokenManager.checkByUserThenReturnToken(userEntity);
             return tokenMapper.tokenEntityToToken(tokenEntity);
         }
     }
@@ -62,15 +59,15 @@ public class UserManager {
     public String logoutUser(String tokenUUID) throws UserNotFoundException, IllegalArgumentException {
         log.debug("Entering logoutUser method... Requesting database for a user with tokenUUID : " + tokenUUID);
 
-        TokenEntity tokenEntity = tokenRepository.findByToken(UUID.fromString(tokenUUID));
+        TokenEntity tokenEntity = tokenRepository.findByTokenUUID(UUID.fromString(tokenUUID));
 
         if (tokenEntity == null) {
-            log.info("No user with token : " + tokenUUID + " found un database");
+            log.info("No user with token : " + tokenUUID + " found in database");
             throw new UserNotFoundException("No such user in database");
         } else {
             log.debug("Found user in database");
             UserEntity userEntity = tokenEntity.getUserEntity();
-            userEntity.setLastConnection(Timestamp.from(Instant.now()));
+            // using save method to trigger @PreUpdate
             userRepository.save(userEntity);
             return "SUCCESS";
         }

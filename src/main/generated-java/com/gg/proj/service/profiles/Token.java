@@ -6,7 +6,7 @@
 //
 
 
-package com.gg.proj.service.users;
+package com.gg.proj.service.profiles;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -29,7 +29,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="tokenUUID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="expirationDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="user" type="{http://proj.gg.com/service/users}user" minOccurs="0"/>
+ *         &lt;element name="userId" type="{http://proj.gg.com/service/profiles}user" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,7 +43,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "id",
     "tokenUUID",
     "expirationDate",
-    "user"
+    "userId"
 })
 public class Token {
 
@@ -53,7 +53,7 @@ public class Token {
     @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar expirationDate;
-    protected User user;
+    protected User userId;
 
     /**
      * Obtient la valeur de la propriété id.
@@ -128,27 +128,27 @@ public class Token {
     }
 
     /**
-     * Obtient la valeur de la propriété user.
+     * Obtient la valeur de la propriété userId.
      * 
      * @return
      *     possible object is
      *     {@link User }
      *     
      */
-    public User getUser() {
-        return user;
+    public User getUserId() {
+        return userId;
     }
 
     /**
-     * Définit la valeur de la propriété user.
+     * Définit la valeur de la propriété userId.
      * 
      * @param value
      *     allowed object is
      *     {@link User }
      *     
      */
-    public void setUser(User value) {
-        this.user = value;
+    public void setUserId(User value) {
+        this.userId = value;
     }
 
 }

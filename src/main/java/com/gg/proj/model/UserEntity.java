@@ -1,6 +1,7 @@
 package com.gg.proj.model;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -73,6 +74,16 @@ public class UserEntity {
         this.loans = loans;
     }
 
+    @PreUpdate
+    public void preUpdate() {
+        this.lastConnection = Date.from(Instant.now());
+    }
+
+    @PrePersist
+    public void prePersist() {
+        this.registerDate = Date.from(Instant.now());
+        this.lastConnection = Date.from(Instant.now());
+    }
 
     public Integer getId() {
         return id;
@@ -172,6 +183,18 @@ public class UserEntity {
 
     public List<LoanEntity> getLoans() {
         return loans;
+    }
+
+    public void setLoans(List<LoanEntity> loans) {
+        this.loans = loans;
+    }
+
+    public List<TokenEntity> getToken() {
+        return token;
+    }
+
+    public void setToken(List<TokenEntity> token) {
+        this.token = token;
     }
 
     @Override

@@ -13,7 +13,7 @@ public class TokenEntity {
     @GeneratedValue
     private Integer id;
 
-    private UUID token;
+    private UUID tokenUUID;
 
     private LocalDate expirationDate;
 
@@ -24,15 +24,15 @@ public class TokenEntity {
     public TokenEntity() {
     }
 
-    public TokenEntity(UUID token, LocalDate expirationDate, UserEntity user) {
-        this.token = token;
+    public TokenEntity(UUID tokenUUID, LocalDate expirationDate, UserEntity user) {
+        this.tokenUUID = tokenUUID;
         this.expirationDate = expirationDate;
         this.user = user;
     }
 
     @PrePersist
-    public void PrePersist(){
-        token = UUID.randomUUID();
+    public void prePersist(){
+        tokenUUID = UUID.randomUUID();
         LocalDate today = LocalDate.now();
         expirationDate = today.plus(3, ChronoUnit.WEEKS);
     }
@@ -45,12 +45,12 @@ public class TokenEntity {
         this.id = id;
     }
 
-    public UUID getToken() {
-        return token;
+    public UUID getTokenUUID() {
+        return tokenUUID;
     }
 
-    public void setToken(UUID token) {
-        this.token = token;
+    public void setTokenUUID(UUID tokenUUID) {
+        this.tokenUUID = tokenUUID;
     }
 
     public UserEntity getUserEntity() {
