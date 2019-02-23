@@ -66,24 +66,31 @@ public class TokenManager {
         tokenRepository.save(tokenEntity);
     }
 
-    public boolean checkIfValidByUuid(UserEntity userEntity, UUID uuid) throws InvalidTokenException, OutdatedTokenException {
+    public void checkIfValidByUuid(UserEntity userEntity, UUID uuid) throws InvalidTokenException, OutdatedTokenException {
         TokenEntity tokenEntity = new TokenEntity();
-        log.info("hey before setToken()");
         tokenEntity.setTokenUUID(uuid);
-        log.info("hey after setToken()");
 
         tokenEntity.setUserEntity(userEntity);
-        TokenEntity foundTokenEntity = tokenRepository.findByUserIdAndTokenUUID(tokenEntity.getUserEntity().getId(), tokenEntity.getTokenUUID());
+        TokenEntity foundTokenEntity = tokenRepository.findByUserAndTokenUUID(tokenEntity.getUserEntity(), tokenEntity.getTokenUUID());
         if (foundTokenEntity == null) {
             throw new InvalidTokenException("no such token in database");
         } if (foundTokenEntity.getExpirationDate().isBefore(LocalDate.now())) {
+            // Calling a private method to refresh the token
             refreshToken(foundTokenEntity);
             throw new OutdatedTokenException("Token has expired, try to reconnect");
         }
-        return true;
-
     }
+    public void checkIfValidByUuid(UUID uuid) throws InvalidTokenException, OutdatedTokenException {
 
+        TokenEntity foundTokenEntity = tokenRepository.findByTokenUUID(uuid);
+        if (foundTokenEntity == null) {
+            throw new InvalidTokenException("no such token in database");
+        } if (foundTokenEntity.getExpirationDate().isBefore(LocalDate.now())) {
+            // Calling a private method to refresh the token
+            refreshToken(foundTokenEntity);
+            throw new OutdatedTokenException("Token has expired, try to reconnect");
+        }
+    }
     private void refreshToken(TokenEntity tokenEntity){
         TokenEntity freshTokenEntity = new TokenEntity();
         freshTokenEntity.setUserEntity(tokenEntity.getUserEntity());

@@ -53,7 +53,7 @@ public class BookManager {
     // CRUD Methods
     public Optional<Book> findById(Integer id) {
         Optional<BookEntity> optional = bookRepository.findById(id);
-        BookEntity bookEntity = bookRepository.findById(id).orElse(null);
+        BookEntity bookEntity = optional.orElse(null);
 
         if (optional.isPresent()) {
             log.info("findById : Requesting a book by id : " + id + " => found : " + bookEntity);
@@ -95,19 +95,6 @@ public class BookManager {
         // Here we access the book list by reference (no need for setter)
         books.addAll(bookMapper.bookEntityListToBookList(bookEntities));
 
-        //        List<Object[]> listAnnexData = bookRepository.searchAnnexData("%" + keyWord + "%");
-//        log.debug("listAnnexData.size() : " + listAnnexData.size());
-//
-//        for (Object o[] : listAnnexData) {
-//            if (o[0] != null)
-//                languageEntities.add((LanguageEntity) o[0]);
-//            if (o[1] != null)
-//                libraryEntities.add((LibraryEntity) o[1]);
-//            if (o[2] != null)
-//                topicEntities.add((TopicEntity) o[2]);
-//            log.debug("\nlanguage : " + o[0] + "\nlibrary : " + o[1]+ "\ntopic : " + o[2]);
-//        }
-
         // Now we fetch all books to extract their metadata
         List<BookEntity> bookEntitiesAllFetched = bookRepository.searchAllBooks("%" + keyWord + "%");
         List<LanguageEntity> languageEntities = languageRepository.findDistinctByBooksIn(bookEntitiesAllFetched);
@@ -119,6 +106,7 @@ public class BookManager {
         topics.addAll(bookMapper.topicEntityListToTopicList(topicEntities));
 
         response.setKeyWord(keyWord);
+        response.setTotalPages(pagedBooks.getTotalPages());
 
         return response;
     }

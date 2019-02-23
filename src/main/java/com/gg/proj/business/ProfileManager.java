@@ -2,6 +2,8 @@ package com.gg.proj.business;
 
 import com.gg.proj.business.mapper.ProfileMapper;
 import com.gg.proj.consumer.ProfileRepository;
+import com.gg.proj.model.UserEntity;
+import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.InvalidTokenException;
 import com.gg.proj.service.exceptions.OutdatedTokenException;
 import com.gg.proj.service.profiles.User;
@@ -11,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -32,7 +37,7 @@ public class ProfileManager {
         this.profileMapper = profileMapper;
     }
 
-    public User save(User user, String StrUuid) throws InvalidTokenException , OutdatedTokenException{
+    public User save(User user, String StrUuid) throws InvalidTokenException, OutdatedTokenException {
         if (user.getId() == null) {
             // If User has no id, it's a new register, we save a new user, then generate a new token for him
             user = profileMapper.userEntityToUser(profileRepository.save(profileMapper.userToUserEntity(user)));
@@ -40,21 +45,51 @@ public class ProfileManager {
             return user;
         } else {
             try {
-                log.info("uuid : " + StrUuid);
-                UUID uuid = UUID.fromString(StrUuid);
-                log.info("uuid : " + uuid);
-                boolean isAuthenticated = tokenManager.checkIfValidByUuid(profileMapper.userToUserEntity(user), uuid);
-                log.info("uuid : " + StrUuid);
-            } catch (InvalidTokenException e) {
-                log.warn("invalid connection");
-                throw e;
-            } catch (OutdatedTokenException e) {
-                log.info("token is outdated");
-                throw e;
+                tokenManager.checkIfValidByUuid(UUID.fromString(StrUuid));
+            } catch (Exception ex) {
+                GenericExceptionHelper.tokenExceptionHandler(ex);
             }
-            log.info("HEY");
             return profileMapper.userEntityToUser(profileRepository.save(profileMapper.userToUserEntity(user)));
 
         }
+    }
+
+    public void delete(User user, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+            profileRepository.delete(profileMapper.userToUserEntity(user));
+        } catch (Exception ex) {
+            GenericExceptionHelper.tokenExceptionHandler(ex);
+        }
+    }
+
+    public Optional<User> findById(Integer id, UUID uuid) throws InvalidTokenException, OutdatedTokenException {
+        UserEntity userEntity = new UserEntity();
+
+        try {
+            tokenManager.checkIfValidByUuid(uuid);
+            Optional<UserEntity> optional = profileRepository.findById(id);
+            userEntity = optional.orElse(null);
+
+            if (optional.isPresent()) {
+                log.info("findById : Requesting a user by id : " + id + " => found : " + userEntity);
+            } else {
+                log.info("findById : Requesting a book by id : " + id + " => id not found in database");
+            }
+        } catch (Exception ex) {
+            GenericExceptionHelper.tokenExceptionHandler(ex);
+        }
+        return Optional.ofNullable(profileMapper.userEntityToUser(userEntity));
+    }
+
+    public List<User> findAll(UUID uuid) throws InvalidTokenException, OutdatedTokenException {
+        List<User> users = new ArrayList<>();
+        try {
+            tokenManager.checkIfValidByUuid(uuid);
+            users.addAll(profileMapper.userEntityListToUserList(profileRepository.findAll()));
+        } catch (Exception ex) {
+            GenericExceptionHelper.tokenExceptionHandler(ex);
+        }
+        return users;
     }
 }

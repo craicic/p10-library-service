@@ -17,18 +17,18 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Classe Java pour loan complex type.
+ * <p>Classe Java pour loanFull complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="loan">
+ * &lt;complexType name="loanFull">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="bookId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="user" type="{http://proj.gg.com/service/loans}user"/>
+ *         &lt;element name="book" type="{http://proj.gg.com/service/loans}book"/>
  *         &lt;element name="loanStartDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="loanEndDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="extended" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
@@ -41,19 +41,21 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "loan", propOrder = {
+@XmlType(name = "loanFull", propOrder = {
     "id",
-    "userId",
-    "bookId",
+    "user",
+    "book",
     "loanStartDate",
     "loanEndDate",
     "extended"
 })
-public class Loan {
+public class LoanFull {
 
     protected int id;
-    protected int userId;
-    protected int bookId;
+    @XmlElement(required = true)
+    protected User user;
+    @XmlElement(required = true)
+    protected Book book;
     @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar loanStartDate;
@@ -79,35 +81,51 @@ public class Loan {
     }
 
     /**
-     * Obtient la valeur de la propriété userId.
+     * Obtient la valeur de la propriété user.
      * 
+     * @return
+     *     possible object is
+     *     {@link User }
+     *     
      */
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
     /**
-     * Définit la valeur de la propriété userId.
+     * Définit la valeur de la propriété user.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link User }
+     *     
      */
-    public void setUserId(int value) {
-        this.userId = value;
+    public void setUser(User value) {
+        this.user = value;
     }
 
     /**
-     * Obtient la valeur de la propriété bookId.
+     * Obtient la valeur de la propriété book.
      * 
+     * @return
+     *     possible object is
+     *     {@link Book }
+     *     
      */
-    public int getBookId() {
-        return bookId;
+    public Book getBook() {
+        return book;
     }
 
     /**
-     * Définit la valeur de la propriété bookId.
+     * Définit la valeur de la propriété book.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Book }
+     *     
      */
-    public void setBookId(int value) {
-        this.bookId = value;
+    public void setBook(Book value) {
+        this.book = value;
     }
 
     /**

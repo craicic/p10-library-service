@@ -1,8 +1,8 @@
 package com.gg.proj.model;
 
 import javax.persistence.*;
-import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -44,10 +44,10 @@ public class UserEntity {
     private String phoneNumber;
 
     @Column(name = "last_connection", nullable = false)
-    private Date lastConnection;
+    private LocalDateTime lastConnection;
 
     @Column(name = "register_date", nullable = false)
-    private Date registerDate;
+    private LocalDate registerDate;
 
     @OneToMany(mappedBy = "user")
     private List<LoanEntity> loans;
@@ -59,7 +59,7 @@ public class UserEntity {
     }
 
     public UserEntity(String firstName, String lastName, String pseudo, String passwordHash, String city,
-                      Integer postalCode, String address, String mailAddress, String phoneNumber, Date lastConnection, Date registerDate, List<LoanEntity> loans) {
+                      Integer postalCode, String address, String mailAddress, String phoneNumber, LocalDateTime lastConnection, LocalDate registerDate, List<LoanEntity> loans) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.pseudo = pseudo;
@@ -76,13 +76,13 @@ public class UserEntity {
 
     @PreUpdate
     public void preUpdate() {
-        this.lastConnection = Date.from(Instant.now());
+        this.lastConnection = LocalDateTime.now();
     }
 
     @PrePersist
     public void prePersist() {
-        this.registerDate = Date.from(Instant.now());
-        this.lastConnection = Date.from(Instant.now());
+        this.registerDate = LocalDate.now();
+        this.lastConnection = LocalDateTime.now();
     }
 
     public Integer getId() {
@@ -165,19 +165,19 @@ public class UserEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getLastConnection() {
+    public LocalDateTime getLastConnection() {
         return lastConnection;
     }
 
-    public void setLastConnection(Date lastConnection) {
+    public void setLastConnection(LocalDateTime lastConnection) {
         this.lastConnection = lastConnection;
     }
 
-    public Date getRegisterDate() {
+    public LocalDate getRegisterDate() {
         return registerDate;
     }
 
-    public void setRegisterDate(Date registerDate) {
+    public void setRegisterDate(LocalDate registerDate) {
         this.registerDate = registerDate;
     }
 

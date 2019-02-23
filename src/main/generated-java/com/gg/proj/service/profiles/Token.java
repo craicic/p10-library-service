@@ -2,17 +2,13 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.19 à 05:10:36 PM CET 
+// Généré le : 2019.02.22 à 08:40:21 PM CET 
 //
 
 
 package com.gg.proj.service.profiles;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -29,7 +25,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="tokenUUID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="expirationDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="userId" type="{http://proj.gg.com/service/profiles}user" minOccurs="0"/>
+ *         &lt;element name="user" type="{http://proj.gg.com/service/profiles}user" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,7 +39,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "id",
     "tokenUUID",
     "expirationDate",
-    "userId"
+    "user"
 })
 public class Token {
 
@@ -53,7 +49,7 @@ public class Token {
     @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar expirationDate;
-    protected User userId;
+    protected User user;
 
     /**
      * Obtient la valeur de la propriété id.
@@ -128,27 +124,27 @@ public class Token {
     }
 
     /**
-     * Obtient la valeur de la propriété userId.
+     * Obtient la valeur de la propriété user.
      * 
      * @return
      *     possible object is
      *     {@link User }
      *     
      */
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
     /**
-     * Définit la valeur de la propriété userId.
+     * Définit la valeur de la propriété user.
      * 
      * @param value
      *     allowed object is
      *     {@link User }
      *     
      */
-    public void setUserId(User value) {
-        this.userId = value;
+    public void setUser(User value) {
+        this.user = value;
     }
 
 }

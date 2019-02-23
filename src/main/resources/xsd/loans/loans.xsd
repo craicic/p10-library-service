@@ -64,12 +64,23 @@
     </xs:element>
 
     <!--================ OBJECTS ================-->
-    <!-- a loan-->
-    <xs:complexType name="loan">
+    <!-- a loan with a lot of information -->
+    <xs:complexType name="loanFull">
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>
             <xs:element name="user" type="tns:user"/>
             <xs:element name="book" type="tns:book"/>
+            <xs:element name="loanStartDate" type="xs:date"/>
+            <xs:element name="loanEndDate" type="xs:date"/>
+            <xs:element name="extended" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- a loan with minimal information -->
+    <xs:complexType name="loan">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="userId" type="xs:int"/>
+            <xs:element name="bookId" type="xs:int"/>
             <xs:element name="loanStartDate" type="xs:date"/>
             <xs:element name="loanEndDate" type="xs:date"/>
             <xs:element name="extended" type="xs:boolean"/>

@@ -24,7 +24,6 @@ public class UserManager {
 
     private static final Logger log = LoggerFactory.getLogger(UserManager.class);
 
-
     private TokenMapper tokenMapper;
 
     private UserRepository userRepository;
