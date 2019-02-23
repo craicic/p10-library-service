@@ -37,21 +37,24 @@ public class ProfileManager {
         this.profileMapper = profileMapper;
     }
 
-    public User save(User user, String StrUuid) throws InvalidTokenException, OutdatedTokenException {
-        if (user.getId() == null) {
-            // If User has no id, it's a new register, we save a new user, then generate a new token for him
-            user = profileMapper.userEntityToUser(profileRepository.save(profileMapper.userToUserEntity(user)));
-            tokenManager.generateNewToken(profileMapper.userToUserEntity(user));
-            return user;
-        } else {
-            try {
-                tokenManager.checkIfValidByUuid(UUID.fromString(StrUuid));
-            } catch (Exception ex) {
-                GenericExceptionHelper.tokenExceptionHandler(ex);
+    public Optional<User> save(User user, String StrUuid) throws InvalidTokenException, OutdatedTokenException {
+        Optional<User> optional = Optional.ofNullable(user);
+        if (optional.isPresent()) {
+            if (optional.get().getId() == null) {
+                // If User has no id, it's a new register, we save a new user, then generate a new token for him
+                user = profileMapper.userEntityToUser(profileRepository.save(profileMapper.userToUserEntity(user)));
+                tokenManager.generateNewToken(profileMapper.userToUserEntity(user));
+                return Optional.of(user);
+            } else {
+                try {
+                    tokenManager.checkIfValidByUuid(UUID.fromString(StrUuid));
+                } catch (Exception ex) {
+                    GenericExceptionHelper.tokenExceptionHandler(ex);
+                }
+                return Optional.ofNullable(profileMapper.userEntityToUser(profileRepository.save(profileMapper.userToUserEntity(user))));
             }
-            return profileMapper.userEntityToUser(profileRepository.save(profileMapper.userToUserEntity(user)));
-
         }
+        return Optional.empty();
     }
 
     public void delete(User user, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {

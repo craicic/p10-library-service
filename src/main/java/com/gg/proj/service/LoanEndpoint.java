@@ -1,7 +1,6 @@
 package com.gg.proj.service;
 
 import com.gg.proj.business.LoanManager;
-import com.gg.proj.business.LoanManager;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.ServiceFaultException;
 import com.gg.proj.service.loans.*;

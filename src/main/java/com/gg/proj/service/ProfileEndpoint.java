@@ -38,7 +38,8 @@ public class ProfileEndpoint {
         log.debug("saveProfile : calling the ProfileManager to save profile");
         SaveProfileResponse saveProfileResponse = new SaveProfileResponse();
         try {
-            saveProfileResponse.setUser(profileManager.save(request.getUser(), request.getTokenUUID()));
+            Optional<User> optional = profileManager.save(request.getUser(), request.getTokenUUID());
+            optional.ifPresent(saveProfileResponse::setUser);
         } catch (Exception ex) {
             GenericExceptionHelper.serviceFaultExceptionHandler(ex);
         }
