@@ -32,6 +32,12 @@ public class GenericExceptionHelper {
             serviceStatus.setMessage("Outdated token");
             serviceStatus.setStatusCode("RETRY_LOGIN");
             throw new ServiceFaultException(errorMessage, serviceStatus);
+        } else if (e instanceof InvalidLoanOperationException) {
+            String errorMessage = e.getMessage();
+            ServiceStatus serviceStatus = new ServiceStatus();
+            serviceStatus.setMessage("Invalid operation");
+            serviceStatus.setStatusCode("ERROR");
+            throw new ServiceFaultException(errorMessage, serviceStatus);
         }
     }
 

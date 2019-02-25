@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.23 à 03:45:54 PM CET 
+// Généré le : 2019.02.25 à 07:33:57 PM CET 
 //
 
 
@@ -10,7 +10,6 @@ package com.gg.proj.service.loans;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -26,12 +25,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="bookId" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="loanStartDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="loanEndDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="extended" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="loanStartDate" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
+ *         &lt;element name="loanEndDate" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
+ *         &lt;element name="extended" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="closed" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -47,34 +47,42 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "bookId",
     "loanStartDate",
     "loanEndDate",
-    "extended"
+    "extended",
+    "closed"
 })
 public class Loan {
 
-    protected int id;
+    protected Integer id;
     protected int userId;
     protected int bookId;
-    @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar loanStartDate;
-    @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar loanEndDate;
-    protected boolean extended;
+    protected Boolean extended;
+    protected Boolean closed;
 
     /**
      * Obtient la valeur de la propriété id.
      * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * Définit la valeur de la propriété id.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
      */
-    public void setId(int value) {
+    public void setId(Integer value) {
         this.id = value;
     }
 
@@ -161,17 +169,49 @@ public class Loan {
     /**
      * Obtient la valeur de la propriété extended.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isExtended() {
+    public Boolean isExtended() {
         return extended;
     }
 
     /**
      * Définit la valeur de la propriété extended.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setExtended(boolean value) {
+    public void setExtended(Boolean value) {
         this.extended = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété closed.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isClosed() {
+        return closed;
+    }
+
+    /**
+     * Définit la valeur de la propriété closed.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setClosed(Boolean value) {
+        this.closed = value;
     }
 
 }

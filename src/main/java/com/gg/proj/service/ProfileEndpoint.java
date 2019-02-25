@@ -7,6 +7,7 @@ import com.gg.proj.service.exceptions.ServiceFaultException;
 import com.gg.proj.service.profiles.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -27,6 +28,7 @@ public class ProfileEndpoint {
 
     private UserManager userManager;
 
+    @Autowired
     public ProfileEndpoint(ProfileManager profileManager, UserManager userManager) {
         this.profileManager = profileManager;
         this.userManager = userManager;

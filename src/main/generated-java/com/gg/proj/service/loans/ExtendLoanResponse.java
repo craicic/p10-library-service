@@ -6,7 +6,7 @@
 //
 
 
-package com.gg.proj.service.users;
+package com.gg.proj.service.loans;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="logoutStatus" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="loan" type="{http://proj.gg.com/service/loans}loan"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "logoutStatus"
+    "loan"
 })
-@XmlRootElement(name = "logoutUserResponse")
-public class LogoutUserResponse {
+@XmlRootElement(name = "extendLoanResponse")
+public class ExtendLoanResponse {
 
     @XmlElement(required = true)
-    protected String logoutStatus;
+    protected Loan loan;
 
     /**
-     * Obtient la valeur de la propriété logoutStatus.
+     * Obtient la valeur de la propriété loan.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Loan }
      *     
      */
-    public String getLogoutStatus() {
-        return logoutStatus;
+    public Loan getLoan() {
+        return loan;
     }
 
     /**
-     * Définit la valeur de la propriété logoutStatus.
+     * Définit la valeur de la propriété loan.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Loan }
      *     
      */
-    public void setLogoutStatus(String value) {
-        this.logoutStatus = value;
+    public void setLoan(Loan value) {
+        this.loan = value;
     }
 
 }

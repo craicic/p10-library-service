@@ -6,7 +6,7 @@
 //
 
 
-package com.gg.proj.service.books;
+package com.gg.proj.service.loans;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -25,9 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="page" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="size" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="keyWord" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="tokenUUID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="loan" type="{http://proj.gg.com/service/loans}loan"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,72 +37,63 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "page",
-    "size",
-    "keyWord"
+    "tokenUUID",
+    "loan"
 })
-@XmlRootElement(name = "searchBooksRequest")
-public class SearchBooksRequest {
+@XmlRootElement(name = "extendLoanRequest")
+public class ExtendLoanRequest {
 
-    protected int page;
-    protected int size;
     @XmlElement(required = true)
-    protected String keyWord;
+    protected String tokenUUID;
+    @XmlElement(required = true)
+    protected Loan loan;
 
     /**
-     * Obtient la valeur de la propriété page.
-     * 
-     */
-    public int getPage() {
-        return page;
-    }
-
-    /**
-     * Définit la valeur de la propriété page.
-     * 
-     */
-    public void setPage(int value) {
-        this.page = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété size.
-     * 
-     */
-    public int getSize() {
-        return size;
-    }
-
-    /**
-     * Définit la valeur de la propriété size.
-     * 
-     */
-    public void setSize(int value) {
-        this.size = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété keyWord.
+     * Obtient la valeur de la propriété tokenUUID.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getKeyWord() {
-        return keyWord;
+    public String getTokenUUID() {
+        return tokenUUID;
     }
 
     /**
-     * Définit la valeur de la propriété keyWord.
+     * Définit la valeur de la propriété tokenUUID.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setKeyWord(String value) {
-        this.keyWord = value;
+    public void setTokenUUID(String value) {
+        this.tokenUUID = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété loan.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Loan }
+     *     
+     */
+    public Loan getLoan() {
+        return loan;
+    }
+
+    /**
+     * Définit la valeur de la propriété loan.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Loan }
+     *     
+     */
+    public void setLoan(Loan value) {
+        this.loan = value;
     }
 
 }

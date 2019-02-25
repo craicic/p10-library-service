@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.23 à 03:45:54 PM CET 
+// Généré le : 2019.02.25 à 07:33:57 PM CET 
 //
 
 
@@ -37,6 +37,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ExtendLoanRequest }
+     * 
+     */
+    public ExtendLoanRequest createExtendLoanRequest() {
+        return new ExtendLoanRequest();
+    }
+
+    /**
+     * Create an instance of {@link Loan }
+     * 
+     */
+    public Loan createLoan() {
+        return new Loan();
+    }
+
+    /**
      * Create an instance of {@link ListAllLoansRequest }
      * 
      */
@@ -58,14 +74,6 @@ public class ObjectFactory {
      */
     public SaveLoanResponse createSaveLoanResponse() {
         return new SaveLoanResponse();
-    }
-
-    /**
-     * Create an instance of {@link Loan }
-     * 
-     */
-    public Loan createLoan() {
-        return new Loan();
     }
 
     /**
@@ -98,6 +106,30 @@ public class ObjectFactory {
      */
     public SaveLoanRequest createSaveLoanRequest() {
         return new SaveLoanRequest();
+    }
+
+    /**
+     * Create an instance of {@link ExtendLoanResponse }
+     * 
+     */
+    public ExtendLoanResponse createExtendLoanResponse() {
+        return new ExtendLoanResponse();
+    }
+
+    /**
+     * Create an instance of {@link CloseLoanRequest }
+     * 
+     */
+    public CloseLoanRequest createCloseLoanRequest() {
+        return new CloseLoanRequest();
+    }
+
+    /**
+     * Create an instance of {@link CloseLoanResponse }
+     * 
+     */
+    public CloseLoanResponse createCloseLoanResponse() {
+        return new CloseLoanResponse();
     }
 
     /**

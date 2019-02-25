@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.23 à 03:45:54 PM CET 
+// Généré le : 2019.02.25 à 07:33:57 PM CET 
 //
 
 
@@ -32,6 +32,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="loanStartDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="loanEndDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="extended" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="closed" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -47,7 +48,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "book",
     "loanStartDate",
     "loanEndDate",
-    "extended"
+    "extended",
+    "closed"
 })
 public class LoanFull {
 
@@ -63,6 +65,7 @@ public class LoanFull {
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar loanEndDate;
     protected boolean extended;
+    protected boolean closed;
 
     /**
      * Obtient la valeur de la propriété id.
@@ -190,6 +193,22 @@ public class LoanFull {
      */
     public void setExtended(boolean value) {
         this.extended = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété closed.
+     * 
+     */
+    public boolean isClosed() {
+        return closed;
+    }
+
+    /**
+     * Définit la valeur de la propriété closed.
+     * 
+     */
+    public void setClosed(boolean value) {
+        this.closed = value;
     }
 
 }
