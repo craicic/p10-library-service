@@ -2,12 +2,10 @@ package com.gg.proj.service;
 
 import com.gg.proj.business.UserManager;
 import com.gg.proj.service.books.ServiceStatus;
+import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.ServiceFaultException;
 import com.gg.proj.service.exceptions.UserNotFoundException;
-import com.gg.proj.service.users.LoginUserRequest;
-import com.gg.proj.service.users.LoginUserResponse;
-import com.gg.proj.service.users.LogoutUserRequest;
-import com.gg.proj.service.users.LogoutUserResponse;
+import com.gg.proj.service.users.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,15 +31,21 @@ public class UserEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "loginUserRequest")
     @ResponsePayload
     public LoginUserResponse loginUser(@RequestPayload LoginUserRequest request) throws ServiceFaultException {
-        log.debug("loginUser : calling the userManager to login user : " + request.getPseudo() + " and hash : " + request.getPasswordHash());
+        log.debug("loginUser : calling the userManager to login user : " + request.getPseudo());
         LoginUserResponse response = new LoginUserResponse();
         try {
-            response.setToken(userManager.loginUser(request.getPseudo(), request.getPasswordHash()));
+            response.setToken(userManager.loginUser(request.getPseudo(), request.getPassword()));
         } catch (UserNotFoundException e) {
             String errorMessage = e.getMessage();
             ServiceStatus serviceStatus = new ServiceStatus();
-            serviceStatus.setMessage("Invalid credentials");
+            serviceStatus.setMessage("No such user");
             serviceStatus.setStatusCode("NOT_FOUND");
+            throw new ServiceFaultException(errorMessage, serviceStatus);
+        } catch (IllegalArgumentException e) {
+            String errorMessage = e.getMessage();
+            ServiceStatus serviceStatus = new ServiceStatus();
+            serviceStatus.setMessage("Wrong credentials");
+            serviceStatus.setStatusCode("WRONG_PASSWORD");
             throw new ServiceFaultException(errorMessage, serviceStatus);
         }
         return response;
@@ -67,6 +71,19 @@ public class UserEndpoint {
             serviceStatus.setMessage("Not Found");
             serviceStatus.setStatusCode("NOT_FOUND");
             throw new ServiceFaultException(errorMessage, serviceStatus);
+        }
+        return response;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "registerUserRequest")
+    @ResponsePayload
+    public RegisterUserResponse registerUser(@RequestPayload RegisterUserRequest request) throws ServiceFaultException {
+        log.debug("Entering registerUser with user " + request.getUser());
+        RegisterUserResponse response = new RegisterUserResponse();
+        try {
+            response.setToken(userManager.registerUser(request.getUser()));
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
         }
         return response;
     }

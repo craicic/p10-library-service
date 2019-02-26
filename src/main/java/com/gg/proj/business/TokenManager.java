@@ -58,12 +58,12 @@ public class TokenManager {
     }
 
 
-    public void generateNewToken(UserEntity userEntity) {
+    public TokenEntity generateNewToken(UserEntity userEntity) {
         log.debug("Entering generateNewToken() with user : " + userEntity + " ... Requesting Dao to create a new token");
         TokenEntity tokenEntity = new TokenEntity();
         // PrePersist method will add the UUID and the expirationDate
         tokenEntity.setUserEntity(userEntity);
-        tokenRepository.save(tokenEntity);
+        return tokenRepository.save(tokenEntity);
     }
 
     public void checkIfValidByUuid(UserEntity userEntity, UUID uuid) throws InvalidTokenException, OutdatedTokenException {

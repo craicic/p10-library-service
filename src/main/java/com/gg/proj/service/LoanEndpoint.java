@@ -12,10 +12,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import javax.naming.ldap.ExtendedRequest;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Endpoint
 public class LoanEndpoint {

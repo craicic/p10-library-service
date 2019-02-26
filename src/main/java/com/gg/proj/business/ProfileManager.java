@@ -41,7 +41,7 @@ public class ProfileManager {
         Optional<User> optional = Optional.ofNullable(user);
         if (optional.isPresent()) {
             if (optional.get().getId() == null) {
-                // If User has no id, it's a new register, we save a new user, then generate a new token for him
+                // If User has no id, it's a new register, we save a new user, then generate a new token
                 user = profileMapper.userEntityToUser(profileRepository.save(profileMapper.userToUserEntity(user)));
                 tokenManager.generateNewToken(profileMapper.userToUserEntity(user));
                 return Optional.of(user);

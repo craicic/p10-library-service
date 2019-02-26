@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.25 à 07:33:57 PM CET 
+// Généré le : 2019.02.26 à 11:51:48 AM CET 
 //
 
 
@@ -29,7 +29,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="tokenUUID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="expirationDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="user" type="{http://proj.gg.com/service/users}user" minOccurs="0"/>
+ *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,7 +43,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "id",
     "tokenUUID",
     "expirationDate",
-    "user"
+    "userId"
 })
 public class Token {
 
@@ -53,7 +53,7 @@ public class Token {
     @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar expirationDate;
-    protected User user;
+    protected String userId;
 
     /**
      * Obtient la valeur de la propriété id.
@@ -128,27 +128,27 @@ public class Token {
     }
 
     /**
-     * Obtient la valeur de la propriété user.
+     * Obtient la valeur de la propriété userId.
      * 
      * @return
      *     possible object is
-     *     {@link User }
+     *     {@link String }
      *     
      */
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
     /**
-     * Définit la valeur de la propriété user.
+     * Définit la valeur de la propriété userId.
      * 
      * @param value
      *     allowed object is
-     *     {@link User }
+     *     {@link String }
      *     
      */
-    public void setUser(User value) {
-        this.user = value;
+    public void setUserId(String value) {
+        this.userId = value;
     }
 
 }

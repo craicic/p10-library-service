@@ -5,6 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
-    UserEntity findByPseudoAndPasswordHash(String pseudo, String passwordHash);
+    UserEntity findByPseudo(String pseudo);
 
+    boolean existsByPseudo(String pseudo);
+
+    boolean existsByMailAddress(String mailaddress);
 }

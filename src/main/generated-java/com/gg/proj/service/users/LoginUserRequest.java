@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.25 à 07:33:57 PM CET 
+// Généré le : 2019.02.26 à 11:51:48 AM CET 
 //
 
 
@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="pseudo" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="passwordHash" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "pseudo",
-    "passwordHash"
+    "password"
 })
 @XmlRootElement(name = "loginUserRequest")
 public class LoginUserRequest {
@@ -46,7 +46,7 @@ public class LoginUserRequest {
     @XmlElement(required = true)
     protected String pseudo;
     @XmlElement(required = true)
-    protected String passwordHash;
+    protected String password;
 
     /**
      * Obtient la valeur de la propriété pseudo.
@@ -73,27 +73,27 @@ public class LoginUserRequest {
     }
 
     /**
-     * Obtient la valeur de la propriété passwordHash.
+     * Obtient la valeur de la propriété password.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
     /**
-     * Définit la valeur de la propriété passwordHash.
+     * Définit la valeur de la propriété password.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setPasswordHash(String value) {
-        this.passwordHash = value;
+    public void setPassword(String value) {
+        this.password = value;
     }
 
 }

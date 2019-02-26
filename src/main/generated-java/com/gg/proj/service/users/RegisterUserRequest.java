@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="tokenUUID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="user" type="{http://proj.gg.com/service/users}user"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "tokenUUID"
+    "user"
 })
-@XmlRootElement(name = "logoutUserRequest")
-public class LogoutUserRequest {
+@XmlRootElement(name = "registerUserRequest")
+public class RegisterUserRequest {
 
     @XmlElement(required = true)
-    protected String tokenUUID;
+    protected User user;
 
     /**
-     * Obtient la valeur de la propriété tokenUUID.
+     * Obtient la valeur de la propriété user.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link User }
      *     
      */
-    public String getTokenUUID() {
-        return tokenUUID;
+    public User getUser() {
+        return user;
     }
 
     /**
-     * Définit la valeur de la propriété tokenUUID.
+     * Définit la valeur de la propriété user.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link User }
      *     
      */
-    public void setTokenUUID(String value) {
-        this.tokenUUID = value;
+    public void setUser(User value) {
+        this.user = value;
     }
 
 }

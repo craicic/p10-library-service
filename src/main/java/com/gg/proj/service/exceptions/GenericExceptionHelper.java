@@ -35,11 +35,27 @@ public class GenericExceptionHelper {
         } else if (e instanceof InvalidLoanOperationException) {
             String errorMessage = e.getMessage();
             ServiceStatus serviceStatus = new ServiceStatus();
-            serviceStatus.setMessage("Invalid operation");
-            serviceStatus.setStatusCode("ERROR");
+            serviceStatus.setMessage("Invalid operation on a loan");
+            serviceStatus.setStatusCode("LOAN_ERROR");
+            throw new ServiceFaultException(errorMessage, serviceStatus);
+        } else if (e instanceof MailAddressAlreadyExistsException){
+            String errorMessage = e.getMessage();
+            ServiceStatus serviceStatus = new ServiceStatus();
+            serviceStatus.setMessage("Mail Address is already in use");
+            serviceStatus.setStatusCode("ADDRESS_NOT_AVAILABLE");
+            throw new ServiceFaultException(errorMessage, serviceStatus);
+        } else if (e instanceof PseudoAlreadyExistsException){
+            String errorMessage = e.getMessage();
+            ServiceStatus serviceStatus = new ServiceStatus();
+            serviceStatus.setMessage("Pseudo already used");
+            serviceStatus.setStatusCode("PSEUDO_NOT_AVAILABLE");
+            throw new ServiceFaultException(errorMessage, serviceStatus);
+        } else if (e instanceof IllegalArgumentException){
+            String errorMessage = e.getMessage();
+            ServiceStatus serviceStatus = new ServiceStatus();
+            serviceStatus.setMessage("Password too short");
+            serviceStatus.setStatusCode("NOT_STRONG_PASSWORD");
             throw new ServiceFaultException(errorMessage, serviceStatus);
         }
     }
-
-
 }
