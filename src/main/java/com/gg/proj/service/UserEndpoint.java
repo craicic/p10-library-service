@@ -87,4 +87,18 @@ public class UserEndpoint {
         }
         return response;
     }
+
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "changePasswordRequest")
+    @ResponsePayload
+    public ChangePasswordResponse changePassword(@RequestPayload ChangePasswordRequest request) throws ServiceFaultException {
+        log.debug("Entering changePassword ... ");
+        ChangePasswordResponse response = new ChangePasswordResponse();
+        try {
+            userManager.changePassword(request.getUserId(), request.getOldPassword(), request.getNewPassword());
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
+        }
+        return response;
+    }
 }

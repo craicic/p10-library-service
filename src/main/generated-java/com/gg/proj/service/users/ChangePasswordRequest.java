@@ -2,11 +2,11 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.26 à 02:28:37 PM CET 
+// Généré le : 2019.02.26 à 02:34:14 PM CET 
 //
 
 
-package com.gg.proj.service.profiles;
+package com.gg.proj.service.users;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -25,8 +25,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="tokenUUID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="user" type="{http://proj.gg.com/service/profiles}user"/>
+ *         &lt;element name="oldPassword" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="newPassword" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,63 +38,81 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "tokenUUID",
-    "user"
+    "oldPassword",
+    "newPassword",
+    "userId"
 })
-@XmlRootElement(name = "saveProfileRequest")
-public class SaveProfileRequest {
+@XmlRootElement(name = "changePasswordRequest")
+public class ChangePasswordRequest {
 
     @XmlElement(required = true)
-    protected String tokenUUID;
+    protected String oldPassword;
     @XmlElement(required = true)
-    protected User user;
+    protected String newPassword;
+    protected int userId;
 
     /**
-     * Obtient la valeur de la propriété tokenUUID.
+     * Obtient la valeur de la propriété oldPassword.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getTokenUUID() {
-        return tokenUUID;
+    public String getOldPassword() {
+        return oldPassword;
     }
 
     /**
-     * Définit la valeur de la propriété tokenUUID.
+     * Définit la valeur de la propriété oldPassword.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setTokenUUID(String value) {
-        this.tokenUUID = value;
+    public void setOldPassword(String value) {
+        this.oldPassword = value;
     }
 
     /**
-     * Obtient la valeur de la propriété user.
+     * Obtient la valeur de la propriété newPassword.
      * 
      * @return
      *     possible object is
-     *     {@link User }
+     *     {@link String }
      *     
      */
-    public User getUser() {
-        return user;
+    public String getNewPassword() {
+        return newPassword;
     }
 
     /**
-     * Définit la valeur de la propriété user.
+     * Définit la valeur de la propriété newPassword.
      * 
      * @param value
      *     allowed object is
-     *     {@link User }
+     *     {@link String }
      *     
      */
-    public void setUser(User value) {
-        this.user = value;
+    public void setNewPassword(String value) {
+        this.newPassword = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété userId.
+     * 
+     */
+    public int getUserId() {
+        return userId;
+    }
+
+    /**
+     * Définit la valeur de la propriété userId.
+     * 
+     */
+    public void setUserId(int value) {
+        this.userId = value;
     }
 
 }

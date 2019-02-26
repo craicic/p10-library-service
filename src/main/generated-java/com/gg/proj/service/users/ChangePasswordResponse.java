@@ -10,7 +10,6 @@ package com.gg.proj.service.users;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -25,7 +24,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="logoutStatus" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,37 +33,9 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "logoutStatus"
-})
-@XmlRootElement(name = "logoutUserResponse")
-public class LogoutUserResponse {
+@XmlType(name = "")
+@XmlRootElement(name = "changePasswordResponse")
+public class ChangePasswordResponse {
 
-    @XmlElement(required = true)
-    protected String logoutStatus;
-
-    /**
-     * Obtient la valeur de la propriété logoutStatus.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLogoutStatus() {
-        return logoutStatus;
-    }
-
-    /**
-     * Définit la valeur de la propriété logoutStatus.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLogoutStatus(String value) {
-        this.logoutStatus = value;
-    }
 
 }

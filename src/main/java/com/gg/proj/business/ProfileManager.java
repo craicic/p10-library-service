@@ -3,9 +3,7 @@ package com.gg.proj.business;
 import com.gg.proj.business.mapper.ProfileMapper;
 import com.gg.proj.consumer.ProfileRepository;
 import com.gg.proj.model.UserEntity;
-import com.gg.proj.service.exceptions.GenericExceptionHelper;
-import com.gg.proj.service.exceptions.InvalidTokenException;
-import com.gg.proj.service.exceptions.OutdatedTokenException;
+import com.gg.proj.service.exceptions.*;
 import com.gg.proj.service.profiles.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,21 +36,46 @@ public class ProfileManager {
     }
 
     public Optional<User> save(User user, String StrUuid) throws InvalidTokenException, OutdatedTokenException {
-        Optional<User> optional = Optional.ofNullable(user);
-        if (optional.isPresent()) {
-            if (optional.get().getId() == null) {
-                // If User has no id, it's a new register, we save a new user, then generate a new token
-                user = profileMapper.userEntityToUser(profileRepository.save(profileMapper.userToUserEntity(user)));
-                tokenManager.generateNewToken(profileMapper.userToUserEntity(user));
-                return Optional.of(user);
-            } else {
-                try {
-                    tokenManager.checkIfValidByUuid(UUID.fromString(StrUuid));
-                } catch (Exception ex) {
-                    GenericExceptionHelper.tokenExceptionHandler(ex);
+        Optional<User> optionalFromEndpoint = Optional.ofNullable(user);
+        Optional<UserEntity> optionalFromDB;
+        UserEntity userEntityFromEndpoint;
+        UserEntity userEntityFromDB;
+
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(StrUuid));
+
+            if (optionalFromEndpoint.isPresent()) {
+                if (optionalFromEndpoint.get().getId() == null) {
+                    log.warn("This method doesn't allowed the creation of a new user");
+                    return Optional.empty();
+                } else {
+
+                    userEntityFromEndpoint = profileMapper.userToUserEntity(optionalFromEndpoint.get());
+                    optionalFromDB = profileRepository.findById(optionalFromEndpoint.get().getId());
+
+                    if (optionalFromDB.isPresent()) {
+
+                        // here we check if the new pseudo and mail address are not being used
+                        if (profileRepository.existsByPseudo(optionalFromEndpoint.get().getPseudo()))
+                            throw new PseudoAlreadyExistsException("This user pseudo already exists in database");
+                        if (profileRepository.existsByMailAddress(optionalFromEndpoint.get().getMailAddress()))
+                            throw new MailAddressAlreadyExistsException("This mail address already exists in database");
+
+                        userEntityFromDB = optionalFromDB.get();
+                        userEntityFromDB.setPseudo(userEntityFromEndpoint.getPseudo());
+                        userEntityFromDB.setPostalCode(userEntityFromEndpoint.getPostalCode());
+                        userEntityFromDB.setPhoneNumber(userEntityFromEndpoint.getPhoneNumber());
+                        userEntityFromDB.setMailAddress(userEntityFromEndpoint.getMailAddress());
+                        userEntityFromDB.setLastName(userEntityFromEndpoint.getLastName());
+                        userEntityFromDB.setFirstName(userEntityFromEndpoint.getFirstName());
+
+                        return Optional.ofNullable(profileMapper.userEntityToUser(profileRepository.save(userEntityFromDB)));
+                    }
+                    return Optional.ofNullable(profileMapper.userEntityToUser(profileRepository.save(profileMapper.userToUserEntity(user))));
                 }
-                return Optional.ofNullable(profileMapper.userEntityToUser(profileRepository.save(profileMapper.userToUserEntity(user))));
             }
+        } catch (Exception ex) {
+            GenericExceptionHelper.tokenExceptionHandler(ex);
         }
         return Optional.empty();
     }

@@ -2,7 +2,7 @@
            targetNamespace="http://proj.gg.com/service/users" elementFormDefault="qualified">
 
     <!--================ USER RELATED METHODS ================-->
-    <!-- login a user -->
+    <!-- login user -->
     <xs:element name="loginUserRequest">
         <xs:complexType>
             <xs:sequence>
@@ -18,7 +18,7 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <!-- logout session -->
+    <!-- logout -->
     <xs:element name="logoutUserRequest">
         <xs:complexType>
             <xs:sequence>
@@ -45,6 +45,22 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="token" type="tns:token"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- change the password -->
+    <xs:element name="changePasswordRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="oldPassword" type="xs:string"/>
+                <xs:element name="newPassword" type="xs:string"/>
+                <xs:element name="userId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="changePasswordResponse">
+        <xs:complexType>
+            <xs:sequence>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

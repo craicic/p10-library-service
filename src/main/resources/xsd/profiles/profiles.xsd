@@ -78,7 +78,7 @@
             <xs:element name="pseudo" type="xs:string"/>
             <xs:element name="lastConnection" type="xs:date"/>
             <xs:element name="registerDate" type="xs:date"/>
-            <xs:element name="passwordHash" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>
