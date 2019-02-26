@@ -17,5 +17,5 @@ public interface TokenMapper {
     Token tokenEntityToToken(TokenEntity tokenEntity);
 
     @Mapping(target= "tokenUUID", expression = "java(UUID.fromString(token.getTokenUUID()))")
-    TokenEntity TokenToTokenEntity(Token token);
+    TokenEntity tokenToTokenEntity(Token token);
 }

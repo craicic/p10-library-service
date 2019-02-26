@@ -1,5 +1,6 @@
 package com.gg.proj.service;
 
+import com.gg.proj.business.TokenManager;
 import com.gg.proj.business.UserManager;
 import com.gg.proj.service.books.ServiceStatus;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
@@ -22,6 +23,7 @@ public class UserEndpoint {
     private static final String NAMESPACE_URI = "http://proj.gg.com/service/users";
 
     private UserManager userManager;
+
 
     @Autowired
     public UserEndpoint(UserManager userManager) {
@@ -95,7 +97,7 @@ public class UserEndpoint {
         log.debug("Entering changePassword ... ");
         ChangePasswordResponse response = new ChangePasswordResponse();
         try {
-            userManager.changePassword(request.getUserId(), request.getOldPassword(), request.getNewPassword());
+            userManager.changePassword(request.getTokenUUID(), request.getUserId(), request.getOldPassword(), request.getNewPassword());
         } catch (Exception e) {
             GenericExceptionHelper.serviceFaultExceptionHandler(e);
         }

@@ -6,9 +6,7 @@ import com.gg.proj.consumer.TokenRepository;
 import com.gg.proj.consumer.UserRepository;
 import com.gg.proj.model.TokenEntity;
 import com.gg.proj.model.UserEntity;
-import com.gg.proj.service.exceptions.MailAddressAlreadyExistsException;
-import com.gg.proj.service.exceptions.PseudoAlreadyExistsException;
-import com.gg.proj.service.exceptions.UserNotFoundException;
+import com.gg.proj.service.exceptions.*;
 import com.gg.proj.service.users.Token;
 import com.gg.proj.service.users.User;
 import com.gg.proj.util.Password;
@@ -108,18 +106,23 @@ public class UserManager {
         return tokenMapper.tokenEntityToToken(tokenEntity);
     }
 
-    public void changePassword(Integer userId, String oldPassword, String newPassword) {
+    public void changePassword(String tokenUUID, Integer userId, String oldPassword, String newPassword) throws InvalidTokenException, OutdatedTokenException {
 
         String newHash;
-        Optional<UserEntity> optional = userRepository.findById(userId);
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+            Optional<UserEntity> optional = userRepository.findById(userId);
 
-        if(optional.isPresent()){
-            if(Password.checkPassword(oldPassword, optional.get().getPasswordHash())){
+            if(optional.isPresent()){
+                if(Password.checkPassword(oldPassword, optional.get().getPasswordHash())){
 
-                newHash = Password.hashPassword(newPassword);
-                optional.get().setPasswordHash(newHash);
-                userRepository.save(optional.get());
+                    newHash = Password.hashPassword(newPassword);
+                    optional.get().setPasswordHash(newHash);
+                    userRepository.save(optional.get());
+                }
             }
+        } catch (Exception e) {
+            GenericExceptionHelper.tokenExceptionHandler(e);
         }
     }
 }

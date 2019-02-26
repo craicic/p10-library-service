@@ -19,12 +19,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Classe Java pour book complex type.
+ * <p>Classe Java pour bookFull complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="book">
+ * &lt;complexType name="bookFull">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -32,11 +32,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="isbn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="topicIds" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="languageId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="topics" type="{http://proj.gg.com/service/books}topic" maxOccurs="unbounded"/>
+ *         &lt;element name="language" type="{http://proj.gg.com/service/books}language"/>
  *         &lt;element name="quantity" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="publicationDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="libraryId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="library" type="{http://proj.gg.com/service/books}library"/>
  *         &lt;element name="summary" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -47,19 +47,19 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "book", propOrder = {
+@XmlType(name = "bookFull", propOrder = {
     "id",
     "title",
     "author",
     "isbn",
-    "topicIds",
-    "languageId",
+    "topics",
+    "language",
     "quantity",
     "publicationDate",
-    "libraryId",
+    "library",
     "summary"
 })
-public class Book {
+public class BookFull {
 
     protected Integer id;
     @XmlElement(required = true)
@@ -67,14 +67,16 @@ public class Book {
     @XmlElement(required = true)
     protected String author;
     protected String isbn;
-    @XmlElement(type = Integer.class)
-    protected List<Integer> topicIds;
-    protected int languageId;
+    @XmlElement(required = true)
+    protected List<Topic> topics;
+    @XmlElement(required = true)
+    protected Language language;
     protected int quantity;
     @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar publicationDate;
-    protected int libraryId;
+    @XmlElement(required = true)
+    protected Library library;
     protected String summary;
 
     /**
@@ -174,48 +176,56 @@ public class Book {
     }
 
     /**
-     * Gets the value of the topicIds property.
+     * Gets the value of the topics property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the topicIds property.
+     * This is why there is not a <CODE>set</CODE> method for the topics property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getTopicIds().add(newItem);
+     *    getTopics().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Integer }
+     * {@link Topic }
      * 
      * 
      */
-    public List<Integer> getTopicIds() {
-        if (topicIds == null) {
-            topicIds = new ArrayList<Integer>();
+    public List<Topic> getTopics() {
+        if (topics == null) {
+            topics = new ArrayList<Topic>();
         }
-        return this.topicIds;
+        return this.topics;
     }
 
     /**
-     * Obtient la valeur de la propriété languageId.
+     * Obtient la valeur de la propriété language.
      * 
+     * @return
+     *     possible object is
+     *     {@link Language }
+     *     
      */
-    public int getLanguageId() {
-        return languageId;
+    public Language getLanguage() {
+        return language;
     }
 
     /**
-     * Définit la valeur de la propriété languageId.
+     * Définit la valeur de la propriété language.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Language }
+     *     
      */
-    public void setLanguageId(int value) {
-        this.languageId = value;
+    public void setLanguage(Language value) {
+        this.language = value;
     }
 
     /**
@@ -259,19 +269,27 @@ public class Book {
     }
 
     /**
-     * Obtient la valeur de la propriété libraryId.
+     * Obtient la valeur de la propriété library.
      * 
+     * @return
+     *     possible object is
+     *     {@link Library }
+     *     
      */
-    public int getLibraryId() {
-        return libraryId;
+    public Library getLibrary() {
+        return library;
     }
 
     /**
-     * Définit la valeur de la propriété libraryId.
+     * Définit la valeur de la propriété library.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Library }
+     *     
      */
-    public void setLibraryId(int value) {
-        this.libraryId = value;
+    public void setLibrary(Library value) {
+        this.library = value;
     }
 
     /**

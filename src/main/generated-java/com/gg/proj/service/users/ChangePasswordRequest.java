@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.26 à 02:34:14 PM CET 
+// Généré le : 2019.02.26 à 07:53:35 PM CET 
 //
 
 
@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="oldPassword" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="newPassword" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="tokenUUID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,7 +41,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "oldPassword",
     "newPassword",
-    "userId"
+    "userId",
+    "tokenUUID"
 })
 @XmlRootElement(name = "changePasswordRequest")
 public class ChangePasswordRequest {
@@ -50,6 +52,8 @@ public class ChangePasswordRequest {
     @XmlElement(required = true)
     protected String newPassword;
     protected int userId;
+    @XmlElement(required = true)
+    protected String tokenUUID;
 
     /**
      * Obtient la valeur de la propriété oldPassword.
@@ -113,6 +117,30 @@ public class ChangePasswordRequest {
      */
     public void setUserId(int value) {
         this.userId = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété tokenUUID.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTokenUUID() {
+        return tokenUUID;
+    }
+
+    /**
+     * Définit la valeur de la propriété tokenUUID.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTokenUUID(String value) {
+        this.tokenUUID = value;
     }
 
 }

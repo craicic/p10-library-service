@@ -34,7 +34,7 @@ public class TokenManager {
     /**
      * This method return a valid token to a user, note that you must be sure to authenticate the user first (with password hash)
      *
-     * @param userEntity a valid user (BE SURE TO PERFORM SECURITY OPERATION)
+     * @param userEntity a valid user
      * @return a valid {@link TokenEntity}
      */
     public TokenEntity checkByUserThenReturnToken(UserEntity userEntity) {
