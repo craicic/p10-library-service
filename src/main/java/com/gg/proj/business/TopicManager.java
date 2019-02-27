@@ -4,6 +4,9 @@ import com.gg.proj.business.mapper.TopicMapper;
 import com.gg.proj.consumer.TopicRepository;
 import com.gg.proj.model.TopicEntity;
 import com.gg.proj.service.books.Topic;
+import com.gg.proj.service.exceptions.GenericExceptionHelper;
+import com.gg.proj.service.exceptions.InvalidTokenException;
+import com.gg.proj.service.exceptions.OutdatedTokenException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @Transactional
@@ -23,10 +27,13 @@ public class TopicManager {
 
     private TopicMapper topicMapper;
 
+    private TokenManager tokenManager;
+
     @Autowired
-    public TopicManager(TopicRepository topicRepository, TopicMapper topicMapper) {
+    public TopicManager(TopicRepository topicRepository, TopicMapper topicMapper, TokenManager tokenManager) {
         this.topicRepository = topicRepository;
         this.topicMapper = topicMapper;
+        this.tokenManager = tokenManager;
     }
 
     // CRUD Methods
@@ -43,13 +50,25 @@ public class TopicManager {
         return Optional.of(topicMapper.topicEntityToTopic(topicEntity));
     }
 
-    public Topic save(Topic topic) {
+    public Topic save(Topic topic, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception e)  {
+            GenericExceptionHelper.tokenExceptionHandler(e);
+        }
+
         TopicEntity topicEntity = topicRepository.save(topicMapper.topicToTopicEntity(topic));
         return topicMapper.topicEntityToTopic(topicEntity);
     }
 
 
-    public void delete(Topic topic) {
+    public void delete(Topic topic, String tokenUUID) throws InvalidTokenException, OutdatedTokenException  {
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception e)  {
+            GenericExceptionHelper.tokenExceptionHandler(e);
+        }
+
         topicRepository.delete(topicMapper.topicToTopicEntity(topic));
     }
 

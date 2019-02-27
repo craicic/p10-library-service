@@ -13,8 +13,10 @@ public class TokenEntity {
     @GeneratedValue
     private Integer id;
 
+    @Column(name="token_uuid")
     private UUID tokenUUID;
 
+    @Column(name="expiration_date")
     private LocalDate expirationDate;
 
     @ManyToOne

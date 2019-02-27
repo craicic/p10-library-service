@@ -70,7 +70,7 @@ public class UserEndpoint {
         } catch (UserNotFoundException e) {
             String errorMessage = e.getMessage();
             ServiceStatus serviceStatus = new ServiceStatus();
-            serviceStatus.setMessage("Not Found");
+            serviceStatus.setMessage("User not Found");
             serviceStatus.setStatusCode("NOT_FOUND");
             throw new ServiceFaultException(errorMessage, serviceStatus);
         }

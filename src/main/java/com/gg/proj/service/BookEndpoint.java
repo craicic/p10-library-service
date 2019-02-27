@@ -5,6 +5,7 @@ import com.gg.proj.business.LanguageManager;
 import com.gg.proj.business.LibraryManager;
 import com.gg.proj.business.TopicManager;
 import com.gg.proj.service.books.*;
+import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.ServiceFaultException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,14 +46,22 @@ public class BookEndpoint {
     public SaveBookResponse saveBook(@RequestPayload SaveBookRequest request) {
         log.debug("saveBook : calling the BookManager to save book");
         SaveBookResponse saveBookResponse = new SaveBookResponse();
-        saveBookResponse.setBook(bookManager.save(request.getBook()));
+        try {
+            saveBookResponse.setBook(bookManager.save(request.getBook(), request.getTokenUUID()));
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
+        }
         return saveBookResponse;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteBookRequest")
     @ResponsePayload
     public DeleteBookResponse deleteBook(@RequestPayload DeleteBookRequest request) {
-        bookManager.delete(request.getBook());
+        try {
+            bookManager.delete(request.getBook(), request.getTokenUUID());
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
+        }
         return new DeleteBookResponse();
     }
 
@@ -112,7 +121,11 @@ public class BookEndpoint {
     @ResponsePayload
     public SaveLanguageResponse saveLanguage(@RequestPayload SaveLanguageRequest request) {
         SaveLanguageResponse response = new SaveLanguageResponse();
-        response.setLanguage(languageManager.save(request.getLanguage()));
+        try {
+            response.setLanguage(languageManager.save(request.getLanguage(), request.getTokenUUID()));
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
+        }
         return response;
     }
 
@@ -120,7 +133,11 @@ public class BookEndpoint {
     @ResponsePayload
     public SaveLibraryResponse saveLibrary(@RequestPayload SaveLibraryRequest request) {
         SaveLibraryResponse response = new SaveLibraryResponse();
-        response.setLibrary(libraryManager.save(request.getLibrary()));
+        try {
+            response.setLibrary(libraryManager.save(request.getLibrary(), request.getTokenUUID()));
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
+        }
         return response;
     }
 
@@ -128,28 +145,44 @@ public class BookEndpoint {
     @ResponsePayload
     public SaveTopicResponse saveTopic(@RequestPayload SaveTopicRequest request) {
         SaveTopicResponse response = new SaveTopicResponse();
-        response.setTopic(topicManager.save(request.getTopic()));
+        try {
+            response.setTopic(topicManager.save(request.getTopic(), request.getTokenUUID()));
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
+        }
         return response;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteLanguageRequest")
     @ResponsePayload
     public DeleteLanguageResponse deleteLanguage(@RequestPayload DeleteLanguageRequest request) {
-        languageManager.delete(request.getLanguage());
+        try {
+            languageManager.delete(request.getLanguage(), request.getTokenUUID());
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
+        }
         return new DeleteLanguageResponse();
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteLibraryRequest")
     @ResponsePayload
     public DeleteLibraryResponse deleteLibrary(@RequestPayload DeleteLibraryRequest request) {
-        libraryManager.delete(request.getLibrary());
+        try {
+            libraryManager.delete(request.getLibrary(), request.getTokenUUID());
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
+        }
         return new DeleteLibraryResponse();
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteTopicRequest")
     @ResponsePayload
     public DeleteTopicResponse deleteTopic(@RequestPayload DeleteTopicRequest request) {
-        topicManager.delete(request.getTopic());
+        try {
+            topicManager.delete(request.getTopic(), request.getTokenUUID());
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
+        }
         return new DeleteTopicResponse();
     }
 

@@ -7,6 +7,7 @@
     <xs:element name="saveBookRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="book" type="tns:book"/>
             </xs:sequence>
         </xs:complexType>
@@ -51,6 +52,7 @@
     <xs:element name="deleteBookRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="book" type="tns:book"/>
             </xs:sequence>
         </xs:complexType>
@@ -65,6 +67,7 @@
     <xs:element name="saveTopicRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="topic" type="tns:topic"/>
             </xs:sequence>
         </xs:complexType>
@@ -109,6 +112,7 @@
     <xs:element name="deleteTopicRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="topic" type="tns:topic"/>
             </xs:sequence>
         </xs:complexType>
@@ -122,6 +126,7 @@
     <xs:element name="saveLibraryRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="library" type="tns:library"/>
             </xs:sequence>
         </xs:complexType>
@@ -166,6 +171,7 @@
     <xs:element name="deleteLibraryRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="library" type="tns:library"/>
             </xs:sequence>
         </xs:complexType>
@@ -179,6 +185,7 @@
     <xs:element name="saveLanguageRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="language" type="tns:language"/>
             </xs:sequence>
         </xs:complexType>
@@ -223,6 +230,7 @@
     <xs:element name="deleteLanguageRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
                 <xs:element name="language" type="tns:language"/>
             </xs:sequence>
         </xs:complexType>

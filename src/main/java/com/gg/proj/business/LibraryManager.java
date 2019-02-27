@@ -4,6 +4,9 @@ import com.gg.proj.business.mapper.LibraryMapper;
 import com.gg.proj.consumer.LibraryRepository;
 import com.gg.proj.model.LibraryEntity;
 import com.gg.proj.service.books.Library;
+import com.gg.proj.service.exceptions.GenericExceptionHelper;
+import com.gg.proj.service.exceptions.InvalidTokenException;
+import com.gg.proj.service.exceptions.OutdatedTokenException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @Transactional
@@ -23,10 +27,13 @@ public class LibraryManager {
 
     private LibraryMapper libraryMapper;
 
+    private TokenManager tokenManager;
+
     @Autowired
-    public LibraryManager(LibraryRepository libraryRepository, LibraryMapper libraryMapper) {
+    public LibraryManager(LibraryRepository libraryRepository, LibraryMapper libraryMapper, TokenManager tokenManager) {
         this.libraryRepository = libraryRepository;
         this.libraryMapper = libraryMapper;
+        this.tokenManager = tokenManager;
     }
 
     // CRUD Methods
@@ -43,13 +50,25 @@ public class LibraryManager {
         return Optional.of(libraryMapper.libraryEntityToLibrary(libraryEntity));
     }
 
-    public Library save(Library library) {
+    public Library save(Library library, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception e)  {
+            GenericExceptionHelper.tokenExceptionHandler(e);
+        }
+
         LibraryEntity libraryEntity = libraryRepository.save(libraryMapper.libraryToLibraryEntity(library));
         return libraryMapper.libraryEntityToLibrary(libraryEntity);
     }
 
 
-    public void delete(Library library) {
+    public void delete(Library library, String tokenUUID) throws  InvalidTokenException, OutdatedTokenException   {
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception e)  {
+            GenericExceptionHelper.tokenExceptionHandler(e);
+        }
+
         libraryRepository.delete(libraryMapper.libraryToLibraryEntity(library));
     }
 

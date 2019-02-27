@@ -4,6 +4,9 @@ import com.gg.proj.business.mapper.LanguageMapper;
 import com.gg.proj.consumer.LanguageRepository;
 import com.gg.proj.model.LanguageEntity;
 import com.gg.proj.service.books.Language;
+import com.gg.proj.service.exceptions.GenericExceptionHelper;
+import com.gg.proj.service.exceptions.InvalidTokenException;
+import com.gg.proj.service.exceptions.OutdatedTokenException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @Transactional
@@ -23,10 +27,13 @@ public class LanguageManager {
 
     private LanguageMapper languageMapper;
 
+    private TokenManager tokenManager;
+
     @Autowired
-    public LanguageManager(LanguageRepository languageRepository, LanguageMapper languageMapper) {
+    public LanguageManager(LanguageRepository languageRepository, LanguageMapper languageMapper, TokenManager tokenManager) {
         this.languageRepository = languageRepository;
         this.languageMapper = languageMapper;
+        this.tokenManager = tokenManager;
     }
 
     // CRUD Methods
@@ -43,13 +50,25 @@ public class LanguageManager {
         return Optional.of(languageMapper.languageEntityToLanguage(languageEntity));
     }
 
-    public Language save(Language language) {
+    public Language save(Language language, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception e)  {
+            GenericExceptionHelper.tokenExceptionHandler(e);
+        }
+
         LanguageEntity languageEntity = languageRepository.save(languageMapper.languageToLanguageEntity(language));
         return languageMapper.languageEntityToLanguage(languageEntity);
     }
 
 
-    public void delete(Language language) {
+    public void delete(Language language, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception e)  {
+            GenericExceptionHelper.tokenExceptionHandler(e);
+        }
+
         languageRepository.delete(languageMapper.languageToLanguageEntity(language));
     }
 
