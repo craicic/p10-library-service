@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.26 à 07:53:35 PM CET 
+// Généré le : 2019.02.28 à 04:22:08 PM CET 
 //
 
 
@@ -37,30 +37,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ExtendLoanRequest }
-     * 
-     */
-    public ExtendLoanRequest createExtendLoanRequest() {
-        return new ExtendLoanRequest();
-    }
-
-    /**
-     * Create an instance of {@link Loan }
-     * 
-     */
-    public Loan createLoan() {
-        return new Loan();
-    }
-
-    /**
-     * Create an instance of {@link ListAllLoansRequest }
-     * 
-     */
-    public ListAllLoansRequest createListAllLoansRequest() {
-        return new ListAllLoansRequest();
-    }
-
-    /**
      * Create an instance of {@link DeleteLoanResponse }
      * 
      */
@@ -77,11 +53,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DeleteLoanRequest }
+     * Create an instance of {@link Loan }
      * 
      */
-    public DeleteLoanRequest createDeleteLoanRequest() {
-        return new DeleteLoanRequest();
+    public Loan createLoan() {
+        return new Loan();
     }
 
     /**
@@ -98,6 +74,22 @@ public class ObjectFactory {
      */
     public GetLoanRequest createGetLoanRequest() {
         return new GetLoanRequest();
+    }
+
+    /**
+     * Create an instance of {@link CreateLoanRequest }
+     * 
+     */
+    public CreateLoanRequest createCreateLoanRequest() {
+        return new CreateLoanRequest();
+    }
+
+    /**
+     * Create an instance of {@link LoanMin }
+     * 
+     */
+    public LoanMin createLoanMin() {
+        return new LoanMin();
     }
 
     /**
@@ -130,6 +122,38 @@ public class ObjectFactory {
      */
     public CloseLoanResponse createCloseLoanResponse() {
         return new CloseLoanResponse();
+    }
+
+    /**
+     * Create an instance of {@link CreateLoanResponse }
+     * 
+     */
+    public CreateLoanResponse createCreateLoanResponse() {
+        return new CreateLoanResponse();
+    }
+
+    /**
+     * Create an instance of {@link ExtendLoanRequest }
+     * 
+     */
+    public ExtendLoanRequest createExtendLoanRequest() {
+        return new ExtendLoanRequest();
+    }
+
+    /**
+     * Create an instance of {@link ListAllLoansRequest }
+     * 
+     */
+    public ListAllLoansRequest createListAllLoansRequest() {
+        return new ListAllLoansRequest();
+    }
+
+    /**
+     * Create an instance of {@link DeleteLoanRequest }
+     * 
+     */
+    public DeleteLoanRequest createDeleteLoanRequest() {
+        return new DeleteLoanRequest();
     }
 
     /**

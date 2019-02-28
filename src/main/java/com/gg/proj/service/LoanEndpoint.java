@@ -29,6 +29,21 @@ public class LoanEndpoint {
         this.loanManager = loanManager;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createLoanRequest")
+    @ResponsePayload
+    public CreateLoanResponse createLoan(@RequestPayload CreateLoanRequest request) throws ServiceFaultException {
+        log.debug("Entering createLoan... ");
+        CreateLoanResponse createLoanResponse = new CreateLoanResponse();
+        try {
+            Optional<Loan> optional = loanManager.create(request.getLoanMin(), request.getTokenUUID());
+            optional.ifPresent(createLoanResponse::setLoan);
+            optional.orElseThrow(RuntimeException::new);
+        } catch (Exception ex) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(ex);
+        }
+        return createLoanResponse;
+    }
+
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "saveLoanRequest")
     @ResponsePayload
     public SaveLoanResponse saveLoan(@RequestPayload SaveLoanRequest request) throws ServiceFaultException {
@@ -37,6 +52,7 @@ public class LoanEndpoint {
         try {
             Optional<Loan> optional = loanManager.save(request.getLoan(), request.getTokenUUID());
             optional.ifPresent(saveLoanResponse::setLoan);
+            optional.orElseThrow(RuntimeException::new);
         } catch (Exception ex) {
             GenericExceptionHelper.serviceFaultExceptionHandler(ex);
         }

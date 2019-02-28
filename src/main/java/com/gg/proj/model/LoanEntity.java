@@ -129,4 +129,15 @@ public class LoanEntity {
     public int hashCode() {
         return Objects.hash(id, book, user, loanStartDate, loanEndDate, extended);
     }
+
+    @Override
+    public String toString() {
+        return "LoanEntity{" +
+                "id=" + id +
+                ", loanStartDate=" + loanStartDate +
+                ", loanEndDate=" + loanEndDate +
+                ", extended=" + extended +
+                ", closed=" + closed +
+                '}';
+    }
 }

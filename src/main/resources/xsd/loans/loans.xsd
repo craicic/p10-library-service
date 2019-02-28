@@ -3,6 +3,22 @@
     <!--================ LOAN RELATED METHODS ================-->
     <!--==== CRUD Loan methods ====-->
     <!--Persist a loan -->
+    <xs:element name="createLoanRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
+                <xs:element name="loanMin" type="tns:loanMin"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createLoanResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loan" type="tns:loan"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- update a loan-->
     <xs:element name="saveLoanRequest">
         <xs:complexType>
             <xs:sequence>
@@ -96,6 +112,14 @@
     </xs:element>
 
     <!--================ OBJECTS ================-->
+    <xs:complexType name="loanMin">
+        <xs:sequence>
+            <xs:element name="userId" type="xs:int"/>
+            <xs:element name="bookId" type="xs:int"/>
+            <xs:element name="loanStartDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="loanEndDate" type="xs:date" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
     <!-- a loan with a lot of information -->
     <xs:complexType name="loanFull">
         <xs:sequence>

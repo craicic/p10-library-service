@@ -6,10 +6,11 @@
 //
 
 
-package com.gg.proj.service.books;
+package com.gg.proj.service.loans;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -23,6 +24,9 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="loan" type="{http://proj.gg.com/service/loans}loan"/>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -31,9 +35,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "deleteBookResponse")
-public class DeleteBookResponse {
+@XmlType(name = "", propOrder = {
+    "loan"
+})
+@XmlRootElement(name = "createLoanResponse")
+public class CreateLoanResponse {
 
+    @XmlElement(required = true)
+    protected Loan loan;
+
+    /**
+     * Obtient la valeur de la propriété loan.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Loan }
+     *     
+     */
+    public Loan getLoan() {
+        return loan;
+    }
+
+    /**
+     * Définit la valeur de la propriété loan.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Loan }
+     *     
+     */
+    public void setLoan(Loan value) {
+        this.loan = value;
+    }
 
 }

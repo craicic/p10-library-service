@@ -24,7 +24,7 @@ public class GenericExceptionHelper {
             String errorMessage = e.getMessage();
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.setMessage("Invalid connection");
-            serviceStatus.setStatusCode("ERROR");
+            serviceStatus.setStatusCode("CONNECTION_ERROR");
             throw new ServiceFaultException(errorMessage, serviceStatus);
         } else if (e instanceof OutdatedTokenException) {
             String errorMessage = e.getMessage();
@@ -56,6 +56,17 @@ public class GenericExceptionHelper {
             serviceStatus.setMessage("Password too short");
             serviceStatus.setStatusCode("NOT_STRONG_PASSWORD");
             throw new ServiceFaultException(errorMessage, serviceStatus);
+        } else if (e instanceof RuntimeException) {
+            String errorMessage = e.getMessage();
+            ServiceStatus serviceStatus = new ServiceStatus();
+            serviceStatus.setMessage("Runtime error");
+            serviceStatus.setStatusCode("RUNTIME_ERROR");
+            throw new ServiceFaultException(errorMessage, serviceStatus);
         }
+        String errorMessage = e.getMessage();
+        ServiceStatus serviceStatus = new ServiceStatus();
+        serviceStatus.setMessage("Generic error");
+        serviceStatus.setStatusCode("ERROR");
+        throw new ServiceFaultException(errorMessage, serviceStatus);
     }
 }

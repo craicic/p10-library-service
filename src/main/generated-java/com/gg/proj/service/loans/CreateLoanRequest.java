@@ -25,7 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="loan" type="{http://proj.gg.com/service/loans}loan"/>
+ *         &lt;element name="tokenUUID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="loanMin" type="{http://proj.gg.com/service/loans}loanMin"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +37,63 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "loan"
+    "tokenUUID",
+    "loanMin"
 })
-@XmlRootElement(name = "closeLoanResponse")
-public class CloseLoanResponse {
+@XmlRootElement(name = "createLoanRequest")
+public class CreateLoanRequest {
 
     @XmlElement(required = true)
-    protected Loan loan;
+    protected String tokenUUID;
+    @XmlElement(required = true)
+    protected LoanMin loanMin;
 
     /**
-     * Obtient la valeur de la propriété loan.
+     * Obtient la valeur de la propriété tokenUUID.
      * 
      * @return
      *     possible object is
-     *     {@link Loan }
+     *     {@link String }
      *     
      */
-    public Loan getLoan() {
-        return loan;
+    public String getTokenUUID() {
+        return tokenUUID;
     }
 
     /**
-     * Définit la valeur de la propriété loan.
+     * Définit la valeur de la propriété tokenUUID.
      * 
      * @param value
      *     allowed object is
-     *     {@link Loan }
+     *     {@link String }
      *     
      */
-    public void setLoan(Loan value) {
-        this.loan = value;
+    public void setTokenUUID(String value) {
+        this.tokenUUID = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété loanMin.
+     * 
+     * @return
+     *     possible object is
+     *     {@link LoanMin }
+     *     
+     */
+    public LoanMin getLoanMin() {
+        return loanMin;
+    }
+
+    /**
+     * Définit la valeur de la propriété loanMin.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link LoanMin }
+     *     
+     */
+    public void setLoanMin(LoanMin value) {
+        this.loanMin = value;
     }
 
 }

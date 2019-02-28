@@ -16,22 +16,19 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Classe Java pour loan complex type.
+ * <p>Classe Java pour loanMin complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="loan">
+ * &lt;complexType name="loanMin">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="bookId" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="loanStartDate" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
  *         &lt;element name="loanEndDate" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
- *         &lt;element name="extended" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
- *         &lt;element name="closed" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -41,50 +38,20 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "loan", propOrder = {
-    "id",
+@XmlType(name = "loanMin", propOrder = {
     "userId",
     "bookId",
     "loanStartDate",
-    "loanEndDate",
-    "extended",
-    "closed"
+    "loanEndDate"
 })
-public class Loan {
+public class LoanMin {
 
-    protected Integer id;
     protected int userId;
     protected int bookId;
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar loanStartDate;
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar loanEndDate;
-    protected Boolean extended;
-    protected Boolean closed;
-
-    /**
-     * Obtient la valeur de la propriété id.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * Définit la valeur de la propriété id.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setId(Integer value) {
-        this.id = value;
-    }
 
     /**
      * Obtient la valeur de la propriété userId.
@@ -164,54 +131,6 @@ public class Loan {
      */
     public void setLoanEndDate(XMLGregorianCalendar value) {
         this.loanEndDate = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété extended.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isExtended() {
-        return extended;
-    }
-
-    /**
-     * Définit la valeur de la propriété extended.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setExtended(Boolean value) {
-        this.extended = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété closed.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isClosed() {
-        return closed;
-    }
-
-    /**
-     * Définit la valeur de la propriété closed.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setClosed(Boolean value) {
-        this.closed = value;
     }
 
 }
