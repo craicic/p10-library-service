@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.28 à 04:22:08 PM CET 
+// Généré le : 2019.02.28 à 06:34:24 PM CET 
 //
 
 
@@ -109,6 +109,54 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CreateLibraryRequest }
+     * 
+     */
+    public CreateLibraryRequest createCreateLibraryRequest() {
+        return new CreateLibraryRequest();
+    }
+
+    /**
+     * Create an instance of {@link LibraryMin }
+     * 
+     */
+    public LibraryMin createLibraryMin() {
+        return new LibraryMin();
+    }
+
+    /**
+     * Create an instance of {@link CreateLanguageRequest }
+     * 
+     */
+    public CreateLanguageRequest createCreateLanguageRequest() {
+        return new CreateLanguageRequest();
+    }
+
+    /**
+     * Create an instance of {@link CreateBookResponse }
+     * 
+     */
+    public CreateBookResponse createCreateBookResponse() {
+        return new CreateBookResponse();
+    }
+
+    /**
+     * Create an instance of {@link Book }
+     * 
+     */
+    public Book createBook() {
+        return new Book();
+    }
+
+    /**
+     * Create an instance of {@link CreateTopicRequest }
+     * 
+     */
+    public CreateTopicRequest createCreateTopicRequest() {
+        return new CreateTopicRequest();
+    }
+
+    /**
      * Create an instance of {@link GetLanguageResponse }
      * 
      */
@@ -149,6 +197,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CreateLanguageResponse }
+     * 
+     */
+    public CreateLanguageResponse createCreateLanguageResponse() {
+        return new CreateLanguageResponse();
+    }
+
+    /**
      * Create an instance of {@link DeleteBookResponse }
      * 
      */
@@ -170,14 +226,6 @@ public class ObjectFactory {
      */
     public SearchBooksResponse createSearchBooksResponse() {
         return new SearchBooksResponse();
-    }
-
-    /**
-     * Create an instance of {@link Book }
-     * 
-     */
-    public Book createBook() {
-        return new Book();
     }
 
     /**
@@ -213,6 +261,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CreateBookRequest }
+     * 
+     */
+    public CreateBookRequest createCreateBookRequest() {
+        return new CreateBookRequest();
+    }
+
+    /**
+     * Create an instance of {@link BookMin }
+     * 
+     */
+    public BookMin createBookMin() {
+        return new BookMin();
+    }
+
+    /**
      * Create an instance of {@link DeleteTopicResponse }
      * 
      */
@@ -229,6 +293,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link BookFull }
+     * 
+     */
+    public BookFull createBookFull() {
+        return new BookFull();
+    }
+
+    /**
      * Create an instance of {@link SaveTopicResponse }
      * 
      */
@@ -242,6 +314,14 @@ public class ObjectFactory {
      */
     public GetTopicResponse createGetTopicResponse() {
         return new GetTopicResponse();
+    }
+
+    /**
+     * Create an instance of {@link CreateLibraryResponse }
+     * 
+     */
+    public CreateLibraryResponse createCreateLibraryResponse() {
+        return new CreateLibraryResponse();
     }
 
     /**
@@ -349,6 +429,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CreateTopicResponse }
+     * 
+     */
+    public CreateTopicResponse createCreateTopicResponse() {
+        return new CreateTopicResponse();
+    }
+
+    /**
      * Create an instance of {@link GetTopicRequest }
      * 
      */
@@ -362,14 +450,6 @@ public class ObjectFactory {
      */
     public ServiceStatus createServiceStatus() {
         return new ServiceStatus();
-    }
-
-    /**
-     * Create an instance of {@link BookFull }
-     * 
-     */
-    public BookFull createBookFull() {
-        return new BookFull();
     }
 
 }

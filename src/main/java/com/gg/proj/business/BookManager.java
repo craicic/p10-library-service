@@ -13,7 +13,6 @@ import com.gg.proj.service.books.*;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.InvalidTokenException;
 import com.gg.proj.service.exceptions.OutdatedTokenException;
-import com.gg.proj.service.exceptions.UserNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +58,7 @@ public class BookManager {
     }
 
     // CRUD Methods
-    public Optional<Book> findById(Integer id) {
+    public Optional<BookFull> findById(Integer id) {
         Optional<BookEntity> optional = bookRepository.findById(id);
         BookEntity bookEntity = optional.orElse(null);
 
@@ -68,14 +67,14 @@ public class BookManager {
         } else {
             log.info("findById : Requesting a book by id : " + id + " => id not found in database");
         }
-        return Optional.ofNullable(bookMapper.bookEntityToBook(bookEntity));
+        return Optional.ofNullable(bookMapper.bookEntityToBookFull(bookEntity));
     }
 
-    public Book save(Book book, String tokenUUID) throws  InvalidTokenException, OutdatedTokenException {
+    public Book save(Book book, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
 
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-        } catch (Exception e)  {
+        } catch (Exception e) {
             GenericExceptionHelper.tokenExceptionHandler(e);
         }
 
@@ -84,10 +83,10 @@ public class BookManager {
     }
 
 
-    public void delete(Book book, String tokenUUID) throws  InvalidTokenException, OutdatedTokenException  {
+    public void delete(Book book, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-        } catch (Exception e)  {
+        } catch (Exception e) {
             GenericExceptionHelper.tokenExceptionHandler(e);
         }
         bookRepository.delete(bookMapper.bookToBookEntity(book));
@@ -132,7 +131,6 @@ public class BookManager {
     }
 
 
-
     public FilterBooksResponse filterBooks(String keyWord, Integer languageId, Integer libraryId, Integer topicId, boolean available, Integer page, Integer size) {
         FilterBooksResponse response = new FilterBooksResponse();
         List<Book> books = response.getBooks();
@@ -144,5 +142,18 @@ public class BookManager {
         books.addAll(bookMapper.bookEntityListToBookList(pageBook.getContent()));
         response.setTotalPages(pageBook.getTotalPages());
         return response;
+    }
+
+    public Optional<Book> create(BookMin bookMin, String tokenUUID) throws InvalidTokenException, OutdatedTokenException  {
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception e) {
+            GenericExceptionHelper.tokenExceptionHandler(e);
+        }
+
+        BookEntity bookEntity = bookMapper.bookMinToBook(bookMin);
+        bookEntity = bookRepository.save(bookEntity);
+
+        return Optional.ofNullable(bookMapper.bookEntityToBook(bookEntity));
     }
 }

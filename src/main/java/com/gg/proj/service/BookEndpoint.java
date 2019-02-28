@@ -41,6 +41,21 @@ public class BookEndpoint {
         this.topicManager = topicManager;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createBookRequest")
+    @ResponsePayload
+    public CreateBookResponse createBook(@RequestPayload CreateBookRequest request) {
+        log.debug("createBook : calling the BookManager to create book");
+        CreateBookResponse createBookResponse = new CreateBookResponse();
+        try {
+            Optional<Book> optional = bookManager.create(request.getBookMin(), request.getTokenUUID());
+            optional.ifPresent(createBookResponse::setBook);
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
+        }
+        return createBookResponse;
+    }
+
+
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "saveBookRequest")
     @ResponsePayload
     public SaveBookResponse saveBook(@RequestPayload SaveBookRequest request) {
@@ -78,8 +93,8 @@ public class BookEndpoint {
         log.debug("getBook : calling the BookManager to fetch a book by id");
         GetBookResponse response = new GetBookResponse();
 
-        Optional<Book> opt = bookManager.findById(request.getId());
-        opt.ifPresent(response::setBook);
+        Optional<BookFull> opt = bookManager.findById(request.getId());
+        opt.ifPresent(response::setBookFull);
         return response;
     }
 
@@ -117,12 +132,52 @@ public class BookEndpoint {
         return response;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createLanguageRequest")
+    @ResponsePayload
+    public CreateLanguageResponse createLanguage(@RequestPayload CreateLanguageRequest request) {
+        CreateLanguageResponse response = new CreateLanguageResponse();
+        try {
+            Optional<Language> optional = languageManager.create(request.getLanguageName(), request.getTokenUUID());
+            optional.ifPresent(response::setLanguage);
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
+        }
+        return response;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createLibraryRequest")
+    @ResponsePayload
+    public CreateLibraryResponse createLibrary(@RequestPayload CreateLibraryRequest request) {
+        CreateLibraryResponse response = new CreateLibraryResponse();
+        try {
+            Optional<Library> optional = libraryManager.create(request.getLibraryMin(), request.getTokenUUID());
+            optional.ifPresent(response::setLibrary);
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
+        }
+        return response;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createTopicRequest")
+    @ResponsePayload
+    public CreateTopicResponse createTopic(@RequestPayload CreateTopicRequest request) {
+        CreateTopicResponse response = new CreateTopicResponse();
+        try {
+            Optional<Topic> optional = topicManager.create(request.getTopicName(), request.getTokenUUID());
+            optional.ifPresent(response::setTopic);
+        } catch (Exception e) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(e);
+        }
+        return response;
+    }
+
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "saveLanguageRequest")
     @ResponsePayload
     public SaveLanguageResponse saveLanguage(@RequestPayload SaveLanguageRequest request) {
         SaveLanguageResponse response = new SaveLanguageResponse();
         try {
-            response.setLanguage(languageManager.save(request.getLanguage(), request.getTokenUUID()));
+            Optional<Language> optional = languageManager.save(request.getLanguage(), request.getTokenUUID());
+            optional.ifPresent(response::setLanguage);
         } catch (Exception e) {
             GenericExceptionHelper.serviceFaultExceptionHandler(e);
         }
@@ -134,7 +189,8 @@ public class BookEndpoint {
     public SaveLibraryResponse saveLibrary(@RequestPayload SaveLibraryRequest request) {
         SaveLibraryResponse response = new SaveLibraryResponse();
         try {
-            response.setLibrary(libraryManager.save(request.getLibrary(), request.getTokenUUID()));
+            Optional<Library> optional = libraryManager.save(request.getLibrary(), request.getTokenUUID());
+            optional.ifPresent(response::setLibrary);
         } catch (Exception e) {
             GenericExceptionHelper.serviceFaultExceptionHandler(e);
         }
@@ -146,7 +202,8 @@ public class BookEndpoint {
     public SaveTopicResponse saveTopic(@RequestPayload SaveTopicRequest request) {
         SaveTopicResponse response = new SaveTopicResponse();
         try {
-            response.setTopic(topicManager.save(request.getTopic(), request.getTokenUUID()));
+            Optional<Topic> optional = topicManager.save(request.getTopic(), request.getTokenUUID());
+            optional.ifPresent(response::setTopic);
         } catch (Exception e) {
             GenericExceptionHelper.serviceFaultExceptionHandler(e);
         }

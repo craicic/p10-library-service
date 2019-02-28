@@ -4,10 +4,7 @@ import com.gg.proj.model.BookEntity;
 import com.gg.proj.model.LanguageEntity;
 import com.gg.proj.model.LibraryEntity;
 import com.gg.proj.model.TopicEntity;
-import com.gg.proj.service.books.Book;
-import com.gg.proj.service.books.Language;
-import com.gg.proj.service.books.Library;
-import com.gg.proj.service.books.Topic;
+import com.gg.proj.service.books.*;
 import org.mapstruct.Mapper;
 
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -113,4 +110,7 @@ public interface BookMapper {
 
     List<Library> libraryEntityListToLibraryList(List<LibraryEntity> libraryEntities);
 
+    BookFull bookEntityToBookFull(BookEntity bookEntity);
+
+    BookEntity bookMinToBook(BookMin bookMin);
 }

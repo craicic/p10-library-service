@@ -109,7 +109,7 @@ public class LoanEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getLoanRequest")
     @ResponsePayload
     public GetLoanResponse getLoan(@RequestPayload GetLoanRequest request) throws ServiceFaultException {
-        log.debug("getLoan : calling the LoanManager to fetch a loan by id");
+        log.debug("Entering getLoan... ");
         GetLoanResponse response = new GetLoanResponse();
         try {
             Optional<Loan> opt = loanManager.findById(request.getId(), request.getTokenUUID());
@@ -123,6 +123,7 @@ public class LoanEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllLoansRequest")
     @ResponsePayload
     public ListAllLoansResponse listAllLoans(@RequestPayload ListAllLoansRequest request) throws ServiceFaultException {
+        log.debug("Entering listAllLoans... ");
         ListAllLoansResponse response = new ListAllLoansResponse();
         List<Loan> loans = response.getLoans();
         try {

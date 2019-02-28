@@ -1,7 +1,6 @@
 package com.gg.proj.service;
 
 import com.gg.proj.business.ProfileManager;
-import com.gg.proj.business.UserManager;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.ServiceFaultException;
 import com.gg.proj.service.profiles.*;
@@ -26,18 +25,15 @@ public class ProfileEndpoint {
 
     private ProfileManager profileManager;
 
-    private UserManager userManager;
-
     @Autowired
-    public ProfileEndpoint(ProfileManager profileManager, UserManager userManager) {
+    public ProfileEndpoint(ProfileManager profileManager) {
         this.profileManager = profileManager;
-        this.userManager = userManager;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "saveProfileRequest")
     @ResponsePayload
     public SaveProfileResponse saveProfile(@RequestPayload SaveProfileRequest request) throws ServiceFaultException {
-        log.debug("saveProfile : calling the ProfileManager to save profile");
+        log.debug("Entering saveProfile... ");
         SaveProfileResponse saveProfileResponse = new SaveProfileResponse();
         try {
             Optional<User> optional = profileManager.save(request.getUser(), request.getTokenUUID());
@@ -51,6 +47,7 @@ public class ProfileEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteProfileRequest")
     @ResponsePayload
     public DeleteProfileResponse deleteProfile(@RequestPayload DeleteProfileRequest request) throws ServiceFaultException {
+        log.debug("Entering deleteProfile... ");
         try {
             profileManager.delete(request.getUser(), request.getTokenUUID());
         } catch (Exception ex) {
@@ -69,7 +66,7 @@ public class ProfileEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProfileRequest")
     @ResponsePayload
     public GetProfileResponse getProfile(@RequestPayload GetProfileRequest request) throws ServiceFaultException {
-        log.debug("getProfile : calling the ProfileManager to fetch a profile by id");
+        log.debug("Entering getProfile... ");
         GetProfileResponse response = new GetProfileResponse();
         try {
             Optional<User> opt = profileManager.findById(request.getId(), UUID.fromString(request.getTokenUUID()));
@@ -83,6 +80,7 @@ public class ProfileEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllProfilesRequest")
     @ResponsePayload
     public ListAllProfilesResponse listAllProfiles(@RequestPayload ListAllProfilesRequest request) throws ServiceFaultException {
+        log.debug("Entering listAllProfiles... ");
         ListAllProfilesResponse response = new ListAllProfilesResponse();
         List<User> users = response.getUsers();
         try {

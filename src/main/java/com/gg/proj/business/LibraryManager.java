@@ -3,7 +3,9 @@ package com.gg.proj.business;
 import com.gg.proj.business.mapper.LibraryMapper;
 import com.gg.proj.consumer.LibraryRepository;
 import com.gg.proj.model.LibraryEntity;
+import com.gg.proj.service.books.Language;
 import com.gg.proj.service.books.Library;
+import com.gg.proj.service.books.LibraryMin;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.InvalidTokenException;
 import com.gg.proj.service.exceptions.OutdatedTokenException;
@@ -50,22 +52,22 @@ public class LibraryManager {
         return Optional.of(libraryMapper.libraryEntityToLibrary(libraryEntity));
     }
 
-    public Library save(Library library, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
+    public Optional<Library> save(Library library, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-        } catch (Exception e)  {
+        } catch (Exception e) {
             GenericExceptionHelper.tokenExceptionHandler(e);
         }
 
         LibraryEntity libraryEntity = libraryRepository.save(libraryMapper.libraryToLibraryEntity(library));
-        return libraryMapper.libraryEntityToLibrary(libraryEntity);
+        return Optional.ofNullable(libraryMapper.libraryEntityToLibrary(libraryEntity));
     }
 
 
-    public void delete(Library library, String tokenUUID) throws  InvalidTokenException, OutdatedTokenException   {
+    public void delete(Library library, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-        } catch (Exception e)  {
+        } catch (Exception e) {
             GenericExceptionHelper.tokenExceptionHandler(e);
         }
 
@@ -75,6 +77,19 @@ public class LibraryManager {
     public List<Library> findAll() {
         List<LibraryEntity> libraryEntities = libraryRepository.findAll();
         return libraryMapper.libraryEntityListToLibraryList(libraryEntities);
+    }
+
+    public Optional<Library> create(LibraryMin libraryMin, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception e) {
+            GenericExceptionHelper.tokenExceptionHandler(e);
+        }
+
+        LibraryEntity libraryEntity = libraryMapper.libraryMinToLibrary(libraryMin);
+        libraryEntity = libraryRepository.save(libraryEntity);
+
+        return Optional.ofNullable(libraryMapper.libraryEntityToLibrary(libraryEntity));
     }
 }
 

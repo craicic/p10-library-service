@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.28 à 04:22:08 PM CET 
+// Généré le : 2019.02.28 à 06:17:08 PM CET 
 //
 
 
@@ -162,54 +162,6 @@ public class ObjectFactory {
      */
     public GetLoanResponse createGetLoanResponse() {
         return new GetLoanResponse();
-    }
-
-    /**
-     * Create an instance of {@link Library }
-     * 
-     */
-    public Library createLibrary() {
-        return new Library();
-    }
-
-    /**
-     * Create an instance of {@link LoanFull }
-     * 
-     */
-    public LoanFull createLoanFull() {
-        return new LoanFull();
-    }
-
-    /**
-     * Create an instance of {@link Book }
-     * 
-     */
-    public Book createBook() {
-        return new Book();
-    }
-
-    /**
-     * Create an instance of {@link Topic }
-     * 
-     */
-    public Topic createTopic() {
-        return new Topic();
-    }
-
-    /**
-     * Create an instance of {@link Language }
-     * 
-     */
-    public Language createLanguage() {
-        return new Language();
-    }
-
-    /**
-     * Create an instance of {@link User }
-     * 
-     */
-    public User createUser() {
-        return new User();
     }
 
 }

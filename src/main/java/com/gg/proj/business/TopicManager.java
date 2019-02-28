@@ -50,7 +50,7 @@ public class TopicManager {
         return Optional.of(topicMapper.topicEntityToTopic(topicEntity));
     }
 
-    public Topic save(Topic topic, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
+    public Optional<Topic> save(Topic topic, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
         } catch (Exception e)  {
@@ -58,7 +58,7 @@ public class TopicManager {
         }
 
         TopicEntity topicEntity = topicRepository.save(topicMapper.topicToTopicEntity(topic));
-        return topicMapper.topicEntityToTopic(topicEntity);
+        return Optional.ofNullable(topicMapper.topicEntityToTopic(topicEntity));
     }
 
 
@@ -76,4 +76,19 @@ public class TopicManager {
         List<TopicEntity> topicEntities = topicRepository.findAll();
         return topicMapper.topicEntityListToTopicList(topicEntities);
     }
+
+    public Optional<Topic> create(String topicName, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception e) {
+            GenericExceptionHelper.tokenExceptionHandler(e);
+        }
+
+        TopicEntity topicEntity = new TopicEntity();
+        topicEntity.setName(topicName);
+        topicEntity = topicRepository.save(topicEntity);
+
+        return Optional.ofNullable(topicMapper.topicEntityToTopic(topicEntity));
+    }
+
 }

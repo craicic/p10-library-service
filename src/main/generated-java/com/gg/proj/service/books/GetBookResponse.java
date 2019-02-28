@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.28 à 04:22:08 PM CET 
+// Généré le : 2019.02.28 à 06:34:24 PM CET 
 //
 
 
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="book" type="{http://proj.gg.com/service/books}book" minOccurs="0"/>
+ *         &lt;element name="bookFull" type="{http://proj.gg.com/service/books}bookFull" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,35 +35,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "book"
+    "bookFull"
 })
 @XmlRootElement(name = "getBookResponse")
 public class GetBookResponse {
 
-    protected Book book;
+    protected BookFull bookFull;
 
     /**
-     * Obtient la valeur de la propriété book.
+     * Obtient la valeur de la propriété bookFull.
      * 
      * @return
      *     possible object is
-     *     {@link Book }
+     *     {@link BookFull }
      *     
      */
-    public Book getBook() {
-        return book;
+    public BookFull getBookFull() {
+        return bookFull;
     }
 
     /**
-     * Définit la valeur de la propriété book.
+     * Définit la valeur de la propriété bookFull.
      * 
      * @param value
      *     allowed object is
-     *     {@link Book }
+     *     {@link BookFull }
      *     
      */
-    public void setBook(Book value) {
-        this.book = value;
+    public void setBookFull(BookFull value) {
+        this.bookFull = value;
     }
 
 }

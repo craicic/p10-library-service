@@ -2,33 +2,36 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.02.13 à 11:11:39 AM CET 
+// Généré le : 2019.02.28 à 06:34:24 PM CET 
 //
 
 
 package com.gg.proj.service.books;
 
-import javax.xml.bind.annotation.*;
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Classe Java pour persistBook complex type.
+ * <p>Classe Java pour bookMin complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="persistBook">
+ * &lt;complexType name="bookMin">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="isbn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="topicsId" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded"/>
+ *         &lt;element name="topicIds" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="languageId" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="quantity" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="publicationDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
@@ -43,28 +46,26 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "persistBook", propOrder = {
-    "id",
+@XmlType(name = "bookMin", propOrder = {
     "title",
     "author",
     "isbn",
-    "topicsId",
+    "topicIds",
     "languageId",
     "quantity",
     "publicationDate",
     "libraryId",
     "summary"
 })
-public class PersistBook {
+public class BookMin {
 
-    protected Integer id;
     @XmlElement(required = true)
     protected String title;
     @XmlElement(required = true)
     protected String author;
     protected String isbn;
     @XmlElement(type = Integer.class)
-    protected List<Integer> topicsId;
+    protected List<Integer> topicIds;
     protected int languageId;
     protected int quantity;
     @XmlElement(required = true)
@@ -72,30 +73,6 @@ public class PersistBook {
     protected XMLGregorianCalendar publicationDate;
     protected int libraryId;
     protected String summary;
-
-    /**
-     * Obtient la valeur de la propriété id.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * Définit la valeur de la propriété id.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setId(Integer value) {
-        this.id = value;
-    }
 
     /**
      * Obtient la valeur de la propriété title.
@@ -170,18 +147,18 @@ public class PersistBook {
     }
 
     /**
-     * Gets the value of the topicsId property.
+     * Gets the value of the topicIds property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the topicsId property.
+     * This is why there is not a <CODE>set</CODE> method for the topicIds property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getTopicsId().add(newItem);
+     *    getTopicIds().add(newItem);
      * </pre>
      * 
      * 
@@ -191,11 +168,11 @@ public class PersistBook {
      * 
      * 
      */
-    public List<Integer> getTopicsId() {
-        if (topicsId == null) {
-            topicsId = new ArrayList<Integer>();
+    public List<Integer> getTopicIds() {
+        if (topicIds == null) {
+            topicIds = new ArrayList<Integer>();
         }
-        return this.topicsId;
+        return this.topicIds;
     }
 
     /**
