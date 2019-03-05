@@ -126,20 +126,19 @@ public class LoanManager {
         return Optional.empty();
     }
 
-    public Optional<Loan> close(Loan loan, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {
-        Optional<Loan> optionalFromEndpoint = Optional.ofNullable(loan);
+    public Optional<Loan> close(Integer id, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {
+
         Optional<LoanEntity> optionalFromDB;
 
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-
-            if (optionalFromEndpoint.isPresent()) {
-                optionalFromDB = loanRepository.findById(optionalFromEndpoint.get().getId());
+            if (id != null) {
+                optionalFromDB = loanRepository.findById(id);
                 if (optionalFromDB.isPresent()) {
                     optionalFromDB.get().setClosed(true);
                     return Optional.ofNullable(loanMapper.loanEntityToLoan(loanRepository.save(optionalFromDB.get())));
                 }
-            } else throw new InvalidLoanOperationException("Invalid loan");
+            } else throw new InvalidLoanOperationException("Invalid id");
         } catch (Exception ex) {
             GenericExceptionHelper.tokenExceptionHandler(ex);
         }

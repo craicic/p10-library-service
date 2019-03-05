@@ -79,7 +79,7 @@ public class LoanEndpoint {
         log.debug("Entering closeLoan... ");
         CloseLoanResponse closeLoanResponse = new CloseLoanResponse();
         try {
-            Optional<Loan> optional = loanManager.close(request.getLoan(), request.getTokenUUID());
+            Optional<Loan> optional = loanManager.close(request.getId(), request.getTokenUUID());
             optional.ifPresent(closeLoanResponse::setLoan);
         } catch (Exception ex) {
             GenericExceptionHelper.serviceFaultExceptionHandler(ex);

@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.03.05 à 10:44:00 AM CET 
+// Généré le : 2019.03.05 à 11:11:32 AM CET 
 //
 
 
@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="tokenUUID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="loan" type="{http://proj.gg.com/service/loans}loan"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,15 +38,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "tokenUUID",
-    "loan"
+    "id"
 })
 @XmlRootElement(name = "closeLoanRequest")
 public class CloseLoanRequest {
 
     @XmlElement(required = true)
     protected String tokenUUID;
-    @XmlElement(required = true)
-    protected Loan loan;
+    protected int id;
 
     /**
      * Obtient la valeur de la propriété tokenUUID.
@@ -73,27 +72,19 @@ public class CloseLoanRequest {
     }
 
     /**
-     * Obtient la valeur de la propriété loan.
+     * Obtient la valeur de la propriété id.
      * 
-     * @return
-     *     possible object is
-     *     {@link Loan }
-     *     
      */
-    public Loan getLoan() {
-        return loan;
+    public int getId() {
+        return id;
     }
 
     /**
-     * Définit la valeur de la propriété loan.
+     * Définit la valeur de la propriété id.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Loan }
-     *     
      */
-    public void setLoan(Loan value) {
-        this.loan = value;
+    public void setId(int value) {
+        this.id = value;
     }
 
 }
