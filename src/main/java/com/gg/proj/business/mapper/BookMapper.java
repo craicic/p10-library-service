@@ -78,8 +78,40 @@ public interface BookMapper {
             topicEntity.setId(topicId);
             topics.add(topicEntity);
         }
-        bookEntity.getTopics().addAll(topics);
+        List<TopicEntity> topicEntities = new ArrayList<>(topics);
+        bookEntity.setTopics(topicEntities);
+        return bookEntity;
+    }
 
+    default BookEntity bookMinToBookEntity(BookMin bookMin) {
+        if (bookMin == null) {
+            return null;
+        }
+
+        BookEntity bookEntity = new BookEntity();
+        TopicEntity topicEntity = new TopicEntity();
+        LanguageEntity languageEntity = new LanguageEntity();
+        LibraryEntity libraryEntity = new LibraryEntity();
+
+        bookEntity.setTitle(bookMin.getTitle());
+        bookEntity.setAuthor(bookMin.getAuthor());
+        bookEntity.setIsbn(bookMin.getIsbn());
+        bookEntity.setQuantity(bookMin.getQuantity());
+        bookEntity.setPublicationDate(BookMapper.xmlGregorianCalendarToDate(bookMin.getPublicationDate()));
+        bookEntity.setSummary(bookMin.getSummary());
+
+        languageEntity.setId(bookMin.getLanguageId());
+        bookEntity.setLanguage(languageEntity);
+
+        libraryEntity.setId(bookMin.getLibraryId());
+        bookEntity.setLibrary(libraryEntity);
+        List<TopicEntity> topics = new ArrayList<>(bookMin.getTopicIds().size());
+        for (Integer topicId : bookMin.getTopicIds()) {
+            topicEntity.setId(topicId);
+            topics.add(topicEntity);
+        }
+        List<TopicEntity> topicEntities = new ArrayList<>(topics);
+        bookEntity.setTopics(topicEntities);
         return bookEntity;
     }
 
@@ -111,6 +143,4 @@ public interface BookMapper {
     List<Library> libraryEntityListToLibraryList(List<LibraryEntity> libraryEntities);
 
     BookFull bookEntityToBookFull(BookEntity bookEntity);
-
-    BookEntity bookMinToBook(BookMin bookMin);
 }

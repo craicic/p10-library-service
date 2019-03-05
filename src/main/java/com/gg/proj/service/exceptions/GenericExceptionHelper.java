@@ -57,6 +57,7 @@ public class GenericExceptionHelper {
             serviceStatus.setStatusCode("NOT_STRONG_PASSWORD");
             throw new ServiceFaultException(errorMessage, serviceStatus);
         } else if (e instanceof RuntimeException) {
+            System.out.println("ex : " + e);
             String errorMessage = e.getMessage();
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.setMessage("Runtime error");

@@ -125,7 +125,7 @@
     <!-- a loan with all informations -->
     <xs:complexType name="loan">
         <xs:sequence>
-            <xs:element name="id" type="xs:int" minOccurs="0"/>
+            <xs:element name="id" type="xs:int"/>
             <xs:element name="userId" type="xs:int"/>
             <xs:element name="bookId" type="xs:int"/>
             <xs:element name="loanStartDate" type="xs:date" minOccurs="0"/>

@@ -151,9 +151,8 @@ public class BookManager {
             GenericExceptionHelper.tokenExceptionHandler(e);
         }
 
-        BookEntity bookEntity = bookMapper.bookMinToBook(bookMin);
+        BookEntity bookEntity = bookMapper.bookMinToBookEntity(bookMin);
         bookEntity = bookRepository.save(bookEntity);
-
         return Optional.ofNullable(bookMapper.bookEntityToBook(bookEntity));
     }
 }

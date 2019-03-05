@@ -152,11 +152,7 @@ public class LoanManager {
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
 
-            if (optional.isPresent()) {
-                if (optional.get().getId() != null) {
-                    loanRepository.delete(loanMapper.loanToLoanEntity(optional.get()));
-                }
-            }
+            optional.ifPresent(loan1 -> loanRepository.delete(loanMapper.loanToLoanEntity(loan1)));
 
         } catch (Exception ex) {
             GenericExceptionHelper.tokenExceptionHandler(ex);
