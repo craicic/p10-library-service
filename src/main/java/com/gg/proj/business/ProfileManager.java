@@ -45,34 +45,33 @@ public class ProfileManager {
             tokenManager.checkIfValidByUuid(UUID.fromString(StrUuid));
 
             if (optionalFromEndpoint.isPresent()) {
-                if (optionalFromEndpoint.get().getId() == null) {
-                    log.warn("This method doesn't allowed the creation of a new user");
-                    return Optional.empty();
-                } else {
 
-                    userEntityFromEndpoint = profileMapper.userToUserEntity(optionalFromEndpoint.get());
-                    optionalFromDB = profileRepository.findById(optionalFromEndpoint.get().getId());
+                log.warn("This method doesn't allowed the creation of a new user");
+                return Optional.empty();
+            } else {
 
-                    if (optionalFromDB.isPresent()) {
+                userEntityFromEndpoint = profileMapper.userToUserEntity(optionalFromEndpoint.get());
+                optionalFromDB = profileRepository.findById(optionalFromEndpoint.get().getId());
 
-                        // here we check if the new pseudo and mail address are not being used
-                        if (profileRepository.existsByPseudo(optionalFromEndpoint.get().getPseudo()))
-                            throw new PseudoAlreadyExistsException("This user pseudo already exists in database");
-                        if (profileRepository.existsByMailAddress(optionalFromEndpoint.get().getMailAddress()))
-                            throw new MailAddressAlreadyExistsException("This mail address already exists in database");
+                if (optionalFromDB.isPresent()) {
 
-                        userEntityFromDB = optionalFromDB.get();
-                        userEntityFromDB.setPseudo(userEntityFromEndpoint.getPseudo());
-                        userEntityFromDB.setPostalCode(userEntityFromEndpoint.getPostalCode());
-                        userEntityFromDB.setPhoneNumber(userEntityFromEndpoint.getPhoneNumber());
-                        userEntityFromDB.setMailAddress(userEntityFromEndpoint.getMailAddress());
-                        userEntityFromDB.setLastName(userEntityFromEndpoint.getLastName());
-                        userEntityFromDB.setFirstName(userEntityFromEndpoint.getFirstName());
+                    // here we check if the new pseudo and mail address are not being used
+                    if (profileRepository.existsByPseudo(optionalFromEndpoint.get().getPseudo()))
+                        throw new PseudoAlreadyExistsException("This user pseudo already exists in database");
+                    if (profileRepository.existsByMailAddress(optionalFromEndpoint.get().getMailAddress()))
+                        throw new MailAddressAlreadyExistsException("This mail address already exists in database");
 
-                        return Optional.ofNullable(profileMapper.userEntityToUser(profileRepository.save(userEntityFromDB)));
-                    }
-                    return Optional.ofNullable(profileMapper.userEntityToUser(profileRepository.save(profileMapper.userToUserEntity(user))));
+                    userEntityFromDB = optionalFromDB.get();
+                    userEntityFromDB.setPseudo(userEntityFromEndpoint.getPseudo());
+                    userEntityFromDB.setPostalCode(userEntityFromEndpoint.getPostalCode());
+                    userEntityFromDB.setPhoneNumber(userEntityFromEndpoint.getPhoneNumber());
+                    userEntityFromDB.setMailAddress(userEntityFromEndpoint.getMailAddress());
+                    userEntityFromDB.setLastName(userEntityFromEndpoint.getLastName());
+                    userEntityFromDB.setFirstName(userEntityFromEndpoint.getFirstName());
+
+                    return Optional.ofNullable(profileMapper.userEntityToUser(profileRepository.save(userEntityFromDB)));
                 }
+                return Optional.ofNullable(profileMapper.userEntityToUser(profileRepository.save(profileMapper.userToUserEntity(user))));
             }
         } catch (Exception ex) {
             GenericExceptionHelper.tokenExceptionHandler(ex);

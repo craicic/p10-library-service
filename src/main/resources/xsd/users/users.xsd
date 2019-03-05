@@ -69,7 +69,6 @@
     <!-- a user -->
     <xs:complexType name="user">
         <xs:sequence>
-            <xs:element name="id" type="xs:int" minOccurs="0"/>
             <xs:element name="address" type="xs:string"/>
             <xs:element name="city" type="xs:string"/>
             <xs:element name="firstName" type="xs:string"/>
@@ -87,10 +86,10 @@
     <!-- a token -->
     <xs:complexType name="token">
         <xs:sequence>
-            <xs:element name="id" type="xs:int" minOccurs="0"/>
+            <xs:element name="id" type="xs:int"/>
             <xs:element name="tokenUUID" type="xs:string"/>
             <xs:element name="expirationDate" type="xs:date"/>
-            <xs:element name="userId" type="xs:string" minOccurs="0"/>
+            <xs:element name="userId" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

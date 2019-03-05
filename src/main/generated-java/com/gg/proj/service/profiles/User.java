@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.03.04 à 04:58:43 PM CET 
+// Généré le : 2019.03.05 à 11:02:15 AM CET 
 //
 
 
@@ -26,7 +26,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="address" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="city" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="firstName" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -63,7 +63,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class User {
 
-    protected Integer id;
+    protected int id;
     @XmlElement(required = true)
     protected String address;
     @XmlElement(required = true)
@@ -91,24 +91,16 @@ public class User {
     /**
      * Obtient la valeur de la propriété id.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
      */
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
     /**
      * Définit la valeur de la propriété id.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
      */
-    public void setId(Integer value) {
+    public void setId(int value) {
         this.id = value;
     }
 
