@@ -8,18 +8,14 @@
 
 package com.gg.proj.service.profiles;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Classe Java pour anonymous complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -32,13 +28,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "tokenUUID",
-    "user"
+        "tokenUUID",
+        "user"
 })
 @XmlRootElement(name = "deleteProfileRequest")
 public class DeleteProfileRequest {
@@ -50,11 +44,9 @@ public class DeleteProfileRequest {
 
     /**
      * Obtient la valeur de la propriété tokenUUID.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getTokenUUID() {
         return tokenUUID;
@@ -62,11 +54,9 @@ public class DeleteProfileRequest {
 
     /**
      * Définit la valeur de la propriété tokenUUID.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setTokenUUID(String value) {
         this.tokenUUID = value;
@@ -74,11 +64,9 @@ public class DeleteProfileRequest {
 
     /**
      * Obtient la valeur de la propriété user.
-     * 
-     * @return
-     *     possible object is
-     *     {@link User }
-     *     
+     *
+     * @return possible object is
+     * {@link User }
      */
     public User getUser() {
         return user;
@@ -86,11 +74,9 @@ public class DeleteProfileRequest {
 
     /**
      * Définit la valeur de la propriété user.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link User }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link User }
      */
     public void setUser(User value) {
         this.user = value;

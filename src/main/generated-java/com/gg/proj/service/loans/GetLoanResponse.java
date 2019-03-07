@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Classe Java pour anonymous complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -30,12 +30,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "loan"
+        "loan"
 })
 @XmlRootElement(name = "getLoanResponse")
 public class GetLoanResponse {
@@ -44,11 +42,9 @@ public class GetLoanResponse {
 
     /**
      * Obtient la valeur de la propriété loan.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Loan }
-     *     
+     *
+     * @return possible object is
+     * {@link Loan }
      */
     public Loan getLoan() {
         return loan;
@@ -56,11 +52,9 @@ public class GetLoanResponse {
 
     /**
      * Définit la valeur de la propriété loan.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Loan }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Loan }
      */
     public void setLoan(Loan value) {
         this.loan = value;

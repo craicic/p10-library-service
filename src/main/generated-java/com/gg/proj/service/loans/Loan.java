@@ -17,9 +17,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Classe Java pour loan complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType name="loan">
  *   &lt;complexContent>
@@ -37,18 +37,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "loan", propOrder = {
-    "id",
-    "userId",
-    "bookId",
-    "loanStartDate",
-    "loanEndDate",
-    "extended",
-    "closed"
+        "id",
+        "userId",
+        "bookId",
+        "loanStartDate",
+        "loanEndDate",
+        "extended",
+        "closed"
 })
 public class Loan {
 
@@ -64,7 +62,6 @@ public class Loan {
 
     /**
      * Obtient la valeur de la propriété id.
-     * 
      */
     public int getId() {
         return id;
@@ -72,7 +69,6 @@ public class Loan {
 
     /**
      * Définit la valeur de la propriété id.
-     * 
      */
     public void setId(int value) {
         this.id = value;
@@ -80,7 +76,6 @@ public class Loan {
 
     /**
      * Obtient la valeur de la propriété userId.
-     * 
      */
     public int getUserId() {
         return userId;
@@ -88,7 +83,6 @@ public class Loan {
 
     /**
      * Définit la valeur de la propriété userId.
-     * 
      */
     public void setUserId(int value) {
         this.userId = value;
@@ -96,7 +90,6 @@ public class Loan {
 
     /**
      * Obtient la valeur de la propriété bookId.
-     * 
      */
     public int getBookId() {
         return bookId;
@@ -104,7 +97,6 @@ public class Loan {
 
     /**
      * Définit la valeur de la propriété bookId.
-     * 
      */
     public void setBookId(int value) {
         this.bookId = value;
@@ -112,11 +104,9 @@ public class Loan {
 
     /**
      * Obtient la valeur de la propriété loanStartDate.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getLoanStartDate() {
         return loanStartDate;
@@ -124,11 +114,9 @@ public class Loan {
 
     /**
      * Définit la valeur de la propriété loanStartDate.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setLoanStartDate(XMLGregorianCalendar value) {
         this.loanStartDate = value;
@@ -136,11 +124,9 @@ public class Loan {
 
     /**
      * Obtient la valeur de la propriété loanEndDate.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getLoanEndDate() {
         return loanEndDate;
@@ -148,11 +134,9 @@ public class Loan {
 
     /**
      * Définit la valeur de la propriété loanEndDate.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setLoanEndDate(XMLGregorianCalendar value) {
         this.loanEndDate = value;
@@ -160,11 +144,9 @@ public class Loan {
 
     /**
      * Obtient la valeur de la propriété extended.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
+     *
+     * @return possible object is
+     * {@link Boolean }
      */
     public Boolean isExtended() {
         return extended;
@@ -172,11 +154,9 @@ public class Loan {
 
     /**
      * Définit la valeur de la propriété extended.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Boolean }
      */
     public void setExtended(Boolean value) {
         this.extended = value;
@@ -184,11 +164,9 @@ public class Loan {
 
     /**
      * Obtient la valeur de la propriété closed.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
+     *
+     * @return possible object is
+     * {@link Boolean }
      */
     public Boolean isClosed() {
         return closed;
@@ -196,11 +174,9 @@ public class Loan {
 
     /**
      * Définit la valeur de la propriété closed.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Boolean }
      */
     public void setClosed(Boolean value) {
         this.closed = value;

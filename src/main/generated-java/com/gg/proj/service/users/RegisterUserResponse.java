@@ -8,18 +8,14 @@
 
 package com.gg.proj.service.users;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Classe Java pour anonymous complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -31,12 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "token"
+        "token"
 })
 @XmlRootElement(name = "registerUserResponse")
 public class RegisterUserResponse {
@@ -46,11 +40,9 @@ public class RegisterUserResponse {
 
     /**
      * Obtient la valeur de la propriété token.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Token }
-     *     
+     *
+     * @return possible object is
+     * {@link Token }
      */
     public Token getToken() {
         return token;
@@ -58,11 +50,9 @@ public class RegisterUserResponse {
 
     /**
      * Définit la valeur de la propriété token.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Token }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Token }
      */
     public void setToken(Token value) {
         this.token = value;

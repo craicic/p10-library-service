@@ -8,18 +8,14 @@
 
 package com.gg.proj.service.books;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Classe Java pour anonymous complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -33,14 +29,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "page",
-    "size",
-    "keyWord"
+        "page",
+        "size",
+        "keyWord"
 })
 @XmlRootElement(name = "searchBooksRequest")
 public class SearchBooksRequest {
@@ -52,7 +46,6 @@ public class SearchBooksRequest {
 
     /**
      * Obtient la valeur de la propriété page.
-     * 
      */
     public int getPage() {
         return page;
@@ -60,7 +53,6 @@ public class SearchBooksRequest {
 
     /**
      * Définit la valeur de la propriété page.
-     * 
      */
     public void setPage(int value) {
         this.page = value;
@@ -68,7 +60,6 @@ public class SearchBooksRequest {
 
     /**
      * Obtient la valeur de la propriété size.
-     * 
      */
     public int getSize() {
         return size;
@@ -76,7 +67,6 @@ public class SearchBooksRequest {
 
     /**
      * Définit la valeur de la propriété size.
-     * 
      */
     public void setSize(int value) {
         this.size = value;
@@ -84,11 +74,9 @@ public class SearchBooksRequest {
 
     /**
      * Obtient la valeur de la propriété keyWord.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getKeyWord() {
         return keyWord;
@@ -96,11 +84,9 @@ public class SearchBooksRequest {
 
     /**
      * Définit la valeur de la propriété keyWord.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setKeyWord(String value) {
         this.keyWord = value;

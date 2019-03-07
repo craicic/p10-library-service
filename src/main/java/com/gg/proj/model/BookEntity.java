@@ -30,7 +30,7 @@ public class BookEntity {
     @JoinTable(name = "topic_book",
             joinColumns = {@JoinColumn(name = "book_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "topic_id", referencedColumnName = "id")},
-            indexes = {@Index (name = "topic_book_idx", columnList = ("book_id,topic_id") , unique = true)}
+            indexes = {@Index(name = "topic_book_idx", columnList = ("book_id,topic_id"), unique = true)}
 
     )
     @Column(nullable = false)

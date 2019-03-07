@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Classe Java pour language complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType name="language">
  *   &lt;complexContent>
@@ -31,13 +31,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "language", propOrder = {
-    "id",
-    "name"
+        "id",
+        "name"
 })
 public class Language {
 
@@ -47,7 +45,6 @@ public class Language {
 
     /**
      * Obtient la valeur de la propriété id.
-     * 
      */
     public int getId() {
         return id;
@@ -55,7 +52,6 @@ public class Language {
 
     /**
      * Définit la valeur de la propriété id.
-     * 
      */
     public void setId(int value) {
         this.id = value;
@@ -63,11 +59,9 @@ public class Language {
 
     /**
      * Obtient la valeur de la propriété name.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getName() {
         return name;
@@ -75,11 +69,9 @@ public class Language {
 
     /**
      * Définit la valeur de la propriété name.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setName(String value) {
         this.name = value;

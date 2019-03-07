@@ -8,19 +8,15 @@
 
 package com.gg.proj.service.users;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
  * <p>Classe Java pour user complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType name="user">
  *   &lt;complexContent>
@@ -42,22 +38,20 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "user", propOrder = {
-    "address",
-    "city",
-    "firstName",
-    "lastName",
-    "mailAddress",
-    "phoneNumber",
-    "postalCode",
-    "pseudo",
-    "lastConnection",
-    "registerDate",
-    "password"
+        "address",
+        "city",
+        "firstName",
+        "lastName",
+        "mailAddress",
+        "phoneNumber",
+        "postalCode",
+        "pseudo",
+        "lastConnection",
+        "registerDate",
+        "password"
 })
 public class User {
 
@@ -87,11 +81,9 @@ public class User {
 
     /**
      * Obtient la valeur de la propriété address.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getAddress() {
         return address;
@@ -99,11 +91,9 @@ public class User {
 
     /**
      * Définit la valeur de la propriété address.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setAddress(String value) {
         this.address = value;
@@ -111,11 +101,9 @@ public class User {
 
     /**
      * Obtient la valeur de la propriété city.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getCity() {
         return city;
@@ -123,11 +111,9 @@ public class User {
 
     /**
      * Définit la valeur de la propriété city.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setCity(String value) {
         this.city = value;
@@ -135,11 +121,9 @@ public class User {
 
     /**
      * Obtient la valeur de la propriété firstName.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getFirstName() {
         return firstName;
@@ -147,11 +131,9 @@ public class User {
 
     /**
      * Définit la valeur de la propriété firstName.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setFirstName(String value) {
         this.firstName = value;
@@ -159,11 +141,9 @@ public class User {
 
     /**
      * Obtient la valeur de la propriété lastName.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getLastName() {
         return lastName;
@@ -171,11 +151,9 @@ public class User {
 
     /**
      * Définit la valeur de la propriété lastName.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setLastName(String value) {
         this.lastName = value;
@@ -183,11 +161,9 @@ public class User {
 
     /**
      * Obtient la valeur de la propriété mailAddress.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getMailAddress() {
         return mailAddress;
@@ -195,11 +171,9 @@ public class User {
 
     /**
      * Définit la valeur de la propriété mailAddress.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setMailAddress(String value) {
         this.mailAddress = value;
@@ -207,11 +181,9 @@ public class User {
 
     /**
      * Obtient la valeur de la propriété phoneNumber.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getPhoneNumber() {
         return phoneNumber;
@@ -219,11 +191,9 @@ public class User {
 
     /**
      * Définit la valeur de la propriété phoneNumber.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPhoneNumber(String value) {
         this.phoneNumber = value;
@@ -231,7 +201,6 @@ public class User {
 
     /**
      * Obtient la valeur de la propriété postalCode.
-     * 
      */
     public int getPostalCode() {
         return postalCode;
@@ -239,7 +208,6 @@ public class User {
 
     /**
      * Définit la valeur de la propriété postalCode.
-     * 
      */
     public void setPostalCode(int value) {
         this.postalCode = value;
@@ -247,11 +215,9 @@ public class User {
 
     /**
      * Obtient la valeur de la propriété pseudo.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getPseudo() {
         return pseudo;
@@ -259,11 +225,9 @@ public class User {
 
     /**
      * Définit la valeur de la propriété pseudo.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPseudo(String value) {
         this.pseudo = value;
@@ -271,11 +235,9 @@ public class User {
 
     /**
      * Obtient la valeur de la propriété lastConnection.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getLastConnection() {
         return lastConnection;
@@ -283,11 +245,9 @@ public class User {
 
     /**
      * Définit la valeur de la propriété lastConnection.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setLastConnection(XMLGregorianCalendar value) {
         this.lastConnection = value;
@@ -295,11 +255,9 @@ public class User {
 
     /**
      * Obtient la valeur de la propriété registerDate.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getRegisterDate() {
         return registerDate;
@@ -307,11 +265,9 @@ public class User {
 
     /**
      * Définit la valeur de la propriété registerDate.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setRegisterDate(XMLGregorianCalendar value) {
         this.registerDate = value;
@@ -319,11 +275,9 @@ public class User {
 
     /**
      * Obtient la valeur de la propriété password.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getPassword() {
         return password;
@@ -331,11 +285,9 @@ public class User {
 
     /**
      * Définit la valeur de la propriété password.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPassword(String value) {
         this.password = value;

@@ -144,7 +144,7 @@ public class BookManager {
         return response;
     }
 
-    public Optional<Book> create(BookMin bookMin, String tokenUUID) throws InvalidTokenException, OutdatedTokenException  {
+    public Optional<Book> create(BookMin bookMin, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
         } catch (Exception e) {

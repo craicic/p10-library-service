@@ -14,9 +14,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Classe Java pour token complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType name="token">
  *   &lt;complexContent>
@@ -31,15 +31,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "token", propOrder = {
-    "id",
-    "tokenUUID",
-    "expirationDate",
-    "user"
+        "id",
+        "tokenUUID",
+        "expirationDate",
+        "user"
 })
 public class Token {
 
@@ -53,11 +51,9 @@ public class Token {
 
     /**
      * Obtient la valeur de la propriété id.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     *
+     * @return possible object is
+     * {@link Integer }
      */
     public Integer getId() {
         return id;
@@ -65,11 +61,9 @@ public class Token {
 
     /**
      * Définit la valeur de la propriété id.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Integer }
      */
     public void setId(Integer value) {
         this.id = value;
@@ -77,11 +71,9 @@ public class Token {
 
     /**
      * Obtient la valeur de la propriété tokenUUID.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getTokenUUID() {
         return tokenUUID;
@@ -89,11 +81,9 @@ public class Token {
 
     /**
      * Définit la valeur de la propriété tokenUUID.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setTokenUUID(String value) {
         this.tokenUUID = value;
@@ -101,11 +91,9 @@ public class Token {
 
     /**
      * Obtient la valeur de la propriété expirationDate.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getExpirationDate() {
         return expirationDate;
@@ -113,11 +101,9 @@ public class Token {
 
     /**
      * Définit la valeur de la propriété expirationDate.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setExpirationDate(XMLGregorianCalendar value) {
         this.expirationDate = value;
@@ -125,11 +111,9 @@ public class Token {
 
     /**
      * Obtient la valeur de la propriété user.
-     * 
-     * @return
-     *     possible object is
-     *     {@link User }
-     *     
+     *
+     * @return possible object is
+     * {@link User }
      */
     public User getUser() {
         return user;
@@ -137,11 +121,9 @@ public class Token {
 
     /**
      * Définit la valeur de la propriété user.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link User }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link User }
      */
     public void setUser(User value) {
         this.user = value;

@@ -113,8 +113,8 @@ public class UserManager {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
             Optional<UserEntity> optional = userRepository.findById(userId);
 
-            if(optional.isPresent()){
-                if(Password.checkPassword(oldPassword, optional.get().getPasswordHash())){
+            if (optional.isPresent()) {
+                if (Password.checkPassword(oldPassword, optional.get().getPasswordHash())) {
 
                     newHash = Password.hashPassword(newPassword);
                     optional.get().setPasswordHash(newHash);

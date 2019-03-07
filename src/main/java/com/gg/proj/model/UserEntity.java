@@ -59,7 +59,8 @@ public class UserEntity {
     }
 
     public UserEntity(String firstName, String lastName, String pseudo, String passwordHash, String city,
-                      Integer postalCode, String address, String mailAddress, String phoneNumber, LocalDateTime lastConnection, LocalDate registerDate, List<LoanEntity> loans) {
+                      Integer postalCode, String address, String mailAddress, String phoneNumber,
+                      LocalDateTime lastConnection, LocalDate registerDate, List<LoanEntity> loans) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.pseudo = pseudo;

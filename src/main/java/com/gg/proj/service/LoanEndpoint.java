@@ -59,7 +59,7 @@ public class LoanEndpoint {
         return saveLoanResponse;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart="extendLoanRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "extendLoanRequest")
     @ResponsePayload
     public ExtendLoanResponse extendLoan(@RequestPayload ExtendLoanRequest request) {
         log.debug("Entering extendLoan... ");
@@ -73,7 +73,7 @@ public class LoanEndpoint {
         return extendLoanResponse;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart="closeLoanRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "closeLoanRequest")
     @ResponsePayload
     public CloseLoanResponse closeLoan(@RequestPayload CloseLoanRequest request) {
         log.debug("Entering closeLoan... ");

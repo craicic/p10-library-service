@@ -53,7 +53,7 @@ public class TopicManager {
     public Optional<Topic> save(Topic topic, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-        } catch (Exception e)  {
+        } catch (Exception e) {
             GenericExceptionHelper.tokenExceptionHandler(e);
         }
 
@@ -62,10 +62,10 @@ public class TopicManager {
     }
 
 
-    public void delete(Topic topic, String tokenUUID) throws InvalidTokenException, OutdatedTokenException  {
+    public void delete(Topic topic, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-        } catch (Exception e)  {
+        } catch (Exception e) {
             GenericExceptionHelper.tokenExceptionHandler(e);
         }
 

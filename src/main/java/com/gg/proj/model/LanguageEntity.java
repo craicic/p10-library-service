@@ -8,11 +8,12 @@ import java.util.Objects;
  * Base DTO class for the Language model. Unique index on name. OneToMany relation with the book table.
  */
 @Entity
-@Table(name="language",
+@Table(name = "language",
         indexes = {@Index(name = "language_idx", columnList = "name", unique = true)})
 public class LanguageEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Integer id;
 
     @Column(nullable = false)

@@ -18,7 +18,6 @@ import java.util.Properties;
 /**
  * This is the POJO configuration class for this project.
  * The application.properties that you can find in resources has the priority over this class.
- *
  */
 
 @Configuration

@@ -8,18 +8,14 @@
 
 package com.gg.proj.service.books;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Classe Java pour anonymous complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -31,12 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "book"
+        "book"
 })
 @XmlRootElement(name = "saveBookResponse")
 public class SaveBookResponse {
@@ -46,11 +40,9 @@ public class SaveBookResponse {
 
     /**
      * Obtient la valeur de la propriété book.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Book }
-     *     
+     *
+     * @return possible object is
+     * {@link Book }
      */
     public Book getBook() {
         return book;
@@ -58,11 +50,9 @@ public class SaveBookResponse {
 
     /**
      * Définit la valeur de la propriété book.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Book }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Book }
      */
     public void setBook(Book value) {
         this.book = value;

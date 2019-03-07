@@ -8,18 +8,14 @@
 
 package com.gg.proj.service.books;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Classe Java pour anonymous complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -32,13 +28,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "tokenUUID",
-    "language"
+        "tokenUUID",
+        "language"
 })
 @XmlRootElement(name = "saveLanguageRequest")
 public class SaveLanguageRequest {
@@ -50,11 +44,9 @@ public class SaveLanguageRequest {
 
     /**
      * Obtient la valeur de la propriété tokenUUID.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getTokenUUID() {
         return tokenUUID;
@@ -62,11 +54,9 @@ public class SaveLanguageRequest {
 
     /**
      * Définit la valeur de la propriété tokenUUID.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setTokenUUID(String value) {
         this.tokenUUID = value;
@@ -74,11 +64,9 @@ public class SaveLanguageRequest {
 
     /**
      * Obtient la valeur de la propriété language.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Language }
-     *     
+     *
+     * @return possible object is
+     * {@link Language }
      */
     public Language getLanguage() {
         return language;
@@ -86,11 +74,9 @@ public class SaveLanguageRequest {
 
     /**
      * Définit la valeur de la propriété language.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Language }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Language }
      */
     public void setLanguage(Language value) {
         this.language = value;

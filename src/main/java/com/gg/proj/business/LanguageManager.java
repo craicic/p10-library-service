@@ -53,7 +53,7 @@ public class LanguageManager {
     public Optional<Language> save(Language language, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-        } catch (Exception e)  {
+        } catch (Exception e) {
             GenericExceptionHelper.tokenExceptionHandler(e);
         }
 
@@ -65,7 +65,7 @@ public class LanguageManager {
     public void delete(Language language, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-        } catch (Exception e)  {
+        } catch (Exception e) {
             GenericExceptionHelper.tokenExceptionHandler(e);
         }
 
@@ -77,7 +77,7 @@ public class LanguageManager {
         return languageMapper.languageEntityListToLanguageList(languageEntities);
     }
 
-    public Optional<Language> create(String languageName, String tokenUUID) throws InvalidTokenException, OutdatedTokenException  {
+    public Optional<Language> create(String languageName, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
         } catch (Exception e) {

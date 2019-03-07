@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Classe Java pour libraryMin complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType name="libraryMin">
  *   &lt;complexContent>
@@ -34,16 +34,14 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "libraryMin", propOrder = {
-    "name",
-    "city",
-    "postalCode",
-    "address",
-    "phoneNumber"
+        "name",
+        "city",
+        "postalCode",
+        "address",
+        "phoneNumber"
 })
 public class LibraryMin {
 
@@ -59,11 +57,9 @@ public class LibraryMin {
 
     /**
      * Obtient la valeur de la propriété name.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getName() {
         return name;
@@ -71,11 +67,9 @@ public class LibraryMin {
 
     /**
      * Définit la valeur de la propriété name.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setName(String value) {
         this.name = value;
@@ -83,11 +77,9 @@ public class LibraryMin {
 
     /**
      * Obtient la valeur de la propriété city.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getCity() {
         return city;
@@ -95,11 +87,9 @@ public class LibraryMin {
 
     /**
      * Définit la valeur de la propriété city.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setCity(String value) {
         this.city = value;
@@ -107,7 +97,6 @@ public class LibraryMin {
 
     /**
      * Obtient la valeur de la propriété postalCode.
-     * 
      */
     public int getPostalCode() {
         return postalCode;
@@ -115,7 +104,6 @@ public class LibraryMin {
 
     /**
      * Définit la valeur de la propriété postalCode.
-     * 
      */
     public void setPostalCode(int value) {
         this.postalCode = value;
@@ -123,11 +111,9 @@ public class LibraryMin {
 
     /**
      * Obtient la valeur de la propriété address.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getAddress() {
         return address;
@@ -135,11 +121,9 @@ public class LibraryMin {
 
     /**
      * Définit la valeur de la propriété address.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setAddress(String value) {
         this.address = value;
@@ -147,11 +131,9 @@ public class LibraryMin {
 
     /**
      * Obtient la valeur de la propriété phoneNumber.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getPhoneNumber() {
         return phoneNumber;
@@ -159,11 +141,9 @@ public class LibraryMin {
 
     /**
      * Définit la valeur de la propriété phoneNumber.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPhoneNumber(String value) {
         this.phoneNumber = value;

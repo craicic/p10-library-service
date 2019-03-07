@@ -8,21 +8,17 @@
 
 package com.gg.proj.service.books;
 
+import javax.xml.bind.annotation.*;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
  * <p>Classe Java pour bookMin complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType name="bookMin">
  *   &lt;complexContent>
@@ -42,20 +38,18 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "bookMin", propOrder = {
-    "title",
-    "author",
-    "isbn",
-    "topicIds",
-    "languageId",
-    "quantity",
-    "publicationDate",
-    "libraryId",
-    "summary"
+        "title",
+        "author",
+        "isbn",
+        "topicIds",
+        "languageId",
+        "quantity",
+        "publicationDate",
+        "libraryId",
+        "summary"
 })
 public class BookMin {
 
@@ -76,11 +70,9 @@ public class BookMin {
 
     /**
      * Obtient la valeur de la propriété title.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getTitle() {
         return title;
@@ -88,11 +80,9 @@ public class BookMin {
 
     /**
      * Définit la valeur de la propriété title.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setTitle(String value) {
         this.title = value;
@@ -100,11 +90,9 @@ public class BookMin {
 
     /**
      * Obtient la valeur de la propriété author.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getAuthor() {
         return author;
@@ -112,11 +100,9 @@ public class BookMin {
 
     /**
      * Définit la valeur de la propriété author.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setAuthor(String value) {
         this.author = value;
@@ -124,11 +110,9 @@ public class BookMin {
 
     /**
      * Obtient la valeur de la propriété isbn.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getIsbn() {
         return isbn;
@@ -136,11 +120,9 @@ public class BookMin {
 
     /**
      * Définit la valeur de la propriété isbn.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setIsbn(String value) {
         this.isbn = value;
@@ -148,25 +130,23 @@ public class BookMin {
 
     /**
      * Gets the value of the topicIds property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the topicIds property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getTopicIds().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link Integer }
-     * 
-     * 
      */
     public List<Integer> getTopicIds() {
         if (topicIds == null) {
@@ -177,7 +157,6 @@ public class BookMin {
 
     /**
      * Obtient la valeur de la propriété languageId.
-     * 
      */
     public int getLanguageId() {
         return languageId;
@@ -185,7 +164,6 @@ public class BookMin {
 
     /**
      * Définit la valeur de la propriété languageId.
-     * 
      */
     public void setLanguageId(int value) {
         this.languageId = value;
@@ -193,7 +171,6 @@ public class BookMin {
 
     /**
      * Obtient la valeur de la propriété quantity.
-     * 
      */
     public int getQuantity() {
         return quantity;
@@ -201,7 +178,6 @@ public class BookMin {
 
     /**
      * Définit la valeur de la propriété quantity.
-     * 
      */
     public void setQuantity(int value) {
         this.quantity = value;
@@ -209,11 +185,9 @@ public class BookMin {
 
     /**
      * Obtient la valeur de la propriété publicationDate.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getPublicationDate() {
         return publicationDate;
@@ -221,11 +195,9 @@ public class BookMin {
 
     /**
      * Définit la valeur de la propriété publicationDate.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setPublicationDate(XMLGregorianCalendar value) {
         this.publicationDate = value;
@@ -233,7 +205,6 @@ public class BookMin {
 
     /**
      * Obtient la valeur de la propriété libraryId.
-     * 
      */
     public int getLibraryId() {
         return libraryId;
@@ -241,7 +212,6 @@ public class BookMin {
 
     /**
      * Définit la valeur de la propriété libraryId.
-     * 
      */
     public void setLibraryId(int value) {
         this.libraryId = value;
@@ -249,11 +219,9 @@ public class BookMin {
 
     /**
      * Obtient la valeur de la propriété summary.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getSummary() {
         return summary;
@@ -261,11 +229,9 @@ public class BookMin {
 
     /**
      * Définit la valeur de la propriété summary.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setSummary(String value) {
         this.summary = value;

@@ -89,6 +89,7 @@ public class WebServiceConfig {
     public XsdSchema profilesSchema() {
         return new SimpleXsdSchema(new ClassPathResource("/xsd/profiles/profiles.xsd"));
     }
+
     @Bean
     public SoapFaultMappingExceptionResolver exceptionResolver() {
         SoapFaultMappingExceptionResolver exceptionResolver = new DetailSoapFaultDefinitionExceptionResolver();

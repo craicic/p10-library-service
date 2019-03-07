@@ -8,20 +8,16 @@
 
 package com.gg.proj.service.books;
 
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 
 /**
  * <p>Classe Java pour anonymous complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -34,13 +30,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "totalPages",
-    "books"
+        "totalPages",
+        "books"
 })
 @XmlRootElement(name = "filterBooksResponse")
 public class FilterBooksResponse {
@@ -51,7 +45,6 @@ public class FilterBooksResponse {
 
     /**
      * Obtient la valeur de la propriété totalPages.
-     * 
      */
     public int getTotalPages() {
         return totalPages;
@@ -59,7 +52,6 @@ public class FilterBooksResponse {
 
     /**
      * Définit la valeur de la propriété totalPages.
-     * 
      */
     public void setTotalPages(int value) {
         this.totalPages = value;
@@ -67,25 +59,23 @@ public class FilterBooksResponse {
 
     /**
      * Gets the value of the books property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the books property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getBooks().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link Book }
-     * 
-     * 
      */
     public List<Book> getBooks() {
         if (books == null) {

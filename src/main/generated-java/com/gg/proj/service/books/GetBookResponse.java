@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Classe Java pour anonymous complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -30,12 +30,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "bookFull"
+        "bookFull"
 })
 @XmlRootElement(name = "getBookResponse")
 public class GetBookResponse {
@@ -44,11 +42,9 @@ public class GetBookResponse {
 
     /**
      * Obtient la valeur de la propriété bookFull.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BookFull }
-     *     
+     *
+     * @return possible object is
+     * {@link BookFull }
      */
     public BookFull getBookFull() {
         return bookFull;
@@ -56,11 +52,9 @@ public class GetBookResponse {
 
     /**
      * Définit la valeur de la propriété bookFull.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BookFull }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link BookFull }
      */
     public void setBookFull(BookFull value) {
         this.bookFull = value;

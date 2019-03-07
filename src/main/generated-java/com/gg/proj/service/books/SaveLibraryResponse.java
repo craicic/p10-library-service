@@ -8,18 +8,14 @@
 
 package com.gg.proj.service.books;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Classe Java pour anonymous complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -31,12 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "library"
+        "library"
 })
 @XmlRootElement(name = "saveLibraryResponse")
 public class SaveLibraryResponse {
@@ -46,11 +40,9 @@ public class SaveLibraryResponse {
 
     /**
      * Obtient la valeur de la propriété library.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Library }
-     *     
+     *
+     * @return possible object is
+     * {@link Library }
      */
     public Library getLibrary() {
         return library;
@@ -58,11 +50,9 @@ public class SaveLibraryResponse {
 
     /**
      * Définit la valeur de la propriété library.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Library }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Library }
      */
     public void setLibrary(Library value) {
         this.library = value;

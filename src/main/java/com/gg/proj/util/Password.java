@@ -13,6 +13,7 @@ public class Password {
 
     /**
      * This method generate a salt, then hash the password using OpenBSD BCrypt.
+     *
      * @param plaintextPassword the password to hash
      * @return String containing the hashed password
      */
@@ -24,13 +25,13 @@ public class Password {
     /**
      * This method first check the given hash. We check if the password start with $2a$10$,
      * which indicates the algorithm used is BCrypt.
-     *
+     * <p>
      * Then it use the checkpw method that check if the password and the hash match.
      *
-     * @throws IllegalArgumentException on invalid stored hash.
      * @param plaintextPassword the password provided by the login request.
-     * @param storedHash the account password hash.
+     * @param storedHash        the account password hash.
      * @return a boolean : true if the check match, false if not.
+     * @throws IllegalArgumentException on invalid stored hash.
      */
     public static boolean checkPassword(String plaintextPassword, String storedHash) throws IllegalArgumentException {
 

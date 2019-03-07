@@ -13,14 +13,14 @@ public class TokenEntity {
     @GeneratedValue
     private Integer id;
 
-    @Column(name="token_uuid")
+    @Column(name = "token_uuid")
     private UUID tokenUUID;
 
-    @Column(name="expiration_date")
+    @Column(name = "expiration_date")
     private LocalDate expirationDate;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
     public TokenEntity() {
@@ -33,7 +33,7 @@ public class TokenEntity {
     }
 
     @PrePersist
-    public void prePersist(){
+    public void prePersist() {
         tokenUUID = UUID.randomUUID();
         LocalDate today = LocalDate.now();
         expirationDate = today.plus(3, ChronoUnit.WEEKS);

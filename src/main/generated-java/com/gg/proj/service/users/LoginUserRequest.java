@@ -8,18 +8,14 @@
 
 package com.gg.proj.service.users;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Classe Java pour anonymous complex type.
- * 
+ *
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -32,13 +28,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "pseudo",
-    "password"
+        "pseudo",
+        "password"
 })
 @XmlRootElement(name = "loginUserRequest")
 public class LoginUserRequest {
@@ -50,11 +44,9 @@ public class LoginUserRequest {
 
     /**
      * Obtient la valeur de la propriété pseudo.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getPseudo() {
         return pseudo;
@@ -62,11 +54,9 @@ public class LoginUserRequest {
 
     /**
      * Définit la valeur de la propriété pseudo.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPseudo(String value) {
         this.pseudo = value;
@@ -74,11 +64,9 @@ public class LoginUserRequest {
 
     /**
      * Obtient la valeur de la propriété password.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getPassword() {
         return password;
@@ -86,11 +74,9 @@ public class LoginUserRequest {
 
     /**
      * Définit la valeur de la propriété password.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPassword(String value) {
         this.password = value;

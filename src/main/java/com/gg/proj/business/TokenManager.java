@@ -71,13 +71,15 @@ public class TokenManager {
         TokenEntity foundTokenEntity = tokenRepository.findByTokenUUID(uuid);
         if (foundTokenEntity == null) {
             throw new InvalidTokenException("no such token in database");
-        } if (foundTokenEntity.getExpirationDate().isBefore(LocalDate.now())) {
+        }
+        if (foundTokenEntity.getExpirationDate().isBefore(LocalDate.now())) {
             // Calling a private method to refresh the token
             refreshToken(foundTokenEntity);
             throw new OutdatedTokenException("Token has expired, try to reconnect");
         }
     }
-    private void refreshToken(TokenEntity tokenEntity){
+
+    private void refreshToken(TokenEntity tokenEntity) {
         TokenEntity freshTokenEntity = new TokenEntity();
         freshTokenEntity.setUserEntity(tokenEntity.getUserEntity());
 

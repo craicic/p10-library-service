@@ -11,11 +11,11 @@ import java.util.UUID;
 @Mapper(componentModel = "spring", imports = UUID.class)
 public interface TokenMapper {
 
-    TokenMapper INSTANCE = Mappers.getMapper( TokenMapper.class);
+    TokenMapper INSTANCE = Mappers.getMapper(TokenMapper.class);
 
-    @Mapping(target= "tokenUUID",  expression = "java(UUID.randomUUID().toString())")
+    @Mapping(target = "tokenUUID", expression = "java(UUID.randomUUID().toString())")
     Token tokenEntityToToken(TokenEntity tokenEntity);
 
-    @Mapping(target= "tokenUUID", expression = "java(UUID.fromString(token.getTokenUUID()))")
+    @Mapping(target = "tokenUUID", expression = "java(UUID.fromString(token.getTokenUUID()))")
     TokenEntity tokenToTokenEntity(Token token);
 }
