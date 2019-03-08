@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.03.05 à 10:43:59 AM CET 
+// Généré le : 2019.03.08 à 09:59:01 AM CET 
 //
 
 
@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Classe Java pour library complex type.
- *
+ * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- *
+ * 
  * <pre>
  * &lt;complexType name="library">
  *   &lt;complexContent>
@@ -35,15 +35,17 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "library", propOrder = {
-        "id",
-        "name",
-        "city",
-        "postalCode",
-        "address",
-        "phoneNumber"
+    "id",
+    "name",
+    "city",
+    "postalCode",
+    "address",
+    "phoneNumber"
 })
 public class Library {
 
@@ -60,6 +62,7 @@ public class Library {
 
     /**
      * Obtient la valeur de la propriété id.
+     * 
      */
     public int getId() {
         return id;
@@ -67,6 +70,7 @@ public class Library {
 
     /**
      * Définit la valeur de la propriété id.
+     * 
      */
     public void setId(int value) {
         this.id = value;
@@ -74,9 +78,11 @@ public class Library {
 
     /**
      * Obtient la valeur de la propriété name.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getName() {
         return name;
@@ -84,9 +90,11 @@ public class Library {
 
     /**
      * Définit la valeur de la propriété name.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setName(String value) {
         this.name = value;
@@ -94,9 +102,11 @@ public class Library {
 
     /**
      * Obtient la valeur de la propriété city.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getCity() {
         return city;
@@ -104,9 +114,11 @@ public class Library {
 
     /**
      * Définit la valeur de la propriété city.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setCity(String value) {
         this.city = value;
@@ -114,6 +126,7 @@ public class Library {
 
     /**
      * Obtient la valeur de la propriété postalCode.
+     * 
      */
     public int getPostalCode() {
         return postalCode;
@@ -121,6 +134,7 @@ public class Library {
 
     /**
      * Définit la valeur de la propriété postalCode.
+     * 
      */
     public void setPostalCode(int value) {
         this.postalCode = value;
@@ -128,9 +142,11 @@ public class Library {
 
     /**
      * Obtient la valeur de la propriété address.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getAddress() {
         return address;
@@ -138,9 +154,11 @@ public class Library {
 
     /**
      * Définit la valeur de la propriété address.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setAddress(String value) {
         this.address = value;
@@ -148,9 +166,11 @@ public class Library {
 
     /**
      * Obtient la valeur de la propriété phoneNumber.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getPhoneNumber() {
         return phoneNumber;
@@ -158,9 +178,11 @@ public class Library {
 
     /**
      * Définit la valeur de la propriété phoneNumber.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setPhoneNumber(String value) {
         this.phoneNumber = value;

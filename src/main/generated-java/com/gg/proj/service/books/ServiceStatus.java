@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.03.05 à 10:43:59 AM CET 
+// Généré le : 2019.03.08 à 09:59:01 AM CET 
 //
 
 
@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Classe Java pour serviceStatus complex type.
- *
+ * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- *
+ * 
  * <pre>
  * &lt;complexType name="serviceStatus">
  *   &lt;complexContent>
@@ -31,11 +31,13 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "serviceStatus", propOrder = {
-        "statusCode",
-        "message"
+    "statusCode",
+    "message"
 })
 public class ServiceStatus {
 
@@ -46,9 +48,11 @@ public class ServiceStatus {
 
     /**
      * Obtient la valeur de la propriété statusCode.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getStatusCode() {
         return statusCode;
@@ -56,9 +60,11 @@ public class ServiceStatus {
 
     /**
      * Définit la valeur de la propriété statusCode.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setStatusCode(String value) {
         this.statusCode = value;
@@ -66,9 +72,11 @@ public class ServiceStatus {
 
     /**
      * Obtient la valeur de la propriété message.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getMessage() {
         return message;
@@ -76,9 +84,11 @@ public class ServiceStatus {
 
     /**
      * Définit la valeur de la propriété message.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setMessage(String value) {
         this.message = value;

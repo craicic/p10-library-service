@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.03.05 à 10:43:59 AM CET 
+// Généré le : 2019.03.08 à 09:59:01 AM CET 
 //
 
 
@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Classe Java pour anonymous complex type.
- *
+ * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -36,16 +36,18 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "page",
-        "size",
-        "keyWord",
-        "libraryId",
-        "topicId",
-        "languageId",
-        "available"
+    "page",
+    "size",
+    "keyWord",
+    "libraryId",
+    "topicId",
+    "languageId",
+    "available"
 })
 @XmlRootElement(name = "filterBooksRequest")
 public class FilterBooksRequest {
@@ -60,6 +62,7 @@ public class FilterBooksRequest {
 
     /**
      * Obtient la valeur de la propriété page.
+     * 
      */
     public int getPage() {
         return page;
@@ -67,6 +70,7 @@ public class FilterBooksRequest {
 
     /**
      * Définit la valeur de la propriété page.
+     * 
      */
     public void setPage(int value) {
         this.page = value;
@@ -74,6 +78,7 @@ public class FilterBooksRequest {
 
     /**
      * Obtient la valeur de la propriété size.
+     * 
      */
     public int getSize() {
         return size;
@@ -81,6 +86,7 @@ public class FilterBooksRequest {
 
     /**
      * Définit la valeur de la propriété size.
+     * 
      */
     public void setSize(int value) {
         this.size = value;
@@ -88,9 +94,11 @@ public class FilterBooksRequest {
 
     /**
      * Obtient la valeur de la propriété keyWord.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getKeyWord() {
         return keyWord;
@@ -98,9 +106,11 @@ public class FilterBooksRequest {
 
     /**
      * Définit la valeur de la propriété keyWord.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setKeyWord(String value) {
         this.keyWord = value;
@@ -108,9 +118,11 @@ public class FilterBooksRequest {
 
     /**
      * Obtient la valeur de la propriété libraryId.
-     *
-     * @return possible object is
-     * {@link Integer }
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
      */
     public Integer getLibraryId() {
         return libraryId;
@@ -118,9 +130,11 @@ public class FilterBooksRequest {
 
     /**
      * Définit la valeur de la propriété libraryId.
-     *
-     * @param value allowed object is
-     *              {@link Integer }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
      */
     public void setLibraryId(Integer value) {
         this.libraryId = value;
@@ -128,9 +142,11 @@ public class FilterBooksRequest {
 
     /**
      * Obtient la valeur de la propriété topicId.
-     *
-     * @return possible object is
-     * {@link Integer }
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
      */
     public Integer getTopicId() {
         return topicId;
@@ -138,9 +154,11 @@ public class FilterBooksRequest {
 
     /**
      * Définit la valeur de la propriété topicId.
-     *
-     * @param value allowed object is
-     *              {@link Integer }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
      */
     public void setTopicId(Integer value) {
         this.topicId = value;
@@ -148,9 +166,11 @@ public class FilterBooksRequest {
 
     /**
      * Obtient la valeur de la propriété languageId.
-     *
-     * @return possible object is
-     * {@link Integer }
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
      */
     public Integer getLanguageId() {
         return languageId;
@@ -158,9 +178,11 @@ public class FilterBooksRequest {
 
     /**
      * Définit la valeur de la propriété languageId.
-     *
-     * @param value allowed object is
-     *              {@link Integer }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
      */
     public void setLanguageId(Integer value) {
         this.languageId = value;
@@ -168,6 +190,7 @@ public class FilterBooksRequest {
 
     /**
      * Obtient la valeur de la propriété available.
+     * 
      */
     public boolean isAvailable() {
         return available;
@@ -175,6 +198,7 @@ public class FilterBooksRequest {
 
     /**
      * Définit la valeur de la propriété available.
+     * 
      */
     public void setAvailable(boolean value) {
         this.available = value;

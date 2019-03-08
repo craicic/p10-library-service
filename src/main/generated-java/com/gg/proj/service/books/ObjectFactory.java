@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.03.05 à 10:43:59 AM CET 
+// Généré le : 2019.03.08 à 09:59:01 AM CET 
 //
 
 
@@ -12,17 +12,18 @@ import javax.xml.bind.annotation.XmlRegistry;
 
 
 /**
- * This object contains factory methods for each
- * Java content interface and Java element interface
- * generated in the com.gg.proj.service.books package.
- * <p>An ObjectFactory allows you to programatically
- * construct new instances of the Java representation
- * for XML content. The Java representation of XML
- * content can consist of schema derived interfaces
- * and classes representing the binding of schema
- * type definitions, element declarations and model
- * groups.  Factory methods for each of these are
+ * This object contains factory methods for each 
+ * Java content interface and Java element interface 
+ * generated in the com.gg.proj.service.books package. 
+ * <p>An ObjectFactory allows you to programatically 
+ * construct new instances of the Java representation 
+ * for XML content. The Java representation of XML 
+ * content can consist of schema derived interfaces 
+ * and classes representing the binding of schema 
+ * type definitions, element declarations and model 
+ * groups.  Factory methods for each of these are 
  * provided in this class.
+ * 
  */
 @XmlRegistry
 public class ObjectFactory {
@@ -30,12 +31,14 @@ public class ObjectFactory {
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.gg.proj.service.books
+     * 
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link DeleteLibraryResponse }
+     * 
      */
     public DeleteLibraryResponse createDeleteLibraryResponse() {
         return new DeleteLibraryResponse();
@@ -43,6 +46,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ListAllLanguagesResponse }
+     * 
      */
     public ListAllLanguagesResponse createListAllLanguagesResponse() {
         return new ListAllLanguagesResponse();
@@ -50,6 +54,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Language }
+     * 
      */
     public Language createLanguage() {
         return new Language();
@@ -57,6 +62,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ListAllTopicsRequest }
+     * 
      */
     public ListAllTopicsRequest createListAllTopicsRequest() {
         return new ListAllTopicsRequest();
@@ -64,6 +70,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DeleteLibraryRequest }
+     * 
      */
     public DeleteLibraryRequest createDeleteLibraryRequest() {
         return new DeleteLibraryRequest();
@@ -71,6 +78,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Library }
+     * 
      */
     public Library createLibrary() {
         return new Library();
@@ -78,6 +86,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SaveLanguageRequest }
+     * 
      */
     public SaveLanguageRequest createSaveLanguageRequest() {
         return new SaveLanguageRequest();
@@ -85,6 +94,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetLibraryRequest }
+     * 
      */
     public GetLibraryRequest createGetLibraryRequest() {
         return new GetLibraryRequest();
@@ -92,6 +102,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ListAllBooksRequest }
+     * 
      */
     public ListAllBooksRequest createListAllBooksRequest() {
         return new ListAllBooksRequest();
@@ -99,6 +110,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateLibraryRequest }
+     * 
      */
     public CreateLibraryRequest createCreateLibraryRequest() {
         return new CreateLibraryRequest();
@@ -106,6 +118,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LibraryMin }
+     * 
      */
     public LibraryMin createLibraryMin() {
         return new LibraryMin();
@@ -113,6 +126,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateLanguageRequest }
+     * 
      */
     public CreateLanguageRequest createCreateLanguageRequest() {
         return new CreateLanguageRequest();
@@ -120,6 +134,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateBookResponse }
+     * 
      */
     public CreateBookResponse createCreateBookResponse() {
         return new CreateBookResponse();
@@ -127,6 +142,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Book }
+     * 
      */
     public Book createBook() {
         return new Book();
@@ -134,6 +150,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateTopicRequest }
+     * 
      */
     public CreateTopicRequest createCreateTopicRequest() {
         return new CreateTopicRequest();
@@ -141,6 +158,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetLanguageResponse }
+     * 
      */
     public GetLanguageResponse createGetLanguageResponse() {
         return new GetLanguageResponse();
@@ -148,6 +166,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SaveLibraryResponse }
+     * 
      */
     public SaveLibraryResponse createSaveLibraryResponse() {
         return new SaveLibraryResponse();
@@ -155,6 +174,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ListAllTopicsResponse }
+     * 
      */
     public ListAllTopicsResponse createListAllTopicsResponse() {
         return new ListAllTopicsResponse();
@@ -162,6 +182,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Topic }
+     * 
      */
     public Topic createTopic() {
         return new Topic();
@@ -169,6 +190,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetLibraryResponse }
+     * 
      */
     public GetLibraryResponse createGetLibraryResponse() {
         return new GetLibraryResponse();
@@ -176,6 +198,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateLanguageResponse }
+     * 
      */
     public CreateLanguageResponse createCreateLanguageResponse() {
         return new CreateLanguageResponse();
@@ -183,6 +206,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DeleteBookResponse }
+     * 
      */
     public DeleteBookResponse createDeleteBookResponse() {
         return new DeleteBookResponse();
@@ -190,6 +214,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SearchBooksRequest }
+     * 
      */
     public SearchBooksRequest createSearchBooksRequest() {
         return new SearchBooksRequest();
@@ -197,6 +222,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SearchBooksResponse }
+     * 
      */
     public SearchBooksResponse createSearchBooksResponse() {
         return new SearchBooksResponse();
@@ -204,6 +230,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SaveLibraryRequest }
+     * 
      */
     public SaveLibraryRequest createSaveLibraryRequest() {
         return new SaveLibraryRequest();
@@ -211,6 +238,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ListAllLibrariesResponse }
+     * 
      */
     public ListAllLibrariesResponse createListAllLibrariesResponse() {
         return new ListAllLibrariesResponse();
@@ -218,6 +246,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DeleteLanguageResponse }
+     * 
      */
     public DeleteLanguageResponse createDeleteLanguageResponse() {
         return new DeleteLanguageResponse();
@@ -225,6 +254,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SaveBookRequest }
+     * 
      */
     public SaveBookRequest createSaveBookRequest() {
         return new SaveBookRequest();
@@ -232,6 +262,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateBookRequest }
+     * 
      */
     public CreateBookRequest createCreateBookRequest() {
         return new CreateBookRequest();
@@ -239,6 +270,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link BookMin }
+     * 
      */
     public BookMin createBookMin() {
         return new BookMin();
@@ -246,6 +278,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DeleteTopicResponse }
+     * 
      */
     public DeleteTopicResponse createDeleteTopicResponse() {
         return new DeleteTopicResponse();
@@ -253,6 +286,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetBookResponse }
+     * 
      */
     public GetBookResponse createGetBookResponse() {
         return new GetBookResponse();
@@ -260,6 +294,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link BookFull }
+     * 
      */
     public BookFull createBookFull() {
         return new BookFull();
@@ -267,6 +302,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SaveTopicResponse }
+     * 
      */
     public SaveTopicResponse createSaveTopicResponse() {
         return new SaveTopicResponse();
@@ -274,6 +310,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetTopicResponse }
+     * 
      */
     public GetTopicResponse createGetTopicResponse() {
         return new GetTopicResponse();
@@ -281,6 +318,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateLibraryResponse }
+     * 
      */
     public CreateLibraryResponse createCreateLibraryResponse() {
         return new CreateLibraryResponse();
@@ -288,6 +326,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetLanguageRequest }
+     * 
      */
     public GetLanguageRequest createGetLanguageRequest() {
         return new GetLanguageRequest();
@@ -295,6 +334,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SaveTopicRequest }
+     * 
      */
     public SaveTopicRequest createSaveTopicRequest() {
         return new SaveTopicRequest();
@@ -302,6 +342,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DeleteTopicRequest }
+     * 
      */
     public DeleteTopicRequest createDeleteTopicRequest() {
         return new DeleteTopicRequest();
@@ -309,6 +350,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ListAllLanguagesRequest }
+     * 
      */
     public ListAllLanguagesRequest createListAllLanguagesRequest() {
         return new ListAllLanguagesRequest();
@@ -316,6 +358,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ListAllBooksResponse }
+     * 
      */
     public ListAllBooksResponse createListAllBooksResponse() {
         return new ListAllBooksResponse();
@@ -323,6 +366,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SaveLanguageResponse }
+     * 
      */
     public SaveLanguageResponse createSaveLanguageResponse() {
         return new SaveLanguageResponse();
@@ -330,6 +374,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DeleteLanguageRequest }
+     * 
      */
     public DeleteLanguageRequest createDeleteLanguageRequest() {
         return new DeleteLanguageRequest();
@@ -337,6 +382,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FilterBooksRequest }
+     * 
      */
     public FilterBooksRequest createFilterBooksRequest() {
         return new FilterBooksRequest();
@@ -344,6 +390,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ListAllLibrariesRequest }
+     * 
      */
     public ListAllLibrariesRequest createListAllLibrariesRequest() {
         return new ListAllLibrariesRequest();
@@ -351,6 +398,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DeleteBookRequest }
+     * 
      */
     public DeleteBookRequest createDeleteBookRequest() {
         return new DeleteBookRequest();
@@ -358,6 +406,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SaveBookResponse }
+     * 
      */
     public SaveBookResponse createSaveBookResponse() {
         return new SaveBookResponse();
@@ -365,6 +414,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FilterBooksResponse }
+     * 
      */
     public FilterBooksResponse createFilterBooksResponse() {
         return new FilterBooksResponse();
@@ -372,6 +422,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetBookRequest }
+     * 
      */
     public GetBookRequest createGetBookRequest() {
         return new GetBookRequest();
@@ -379,6 +430,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateTopicResponse }
+     * 
      */
     public CreateTopicResponse createCreateTopicResponse() {
         return new CreateTopicResponse();
@@ -386,6 +438,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetTopicRequest }
+     * 
      */
     public GetTopicRequest createGetTopicRequest() {
         return new GetTopicRequest();
@@ -393,6 +446,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ServiceStatus }
+     * 
      */
     public ServiceStatus createServiceStatus() {
         return new ServiceStatus();

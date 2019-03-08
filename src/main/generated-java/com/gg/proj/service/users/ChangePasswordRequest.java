@@ -2,20 +2,24 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.03.05 à 11:02:15 AM CET 
+// Généré le : 2019.03.08 à 09:59:02 AM CET 
 //
 
 
 package com.gg.proj.service.users;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
  * <p>Classe Java pour anonymous complex type.
- *
+ * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -30,13 +34,15 @@ import javax.xml.bind.annotation.*;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "oldPassword",
-        "newPassword",
-        "userId",
-        "tokenUUID"
+    "oldPassword",
+    "newPassword",
+    "userId",
+    "tokenUUID"
 })
 @XmlRootElement(name = "changePasswordRequest")
 public class ChangePasswordRequest {
@@ -51,9 +57,11 @@ public class ChangePasswordRequest {
 
     /**
      * Obtient la valeur de la propriété oldPassword.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getOldPassword() {
         return oldPassword;
@@ -61,9 +69,11 @@ public class ChangePasswordRequest {
 
     /**
      * Définit la valeur de la propriété oldPassword.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setOldPassword(String value) {
         this.oldPassword = value;
@@ -71,9 +81,11 @@ public class ChangePasswordRequest {
 
     /**
      * Obtient la valeur de la propriété newPassword.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getNewPassword() {
         return newPassword;
@@ -81,9 +93,11 @@ public class ChangePasswordRequest {
 
     /**
      * Définit la valeur de la propriété newPassword.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setNewPassword(String value) {
         this.newPassword = value;
@@ -91,6 +105,7 @@ public class ChangePasswordRequest {
 
     /**
      * Obtient la valeur de la propriété userId.
+     * 
      */
     public int getUserId() {
         return userId;
@@ -98,6 +113,7 @@ public class ChangePasswordRequest {
 
     /**
      * Définit la valeur de la propriété userId.
+     * 
      */
     public void setUserId(int value) {
         this.userId = value;
@@ -105,9 +121,11 @@ public class ChangePasswordRequest {
 
     /**
      * Obtient la valeur de la propriété tokenUUID.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getTokenUUID() {
         return tokenUUID;
@@ -115,9 +133,11 @@ public class ChangePasswordRequest {
 
     /**
      * Définit la valeur de la propriété tokenUUID.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setTokenUUID(String value) {
         this.tokenUUID = value;

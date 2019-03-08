@@ -1,6 +1,8 @@
 package com.gg.proj.util;
 
 import org.mindrot.jbcrypt.BCrypt;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 /**
  * This implementation is inspired by this one https://gist.github.com/craSH/5217757 from Ian Gallagher.
@@ -9,7 +11,7 @@ import org.mindrot.jbcrypt.BCrypt;
 public class Password {
 
     // This is the the log2 of the number of rounds of hashing to apply
-    private static final int WORKLOAD = 20;
+    private static final int WORKLOAD = 12;
 
     /**
      * This method generate a salt, then hash the password using OpenBSD BCrypt.
@@ -35,8 +37,15 @@ public class Password {
      */
     public static boolean checkPassword(String plaintextPassword, String storedHash) throws IllegalArgumentException {
 
-        if (storedHash == null || !storedHash.startsWith("$2a$10$"))
+        if (storedHash == null || !storedHash.startsWith("$2a$"))
             throw new IllegalArgumentException("The given hash is not valid");
-        return BCrypt.checkpw(plaintextPassword, storedHash);
+        LocalDateTime start = LocalDateTime.now();
+        boolean isOkay = BCrypt.checkpw(plaintextPassword, storedHash);
+        LocalDateTime end = LocalDateTime.now();
+
+        Duration total = Duration.between(end, start);
+        System.out.println(total.toString());
+
+        return isOkay;
     }
 }

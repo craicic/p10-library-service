@@ -34,6 +34,7 @@ public class TokenEntity {
 
     @PrePersist
     public void prePersist() {
+        System.out.println("performing prePersist...");
         tokenUUID = UUID.randomUUID();
         LocalDate today = LocalDate.now();
         expirationDate = today.plus(3, ChronoUnit.WEEKS);

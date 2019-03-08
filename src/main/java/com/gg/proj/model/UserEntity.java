@@ -75,11 +75,6 @@ public class UserEntity {
         this.loans = loans;
     }
 
-    @PreUpdate
-    public void preUpdate() {
-        this.lastConnection = LocalDateTime.now();
-    }
-
     @PrePersist
     public void prePersist() {
         this.registerDate = LocalDate.now();

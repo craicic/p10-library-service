@@ -9,10 +9,10 @@ import com.gg.proj.model.UserEntity;
 import com.gg.proj.service.exceptions.*;
 import com.gg.proj.service.users.Token;
 import com.gg.proj.service.users.User;
-import com.gg.proj.util.Password;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -38,13 +38,16 @@ public class UserManager {
 
     private TokenRepository tokenRepository;
 
+    private PasswordEncoder passwordEncoder;
+
     @Autowired
-    public UserManager(TokenMapper tokenMapper, UserMapper userMapper, UserRepository userRepository, TokenManager tokenManager, TokenRepository tokenRepository) {
+    public UserManager(TokenMapper tokenMapper, UserMapper userMapper, UserRepository userRepository, TokenManager tokenManager, TokenRepository tokenRepository, PasswordEncoder passwordEncoder) {
         this.tokenMapper = tokenMapper;
         this.userMapper = userMapper;
         this.userRepository = userRepository;
         this.tokenManager = tokenManager;
         this.tokenRepository = tokenRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Token loginUser(String pseudo, String plaintextPassword) throws UserNotFoundException, IllegalArgumentException {
@@ -54,10 +57,11 @@ public class UserManager {
             log.info("No user " + pseudo + " found un database");
             throw new UserNotFoundException("No such user in database");
         } // Now we check if password and storedHash match
-        else if (Password.checkPassword(plaintextPassword, userEntity.getPasswordHash())) {
+//        else if (Password.checkPassword(plaintextPassword, userEntity.getPasswordHash())) {
+        else if (passwordEncoder.matches(plaintextPassword, userEntity.getPasswordHash())) {
             log.debug("Found user in database : " + userEntity);
             // using save method to trigger @PreUpdate and save the last connection infos
-            userRepository.save(userEntity);
+//            userRepository.updateLastConnectionById(userEntity.getId());
             TokenEntity tokenEntity = tokenManager.checkByUserThenReturnToken(userEntity);
             return tokenMapper.tokenEntityToToken(tokenEntity);
         } else
@@ -91,8 +95,8 @@ public class UserManager {
         if (plaintextPassword.length() < 6)
             throw new IllegalArgumentException("Password must contains at least 6 characters");
 
-        hash = Password.hashPassword(plaintextPassword);
-
+//        hash = Password.hashPassword(plaintextPassword);
+        hash = passwordEncoder.encode(plaintextPassword);
         userEntity = userMapper.userToUserEntity(user);
         userEntity.setPasswordHash(hash);
 
@@ -114,9 +118,10 @@ public class UserManager {
             Optional<UserEntity> optional = userRepository.findById(userId);
 
             if (optional.isPresent()) {
-                if (Password.checkPassword(oldPassword, optional.get().getPasswordHash())) {
-
-                    newHash = Password.hashPassword(newPassword);
+//                if (Password.checkPassword(oldPassword, optional.get().getPasswordHash())) {
+                if (passwordEncoder.matches(oldPassword, optional.get().getPasswordHash())) {
+//                    newHash = Password.hashPassword(newPassword);
+                    newHash = passwordEncoder.encode(newPassword);
                     optional.get().setPasswordHash(newHash);
                     userRepository.save(optional.get());
                 }

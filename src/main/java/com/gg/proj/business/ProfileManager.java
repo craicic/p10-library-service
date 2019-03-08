@@ -8,6 +8,7 @@ import com.gg.proj.service.profiles.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -28,11 +29,15 @@ public class ProfileManager {
 
     private ProfileMapper profileMapper;
 
+    private PasswordEncoder passwordEncoder;
+
     @Autowired
-    public ProfileManager(TokenManager tokenManager, ProfileRepository profileRepository, ProfileMapper profileMapper) {
+    public ProfileManager(TokenManager tokenManager, ProfileRepository profileRepository, ProfileMapper profileMapper
+            , PasswordEncoder passwordEncoder) {
         this.tokenManager = tokenManager;
         this.profileRepository = profileRepository;
         this.profileMapper = profileMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Optional<User> save(User user, String StrUuid) throws InvalidTokenException, OutdatedTokenException {
