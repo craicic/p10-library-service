@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,11 +73,18 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
 
         criteriaQuery.where(predicates.toArray(new Predicate[0])).distinct(true);
 
-        List<BookEntity> listBook = entityManager.createQuery(criteriaQuery).setFirstResult((pageNumber) * pageSize).setMaxResults(pageSize).getResultList();
+        TypedQuery<BookEntity> query = entityManager.createQuery(criteriaQuery);
+
+        int totalRows = query.getResultList().size();
+        List<BookEntity> listBook = query.setFirstResult((pageNumber) * pageSize)
+                .setMaxResults(pageSize)
+                .getResultList();
+
         for (BookEntity b : listBook) {
             log.debug("book found : " + b);
         }
 
-        return new PageImpl<>(listBook, pageable, listBook.size());
+        log.debug("found " + listBook.size() + " result(s) -- number of rows : " + totalRows);
+        return new PageImpl<>(listBook, pageable, totalRows);
     }
 }
