@@ -64,6 +64,8 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
 
         if (available)
             predicates.add(criteriaBuilder.gt(book.get("quantity"), 0));
+        else
+            predicates.add(criteriaBuilder.lt(book.get("quantity"), 1));
         if (languageId >= 0)
             predicates.add(criteriaBuilder.equal(language.get("id"), languageId));
         if (libraryId >= 0)
