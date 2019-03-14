@@ -72,6 +72,7 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteBookRequest")
     @ResponsePayload
     public DeleteBookResponse deleteBook(@RequestPayload DeleteBookRequest request) {
+        log.debug("Entering deleteBook with UUID : [" + request.getTokenUUID() + "]");
         try {
             bookManager.delete(request.getBook(), request.getTokenUUID());
         } catch (Exception e) {

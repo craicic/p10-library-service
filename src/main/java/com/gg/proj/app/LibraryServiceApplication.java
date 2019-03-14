@@ -14,7 +14,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * Annotation here are for springboot to know where beans are stored
  */
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.gg.proj.app", "com.gg.proj.util", "com.gg.proj.service", "com.gg.proj.business", "com.gg.proj.business.mapper"})
+@ComponentScan(basePackages = {
+        "com.gg.proj.app",
+        "com.gg.proj.util",
+        "com.gg.proj.service",
+        "com.gg.proj.business",
+        "com.gg.proj.business.mapper"})
 @EnableJpaRepositories(basePackages = {"com.gg.proj.consumer"})
 @EntityScan(basePackages = "com.gg.proj.model")
 public class LibraryServiceApplication {

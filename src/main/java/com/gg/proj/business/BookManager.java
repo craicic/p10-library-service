@@ -84,6 +84,7 @@ public class BookManager {
 
 
     public void delete(Book book, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
+        log.debug("Entering delete method with UUID : [" + tokenUUID + "]");
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
         } catch (Exception e) {

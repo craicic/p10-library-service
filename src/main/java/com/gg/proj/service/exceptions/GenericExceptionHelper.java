@@ -16,6 +16,9 @@ public class GenericExceptionHelper {
         } else if (e instanceof OutdatedTokenException) {
             log.info("The token has expired");
             throw (OutdatedTokenException) e;
+        } else if (e instanceof IllegalArgumentException) {
+            log.info("UUID looks bad : " + e.getMessage());
+            throw (IllegalArgumentException) e;
         }
     }
 
@@ -53,8 +56,8 @@ public class GenericExceptionHelper {
         } else if (e instanceof IllegalArgumentException) {
             String errorMessage = e.getMessage();
             ServiceStatus serviceStatus = new ServiceStatus();
-            serviceStatus.setMessage("Password too short");
-            serviceStatus.setStatusCode("NOT_STRONG_PASSWORD");
+            serviceStatus.setMessage("Illegal Argument");
+            serviceStatus.setStatusCode("INVALID ARGUMENT");
             throw new ServiceFaultException(errorMessage, serviceStatus);
         } else if (e instanceof RuntimeException) {
             System.out.println("ex : " + e);
@@ -65,6 +68,7 @@ public class GenericExceptionHelper {
             throw new ServiceFaultException(errorMessage, serviceStatus);
         }
         String errorMessage = e.getMessage();
+        System.out.println("ex : " + e);
         ServiceStatus serviceStatus = new ServiceStatus();
         serviceStatus.setMessage("Generic error");
         serviceStatus.setStatusCode("ERROR");

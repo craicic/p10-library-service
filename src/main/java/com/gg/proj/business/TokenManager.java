@@ -67,7 +67,7 @@ public class TokenManager {
     }
 
     public void checkIfValidByUuid(UUID uuid) throws InvalidTokenException, OutdatedTokenException {
-
+        log.debug("Entering checkIfValidByUuid with the uuid : [" + uuid.toString() + "]");
         TokenEntity foundTokenEntity = tokenRepository.findByTokenUUID(uuid);
         if (foundTokenEntity == null) {
             throw new InvalidTokenException("no such token in database");
