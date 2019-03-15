@@ -19,6 +19,13 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer>, Book
             "where upper(b.title) like upper(:x) or upper(b.author) like upper(:x) or upper(b.summary) like upper(:x)")
     List<BookEntity> searchAllBooks(@Param("x") String keyWord);
 
+    @Query("UPDATE BookEntity b SET b.quantity = (b.quantity - 1) WHERE b.id = (:id)")
+    void decreaseQuantity(@Param("id") int bookId);
+
+
+    @Query("UPDATE BookEntity b SET b.quantity = (b.quantity + 1) WHERE b.id = (:id)")
+    void increaseQuantity(@Param("id") int bookId);
+
 //    @Query("select distinct la, li, t from  BookEntity b , LanguageEntity la , LibraryEntity li , TopicEntity t " +
 //            " inner join b.language  as la " +
 //            " inner join b.library  as li " +
