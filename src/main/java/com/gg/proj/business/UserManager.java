@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.Base64;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -50,15 +51,19 @@ public class UserManager {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Token loginUser(String pseudo, String plaintextPassword) throws UserNotFoundException, IllegalArgumentException {
+    public Token loginUser(String pseudo, String encodedPassword) throws UserNotFoundException, IllegalArgumentException {
         log.debug("Entering loginUser method... Requesting database for a user with pseudo : " + pseudo);
         UserEntity userEntity = userRepository.findByPseudo(pseudo);
+        // here we decode the password
+        byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword);
+        String decodedPassword = new String(decodedBytes);
+
         if (userEntity == null) {
             log.info("No user " + pseudo + " found un database");
             throw new UserNotFoundException("No such user in database");
         } // Now we check if password and storedHash match
 //        else if (Password.checkPassword(plaintextPassword, userEntity.getPasswordHash())) {
-        else if (passwordEncoder.matches(plaintextPassword, userEntity.getPasswordHash())) {
+        else if (passwordEncoder.matches(decodedPassword, userEntity.getPasswordHash())) {
             log.debug("Found user in database : " + userEntity);
             // using save method to trigger @PreUpdate and save the last connection infos
 //            userRepository.updateLastConnectionById(userEntity.getId());
