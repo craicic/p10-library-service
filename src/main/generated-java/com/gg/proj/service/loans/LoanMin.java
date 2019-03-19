@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.03.05 à 11:11:32 AM CET 
+// Généré le : 2019.03.19 à 09:59:29 PM CET 
 //
 
 
@@ -17,9 +17,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Classe Java pour loanMin complex type.
- *
+ * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- *
+ * 
  * <pre>
  * &lt;complexType name="loanMin">
  *   &lt;complexContent>
@@ -34,13 +34,15 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "loanMin", propOrder = {
-        "userId",
-        "bookId",
-        "loanStartDate",
-        "loanEndDate"
+    "userId",
+    "bookId",
+    "loanStartDate",
+    "loanEndDate"
 })
 public class LoanMin {
 
@@ -53,6 +55,7 @@ public class LoanMin {
 
     /**
      * Obtient la valeur de la propriété userId.
+     * 
      */
     public int getUserId() {
         return userId;
@@ -60,6 +63,7 @@ public class LoanMin {
 
     /**
      * Définit la valeur de la propriété userId.
+     * 
      */
     public void setUserId(int value) {
         this.userId = value;
@@ -67,6 +71,7 @@ public class LoanMin {
 
     /**
      * Obtient la valeur de la propriété bookId.
+     * 
      */
     public int getBookId() {
         return bookId;
@@ -74,6 +79,7 @@ public class LoanMin {
 
     /**
      * Définit la valeur de la propriété bookId.
+     * 
      */
     public void setBookId(int value) {
         this.bookId = value;
@@ -81,9 +87,11 @@ public class LoanMin {
 
     /**
      * Obtient la valeur de la propriété loanStartDate.
-     *
-     * @return possible object is
-     * {@link XMLGregorianCalendar }
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
      */
     public XMLGregorianCalendar getLoanStartDate() {
         return loanStartDate;
@@ -91,9 +99,11 @@ public class LoanMin {
 
     /**
      * Définit la valeur de la propriété loanStartDate.
-     *
-     * @param value allowed object is
-     *              {@link XMLGregorianCalendar }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
      */
     public void setLoanStartDate(XMLGregorianCalendar value) {
         this.loanStartDate = value;
@@ -101,9 +111,11 @@ public class LoanMin {
 
     /**
      * Obtient la valeur de la propriété loanEndDate.
-     *
-     * @return possible object is
-     * {@link XMLGregorianCalendar }
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
      */
     public XMLGregorianCalendar getLoanEndDate() {
         return loanEndDate;
@@ -111,9 +123,11 @@ public class LoanMin {
 
     /**
      * Définit la valeur de la propriété loanEndDate.
-     *
-     * @param value allowed object is
-     *              {@link XMLGregorianCalendar }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
      */
     public void setLoanEndDate(XMLGregorianCalendar value) {
         this.loanEndDate = value;

@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.03.05 à 11:02:15 AM CET 
+// Généré le : 2019.03.19 à 09:59:29 PM CET 
 //
 
 
@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Classe Java pour anonymous complex type.
- *
+ * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -30,10 +30,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "user"
+    "user"
 })
 @XmlRootElement(name = "getProfileResponse")
 public class GetProfileResponse {
@@ -42,9 +44,11 @@ public class GetProfileResponse {
 
     /**
      * Obtient la valeur de la propriété user.
-     *
-     * @return possible object is
-     * {@link User }
+     * 
+     * @return
+     *     possible object is
+     *     {@link User }
+     *     
      */
     public User getUser() {
         return user;
@@ -52,9 +56,11 @@ public class GetProfileResponse {
 
     /**
      * Définit la valeur de la propriété user.
-     *
-     * @param value allowed object is
-     *              {@link User }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link User }
+     *     
      */
     public void setUser(User value) {
         this.user = value;

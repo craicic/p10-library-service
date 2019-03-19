@@ -133,4 +133,18 @@ public class LoanEndpoint {
         }
         return response;
     }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllLoansByUserIdRequest")
+    @ResponsePayload
+    public FindAllLoansByUserIdResponse findAllLoansByUserId(@RequestPayload FindAllLoansByUserIdRequest request) throws ServiceFaultException {
+        log.debug("Entering findAllLoansByUserId... ");
+        FindAllLoansByUserIdResponse response = new FindAllLoansByUserIdResponse();
+        List<LoanDetailed> loans = response.getLoansDetailed();
+        try {
+            loans.addAll(loanManager.findMyCurrentLoans(request.getTokenUUID(), request.getUserId()));
+        } catch (Exception ex) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(ex);
+        }
+        return response;
+    }
 }

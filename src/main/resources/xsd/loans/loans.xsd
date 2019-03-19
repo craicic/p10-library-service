@@ -111,6 +111,23 @@
         </xs:complexType>
     </xs:element>
 
+    <!-- find all loans for a certain user -->
+    <xs:element name="findAllLoansByUserIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="tokenUUID" type="xs:string"/>
+                <xs:element name="userId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="findAllLoansByUserIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loansDetailed" type="tns:loanDetailed" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <!--================ OBJECTS ================-->
     <!-- a loan with no Id, for creating purpose -->
     <xs:complexType name="loanMin">
@@ -122,7 +139,7 @@
         </xs:sequence>
     </xs:complexType>
 
-    <!-- a loan with all informations -->
+    <!-- a loan with all information -->
     <xs:complexType name="loan">
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>
@@ -132,6 +149,32 @@
             <xs:element name="loanEndDate" type="xs:date" minOccurs="0"/>
             <xs:element name="extended" type="xs:boolean" minOccurs="0"/>
             <xs:element name="closed" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- a loan with all information plus a book attached -->
+    <xs:complexType name="loanDetailed">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="userId" type="xs:int"/>
+            <xs:element name="book" type="tns:book"/>
+            <xs:element name="loanStartDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="loanEndDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="extended" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="closed" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- a minimalist book -->
+    <xs:complexType name="book">
+        <xs:sequence>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="author" type="xs:string"/>
+            <xs:element name="isbn" type="xs:string" minOccurs="0"/>
+            <xs:element name="quantity" type="xs:int"/>
+            <xs:element name="publicationDate" type="xs:date"/>
+            <xs:element name="libraryId" type="xs:int"/>
+            <xs:element name="summary" type="xs:string" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

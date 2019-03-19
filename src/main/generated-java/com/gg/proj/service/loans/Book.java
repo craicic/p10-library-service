@@ -2,14 +2,12 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.03.19 à 09:59:28 PM CET 
+// Généré le : 2019.03.19 à 09:59:29 PM CET 
 //
 
 
-package com.gg.proj.service.books;
+package com.gg.proj.service.loans;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -19,20 +17,18 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Classe Java pour bookMin complex type.
+ * <p>Classe Java pour book complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="bookMin">
+ * &lt;complexType name="book">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="isbn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="topicIds" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded"/>
- *         &lt;element name="languageId" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="quantity" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="publicationDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="libraryId" type="{http://www.w3.org/2001/XMLSchema}int"/>
@@ -46,27 +42,22 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "bookMin", propOrder = {
+@XmlType(name = "book", propOrder = {
     "title",
     "author",
     "isbn",
-    "topicIds",
-    "languageId",
     "quantity",
     "publicationDate",
     "libraryId",
     "summary"
 })
-public class BookMin {
+public class Book {
 
     @XmlElement(required = true)
     protected String title;
     @XmlElement(required = true)
     protected String author;
     protected String isbn;
-    @XmlElement(type = Integer.class)
-    protected List<Integer> topicIds;
-    protected int languageId;
     protected int quantity;
     @XmlElement(required = true)
     @XmlSchemaType(name = "date")
@@ -144,51 +135,6 @@ public class BookMin {
      */
     public void setIsbn(String value) {
         this.isbn = value;
-    }
-
-    /**
-     * Gets the value of the topicIds property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the topicIds property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getTopicIds().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Integer }
-     * 
-     * 
-     */
-    public List<Integer> getTopicIds() {
-        if (topicIds == null) {
-            topicIds = new ArrayList<Integer>();
-        }
-        return this.topicIds;
-    }
-
-    /**
-     * Obtient la valeur de la propriété languageId.
-     * 
-     */
-    public int getLanguageId() {
-        return languageId;
-    }
-
-    /**
-     * Définit la valeur de la propriété languageId.
-     * 
-     */
-    public void setLanguageId(int value) {
-        this.languageId = value;
     }
 
     /**

@@ -156,4 +156,12 @@ public class BookManager {
         bookEntity = bookRepository.save(bookEntity);
         return Optional.ofNullable(bookMapper.bookEntityToBook(bookEntity));
     }
+
+    public void decreaseQuantity(int bookId) {
+        bookRepository.decreaseQuantity(bookId);
+    }
+
+    public void increaseQuantity(int bookId) {
+        bookRepository.increaseQuantity(bookId);
+    }
 }

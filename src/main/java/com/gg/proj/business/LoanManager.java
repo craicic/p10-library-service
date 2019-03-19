@@ -4,11 +4,13 @@ import com.gg.proj.business.mapper.LoanMapper;
 import com.gg.proj.consumer.BookRepository;
 import com.gg.proj.consumer.LoanRepository;
 import com.gg.proj.model.LoanEntity;
+import com.gg.proj.model.UserEntity;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.InvalidLoanOperationException;
 import com.gg.proj.service.exceptions.InvalidTokenException;
 import com.gg.proj.service.exceptions.OutdatedTokenException;
 import com.gg.proj.service.loans.Loan;
+import com.gg.proj.service.loans.LoanDetailed;
 import com.gg.proj.service.loans.LoanMin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,14 +34,14 @@ public class LoanManager {
     private LoanRepository loanRepository;
     private TokenManager tokenManager;
     private LoanMapper loanMapper;
-    private BookRepository bookRepository;
+    private BookManager bookManager;
 
     @Autowired
-    public LoanManager(LoanRepository loanRepository, TokenManager tokenManager, LoanMapper loanMapper, BookRepository bookRepository) {
+    public LoanManager(LoanRepository loanRepository, TokenManager tokenManager, LoanMapper loanMapper, BookManager bookManager) {
         this.loanRepository = loanRepository;
         this.tokenManager = tokenManager;
         this.loanMapper = loanMapper;
-        this.bookRepository = bookRepository;
+        this.bookManager = bookManager;
     }
 
 
@@ -55,7 +57,7 @@ public class LoanManager {
                 "] and book id : [" + loanMin.getBookId() + "]");
         LoanEntity loanEntity = loanMapper.loanMinToLoanEntity(loanMin);
         Optional<Loan> opt = Optional.ofNullable(loanMapper.loanEntityToLoan(loanRepository.save(loanEntity)));
-        bookRepository.decreaseQuantity(loanMin.getBookId());
+        bookManager.decreaseQuantity(loanMin.getBookId());
         return opt;
     }
 
@@ -141,7 +143,7 @@ public class LoanManager {
                 if (optionalFromDB.isPresent()) {
                     optionalFromDB.get().setClosed(true);
                     Optional<Loan> opt = Optional.ofNullable(loanMapper.loanEntityToLoan(loanRepository.save(optionalFromDB.get())));
-                    opt.ifPresent(loan -> bookRepository.increaseQuantity(loan.getBookId()));
+                    opt.ifPresent(loan -> bookManager.increaseQuantity(loan.getBookId()));
                     return opt;
                 }
             } else throw new InvalidLoanOperationException("Invalid id");
@@ -184,7 +186,7 @@ public class LoanManager {
     }
 
 
-    public List<Loan> findAll(String tokenUUID) throws OutdatedTokenException, InvalidTokenException  {
+    public List<Loan> findAll(String tokenUUID) throws OutdatedTokenException, InvalidTokenException {
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
         } catch (
@@ -195,5 +197,21 @@ public class LoanManager {
         return new ArrayList<>(loanMapper.loanEntityListToLoanList(loanEntities));
     }
 
+    public List<LoanDetailed> findMyCurrentLoans(String tokenUUID, Integer userId) throws OutdatedTokenException, InvalidTokenException {
+        log.debug("Entering findMyCurrentLoans... ");
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (
+                Exception ex) {
+            GenericExceptionHelper.tokenExceptionHandler(ex);
+        }
+        UserEntity user = new UserEntity();
+        user.setId(userId);
+        List<LoanEntity> loanEntities = loanRepository.findDistinctLoanByUserIdAndClosedIsFalse(userId);
+        for (LoanEntity l : loanEntities) {
+            log.debug("loan find : " + l);
+        }
+        return new ArrayList<>(loanMapper.loanEntityListToLoanDetailedList(loanEntities));
+    }
 }
 

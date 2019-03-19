@@ -2,11 +2,11 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.03.19 à 09:59:28 PM CET 
+// Généré le : 2019.03.19 à 09:59:29 PM CET 
 //
 
 
-package com.gg.proj.service.books;
+package com.gg.proj.service.loans;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="tokenUUID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="language" type="{http://proj.gg.com/service/books}language"/>
+ *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,15 +38,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "tokenUUID",
-    "language"
+    "userId"
 })
-@XmlRootElement(name = "deleteLanguageRequest")
-public class DeleteLanguageRequest {
+@XmlRootElement(name = "findAllLoansByUserIdRequest")
+public class FindAllLoansByUserIdRequest {
 
     @XmlElement(required = true)
     protected String tokenUUID;
-    @XmlElement(required = true)
-    protected Language language;
+    protected int userId;
 
     /**
      * Obtient la valeur de la propriété tokenUUID.
@@ -73,27 +72,19 @@ public class DeleteLanguageRequest {
     }
 
     /**
-     * Obtient la valeur de la propriété language.
+     * Obtient la valeur de la propriété userId.
      * 
-     * @return
-     *     possible object is
-     *     {@link Language }
-     *     
      */
-    public Language getLanguage() {
-        return language;
+    public int getUserId() {
+        return userId;
     }
 
     /**
-     * Définit la valeur de la propriété language.
+     * Définit la valeur de la propriété userId.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Language }
-     *     
      */
-    public void setLanguage(Language value) {
-        this.language = value;
+    public void setUserId(int value) {
+        this.userId = value;
     }
 
 }

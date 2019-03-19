@@ -1,11 +1,14 @@
 package com.gg.proj.business.mapper;
 
+import com.gg.proj.model.BookEntity;
 import com.gg.proj.model.LoanEntity;
 import com.gg.proj.service.loans.Loan;
+import com.gg.proj.service.loans.LoanDetailed;
 import com.gg.proj.service.loans.LoanMin;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -31,4 +34,11 @@ public interface LoanMapper {
             @Mapping(source = "userId", target = "user.id")
     })
     LoanEntity loanMinToLoanEntity(LoanMin loanMin);
+
+    List<LoanDetailed> loanEntityListToLoanDetailedList(List<LoanEntity> loanEntities);
+
+    @Mappings({
+            @Mapping(source = "user.id", target = "userId")
+    })
+    LoanDetailed loanEntityToLoanDetailed(LoanEntity loanEntity);
 }

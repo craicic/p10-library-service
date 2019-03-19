@@ -4,6 +4,7 @@ import com.gg.proj.model.BookEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -19,10 +20,11 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer>, Book
             "where upper(b.title) like upper(:x) or upper(b.author) like upper(:x) or upper(b.summary) like upper(:x)")
     List<BookEntity> searchAllBooks(@Param("x") String keyWord);
 
+    @Modifying
     @Query("UPDATE BookEntity b SET b.quantity = (b.quantity - 1) WHERE b.id = (:id)")
     void decreaseQuantity(@Param("id") int bookId);
 
-
+    @Modifying
     @Query("UPDATE BookEntity b SET b.quantity = (b.quantity + 1) WHERE b.id = (:id)")
     void increaseQuantity(@Param("id") int bookId);
 

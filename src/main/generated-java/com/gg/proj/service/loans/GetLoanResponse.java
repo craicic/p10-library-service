@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.03.05 à 11:11:32 AM CET 
+// Généré le : 2019.03.19 à 09:59:29 PM CET 
 //
 
 
@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Classe Java pour anonymous complex type.
- *
+ * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- *
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -30,10 +30,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "loan"
+    "loan"
 })
 @XmlRootElement(name = "getLoanResponse")
 public class GetLoanResponse {
@@ -42,9 +44,11 @@ public class GetLoanResponse {
 
     /**
      * Obtient la valeur de la propriété loan.
-     *
-     * @return possible object is
-     * {@link Loan }
+     * 
+     * @return
+     *     possible object is
+     *     {@link Loan }
+     *     
      */
     public Loan getLoan() {
         return loan;
@@ -52,9 +56,11 @@ public class GetLoanResponse {
 
     /**
      * Définit la valeur de la propriété loan.
-     *
-     * @param value allowed object is
-     *              {@link Loan }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Loan }
+     *     
      */
     public void setLoan(Loan value) {
         this.loan = value;

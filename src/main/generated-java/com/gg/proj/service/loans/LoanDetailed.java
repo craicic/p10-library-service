@@ -10,24 +10,25 @@ package com.gg.proj.service.loans;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Classe Java pour loan complex type.
+ * <p>Classe Java pour loanDetailed complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="loan">
+ * &lt;complexType name="loanDetailed">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="bookId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="book" type="{http://proj.gg.com/service/loans}book"/>
  *         &lt;element name="loanStartDate" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
  *         &lt;element name="loanEndDate" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
  *         &lt;element name="extended" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
@@ -41,20 +42,21 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "loan", propOrder = {
+@XmlType(name = "loanDetailed", propOrder = {
     "id",
     "userId",
-    "bookId",
+    "book",
     "loanStartDate",
     "loanEndDate",
     "extended",
     "closed"
 })
-public class Loan {
+public class LoanDetailed {
 
     protected int id;
     protected int userId;
-    protected int bookId;
+    @XmlElement(required = true)
+    protected Book book;
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar loanStartDate;
     @XmlSchemaType(name = "date")
@@ -95,19 +97,27 @@ public class Loan {
     }
 
     /**
-     * Obtient la valeur de la propriété bookId.
+     * Obtient la valeur de la propriété book.
      * 
+     * @return
+     *     possible object is
+     *     {@link Book }
+     *     
      */
-    public int getBookId() {
-        return bookId;
+    public Book getBook() {
+        return book;
     }
 
     /**
-     * Définit la valeur de la propriété bookId.
+     * Définit la valeur de la propriété book.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Book }
+     *     
      */
-    public void setBookId(int value) {
-        this.bookId = value;
+    public void setBook(Book value) {
+        this.book = value;
     }
 
     /**
