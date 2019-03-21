@@ -168,6 +168,7 @@
     <!-- a minimalist book -->
     <xs:complexType name="book">
         <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
             <xs:element name="title" type="xs:string"/>
             <xs:element name="author" type="xs:string"/>
             <xs:element name="isbn" type="xs:string" minOccurs="0"/>

@@ -97,7 +97,7 @@ public class LoanManager {
         return Optional.ofNullable(loanMapper.loanEntityToLoan(loanRepository.save(loanEntityFromDB)));
     }
 
-    public Optional<Loan> extend(Loan loan, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {
+    public Optional<Loan> extend(Loan loan, String tokenUUID) throws OutdatedTokenException, InvalidTokenException, InvalidLoanOperationException {
         log.debug("Entering Extend...");
 
         Optional<Loan> optionalFromEndpoint = Optional.ofNullable(loan);
@@ -118,12 +118,16 @@ public class LoanManager {
                     }
                     if (loanEntityFromDB.getLoanEndDate().equals(loanEntityFromEndpoint.getLoanEndDate()) || loanEntityFromEndpoint.getLoanEndDate() == null) {
                         newEndDate = loanEntityFromDB.getLoanEndDate().plus(4, ChronoUnit.WEEKS);
+                        log.debug("Assigning a base value of +4 week to the EndDate : " + newEndDate);
                     } else if (loanEntityFromDB.getLoanEndDate().isBefore(loanEntityFromEndpoint.getLoanEndDate())) {
                         newEndDate = loanEntityFromEndpoint.getLoanEndDate();
+                        log.debug("Assigning a specific value to the EndDate : " + newEndDate);
                     } else {
                         throw new InvalidLoanOperationException("The new endDate must be after the old one");
                     }
-                    loanEntityFromDB.setLoanStartDate(newEndDate);
+                    loanEntityFromDB.setLoanEndDate(newEndDate);
+                    loanEntityFromDB.setExtended(true);
+                    loanRepository.save(loanEntityFromDB);
                 }
             }
         } catch (Exception ex) {
@@ -209,7 +213,7 @@ public class LoanManager {
         user.setId(userId);
         List<LoanEntity> loanEntities = loanRepository.findDistinctLoanByUserIdAndClosedIsFalse(userId);
         for (LoanEntity l : loanEntities) {
-            log.debug("loan find : " + l);
+            log.debug("Loan found : " + l);
         }
         return new ArrayList<>(loanMapper.loanEntityListToLoanDetailedList(loanEntities));
     }
