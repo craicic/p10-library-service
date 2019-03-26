@@ -14,7 +14,7 @@ import java.util.Objects;
 public class TopicEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)

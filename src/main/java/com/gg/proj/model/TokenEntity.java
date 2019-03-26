@@ -10,7 +10,7 @@ import java.util.UUID;
 public class TokenEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "token_uuid")

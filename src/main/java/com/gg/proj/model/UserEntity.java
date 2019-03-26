@@ -13,7 +13,7 @@ import java.util.Objects;
 public class UserEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "first_name", nullable = false)

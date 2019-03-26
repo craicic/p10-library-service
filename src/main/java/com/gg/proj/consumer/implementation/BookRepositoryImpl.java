@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
         Root<BookEntity> book = criteriaQuery.from(BookEntity.class);
         Join<BookEntity, LanguageEntity> language = book.join("language");
         Join<BookEntity, LibraryEntity> library = book.join("library");
-        Join<BookEntity, TopicEntity> topic = book.join("topics");
+        Join<BookEntity, TopicEntity> topic = book.join("topics", JoinType.LEFT);
 
 
         List<Predicate> predicates = new ArrayList<>();

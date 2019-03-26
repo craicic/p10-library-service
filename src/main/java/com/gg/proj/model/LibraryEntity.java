@@ -13,7 +13,7 @@ import java.util.List;
 public class LibraryEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @OneToMany(mappedBy = "library")

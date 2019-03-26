@@ -10,7 +10,7 @@ import java.util.Objects;
 public class LoanEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne

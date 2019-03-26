@@ -13,7 +13,7 @@ import java.util.Objects;
 public class BookEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -31,7 +31,6 @@ public class BookEntity {
             joinColumns = {@JoinColumn(name = "book_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "topic_id", referencedColumnName = "id")},
             indexes = {@Index(name = "topic_book_idx", columnList = ("book_id,topic_id"), unique = true)}
-
     )
     @Column(nullable = false)
     private List<TopicEntity> topics;

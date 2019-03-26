@@ -13,7 +13,7 @@ import java.util.Objects;
 public class LanguageEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
