@@ -62,8 +62,30 @@
         <xs:complexType>
         </xs:complexType>
     </xs:element>
-
+    <!-- get a list of late users -->
+    <xs:element name="listLateProfilesRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="listLateProfilesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="users" type="tns:userMin" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
     <!--================ OBJECTS ================-->
+    <!-- a user with minimal information -->
+    <xs:complexType name="userMin">
+        <xs:sequence>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="mailAddress" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
     <!-- a user -->
     <xs:complexType name="user">
         <xs:sequence>

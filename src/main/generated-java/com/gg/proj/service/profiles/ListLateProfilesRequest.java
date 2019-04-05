@@ -10,7 +10,6 @@ package com.gg.proj.service.profiles;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -25,7 +24,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="tokenUUID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,37 +33,9 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "tokenUUID"
-})
-@XmlRootElement(name = "listAllProfilesRequest")
-public class ListAllProfilesRequest {
+@XmlType(name = "")
+@XmlRootElement(name = "listLateProfilesRequest")
+public class ListLateProfilesRequest {
 
-    @XmlElement(required = true)
-    protected String tokenUUID;
-
-    /**
-     * Obtient la valeur de la propriété tokenUUID.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTokenUUID() {
-        return tokenUUID;
-    }
-
-    /**
-     * Définit la valeur de la propriété tokenUUID.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTokenUUID(String value) {
-        this.tokenUUID = value;
-    }
 
 }

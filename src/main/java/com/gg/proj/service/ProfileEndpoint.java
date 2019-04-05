@@ -90,4 +90,14 @@ public class ProfileEndpoint {
         }
         return response;
     }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listLateProfilesRequest")
+    @ResponsePayload
+    public ListLateProfilesResponse ListLateProfiles(@RequestPayload ListLateProfilesRequest request) throws ServiceFaultException {
+        log.debug("Entering listLateProfiles... ");
+        ListLateProfilesResponse response = new ListLateProfilesResponse();
+        List<UserMin> users = response.getUsers();
+        users.addAll(profileManager.findLatecomers());
+        return response;
+    }
 }

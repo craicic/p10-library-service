@@ -3,6 +3,7 @@ package com.gg.proj.business.mapper;
 
 import com.gg.proj.model.UserEntity;
 import com.gg.proj.service.profiles.User;
+import com.gg.proj.service.profiles.UserMin;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface ProfileMapper {
     User userEntityToUser(UserEntity userEntity);
 
     List<User> userEntityListToUserList(List<UserEntity> users);
+
+    List<UserMin> userEntityListToUserMinList(List<UserEntity> users);
 }

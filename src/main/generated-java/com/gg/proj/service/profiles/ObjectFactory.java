@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2019.03.19 à 09:59:29 PM CET 
+// Généré le : 2019.04.05 à 10:36:35 AM CEST 
 //
 
 
@@ -74,6 +74,30 @@ public class ObjectFactory {
      */
     public GetProfileRequest createGetProfileRequest() {
         return new GetProfileRequest();
+    }
+
+    /**
+     * Create an instance of {@link ListLateProfilesRequest }
+     * 
+     */
+    public ListLateProfilesRequest createListLateProfilesRequest() {
+        return new ListLateProfilesRequest();
+    }
+
+    /**
+     * Create an instance of {@link ListLateProfilesResponse }
+     * 
+     */
+    public ListLateProfilesResponse createListLateProfilesResponse() {
+        return new ListLateProfilesResponse();
+    }
+
+    /**
+     * Create an instance of {@link UserMin }
+     * 
+     */
+    public UserMin createUserMin() {
+        return new UserMin();
     }
 
     /**

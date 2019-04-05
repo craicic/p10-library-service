@@ -5,6 +5,7 @@ import com.gg.proj.consumer.ProfileRepository;
 import com.gg.proj.model.UserEntity;
 import com.gg.proj.service.exceptions.*;
 import com.gg.proj.service.profiles.User;
+import com.gg.proj.service.profiles.UserMin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Component
 @Transactional
@@ -121,5 +119,9 @@ public class ProfileManager {
             GenericExceptionHelper.tokenExceptionHandler(ex);
         }
         return users;
+    }
+
+    public List<UserMin> findLatecomers() {
+        return profileMapper.userEntityListToUserMinList(profileRepository.findLatecomers()) ;
     }
 }
