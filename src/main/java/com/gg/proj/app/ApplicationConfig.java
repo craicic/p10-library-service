@@ -1,5 +1,7 @@
 package com.gg.proj.app;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -28,6 +30,12 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class ApplicationConfig {
 
+    private CustomDataSourceProperties customDataSourceProperties;
+
+    @Autowired
+    public ApplicationConfig(CustomDataSourceProperties customDataSourceProperties) {
+        this.customDataSourceProperties = customDataSourceProperties;
+    }
 
     //    PASSWORD MANAGEMENT
     @Bean
@@ -53,10 +61,10 @@ public class ApplicationConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/db-library");
-        dataSource.setUsername("library-service");
-        dataSource.setPassword("test123");
+        dataSource.setDriverClassName(customDataSourceProperties.getDriverClassName());
+        dataSource.setUrl(customDataSourceProperties.getUrl());
+        dataSource.setUsername(customDataSourceProperties.getUsername());
+        dataSource.setPassword(customDataSourceProperties.getPassword());
         return dataSource;
     }
 
