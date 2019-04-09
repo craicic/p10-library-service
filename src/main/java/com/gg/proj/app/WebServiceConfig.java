@@ -2,6 +2,7 @@ package com.gg.proj.app;
 
 import com.gg.proj.service.exceptions.DetailSoapFaultDefinitionExceptionResolver;
 import com.gg.proj.service.exceptions.ServiceFaultException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -21,20 +22,29 @@ import java.util.Properties;
 @Configuration
 public class WebServiceConfig {
 
+    private CustomWebServiceProperties customWebServiceProperties;
+
+    @Autowired
+    public WebServiceConfig(CustomWebServiceProperties customWebServiceProperties) {
+        this.customWebServiceProperties = customWebServiceProperties;
+    }
+
     //    WEB SERVICE
     @Bean
     public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
+        // base is "/ws/*"
+        String urlMapping = customWebServiceProperties.getLocation() + "/*";
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean(servlet, "/ws/*");
+        return new ServletRegistrationBean(servlet, urlMapping);
     }
 
     @Bean(name = "books")
     public DefaultWsdl11Definition bookWsdl11Definition(XsdSchema booksSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("BookPort");
-        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setLocationUri(customWebServiceProperties.getLocation());
         wsdl11Definition.setTargetNamespace("http://proj.gg.com/service/books");
         wsdl11Definition.setSchema(booksSchema);
         return wsdl11Definition;
@@ -44,7 +54,7 @@ public class WebServiceConfig {
     public DefaultWsdl11Definition userWsdl11Definition(XsdSchema usersSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("UserPort");
-        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setLocationUri(customWebServiceProperties.getLocation());
         wsdl11Definition.setTargetNamespace("http://proj.gg.com/service/users");
         wsdl11Definition.setSchema(usersSchema);
         return wsdl11Definition;
@@ -54,7 +64,7 @@ public class WebServiceConfig {
     public DefaultWsdl11Definition profileWsdl11Definition(XsdSchema profilesSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("ProfilePort");
-        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setLocationUri(customWebServiceProperties.getLocation());
         wsdl11Definition.setTargetNamespace("http://proj.gg.com/service/profiles");
         wsdl11Definition.setSchema(profilesSchema);
         return wsdl11Definition;
@@ -64,7 +74,7 @@ public class WebServiceConfig {
     public DefaultWsdl11Definition loanWsdl11Definition(XsdSchema loansSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("LoanPort");
-        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setLocationUri(customWebServiceProperties.getLocation());
         wsdl11Definition.setTargetNamespace("http://proj.gg.com/service/loans");
         wsdl11Definition.setSchema(loansSchema);
         return wsdl11Definition;
