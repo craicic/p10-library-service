@@ -1,0 +1,1 @@
+INSERT INTO public.topic_book (book_id, topic_id) VALUES (2, 1);
