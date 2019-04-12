@@ -37,10 +37,15 @@ Following steps will let the application create the tables.
 - Download or clone this repository.
 - Import it in your IDE then **build it**.
 
-Now your IDE should recognize custom properties in `src/main/application.properties`
+Now your IDE should recognize custom properties in `src/main/application.properties` for auto-completion
 
 ##### 5 - Configure application.properties
-Fill the custom datasource properties. Then edit the wsdl `location webservice.location` : keep in mind that final location will be `localhost:{tomcat-port}/{tomcat-context}/webservice.location`
+Edit the custom datasource properties :\
+`webservice.datasource.driverClassNam=org.postgresql.Driver`\
+`webservice.datasource.url` should be `jdbc:postgresql://localhost:5432/{your-db-name}`\
+`webservice.datasource.username`\
+`webservice.datasource.password`\
+Then edit the wsdl location `webservice.location` : keep in mind that final location will be `localhost:{tomcat-port}/{tomcat-context}/webservice.location`
 
 ##### 6 - Compile the application
 Using `mvn compile`. Then run
@@ -60,7 +65,8 @@ By running `mvn clean package`
 Download the last version of [Tomcat 9](https://tomcat.apache.org/download-90.cgi). Unzip it. Then go in your IDE and configure it.\
 With Intellij go to File | Settings | Build, Execution, Deployment | Application Servers. Add a tomcat server via `+` fill the tomcat home and press Ok.
 Finally go to Run | Edit Configuration... then add a local Tomcat server.\
-Go to Deployment, then add an artifact (the war you've just packaged). Set a context folder and press OK.\
+Go to Deployment, then add an artifact (the war you've just packaged). Set a context folder and press OK.
+
 /!\ Remember this context folder as it's need for deploying the webapp and run the batch.
 
 ##### 10 - Run the app on tomcat
