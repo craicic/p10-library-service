@@ -1,10 +1,10 @@
 # Web Service for the library project  
   
-### Description  
+## Description  
   
 TODO
   
-### Technologies  
+## Technologies  
   
 This project mostly use Spring Boot to manage dependency, it has been started via [Spring Initializr](https://start.spring.io/).  
   
@@ -19,7 +19,7 @@ Service : Spring WS and WSDL4J
 Spring Security to handle passwords encryption\
 Mapstruct for object mapping
       
-### Deployement  
+## Deployement  
  
 ##### 1 - Prepare postgreSQL
 Install [postgreSQL9.6](https://www.postgresql.org/download/) and pgAdmin 4, remember the user/password you set during the installation\
