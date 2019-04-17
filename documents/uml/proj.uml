@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.gg.proj</OriginalElement>
+  <nodes>
+    <node x="117.16666666666666" y="299.201171875">com.gg.proj.service</node>
+    <node x="20.0" y="397.201171875">com.gg.proj.util</node>
+    <node x="180.01562499999997" y="114.201171875">com.gg.proj.consumer</node>
+    <node x="272.16666666666663" y="288.201171875">com.gg.proj.LibraryServiceApplicationTests</node>
+    <node x="311.0" y="191.201171875">com.gg.proj.app</node>
+    <node x="40.0" y="7.201171875">com.gg.proj.model</node>
+    <node x="75.66666666666666" y="191.201171875">com.gg.proj.business</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.gg.proj.consumer" target="com.gg.proj.model">
+      <point x="0.0" y="-13.5" />
+      <point x="251.01562499999997" y="94.201171875" />
+      <point x="150.91666666666669" y="94.201171875" />
+      <point x="50.416666666666686" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.service" target="com.gg.proj.business">
+      <point x="-33.75" y="-13.5" />
+      <point x="150.91666666666666" y="268.201171875" />
+      <point x="164.41666666666666" y="268.201171875" />
+      <point x="17.75" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.service" target="com.gg.proj.service">
+      <point x="0.0" y="13.5" />
+      <point x="184.66666666666666" y="346.201171875" />
+      <point x="97.16666666666666" y="346.201171875" />
+      <point x="97.16666666666666" y="312.701171875" />
+      <point x="-67.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.LibraryServiceApplicationTests" target="com.gg.proj.app">
+      <point x="0.0" y="-24.5" />
+      <point x="35.66666666666666" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.model" target="com.gg.proj.model">
+      <point x="-30.25" y="13.5" />
+      <point x="70.25" y="64.201171875" />
+      <point x="10.0" y="64.201171875" />
+      <point x="10.0" y="20.701171875" />
+      <point x="-60.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business" target="com.gg.proj.model">
+      <point x="-53.25" y="-13.5" />
+      <point x="93.41666666666666" y="171.201171875" />
+      <point x="105.66666666666666" y="171.201171875" />
+      <point x="105.66666666666666" y="94.201171875" />
+      <point x="110.58333333333331" y="94.201171875" />
+      <point x="10.083333333333314" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business" target="com.gg.proj.business">
+      <point x="-17.75" y="13.5" />
+      <point x="128.91666666666666" y="248.201171875" />
+      <point x="45.66666666666666" y="248.201171875" />
+      <point x="45.66666666666666" y="197.951171875" />
+      <point x="-71.0" y="-6.75" />
+    </edge>
+    <edge source="com.gg.proj.util" target="com.gg.proj.util">
+      <point x="0.0" y="13.5" />
+      <point x="77.0" y="444.201171875" />
+      <point x="0.0" y="444.201171875" />
+      <point x="0.0" y="410.701171875" />
+      <point x="-57.0" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business" target="com.gg.proj.consumer">
+      <point x="53.25" y="-13.5" />
+      <point x="199.91666666666666" y="171.201171875" />
+      <point x="251.01562499999997" y="171.201171875" />
+      <point x="0.0" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.app" target="com.gg.proj.consumer">
+      <point x="0.0" y="-13.5" />
+      <point x="364.5" y="171.201171875" />
+      <point x="298.34895833333337" y="171.201171875" />
+      <point x="47.33333333333337" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.app" target="com.gg.proj.app">
+      <point x="0.0" y="13.5" />
+      <point x="364.5" y="248.201171875" />
+      <point x="281.0" y="248.201171875" />
+      <point x="281.0" y="197.951171875" />
+      <point x="-53.5" y="-6.75" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="150.5" y="168.5" />
+  <SelectedNodes>
+    <node>com.gg.proj.service</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>packageLocal</VISIBILITY>
+</Diagram>
+

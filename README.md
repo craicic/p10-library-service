@@ -2,7 +2,11 @@
   
 ## Description  
   
-TODO
+Based on SOAP, this service is the corner stone of this project : it must 
+provide an access to multiple methods for various applications : a batch, a user webapp, and a professional webapp for internal workstation (the last one will not be developed).\
+It's a single module application where packages separate responsibilities - see diagram
+
+![Package diagram](https://raw.githubusercontent.com/xxjokerx/library/master/documents/uml/Package_proj.png)
   
 ## Technologies  
   
@@ -70,5 +74,5 @@ Go to Deployment, then add an artifact (the war you've just packaged). Set a con
 /!\ Remember this context folder as it's need for deploying the webapp and run the batch.
 
 ##### 10 - Run the app on tomcat
-Select your configuration and run it. You should be able to call the service's method on SOAP UI
+Select your configuration and run it. Now you should be able to call the service's method on SOAP UI
 

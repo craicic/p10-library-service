@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.gg.proj.service</OriginalElement>
+  <nodes>
+    <node x="600.8109243697479" y="157.576171875">com.gg.proj.service.profiles</node>
+    <node x="1004.5" y="448.576171875">com.gg.proj.service.LoanEndpoint</node>
+    <node x="752.5" y="908.576171875">com.gg.proj.service.UserEndpoint</node>
+    <node x="41.5" y="294.576171875">com.gg.proj.service.BookEndpoint</node>
+    <node x="148.99243697478994" y="10.576171875">com.gg.proj.service.books</node>
+    <node x="1554.5" y="548.076171875">com.gg.proj.service.users</node>
+    <node x="861.2291316526612" y="157.576171875">com.gg.proj.service.exceptions</node>
+    <node x="565.5" y="481.576171875">com.gg.proj.service.ProfileEndpoint</node>
+    <node x="1216.1484593837536" y="157.576171875">com.gg.proj.service.loans</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.gg.proj.service.UserEndpoint" target="com.gg.proj.service.BookEndpoint">
+      <point x="-60.142857142857224" y="-69.0" />
+      <point x="902.8571428571429" y="868.576171875" />
+      <point x="404.5" y="868.576171875" />
+      <point x="121.0" y="267.0" />
+    </edge>
+    <edge source="com.gg.proj.service.UserEndpoint" target="com.gg.proj.service.users">
+      <point x="120.2857142857141" y="-69.0" />
+      <point x="1083.2857142857142" y="878.576171875" />
+      <point x="1639.2" y="878.576171875" />
+      <point x="24.200000000000045" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.service.BookEndpoint" target="com.gg.proj.service.BookEndpoint">
+      <point x="-121.0" y="267.0" />
+      <point x="162.5" y="848.576171875" />
+      <point x="21.5" y="848.576171875" />
+      <point x="21.5" y="561.576171875" />
+      <point x="-242.0" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.service.loans" target="com.gg.proj.service.loans">
+      <point x="-50.41666666666663" y="13.5" />
+      <point x="1226.2317927170868" y="204.576171875" />
+      <point x="1196.1484593837536" y="204.576171875" />
+      <point x="1196.1484593837536" y="181.201171875" />
+      <point x="-60.5" y="10.125" />
+    </edge>
+    <edge source="com.gg.proj.service.LoanEndpoint" target="com.gg.proj.service.exceptions">
+      <point x="-163.33333333333337" y="-113.0" />
+      <point x="1086.1666666666665" y="274.576171875" />
+      <point x="1006.0862745098038" y="274.576171875" />
+      <point x="66.85714285714278" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.service.exceptions" target="com.gg.proj.service.books">
+      <point x="0.0" y="-13.5" />
+      <point x="939.2291316526612" y="117.576171875" />
+      <point x="253.49243697478994" y="117.576171875" />
+      <point x="44.0" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.service.ProfileEndpoint" target="com.gg.proj.service.ProfileEndpoint">
+      <point x="0.0" y="80.0" />
+      <point x="759.0" y="661.576171875" />
+      <point x="545.5" y="661.576171875" />
+      <point x="545.5" y="561.576171875" />
+      <point x="-193.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.service.exceptions" target="com.gg.proj.service.exceptions">
+      <point x="-44.571428571428555" y="13.5" />
+      <point x="894.6577030812325" y="214.576171875" />
+      <point x="831.2291316526612" y="214.576171875" />
+      <point x="831.2291316526612" y="164.326171875" />
+      <point x="-78.0" y="-6.75" />
+    </edge>
+    <edge source="com.gg.proj.service.profiles" target="com.gg.proj.service.profiles">
+      <point x="-59.16666666666667" y="13.5" />
+      <point x="612.6442577030812" y="204.576171875" />
+      <point x="580.8109243697479" y="204.576171875" />
+      <point x="580.8109243697479" y="181.201171875" />
+      <point x="-71.0" y="10.125" />
+    </edge>
+    <edge source="com.gg.proj.service.BookEndpoint" target="com.gg.proj.service.books">
+      <point x="-1.1368683772161603E-13" y="-267.0" />
+      <point x="283.4999999999999" y="274.576171875" />
+      <point x="249.26064425770318" y="274.576171875" />
+      <point x="249.26064425770318" y="137.576171875" />
+      <point x="231.49243697478994" y="137.576171875" />
+      <point x="22.0" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.service.ProfileEndpoint" target="com.gg.proj.service.profiles">
+      <point x="0.0" y="-80.0" />
+      <point x="759.0" y="254.576171875" />
+      <point x="730.9775910364147" y="254.576171875" />
+      <point x="59.16666666666674" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.service.ProfileEndpoint" target="com.gg.proj.service.exceptions">
+      <point x="129.0" y="-80.0" />
+      <point x="888.0" y="274.576171875" />
+      <point x="939.2291316526612" y="274.576171875" />
+      <point x="0.0" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.service.books" target="com.gg.proj.service.books">
+      <point x="-33.0" y="13.5" />
+      <point x="176.49243697478994" y="77.576171875" />
+      <point x="108.99243697478994" y="77.576171875" />
+      <point x="108.99243697478994" y="20.701171875" />
+      <point x="-60.5" y="-3.375" />
+    </edge>
+    <edge source="com.gg.proj.service.UserEndpoint" target="com.gg.proj.service.exceptions">
+      <point x="60.142857142857" y="-69.0" />
+      <point x="1023.1428571428571" y="888.576171875" />
+      <point x="974.0" y="888.576171875" />
+      <point x="974.0" y="274.576171875" />
+      <point x="983.8005602240896" y="274.576171875" />
+      <point x="44.571428571428555" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.service.BookEndpoint" target="com.gg.proj.service.exceptions">
+      <point x="161.33333333333326" y="-267.0" />
+      <point x="444.83333333333326" y="264.576171875" />
+      <point x="916.9434173669467" y="264.576171875" />
+      <point x="-22.285714285714334" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.service.LoanEndpoint" target="com.gg.proj.service.loans">
+      <point x="0.0" y="-113.0" />
+      <point x="1249.5" y="274.576171875" />
+      <point x="1306.8984593837536" y="274.576171875" />
+      <point x="30.25" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.service.LoanEndpoint" target="com.gg.proj.service.LoanEndpoint">
+      <point x="0.0" y="113.0" />
+      <point x="1249.5" y="694.576171875" />
+      <point x="984.5" y="694.576171875" />
+      <point x="984.5" y="561.576171875" />
+      <point x="-245.0" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.service.UserEndpoint" target="com.gg.proj.service.books">
+      <point x="-120.28571428571433" y="-69.0" />
+      <point x="842.7142857142858" y="878.576171875" />
+      <point x="11.0" y="878.576171875" />
+      <point x="11.0" y="137.576171875" />
+      <point x="209.49243697478994" y="137.576171875" />
+      <point x="0.0" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.service.UserEndpoint" target="com.gg.proj.service.UserEndpoint">
+      <point x="0.0" y="69.0" />
+      <point x="963.0" y="1066.576171875" />
+      <point x="732.5" y="1066.576171875" />
+      <point x="732.5" y="977.576171875" />
+      <point x="-210.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.service.users" target="com.gg.proj.service.users">
+      <point x="-24.200000000000045" y="13.5" />
+      <point x="1590.8" y="605.076171875" />
+      <point x="1524.5" y="605.076171875" />
+      <point x="1524.5" y="561.576171875" />
+      <point x="-60.5" y="-0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="872.4489795918367" y="650.0" />
+  <SelectedNodes>
+    <node>com.gg.proj.service.ProfileEndpoint</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>packageLocal</VISIBILITY>
+</Diagram>
+

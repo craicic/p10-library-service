@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.gg.proj.consumer</OriginalElement>
+  <nodes>
+    <node x="0.0" y="673.0">com.gg.proj.consumer.TopicRepository</node>
+    <node x="59.33333333333334" y="143.0">com.gg.proj.consumer.implementation</node>
+    <node x="263.33333333333337" y="99.0">com.gg.proj.consumer.BookRepository</node>
+    <node x="0.0" y="259.0">com.gg.proj.consumer.TokenRepository</node>
+    <node x="0.0" y="441.0">com.gg.proj.consumer.ProfileRepository</node>
+    <node x="458.0" y="259.0">com.gg.proj.consumer.UserRepository</node>
+    <node x="0.0" y="0.0">com.gg.proj.consumer.BookRepositoryCustom</node>
+    <node x="426.0" y="579.0">com.gg.proj.consumer.LibraryRepository</node>
+    <node x="283.0" y="441.0">com.gg.proj.consumer.LoanRepository</node>
+    <node x="0.0" y="579.0">com.gg.proj.consumer.LanguageRepository</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.gg.proj.consumer.implementation" target="com.gg.proj.consumer.BookRepositoryCustom">
+      <point x="-46.0" y="-13.5" />
+      <point x="105.33333333333334" y="74.0" />
+      <point x="75.66666666666666" y="74.0" />
+      <point x="-151.33333333333334" y="24.5" />
+    </edge>
+    <edge source="com.gg.proj.consumer.implementation" target="com.gg.proj.consumer.implementation">
+      <point x="0.0" y="13.5" />
+      <point x="151.33333333333334" y="190.0" />
+      <point x="39.33333333333334" y="190.0" />
+      <point x="39.33333333333334" y="156.5" />
+      <point x="-92.0" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.consumer.BookRepository" target="com.gg.proj.consumer.BookRepositoryCustom">
+      <point x="0.0" y="-57.5" />
+      <point x="433.83333333333337" y="74.0" />
+      <point x="378.3333333333334" y="74.0" />
+      <point x="151.33333333333343" y="24.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="392.5" y="361.0" />
+  <SelectedNodes>
+    <node>com.gg.proj.consumer.implementation</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+

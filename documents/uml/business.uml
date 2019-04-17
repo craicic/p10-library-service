@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.gg.proj.business</OriginalElement>
+  <nodes>
+    <node x="1659.0" y="393.0">com.gg.proj.business.BookManager</node>
+    <node x="1445.4" y="157.0">com.gg.proj.business.TokenManager</node>
+    <node x="441.0" y="437.0">com.gg.proj.business.ProfileManager</node>
+    <node x="1906.9712236746552" y="721.0">com.gg.proj.business.LoanManager</node>
+    <node x="20.0" y="437.0">com.gg.proj.business.TopicManager</node>
+    <node x="1903.6727941176473" y="0.0">com.gg.proj.business.mapper</node>
+    <node x="973.0000000000001" y="448.0">com.gg.proj.business.UserManager</node>
+    <node x="2378.0" y="437.0">com.gg.proj.business.LanguageManager</node>
+    <node x="2865.0" y="437.0">com.gg.proj.business.LibraryManager</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.gg.proj.business.TokenManager" target="com.gg.proj.business.mapper">
+      <point x="-83.25" y="-58.0" />
+      <point x="1528.65" y="127.0" />
+      <point x="1960.1433823529414" y="127.0" />
+      <point x="-7.529411764705856" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business.LanguageManager" target="com.gg.proj.business.mapper">
+      <point x="167.625" y="-80.0" />
+      <point x="2769.125" y="373.0" />
+      <point x="2757.0533496732023" y="373.0" />
+      <point x="2757.0533496732023" y="107.0" />
+      <point x="1997.7904411764707" y="107.0" />
+      <point x="30.117647058823422" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business.LoanManager" target="com.gg.proj.business.mapper">
+      <point x="187.08333333333326" y="-113.0" />
+      <point x="2318.5545570079885" y="701.0" />
+      <point x="3285.5" y="701.0" />
+      <point x="3285.5" y="67.0" />
+      <point x="2027.9080882352941" y="67.0" />
+      <point x="60.23529411764707" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business.LoanManager" target="com.gg.proj.business.LoanManager">
+      <point x="0.0" y="113.0" />
+      <point x="2131.4712236746554" y="967.0" />
+      <point x="1886.9712236746552" y="967.0" />
+      <point x="1886.9712236746552" y="834.0" />
+      <point x="-224.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business.BookManager" target="com.gg.proj.business.TokenManager">
+      <point x="-254.625" y="-124.0" />
+      <point x="1743.875" y="373.0" />
+      <point x="1656.3000000000002" y="373.0" />
+      <point x="44.399999999999864" y="58.0" />
+    </edge>
+    <edge source="com.gg.proj.business.LibraryManager" target="com.gg.proj.business.TokenManager">
+      <point x="-149.625" y="-80.0" />
+      <point x="2914.875" y="333.0" />
+      <point x="1745.1" y="333.0" />
+      <point x="133.19999999999982" y="58.0" />
+    </edge>
+    <edge source="com.gg.proj.business.UserManager" target="com.gg.proj.business.mapper">
+      <point x="-79.25" y="-69.0" />
+      <point x="1210.75" y="313.0" />
+      <point x="1141.876207334786" y="313.0" />
+      <point x="1141.876207334786" y="117.0" />
+      <point x="1952.6139705882356" y="117.0" />
+      <point x="-15.058823529411711" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business.TokenManager" target="com.gg.proj.business.TokenManager">
+      <point x="-155.39999999999998" y="58.0" />
+      <point x="1456.5000000000002" y="293.0" />
+      <point x="1425.4" y="293.0" />
+      <point x="1425.4" y="215.0" />
+      <point x="-166.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business.TopicManager" target="com.gg.proj.business.TopicManager">
+      <point x="0.0" y="80.0" />
+      <point x="210.5" y="617.0" />
+      <point x="0.0" y="617.0" />
+      <point x="0.0" y="517.0" />
+      <point x="-190.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business.ProfileManager" target="com.gg.proj.business.TokenManager">
+      <point x="184.5" y="-80.0" />
+      <point x="871.5" y="353.0" />
+      <point x="1545.3000000000002" y="353.0" />
+      <point x="-66.59999999999991" y="58.0" />
+    </edge>
+    <edge source="com.gg.proj.business.BookManager" target="com.gg.proj.business.BookManager">
+      <point x="-226.33333333333334" y="124.0" />
+      <point x="1772.1666666666667" y="661.0" />
+      <point x="1639.0" y="661.0" />
+      <point x="1639.0" y="517.0" />
+      <point x="-339.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business.LoanManager" target="com.gg.proj.business.BookManager">
+      <point x="37.41666666666674" y="-113.0" />
+      <point x="2168.887890341322" y="701.0" />
+      <point x="2224.8333333333335" y="701.0" />
+      <point x="226.33333333333348" y="124.0" />
+    </edge>
+    <edge source="com.gg.proj.business.ProfileManager" target="com.gg.proj.business.mapper">
+      <point x="-61.5" y="-80.0" />
+      <point x="625.5" y="313.0" />
+      <point x="569.5" y="313.0" />
+      <point x="569.5" y="97.0" />
+      <point x="1937.5551470588239" y="97.0" />
+      <point x="-30.117647058823422" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business.LanguageManager" target="com.gg.proj.business.LanguageManager">
+      <point x="0.0" y="80.0" />
+      <point x="2601.5" y="617.0" />
+      <point x="2358.0" y="617.0" />
+      <point x="2358.0" y="517.0" />
+      <point x="-223.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business.LibraryManager" target="com.gg.proj.business.LibraryManager">
+      <point x="0.0" y="80.0" />
+      <point x="3064.5" y="617.0" />
+      <point x="2845.0" y="617.0" />
+      <point x="2845.0" y="517.0" />
+      <point x="-199.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business.LanguageManager" target="com.gg.proj.business.TokenManager">
+      <point x="-55.875" y="-80.0" />
+      <point x="2545.625" y="343.0" />
+      <point x="1722.9" y="343.0" />
+      <point x="111.0" y="58.0" />
+    </edge>
+    <edge source="com.gg.proj.business.LoanManager" target="com.gg.proj.business.TokenManager">
+      <point x="-187.08333333333326" y="-113.0" />
+      <point x="1944.387890341322" y="701.0" />
+      <point x="1617.5" y="701.0" />
+      <point x="1617.5" y="373.0" />
+      <point x="1611.9" y="373.0" />
+      <point x="0.0" y="58.0" />
+    </edge>
+    <edge source="com.gg.proj.business.BookManager" target="com.gg.proj.business.mapper">
+      <point x="254.625" y="-124.0" />
+      <point x="2253.125" y="373.0" />
+      <point x="2203.1602214960058" y="373.0" />
+      <point x="2203.1602214960058" y="127.0" />
+      <point x="1982.731617647059" y="127.0" />
+      <point x="15.058823529411711" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business.UserManager" target="com.gg.proj.business.TokenManager">
+      <point x="237.75" y="-69.0" />
+      <point x="1527.75" y="373.0" />
+      <point x="1589.7000000000003" y="373.0" />
+      <point x="-22.200000000000045" y="58.0" />
+    </edge>
+    <edge source="com.gg.proj.business.mapper" target="com.gg.proj.business.mapper">
+      <point x="-60.23529411764706" y="13.5" />
+      <point x="1907.4375000000002" y="47.0" />
+      <point x="1883.6727941176473" y="47.0" />
+      <point x="1883.6727941176473" y="13.5" />
+      <point x="-64.0" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business.TopicManager" target="com.gg.proj.business.TokenManager">
+      <point x="47.625" y="-80.0" />
+      <point x="258.125" y="323.0" />
+      <point x="1478.7000000000003" y="323.0" />
+      <point x="-133.20000000000005" y="58.0" />
+    </edge>
+    <edge source="com.gg.proj.business.LibraryManager" target="com.gg.proj.business.mapper">
+      <point x="49.875" y="-80.0" />
+      <point x="3114.375" y="373.0" />
+      <point x="3158.75" y="373.0" />
+      <point x="3158.75" y="97.0" />
+      <point x="2005.3198529411766" y="97.0" />
+      <point x="37.647058823529505" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business.TopicManager" target="com.gg.proj.business.mapper">
+      <point x="-142.875" y="-80.0" />
+      <point x="67.625" y="373.0" />
+      <point x="109.75" y="373.0" />
+      <point x="109.75" y="67.0" />
+      <point x="1914.9669117647059" y="67.0" />
+      <point x="-52.70588235294122" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business.UserManager" target="com.gg.proj.business.UserManager">
+      <point x="0.0" y="69.0" />
+      <point x="1290.0" y="606.0" />
+      <point x="953.0000000000001" y="606.0" />
+      <point x="953.0000000000001" y="517.0" />
+      <point x="-317.0" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business.ProfileManager" target="com.gg.proj.business.ProfileManager">
+      <point x="0.0" y="80.0" />
+      <point x="687.0" y="617.0" />
+      <point x="421.0" y="617.0" />
+      <point x="421.0" y="517.0" />
+      <point x="-246.0" y="-0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7945945945945946" x="1654.5374149659865" y="545.0" />
+  <SelectedNodes>
+    <node>com.gg.proj.business.BookManager</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+
