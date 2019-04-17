@@ -6,7 +6,7 @@ Based on SOAP, this service is the corner stone of this project : it must
 provide an access to multiple methods for various applications : a batch, a user webapp, and a professional webapp for internal workstation (the last one will not be developed).\
 It's a single module application where packages separate responsibilities - see diagram
 
-![Package diagram](https://raw.githubusercontent.com/xxjokerx/library/master/documents/uml/Package_proj.png)
+![Package diagram](https://raw.githubusercontent.com/xxjokerx/library-service/master/documents/uml/Package_proj.png)
   
 ## Technologies  
   
