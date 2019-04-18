@@ -43,10 +43,8 @@ Run SQL Shell (psql), press enter 3 times then fill username and password. Then 
 Run pgAdmin 4, connect to the server, right click on your database | Queries tool and execute this [query](https://raw.githubusercontent.com/xxjokerx/library-service/master/documents/sql-script/creation/000-all_tables.sql).
 
 ##### 4 - Insert data
-Run pgAdmin 4 | Right click on DB | Query Tool...
+In pgAdmin 4 | Right click on your DB | Query Tool
 Then you can run this [query](https://raw.githubusercontent.com/xxjokerx/library-service/master/documents/sql-script/datadump/db_library_all_data.sql).
-
-/ ! \ Make sure to execute `db_library_public_loan.sql` and `db_library_public_topic_book.sql` as the last queries as they refer to foreign primary keys.
 
 ##### 5 - Import the project
 Download or clone this repository.
