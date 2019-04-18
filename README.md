@@ -44,7 +44,7 @@ Run pgAdmin 4, connect to the server, right click on your database | Queries too
 
 ##### 4 - Insert data
 Run pgAdmin 4 | Right click on DB | Query Tool...
-Then you can run those [queries](https://github.com/xxjokerx/library-service/tree/master/documents/sql-script/datadump).
+Then you can run this [query](https://raw.githubusercontent.com/xxjokerx/library-service/master/documents/sql-script/datadump/db_library_all_data.sql).
 
 / ! \ Make sure to execute `db_library_public_loan.sql` and `db_library_public_topic_book.sql` as the last queries as they refer to foreign primary keys.
 
@@ -83,6 +83,8 @@ In command prompt, go to library-service root folder and run `mvn package`
 Under Deploy :
 
 Context-path : for example `/library-service`\
+This is you webservice context folder.
+ 
 WAR or directory's URL : local path to your WAR.
 
 Click Deploy and it's done ! 
