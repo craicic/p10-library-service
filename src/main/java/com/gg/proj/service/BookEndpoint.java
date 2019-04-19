@@ -54,16 +54,16 @@ public class BookEndpoint {
 
     /**
      *
-     * This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * There is a verification on token UUID (the user must be registered and must possess a valid to perform this
-     * method).
+     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * method).</p>
      *
-     * Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
-     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
      *
      * @param request is an instance of CreateBookRequest. It's mapped from the incoming SOAP message.
-     * @return CreateBookResponse the output message contains this response, it's a Book object.
+     * @return CreateBookResponse the output message contains this response.
      */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createBookRequest")
     @ResponsePayload
@@ -81,16 +81,16 @@ public class BookEndpoint {
 
     /**
      *
-     * This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * There is a verification on token UUID (the user must be registered and must possess a valid to perform this
-     * method).
+     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * method).</p>
      *
-     * Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
-     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
      *
      * @param request is an instance of SaveBookRequest. It's mapped from the incoming SOAP message.
-     * @return SaveBookResponse the output message contains this response, it's a Book object.
+     * @return SaveBookResponse the output message contains this response.
      */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "saveBookRequest")
     @ResponsePayload
@@ -107,13 +107,13 @@ public class BookEndpoint {
 
     /**
      *
-     * This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * There is a verification on token UUID (the user must be registered and must possess a valid to perform this
-     * method).
+     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * method).</p>
      *
-     * Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
-     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
      *
      * @param request is an instance of DeleteBookRequest. It's mapped from the incoming SOAP message.
      * @return DeleteBookResponse the output message contains this response.
@@ -132,7 +132,7 @@ public class BookEndpoint {
 
     /**
      *
-     * This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of GetBookRequest. It's mapped from the incoming SOAP message.
      * @return GetBookResponse the output message contains this response.
@@ -149,7 +149,7 @@ public class BookEndpoint {
 
     /**
      *
-     * This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of ListAllBooksRequest. It's mapped from the incoming SOAP message.
      * @return ListAllBooksResponse the output message contains this response.
@@ -165,7 +165,7 @@ public class BookEndpoint {
 
     /**
      *
-     * This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of SearchBooksRequest. It's mapped from the incoming SOAP message.
      * @return SearchBooksResponse the output message contains this response.
@@ -174,13 +174,12 @@ public class BookEndpoint {
     @ResponsePayload
     public SearchBooksResponse searchBooks(@RequestPayload SearchBooksRequest request) {
         log.debug("SearchBooks : calling the bookManager to filterBooks book");
-        SearchBooksResponse response = bookManager.searchBooks(request.getKeyWord(), request.getPage(), request.getSize());
-        return response;
+        return bookManager.searchBooks(request.getKeyWord(), request.getPage(), request.getSize());
     }
 
     /**
      *
-     * This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of FilterBooksRequest. It's mapped from the incoming SOAP message.
      * @return FilterBooksResponse the output message contains this response.
@@ -190,11 +189,23 @@ public class BookEndpoint {
     public FilterBooksResponse filterBooks(@RequestPayload FilterBooksRequest request) {
         log.debug("filterBooks : calling the bookManager to filterBooks book");
 
-        FilterBooksResponse response = bookManager.filterBooks(request.getKeyWord(), request.getLanguageId(), request.getLibraryId()
+        return bookManager.filterBooks(request.getKeyWord(), request.getLanguageId(), request.getLibraryId()
                 , request.getTopicId(), request.isAvailable(), request.getPage(), request.getSize());
-        return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of CreateLanguageRequest. It's mapped from the incoming SOAP message.
+     * @return CreateLanguageResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createLanguageRequest")
     @ResponsePayload
     public CreateLanguageResponse createLanguage(@RequestPayload CreateLanguageRequest request) throws ServiceFaultException {
@@ -208,6 +219,19 @@ public class BookEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of CreateLibraryRequest. It's mapped from the incoming SOAP message.
+     * @return CreateLibraryResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createLibraryRequest")
     @ResponsePayload
     public CreateLibraryResponse createLibrary(@RequestPayload CreateLibraryRequest request) throws ServiceFaultException {
@@ -221,6 +245,19 @@ public class BookEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of CreateLibraryRequest. It's mapped from the incoming SOAP message.
+     * @return CreateLibraryResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createTopicRequest")
     @ResponsePayload
     public CreateTopicResponse createTopic(@RequestPayload CreateTopicRequest request) throws ServiceFaultException {
@@ -234,6 +271,19 @@ public class BookEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of SaveLanguageRequest. It's mapped from the incoming SOAP message.
+     * @return SaveLanguageResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "saveLanguageRequest")
     @ResponsePayload
     public SaveLanguageResponse saveLanguage(@RequestPayload SaveLanguageRequest request) throws ServiceFaultException {
@@ -247,6 +297,19 @@ public class BookEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of SaveLibraryRequest. It's mapped from the incoming SOAP message.
+     * @return SaveLibraryResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "saveLibraryRequest")
     @ResponsePayload
     public SaveLibraryResponse saveLibrary(@RequestPayload SaveLibraryRequest request) throws ServiceFaultException {
@@ -260,6 +323,19 @@ public class BookEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of SaveTopicRequest. It's mapped from the incoming SOAP message.
+     * @return SaveTopicResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "saveTopicRequest")
     @ResponsePayload
     public SaveTopicResponse saveTopic(@RequestPayload SaveTopicRequest request) throws ServiceFaultException {
@@ -273,6 +349,19 @@ public class BookEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of DeleteLanguageRequest. It's mapped from the incoming SOAP message.
+     * @return DeleteLanguageResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteLanguageRequest")
     @ResponsePayload
     public DeleteLanguageResponse deleteLanguage(@RequestPayload DeleteLanguageRequest request) throws ServiceFaultException {
@@ -284,6 +373,19 @@ public class BookEndpoint {
         return new DeleteLanguageResponse();
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of DeleteLibraryRequest. It's mapped from the incoming SOAP message.
+     * @return DeleteLibraryResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteLibraryRequest")
     @ResponsePayload
     public DeleteLibraryResponse deleteLibrary(@RequestPayload DeleteLibraryRequest request) throws ServiceFaultException {
@@ -295,6 +397,19 @@ public class BookEndpoint {
         return new DeleteLibraryResponse();
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of DeleteTopicRequest. It's mapped from the incoming SOAP message.
+     * @return DeleteTopicResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteTopicRequest")
     @ResponsePayload
     public DeleteTopicResponse deleteTopic(@RequestPayload DeleteTopicRequest request) throws ServiceFaultException {
@@ -306,6 +421,13 @@ public class BookEndpoint {
         return new DeleteTopicResponse();
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * @param request is an instance of GetLanguageRequest. It's mapped from the incoming SOAP message.
+     * @return GetLanguageResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getLanguageRequest")
     @ResponsePayload
     public GetLanguageResponse getLanguage(@RequestPayload GetLanguageRequest request) {
@@ -317,6 +439,13 @@ public class BookEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * @param request is an instance of GetLibraryRequest. It's mapped from the incoming SOAP message.
+     * @return GetLibraryResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getLibraryRequest")
     @ResponsePayload
     public GetLibraryResponse getLibrary(@RequestPayload GetLibraryRequest request) {
@@ -328,6 +457,13 @@ public class BookEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * @param request is an instance of GetTopicRequest. It's mapped from the incoming SOAP message.
+     * @return GetTopicResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getTopicRequest")
     @ResponsePayload
     public GetTopicResponse getTopic(@RequestPayload GetTopicRequest request) {
@@ -339,6 +475,13 @@ public class BookEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * @param request is an instance of ListAllLanguagesRequest. It's mapped from the incoming SOAP message.
+     * @return ListAllLanguagesResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllLanguagesRequest")
     @ResponsePayload
     public ListAllLanguagesResponse listAllLanguages(@RequestPayload ListAllLanguagesRequest request) {
@@ -348,6 +491,13 @@ public class BookEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * @param request is an instance of ListAllLibrariesRequest. It's mapped from the incoming SOAP message.
+     * @return ListAllLibrariesResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllLibrariesRequest")
     @ResponsePayload
     public ListAllLibrariesResponse listAllLibraries(@RequestPayload ListAllLibrariesRequest request) {
@@ -357,6 +507,13 @@ public class BookEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * @param request is an instance of ListAllTopicsRequest. It's mapped from the incoming SOAP message.
+     * @return ListAllTopicsResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllTopicsRequest")
     @ResponsePayload
     public ListAllTopicsResponse listAllTopics(@RequestPayload ListAllTopicsRequest request) {
