@@ -135,6 +135,7 @@ public class BookManager {
     public FilterBooksResponse filterBooks(String keyWord, Integer languageId, Integer libraryId, Integer topicId, boolean available, Integer page, Integer size) {
         FilterBooksResponse response = new FilterBooksResponse();
         List<Book> books = response.getBooks();
+
         // Preparing a PageRequest in order to get a sorted and paged list
         PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "title");
         Page<BookEntity> pageBook = bookRepository.search(keyWord, languageId, libraryId, topicId, available, pageRequest);

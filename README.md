@@ -10,7 +10,7 @@ It's a single module application where packages separate responsibilities - see 
   
 ## Technologies  
   
-Java version : 8
+Java version : 8\
 This project mostly use Spring Boot to manage dependency, it has been started via [Spring Initializr](https://start.spring.io/).  
   
 ##### Detailed list :  
