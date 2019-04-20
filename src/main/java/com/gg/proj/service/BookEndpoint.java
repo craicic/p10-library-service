@@ -54,9 +54,9 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * <p>There is a verification on token UUID (the user must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
@@ -81,9 +81,9 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * <p>There is a verification on token UUID (the user must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
@@ -107,9 +107,9 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * <p>There is a verification on token UUID (the user must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
@@ -132,7 +132,7 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of GetBookRequest. It's mapped from the incoming SOAP message.
      * @return GetBookResponse the output message contains this response.
@@ -149,7 +149,7 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of ListAllBooksRequest. It's mapped from the incoming SOAP message.
      * @return ListAllBooksResponse the output message contains this response.
@@ -165,7 +165,7 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of SearchBooksRequest. It's mapped from the incoming SOAP message.
      * @return SearchBooksResponse the output message contains this response.
@@ -179,7 +179,7 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of FilterBooksRequest. It's mapped from the incoming SOAP message.
      * @return FilterBooksResponse the output message contains this response.
@@ -195,9 +195,9 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * <p>There is a verification on token UUID (the user must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
@@ -221,9 +221,9 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * <p>There is a verification on token UUID (the user must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
@@ -247,9 +247,9 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * <p>There is a verification on token UUID (the user must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
@@ -273,9 +273,9 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * <p>There is a verification on token UUID (the user must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
@@ -299,9 +299,9 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * <p>There is a verification on token UUID (the user must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
@@ -325,9 +325,9 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * <p>There is a verification on token UUID (the user must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
@@ -351,9 +351,9 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * <p>There is a verification on token UUID (the user must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
@@ -375,9 +375,9 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * <p>There is a verification on token UUID (the user must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
@@ -399,9 +399,9 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * <p>There is a verification on token UUID (the user must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
@@ -423,7 +423,7 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of GetLanguageRequest. It's mapped from the incoming SOAP message.
      * @return GetLanguageResponse the output message contains this response.
@@ -441,7 +441,7 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of GetLibraryRequest. It's mapped from the incoming SOAP message.
      * @return GetLibraryResponse the output message contains this response.
@@ -459,7 +459,7 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of GetTopicRequest. It's mapped from the incoming SOAP message.
      * @return GetTopicResponse the output message contains this response.
@@ -477,7 +477,7 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of ListAllLanguagesRequest. It's mapped from the incoming SOAP message.
      * @return ListAllLanguagesResponse the output message contains this response.
@@ -493,7 +493,7 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of ListAllLibrariesRequest. It's mapped from the incoming SOAP message.
      * @return ListAllLibrariesResponse the output message contains this response.
@@ -509,7 +509,7 @@ public class BookEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of ListAllTopicsRequest. It's mapped from the incoming SOAP message.
      * @return ListAllTopicsResponse the output message contains this response.

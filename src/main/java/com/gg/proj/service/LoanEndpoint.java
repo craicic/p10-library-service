@@ -31,9 +31,9 @@ public class LoanEndpoint {
 
     /**
      *
-     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
-     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
@@ -57,6 +57,19 @@ public class LoanEndpoint {
         return createLoanResponse;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of SaveLoanRequest. It's mapped from the incoming SOAP message.
+     * @return SaveLoanResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "saveLoanRequest")
     @ResponsePayload
     public SaveLoanResponse saveLoan(@RequestPayload SaveLoanRequest request) throws ServiceFaultException {
@@ -72,9 +85,26 @@ public class LoanEndpoint {
         return saveLoanResponse;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * <p><b>Method's logic :</b> this method is to be called when a user need to extend the length of his loan, it calls the
+     * Business layer, passing it the Loan contained in the request. Once business method did its job, this method
+     * returns the Loan.</p>
+     *
+     * @param request is an instance of ExtendLoanRequest. It's mapped from the incoming SOAP message.
+     * @return ExtendLoanResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "extendLoanRequest")
     @ResponsePayload
-    public ExtendLoanResponse extendLoan(@RequestPayload ExtendLoanRequest request) {
+    public ExtendLoanResponse extendLoan(@RequestPayload ExtendLoanRequest request) throws ServiceFaultException {
         log.debug("Entering extendLoan... ");
         ExtendLoanResponse extendLoanResponse = new ExtendLoanResponse();
         try {
@@ -86,6 +116,19 @@ public class LoanEndpoint {
         return extendLoanResponse;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of CloseLoanRequest. It's mapped from the incoming SOAP message.
+     * @return CloseLoanResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "closeLoanRequest")
     @ResponsePayload
     public CloseLoanResponse closeLoan(@RequestPayload CloseLoanRequest request) {
@@ -100,6 +143,19 @@ public class LoanEndpoint {
         return closeLoanResponse;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of DeleteLoanRequest. It's mapped from the incoming SOAP message.
+     * @return DeleteLoanResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteLoanRequest")
     @ResponsePayload
     public DeleteLoanResponse deleteLoan(@RequestPayload DeleteLoanRequest request) throws ServiceFaultException {
@@ -114,10 +170,17 @@ public class LoanEndpoint {
 
 
     /**
-     * This method takes a request, then build a response : it calls the business to get a loan by id.
      *
-     * @param request a GetLoanRequest from the network
-     * @return a GetLoanResponse.
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of GetLoanRequest. It's mapped from the incoming SOAP message.
+     * @return GetLoanResponse the output message contains this response.
      */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getLoanRequest")
     @ResponsePayload
@@ -133,6 +196,19 @@ public class LoanEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of ListAllLoansRequest. It's mapped from the incoming SOAP message.
+     * @return ListAllLoansResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllLoansRequest")
     @ResponsePayload
     public ListAllLoansResponse listAllLoans(@RequestPayload ListAllLoansRequest request) throws ServiceFaultException {
@@ -147,6 +223,20 @@ public class LoanEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     * <p><b>Method's logic :</b> this method is to be called when a user request all active loan. You must provide a
+     * valid UUID and a userID.It add to the response the list of loans. Then it return this response.</p>
+     * @param request is an instance of FindAllLoansByUserIdRequest. It's mapped from the incoming SOAP message.
+     * @return FindAllLoansByUserIdResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllLoansByUserIdRequest")
     @ResponsePayload
     public FindAllLoansByUserIdResponse findAllLoansByUserId(@RequestPayload FindAllLoansByUserIdRequest request) throws ServiceFaultException {

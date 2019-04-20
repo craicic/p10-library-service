@@ -30,6 +30,19 @@ public class ProfileEndpoint {
         this.profileManager = profileManager;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of SaveProfileRequest. It's mapped from the incoming SOAP message.
+     * @return SaveProfileResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "saveProfileRequest")
     @ResponsePayload
     public SaveProfileResponse saveProfile(@RequestPayload SaveProfileRequest request) throws ServiceFaultException {
@@ -44,6 +57,19 @@ public class ProfileEndpoint {
         return saveProfileResponse;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of DeleteProfileRequest. It's mapped from the incoming SOAP message.
+     * @return DeleteProfileResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteProfileRequest")
     @ResponsePayload
     public DeleteProfileResponse deleteProfile(@RequestPayload DeleteProfileRequest request) throws ServiceFaultException {
@@ -56,12 +82,18 @@ public class ProfileEndpoint {
         return new DeleteProfileResponse();
     }
 
-
     /**
-     * This method takes a request, then build a response : it calls the business to get a profile by id.
      *
-     * @param request a GetProfileRequest from the network
-     * @return a GetProfileResponse.
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of GetProfileRequest. It's mapped from the incoming SOAP message.
+     * @return GetProfileResponse the output message contains this response.
      */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProfileRequest")
     @ResponsePayload
@@ -77,6 +109,19 @@ public class ProfileEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of ListAllProfilesRequest. It's mapped from the incoming SOAP message.
+     * @return ListAllProfilesResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllProfilesRequest")
     @ResponsePayload
     public ListAllProfilesResponse listAllProfiles(@RequestPayload ListAllProfilesRequest request) throws ServiceFaultException {
@@ -91,6 +136,15 @@ public class ProfileEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p><b>Method's logic :</b> use when you need to know which are the users that detains late loan.</p>
+     *
+     * @param request is an instance of ListLateProfilesRequest. It's mapped from the incoming SOAP message.
+     * @return ListLateProfilesResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listLateProfilesRequest")
     @ResponsePayload
     public ListLateProfilesResponse ListLateProfiles(@RequestPayload ListLateProfilesRequest request) throws ServiceFaultException {

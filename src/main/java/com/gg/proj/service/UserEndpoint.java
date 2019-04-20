@@ -46,7 +46,7 @@ public class UserEndpoint {
             String errorMessage = e.getMessage();
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.setMessage("Wrong credentials");
-            serviceStatus.setStatusCode("WRONG_PASSWORD");
+            serviceStatus.setStatusCode("WRONG_CREDENTIALS");
             throw new ServiceFaultException(errorMessage, serviceStatus);
         }
         return response;
