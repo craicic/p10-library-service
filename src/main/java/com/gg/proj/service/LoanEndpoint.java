@@ -29,6 +29,19 @@ public class LoanEndpoint {
         this.loanManager = loanManager;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It use the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must be registered and must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of CreateLoanRequest. It's mapped from the incoming SOAP message.
+     * @return CreateLoanResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createLoanRequest")
     @ResponsePayload
     public CreateLoanResponse createLoan(@RequestPayload CreateLoanRequest request) throws ServiceFaultException {
