@@ -8,6 +8,9 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+/**
+ * Repository interface, it extends JpaRepository to benefit spring Data / JPA
+ */
 public interface LoanRepository extends JpaRepository<LoanEntity, Integer> {
 
     @Query("SELECT l FROM LoanEntity as l WHERE l.user.id = (:userId) AND l.closed = false")

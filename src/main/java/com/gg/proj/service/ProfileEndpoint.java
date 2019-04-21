@@ -16,6 +16,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ *
+ * <p>This class is registered with Spring WS as a candidate for processing incoming SOAP messages (via Endpoint annotation).</p>
+ *
+ * <p>Other annotations you'll find in this class :</p>
+ *
+ * <p>PayloadRoot is then used by Spring WS to pick the handler method based on the message’s namespace and localPart.</p>
+ * <p>RequestPayload indicates that the incoming message will be mapped to the method’s request parameter.</p>
+ * <p>ResponsePayload annotation makes Spring WS map the returned value to the response payload.</p>
+ *
+ * <p>UserEndpoint and ProfileEndpoint are both user control's classes but they are split in two separated class. </p>
+ * <p>ProfileEndpoint regroups most CRUD methods excepted 'create'.</p>
+ */
 @Endpoint
 public class ProfileEndpoint {
 

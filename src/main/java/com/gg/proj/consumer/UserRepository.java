@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+/**
+ * Repository interface, it extends JpaRepository to benefit spring Data / JPA
+ */
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     UserEntity findByPseudo(String pseudo);

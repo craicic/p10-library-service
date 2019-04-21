@@ -10,6 +10,9 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+/**
+ * Repository interface, it extends JpaRepository to benefit spring Data / JPA
+ */
 public interface BookRepository extends JpaRepository<BookEntity, Integer>, BookRepositoryCustom {
 
     @Query("select distinct b from BookEntity b " +

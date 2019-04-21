@@ -20,13 +20,13 @@ import java.util.Optional;
 
 /**
  *
- * This class is registered with Spring WS as a candidate for processing incoming SOAP messages (via Endpoint annotation)
+ * <p>This class is registered with Spring WS as a candidate for processing incoming SOAP messages (via Endpoint annotation).</p>
  *
- * Other annotations you'll find in this class :
+ * <p>Other annotations you'll find in this class :</p>
  *
- * PayloadRoot is then used by Spring WS to pick the handler method based on the message’s namespace and localPart.
- * RequestPayload indicates that the incoming message will be mapped to the method’s request parameter.
- * ResponsePayload annotation makes Spring WS map the returned value to the response payload.
+ * <p>PayloadRoot is then used by Spring WS to pick the handler method based on the message’s namespace and localPart.</p>
+ * <p>RequestPayload indicates that the incoming message will be mapped to the method’s request parameter.</p>
+ * <p>ResponsePayload annotation makes Spring WS map the returned value to the response payload.</p>
  *
  */
 @Endpoint

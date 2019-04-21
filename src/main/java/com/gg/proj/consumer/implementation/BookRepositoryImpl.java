@@ -33,6 +33,17 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
         this.entityManager = entityManager;
     }
 
+    /**
+     * <p>This method uses criteria API, it build a custom query to get the list of book filter by several criteria</p>
+     *
+     * @param keyWord the keyWord of the search
+     * @param languageId a search criteria (a value of -1 means excluded from search)
+     * @param libraryId a search criteria (a value of -1 means excluded from search)
+     * @param topicId a search criteria (a value of -1 means excluded from search)
+     * @param available a search criteria (is the book in stock)
+     * @param pageable the Pageable object
+     * @return a Page<BookEntity>
+     */
     @Override
     public Page<BookEntity> search(String keyWord, Integer languageId, Integer libraryId, Integer topicId, Boolean available, Pageable pageable) {
 
@@ -46,16 +57,19 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
         log.debug("available : [" + available + "] ");
         log.debug("pageNumber : [" + pageNumber + "] ");
 
+        // Creating the criteriaQuery
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<BookEntity> criteriaQuery = criteriaBuilder.createQuery(BookEntity.class);
         Root<BookEntity> book = criteriaQuery.from(BookEntity.class);
+        // Join tables.
         Join<BookEntity, LanguageEntity> language = book.join("language");
         Join<BookEntity, LibraryEntity> library = book.join("library");
         Join<BookEntity, TopicEntity> topic = book.join("topics", JoinType.LEFT);
 
-
+        // We create an array of predicates...
         List<Predicate> predicates = new ArrayList<>();
 
+        // ... It contains fix predicates...
         Predicate authorPredicate = criteriaBuilder.like(criteriaBuilder.upper(book.get("author")), "%" + keyWord.toUpperCase() + "%");
         Predicate summaryPredicate = criteriaBuilder.like(criteriaBuilder.upper(book.get("summary")), "%" + keyWord.toUpperCase() + "%");
         Predicate titlePredicate = criteriaBuilder.like(criteriaBuilder.upper(book.get("title")), "%" + keyWord.toUpperCase() + "%");
@@ -63,6 +77,7 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
         Predicate authorOrSummaryOrTitle = criteriaBuilder.or(authorPredicate, summaryPredicate, titlePredicate);
         predicates.add(authorOrSummaryOrTitle);
 
+        // ... And conditional predicates.
         if (available)
             predicates.add(criteriaBuilder.gt(book.get("quantity"), 0));
         if (languageId >= 0)
@@ -72,8 +87,10 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
         if (topicId >= 0)
             predicates.add(criteriaBuilder.equal(topic.get("id"), topicId));
 
+        // Building a query based on this array.
         criteriaQuery.where(predicates.toArray(new Predicate[0])).distinct(true);
 
+        // Performing the query
         TypedQuery<BookEntity> query = entityManager.createQuery(criteriaQuery);
 
         int totalRows = query.getResultList().size();
@@ -84,8 +101,9 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
         for (BookEntity b : listBook) {
             log.debug("book found : " + b);
         }
-
         log.debug("found " + listBook.size() + " result(s) -- number of rows : " + totalRows);
+
+        // Building a new PageImpl<> object
         return new PageImpl<>(listBook, pageable, totalRows);
     }
 }

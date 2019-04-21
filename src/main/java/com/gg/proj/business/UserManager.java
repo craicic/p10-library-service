@@ -51,6 +51,17 @@ public class UserManager {
         this.passwordEncoder = passwordEncoder;
     }
 
+    /**
+     *
+     * <p>This is the method that login user. It receive a pseudo and a Base64 password. Then it uses a passwordEncoder to
+     * check if password matches the hash stored in database.</p>
+     *
+     * @param pseudo the user pseudo
+     * @param encodedPassword the user password coded in Base64 /!\ need to be improved
+     * @return a Token containing a valid UUID
+     * @throws UserNotFoundException if no user with this pseudo was found
+     * @throws IllegalArgumentException if password and hash don't match
+     */
     public Token loginUser(String pseudo, String encodedPassword) throws UserNotFoundException, IllegalArgumentException {
         log.debug("Entering loginUser method... Requesting database for a user with pseudo : " + pseudo);
         UserEntity userEntity = userRepository.findByPseudo(pseudo);
@@ -73,6 +84,15 @@ public class UserManager {
             throw new IllegalArgumentException("Password and hash don't match");
     }
 
+    /**
+     *
+     * <p>This method logout the user</p>
+     *
+     * @param tokenUUID a valid UUID
+     * @return "SUCCESS"
+     * @throws UserNotFoundException if no user with this pseudo was found
+     * @throws IllegalArgumentException if password and hash don't match
+     */
     public String logoutUser(String tokenUUID) throws UserNotFoundException, IllegalArgumentException {
         log.debug("Entering logoutUser method... Requesting database for a user with tokenUUID : " + tokenUUID);
 
@@ -90,7 +110,17 @@ public class UserManager {
         }
     }
 
-    public Token registerUser(User user) throws PseudoAlreadyExistsException, MailAddressAlreadyExistsException {
+    /**
+     *
+     * <p>This method is called to register a user. Pseudo & address must be unique, password has a minimal length</p>
+     *
+     * @param user the user to register
+     * @return a valid Token
+     * @throws PseudoAlreadyExistsException if the pseudo is already stored in DB
+     * @throws MailAddressAlreadyExistsException if the mail is already stored in DB
+     * @throws IllegalArgumentException if password is too short (6 characters)
+     */
+    public Token registerUser(User user) throws PseudoAlreadyExistsException, MailAddressAlreadyExistsException, IllegalArgumentException {
         log.debug("Entering registerUser...");
         String hash;
         String plaintextPassword = user.getPassword();

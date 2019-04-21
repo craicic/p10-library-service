@@ -14,6 +14,20 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+/**
+ *
+ * <p>This class is registered with Spring WS as a candidate for processing incoming SOAP messages (via Endpoint annotation)</p>
+ *
+ * <p>Other annotations you'll find in this class :</p>
+ *
+ * <p>PayloadRoot is then used by Spring WS to pick the handler method based on the message’s namespace and localPart.</p>
+ * <p>RequestPayload indicates that the incoming message will be mapped to the method’s request parameter.</p>
+ * <p>ResponsePayload annotation makes Spring WS map the returned value to the response payload.</p>
+ *
+ * <p>UserEndpoint and ProfileEndpoint are both user control's classes but they are split in two separated class. </p>
+ * <p>UserEndpoint regroups method that perform advanced action over users (login/logout - profile's creation -
+ * password changes).</p>
+ */
 @Endpoint
 public class UserEndpoint {
 
@@ -29,6 +43,19 @@ public class UserEndpoint {
         this.userManager = userManager;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (UserNotFoundException, IllegalArgumentException) are processed directly
+     *  in this method : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of LoginUserRequest. It's mapped from the incoming SOAP message.
+     * @return LoginUserResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "loginUserRequest")
     @ResponsePayload
     public LoginUserResponse loginUser(@RequestPayload LoginUserRequest request) throws ServiceFaultException {
@@ -52,6 +79,19 @@ public class UserEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (UserNotFoundException, IllegalArgumentException) are processed directly
+     *  in this method : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of LoginUserRequest. It's mapped from the incoming SOAP message.
+     * @return LoginUserResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "logoutUserRequest")
     @ResponsePayload
     public LogoutUserResponse logoutUser(@RequestPayload LogoutUserRequest request) throws ServiceFaultException {
@@ -76,6 +116,20 @@ public class UserEndpoint {
         return response;
     }
 
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (PseudoAlreadyExistsException, MailAddressAlreadyExistsException) are
+     * processed by the serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP
+     * error.</p>
+     *
+     * @param request is an instance of RegisterUserRequest. It's mapped from the incoming SOAP message.
+     * @return RegisterUserResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "registerUserRequest")
     @ResponsePayload
     public RegisterUserResponse registerUser(@RequestPayload RegisterUserRequest request) throws ServiceFaultException {
@@ -89,7 +143,19 @@ public class UserEndpoint {
         return response;
     }
 
-
+    /**
+     *
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * <p>There is a verification on token UUID (the user must must possess a valid to perform this
+     * method).</p>
+     *
+     * <p>Exceptions thrown by the Business layer (InvalidTokenException, OutdatedTokenException) are processed by the
+     * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
+     *
+     * @param request is an instance of ChangePasswordRequest. It's mapped from the incoming SOAP message.
+     * @return ChangePasswordResponse the output message contains this response.
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "changePasswordRequest")
     @ResponsePayload
     public ChangePasswordResponse changePassword(@RequestPayload ChangePasswordRequest request) throws ServiceFaultException {

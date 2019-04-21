@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
+/**
+ * Repository interface, it extends JpaRepository to benefit spring Data / JPA
+ */
 public interface ProfileRepository extends JpaRepository<UserEntity, Integer> {
     boolean existsByPseudo(String pseudo);
 

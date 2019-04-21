@@ -27,7 +27,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * This class contains business methods
+ * <p>This class contains business methods</p>
  */
 @Component
 @Transactional
@@ -57,7 +57,18 @@ public class BookManager {
         this.tokenManager = tokenManager;
     }
 
-    // CRUD Methods
+    public Optional<Book> create(BookMin bookMin, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception e) {
+            GenericExceptionHelper.tokenExceptionHandler(e);
+        }
+
+        BookEntity bookEntity = bookMapper.bookMinToBookEntity(bookMin);
+        bookEntity = bookRepository.save(bookEntity);
+        return Optional.ofNullable(bookMapper.bookEntityToBook(bookEntity));
+    }
+
     public Optional<BookFull> findById(Integer id) {
         Optional<BookEntity> optional = bookRepository.findById(id);
         BookEntity bookEntity = optional.orElse(null);
@@ -98,29 +109,46 @@ public class BookManager {
         return bookMapper.bookEntityListToBookList(bookEntities);
     }
 
+    /**
+     *
+     * <p>This method calls the Consumer layer several time in order to get following results :</p>
+     * <ul>
+     *     <li>A paged list of book matching the keyWord,</li>
+     *     <li>A list of book matching the keyWord,</li>
+     *     <li>All libraries, topics and languages that pair with this list of book (in order to populate advanced
+     *     search selectors).</li>
+     * </ul>
+     *
+     * @param keyWord the keyWord of the search
+     * @param page the current page
+     * @param size the size
+     * @return SearchBooksResponse an object that contains several lists (libraries, languages, searched books, etc...) plus other data
+     */
     public SearchBooksResponse searchBooks(String keyWord, Integer page, Integer size) {
 
-        log.debug("searchBooks");
         SearchBooksResponse response = new SearchBooksResponse();
         // We prepare a PageRequest with a default sort value
         PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "title");
         List<Book> books = response.getBooks();
 
+        // We prepare three lists (affected by reference)
         List<Language> languages = response.getLanguages();
         List<Topic> topics = response.getTopics();
         List<Library> libraries = response.getLibraries();
 
+        // First consumer call, we get the paged book list matching the keyWord
         Page<BookEntity> pagedBooks = bookRepository.searchPagedBooks("%" + keyWord + "%", pageRequest);
         List<BookEntity> bookEntities = pagedBooks.getContent();
         // Here we access the book list by reference (no need for setter)
         books.addAll(bookMapper.bookEntityListToBookList(bookEntities));
 
-        // Now we fetch all books to extract their metadata
+        // Now we fetch all books to get their metadata (same search but without the pagination)
         List<BookEntity> bookEntitiesAllFetched = bookRepository.searchAllBooks("%" + keyWord + "%");
         List<LanguageEntity> languageEntities = languageRepository.findDistinctByBooksIn(bookEntitiesAllFetched);
         List<LibraryEntity> libraryEntities = libraryRepository.findDistinctByBooksIn(bookEntitiesAllFetched);
         List<TopicEntity> topicEntities = topicRepository.findDistinctByBooksIn(bookEntitiesAllFetched);
 
+        // After an object mapping, we add those results into the three lists. Modifying the response object.
         languages.addAll(bookMapper.languageEntityListToLanguageList(languageEntities));
         libraries.addAll(bookMapper.libraryEntityListToLibraryList(libraryEntities));
         topics.addAll(bookMapper.topicEntityListToTopicList(topicEntities));
@@ -132,6 +160,21 @@ public class BookManager {
     }
 
 
+    /**
+     *
+     * <p>This method call the consumer. It ask for a search with several parameters</p>
+     * <p>It's design to work in pair with the method searchBooks. filterBooks must be executed after this one.
+     * using its result, to give more define results to the user.</p>
+     *
+     * @param keyWord the keyWord of the search
+     * @param languageId a search criteria (a value of -1 means excluded from search)
+     * @param libraryId a search criteria (a value of -1 means excluded from search)
+     * @param topicId a search criteria (a value of -1 means excluded from search)
+     * @param available a search criteria (is the book in stock)
+     * @param page the current page
+     * @param size the size of the page
+     * @return FilterBooksResponse it contains the paged list of book that have been filtered, plus the total pages.
+     */
     public FilterBooksResponse filterBooks(String keyWord, Integer languageId, Integer libraryId, Integer topicId, boolean available, Integer page, Integer size) {
         FilterBooksResponse response = new FilterBooksResponse();
         List<Book> books = response.getBooks();
@@ -146,22 +189,23 @@ public class BookManager {
         return response;
     }
 
-    public Optional<Book> create(BookMin bookMin, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
-        try {
-            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-        } catch (Exception e) {
-            GenericExceptionHelper.tokenExceptionHandler(e);
-        }
 
-        BookEntity bookEntity = bookMapper.bookMinToBookEntity(bookMin);
-        bookEntity = bookRepository.save(bookEntity);
-        return Optional.ofNullable(bookMapper.bookEntityToBook(bookEntity));
-    }
-
+    /**
+     *
+     * This method calls the Consumer layer of a book to decrease its quantity
+     *
+     * @param bookId the Id of the book
+     */
     public void decreaseQuantity(int bookId) {
         bookRepository.decreaseQuantity(bookId);
     }
 
+    /**
+     *
+     * This method calls the Consumer layer of a book to increase its quantity
+     *
+     * @param bookId the Id of the book
+     */
     public void increaseQuantity(int bookId) {
         bookRepository.increaseQuantity(bookId);
     }

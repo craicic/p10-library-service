@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.time.LocalDate;
 import java.util.UUID;
 
+/**
+ * Repository interface, it extends JpaRepository to benefit spring Data / JPA
+ */
 public interface TokenRepository extends JpaRepository<TokenEntity, Integer> {
     TokenEntity findByUserId(Integer userEntityId);
 
