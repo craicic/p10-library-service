@@ -1,4 +1,4 @@
-# Web Service for the library project  
+# Web Service for the [library project](https://github.com/xxjokerx/library) 
   
 ## Description  
   
@@ -59,7 +59,7 @@ Edit application.properties in `library-service\src\main\resources` :
 `webservice.datasource.driverClassNam=org.postgresql.Driver`\
 `webservice.datasource.url` should be `jdbc:postgresql://localhost:5432/{your-db-name}`\
 `webservice.datasource.username`\
-`webservice.datasource.password`\
+`webservice.datasource.password`
 
 Then edit the wsdl location `webservice.location` : keep in mind that final location will be `localhost:8080/{tomcat-context-folder}/{webservice.location}` (depending on tomcat port you choose).
 
@@ -72,7 +72,7 @@ Then edit the wsdl location `webservice.location` : keep in mind that final loca
 In command prompt, go to library-service root folder and run `mvn package`
 
 ##### 8 - Run tomcat manager :
-- Open tomcat_home\conf\tomcat-user.xml and add the following line inside tomcat-user tag :	<user username="user" password="123" roles="standart,manager-gui" />
+- Open tomcat_home\conf\tomcat-user.xml and add the following line inside tomcat-user tag :	user username="user" password="123" roles="standart,manager-gui" inside a tag.
 - Execute tomcat_home\bin\startup.bat to run Tomcat server
 - Go to [http://localhost:8080/manager/html](http://localhost:8080/manager/html)
 
@@ -81,7 +81,7 @@ In command prompt, go to library-service root folder and run `mvn package`
 Under Deploy :
 
 Context-path : for example `/library-service`\
-This is you webservice context folder.
+This is your webservice context folder.
  
 WAR or directory's URL : local path to your WAR.
 
