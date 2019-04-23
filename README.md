@@ -44,7 +44,7 @@ Run pgAdmin 4, connect to the server, right click on your database | Queries too
 
 ##### 4 - Insert data
 In pgAdmin 4 | Right click on your DB | Query Tool
-Then you can run this [query](https://raw.githubusercontent.com/xxjokerx/library-service/master/documents/sql-script/datadump/db_library_all_data.sql).
+Then you can run this [query](https://raw.githubusercontent.com/xxjokerx/library-service/master/documents/sql-script/datadump/db_library_all_data_edited.sql).
 
 ##### 5 - Import the project
 Download or clone this repository.
