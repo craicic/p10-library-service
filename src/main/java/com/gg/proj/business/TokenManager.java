@@ -74,8 +74,8 @@ public class TokenManager {
         }
         if (foundTokenEntity.getExpirationDate().isBefore(LocalDate.now())) {
             // Calling a private method to refresh the token
-            log.debug("Refreshing token...");
-            refreshToken(foundTokenEntity);
+//            log.debug("Refreshing token...");
+//            refreshToken(foundTokenEntity);
             throw new OutdatedTokenException("Token has expired, try to reconnect");
         }
     }
