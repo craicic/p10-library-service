@@ -138,7 +138,7 @@
                         </goals>
                         <configuration>
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/books/</schemaDirectory>
-                            <outputDirectory>${project.basedir}/src/main/generated-java</outputDirectory>
+                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java</outputDirectory>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
@@ -149,7 +149,7 @@
                         </goals>
                         <configuration>
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/loans/</schemaDirectory>
-                            <outputDirectory>${project.basedir}/src/main/generated-java</outputDirectory>
+                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java</outputDirectory>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
@@ -160,7 +160,7 @@
                         </goals>
                         <configuration>
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/profiles/</schemaDirectory>
-                            <outputDirectory>${project.basedir}/src/main/generated-java</outputDirectory>
+                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java</outputDirectory>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
@@ -171,7 +171,7 @@
                         </goals>
                         <configuration>
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/users/</schemaDirectory>
-                            <outputDirectory>${project.basedir}/src/main/generated-java</outputDirectory>
+                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java</outputDirectory>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
