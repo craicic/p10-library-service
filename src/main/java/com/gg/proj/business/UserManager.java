@@ -9,6 +9,7 @@ import com.gg.proj.model.UserEntity;
 import com.gg.proj.service.exceptions.*;
 import com.gg.proj.service.users.Token;
 import com.gg.proj.service.users.User;
+import com.gg.proj.util.CustomStringDecryptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.Base64;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -65,9 +65,9 @@ public class UserManager {
     public Token loginUser(String pseudo, String encodedPassword) throws UserNotFoundException, IllegalArgumentException {
         log.debug("Entering loginUser method... Requesting database for a user with pseudo : " + pseudo);
         UserEntity userEntity = userRepository.findByPseudo(pseudo);
+
         // here we decode the password
-        byte[] decodedBytes = Base64.getDecoder().decode(encodedPassword);
-        String decodedPassword = new String(decodedBytes);
+        String decodedPassword = CustomStringDecryptor.decrypt(encodedPassword);
 
         if (userEntity == null) {
             log.info("No user " + pseudo + " found un database");
