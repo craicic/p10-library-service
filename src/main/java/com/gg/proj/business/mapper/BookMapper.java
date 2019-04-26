@@ -47,6 +47,7 @@ public interface BookMapper {
             topicIds.add(t.getId());
         }
         book.getTopicIds().addAll(topicIds);
+
         return book;
     }
 
@@ -55,8 +56,11 @@ public interface BookMapper {
             return null;
         }
 
+        for (Integer t : book.getTopicIds()) {
+            System.out.println(t);
+        }
+
         BookEntity bookEntity = new BookEntity();
-        TopicEntity topicEntity = new TopicEntity();
         LanguageEntity languageEntity = new LanguageEntity();
         LibraryEntity libraryEntity = new LibraryEntity();
 
@@ -75,11 +79,19 @@ public interface BookMapper {
         bookEntity.setLibrary(libraryEntity);
         List<TopicEntity> topics = new ArrayList<>(book.getTopicIds().size());
         for (Integer topicId : book.getTopicIds()) {
+            TopicEntity topicEntity = new TopicEntity();
             topicEntity.setId(topicId);
             topics.add(topicEntity);
         }
-        List<TopicEntity> topicEntities = new ArrayList<>(topics);
-        bookEntity.setTopics(topicEntities);
+//        List<TopicEntity> topicEntities = new ArrayList<>(topics);
+//        bookEntity.setTopics(topicEntities);
+
+        bookEntity.setTopics(new ArrayList<>());
+        bookEntity.getTopics().addAll(topics);
+
+        for (TopicEntity t : bookEntity.getTopics()) {
+            System.out.println(t.getId());
+        }
         return bookEntity;
     }
 
@@ -89,7 +101,7 @@ public interface BookMapper {
         }
 
         BookEntity bookEntity = new BookEntity();
-        TopicEntity topicEntity = new TopicEntity();
+
         LanguageEntity languageEntity = new LanguageEntity();
         LibraryEntity libraryEntity = new LibraryEntity();
 
@@ -107,11 +119,15 @@ public interface BookMapper {
         bookEntity.setLibrary(libraryEntity);
         List<TopicEntity> topics = new ArrayList<>(bookMin.getTopicIds().size());
         for (Integer topicId : bookMin.getTopicIds()) {
+            TopicEntity topicEntity = new TopicEntity();
             topicEntity.setId(topicId);
             topics.add(topicEntity);
         }
-        List<TopicEntity> topicEntities = new ArrayList<>(topics);
-        bookEntity.setTopics(topicEntities);
+//        List<TopicEntity> topicEntities = new ArrayList<>(topics);
+//        bookEntity.setTopics(topicEntities);
+
+        bookEntity.setTopics(new ArrayList<>());
+        bookEntity.getTopics().addAll(topics);
         return bookEntity;
     }
 

@@ -60,15 +60,17 @@ public class GenericExceptionHelper {
             serviceStatus.setStatusCode("INVALID ARGUMENT");
             throw new ServiceFaultException(errorMessage, serviceStatus);
         } else if (e instanceof RuntimeException) {
-            System.out.println("ex : " + e);
+            log.warn("Runtime Exception caught : " + e);
+            log.warn("Exception details : " + e.getCause());
             String errorMessage = e.getMessage();
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.setMessage("Runtime error");
             serviceStatus.setStatusCode("RUNTIME_ERROR");
             throw new ServiceFaultException(errorMessage, serviceStatus);
         }
+        log.warn("Exception caught : " + e);
+        log.warn("Exception details : " + e.getCause());
         String errorMessage = e.getMessage();
-        System.out.println("ex : " + e);
         ServiceStatus serviceStatus = new ServiceStatus();
         serviceStatus.setMessage("Generic error");
         serviceStatus.setStatusCode("ERROR");

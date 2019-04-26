@@ -21,6 +21,7 @@ public class DetailSoapFaultDefinitionExceptionResolver extends SoapFaultMapping
 
         if (ex instanceof ServiceFaultException) {
             log.warn("Exception processed : " + ex);
+            log.warn("Exception details : " + ex.getMessage());
             ServiceStatus status = ((ServiceFaultException) ex).getServiceStatus();
             SoapFaultDetail detail = fault.addFaultDetail();
             detail.addFaultDetailElement(CODE).addText(status.getStatusCode());
