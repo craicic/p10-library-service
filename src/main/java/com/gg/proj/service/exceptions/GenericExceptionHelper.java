@@ -61,7 +61,6 @@ public class GenericExceptionHelper {
             throw new ServiceFaultException(errorMessage, serviceStatus);
         } else if (e instanceof RuntimeException) {
             log.warn("Runtime Exception caught : " + e);
-            log.warn("Exception details : " + e.getCause());
             String errorMessage = e.getMessage();
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.setMessage("Runtime error");
@@ -69,7 +68,6 @@ public class GenericExceptionHelper {
             throw new ServiceFaultException(errorMessage, serviceStatus);
         }
         log.warn("Exception caught : " + e);
-        log.warn("Exception details : " + e.getCause());
         String errorMessage = e.getMessage();
         ServiceStatus serviceStatus = new ServiceStatus();
         serviceStatus.setMessage("Generic error");

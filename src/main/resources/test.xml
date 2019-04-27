@@ -1,19 +1,16 @@
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
     <SOAP-ENV:Header/>
     <SOAP-ENV:Body>
-        <ns2:createBookResponse xmlns:ns2="http://proj.gg.com/service/books">
-            <ns2:book>
-                <ns2:id>21</ns2:id>
-                <ns2:title>how to SOAPui</ns2:title>
-                <ns2:author>Jéjé</ns2:author>
-                <ns2:isbn/>
-                <ns2:topicIds>6</ns2:topicIds>
-                <ns2:languageId>2</ns2:languageId>
-                <ns2:quantity>5</ns2:quantity>
-                <ns2:publicationDate>2015-03-21+01:00</ns2:publicationDate>
-                <ns2:libraryId>2</ns2:libraryId>
-                <ns2:summary>this is a dummy book to test the web service.</ns2:summary>
-            </ns2:book>
-        </ns2:createBookResponse>
+        <ns2:createLoanResponse xmlns:ns2="http://proj.gg.com/service/loans">
+            <ns2:loan>
+                <ns2:id>2</ns2:id>
+                <ns2:userId>1</ns2:userId>
+                <ns2:bookId>6</ns2:bookId>
+                <ns2:loanStartDate>2019-04-26</ns2:loanStartDate>
+                <ns2:loanEndDate>2019-05-24</ns2:loanEndDate>
+                <ns2:extended>false</ns2:extended>
+                <ns2:closed>false</ns2:closed>
+            </ns2:loan>
+        </ns2:createLoanResponse>
     </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>

@@ -56,10 +56,6 @@ public interface BookMapper {
             return null;
         }
 
-        for (Integer t : book.getTopicIds()) {
-            System.out.println(t);
-        }
-
         BookEntity bookEntity = new BookEntity();
         LanguageEntity languageEntity = new LanguageEntity();
         LibraryEntity libraryEntity = new LibraryEntity();
@@ -89,9 +85,6 @@ public interface BookMapper {
         bookEntity.setTopics(new ArrayList<>());
         bookEntity.getTopics().addAll(topics);
 
-        for (TopicEntity t : bookEntity.getTopics()) {
-            System.out.println(t.getId());
-        }
         return bookEntity;
     }
 
