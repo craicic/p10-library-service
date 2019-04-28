@@ -17,7 +17,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- *
  * <p>This class is registered with Spring WS as a candidate for processing incoming SOAP messages (via Endpoint annotation).</p>
  *
  * <p>Other annotations you'll find in this class :</p>
@@ -44,7 +43,6 @@ public class ProfileEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -59,7 +57,7 @@ public class ProfileEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "saveProfileRequest")
     @ResponsePayload
     public SaveProfileResponse saveProfile(@RequestPayload SaveProfileRequest request) throws ServiceFaultException {
-        log.debug("Entering saveProfile... ");
+        log.info("Call from network - saveProfile for user : [" + request.getUser().toString() + "]");
         SaveProfileResponse saveProfileResponse = new SaveProfileResponse();
         try {
             Optional<User> optional = profileManager.save(request.getUser(), request.getTokenUUID());
@@ -71,7 +69,6 @@ public class ProfileEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -86,7 +83,7 @@ public class ProfileEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteProfileRequest")
     @ResponsePayload
     public DeleteProfileResponse deleteProfile(@RequestPayload DeleteProfileRequest request) throws ServiceFaultException {
-        log.debug("Entering deleteProfile... ");
+        log.info("Call from network - deleteProfile for user : [" + request.getUser().getPseudo() + "]");
         try {
             profileManager.delete(request.getUser(), request.getTokenUUID());
         } catch (Exception ex) {
@@ -96,7 +93,6 @@ public class ProfileEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -111,7 +107,7 @@ public class ProfileEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProfileRequest")
     @ResponsePayload
     public GetProfileResponse getProfile(@RequestPayload GetProfileRequest request) throws ServiceFaultException {
-        log.debug("Entering getProfile... ");
+        log.info("Call from network -  getProfile for user with id : [" + request.getId() + "]");
         GetProfileResponse response = new GetProfileResponse();
         try {
             Optional<User> opt = profileManager.findById(request.getId(), UUID.fromString(request.getTokenUUID()));
@@ -123,7 +119,6 @@ public class ProfileEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -138,7 +133,7 @@ public class ProfileEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllProfilesRequest")
     @ResponsePayload
     public ListAllProfilesResponse listAllProfiles(@RequestPayload ListAllProfilesRequest request) throws ServiceFaultException {
-        log.debug("Entering listAllProfiles... ");
+        log.info("Call from network - listAllProfiles to get a list of all user");
         ListAllProfilesResponse response = new ListAllProfilesResponse();
         List<User> users = response.getUsers();
         try {
@@ -150,7 +145,6 @@ public class ProfileEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p><b>Method's logic :</b> use when you need to know which are the users that detains late loan.</p>
@@ -161,7 +155,7 @@ public class ProfileEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listLateProfilesRequest")
     @ResponsePayload
     public ListLateProfilesResponse ListLateProfiles(@RequestPayload ListLateProfilesRequest request) throws ServiceFaultException {
-        log.debug("Entering listLateProfiles... ");
+        log.info("Call from network - listLateProfiles to get a list of all late user");
         ListLateProfilesResponse response = new ListLateProfilesResponse();
         List<UserMin> users = response.getUsers();
         users.addAll(profileManager.findLatecomers());

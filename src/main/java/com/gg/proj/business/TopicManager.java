@@ -91,6 +91,9 @@ public class TopicManager {
         return Optional.ofNullable(topicMapper.topicEntityToTopic(topicEntity));
     }
 
-
+    public List<Topic> findDistinctByBookId(Integer bookId) {
+        List<TopicEntity> topicEntities = topicRepository.findDistinctByBookId(bookId);
+        return topicMapper.topicEntityListToTopicList(topicEntities);
+    }
 
 }

@@ -153,6 +153,23 @@
         <xs:complexType>
         </xs:complexType>
     </xs:element>
+
+    <!-- find all topic by a given bookId -->
+    <!-- list all topics-->
+    <xs:element name="getTopicListByBookIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getTopicListByBookIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="topics" type="tns:topic" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
     <!--==== CRUD Library methods ====-->
     <!-- persist a library -->
     <xs:element name="createLibraryRequest">

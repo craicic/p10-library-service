@@ -15,7 +15,6 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 /**
- *
  * <p>This class is registered with Spring WS as a candidate for processing incoming SOAP messages (via Endpoint annotation)</p>
  *
  * <p>Other annotations you'll find in this class :</p>
@@ -44,14 +43,13 @@ public class UserEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (UserNotFoundException, IllegalArgumentException) are processed directly
-     *  in this method : depending the instance of the exception it builds a custom SOAP error.</p>
+     * in this method : depending the instance of the exception it builds a custom SOAP error.</p>
      *
      * @param request is an instance of LoginUserRequest. It's mapped from the incoming SOAP message.
      * @return LoginUserResponse the output message contains this response.
@@ -59,7 +57,7 @@ public class UserEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "loginUserRequest")
     @ResponsePayload
     public LoginUserResponse loginUser(@RequestPayload LoginUserRequest request) throws ServiceFaultException {
-        log.debug("loginUser : calling the userManager to login user : " + request.getPseudo());
+        log.info("Call from network - loginUser : calling the userManager to login user : [" + request.getPseudo() + "]");
         LoginUserResponse response = new LoginUserResponse();
         try {
             response.setToken(userManager.loginUser(request.getPseudo(), request.getPassword()));
@@ -80,14 +78,13 @@ public class UserEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
      * method).</p>
      *
      * <p>Exceptions thrown by the Business layer (UserNotFoundException, IllegalArgumentException) are processed directly
-     *  in this method : depending the instance of the exception it builds a custom SOAP error.</p>
+     * in this method : depending the instance of the exception it builds a custom SOAP error.</p>
      *
      * @param request is an instance of LoginUserRequest. It's mapped from the incoming SOAP message.
      * @return LoginUserResponse the output message contains this response.
@@ -95,7 +92,7 @@ public class UserEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "logoutUserRequest")
     @ResponsePayload
     public LogoutUserResponse logoutUser(@RequestPayload LogoutUserRequest request) throws ServiceFaultException {
-        log.debug("logoutUser : calling the userManager to log a user out with token :" + request.getTokenUUID());
+        log.info("Call from network - logoutUser : calling the userManager to log a user out with token : [" + request.getTokenUUID() + "]");
         LogoutUserResponse response = new LogoutUserResponse();
         response.setLogoutStatus("FAILURE");
         try {
@@ -117,7 +114,6 @@ public class UserEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -133,7 +129,7 @@ public class UserEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "registerUserRequest")
     @ResponsePayload
     public RegisterUserResponse registerUser(@RequestPayload RegisterUserRequest request) throws ServiceFaultException {
-        log.debug("Entering registerUser with user " + request.getUser());
+        log.info("Call from network - registerUser with user : [" + request.getUser().getPseudo() + "]");
         RegisterUserResponse response = new RegisterUserResponse();
         try {
             response.setToken(userManager.registerUser(request.getUser()));
@@ -144,7 +140,6 @@ public class UserEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -159,7 +154,7 @@ public class UserEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "changePasswordRequest")
     @ResponsePayload
     public ChangePasswordResponse changePassword(@RequestPayload ChangePasswordRequest request) throws ServiceFaultException {
-        log.debug("Entering changePassword ... ");
+        log.info("Call from network - changePassword for user : [" + request.getUserId() + "]");
         ChangePasswordResponse response = new ChangePasswordResponse();
         try {
             userManager.changePassword(request.getTokenUUID(), request.getUserId(), request.getOldPassword(), request.getNewPassword());

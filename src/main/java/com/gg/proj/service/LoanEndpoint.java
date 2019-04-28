@@ -84,7 +84,7 @@ public class LoanEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "saveLoanRequest")
     @ResponsePayload
     public SaveLoanResponse saveLoan(@RequestPayload SaveLoanRequest request) throws ServiceFaultException {
-        log.debug("Entering saveLoan... ");
+        log.info("Call from network - saveLoan to persist the loan for user : [" + request.getLoan().getUserId() + "]");
         SaveLoanResponse saveLoanResponse = new SaveLoanResponse();
         try {
             Optional<Loan> optional = loanManager.save(request.getLoan(), request.getTokenUUID());
@@ -116,7 +116,8 @@ public class LoanEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "extendLoanRequest")
     @ResponsePayload
     public ExtendLoanResponse extendLoan(@RequestPayload ExtendLoanRequest request) throws ServiceFaultException {
-        log.debug("Entering extendLoan... ");
+        log.info("Call from network - extendLoan to extend the loan of Id : [" + request.getLoan().getId() + "]");
+
         ExtendLoanResponse extendLoanResponse = new ExtendLoanResponse();
         try {
             Optional<Loan> optional = loanManager.extend(request.getLoan(), request.getTokenUUID());
@@ -143,7 +144,8 @@ public class LoanEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "closeLoanRequest")
     @ResponsePayload
     public CloseLoanResponse closeLoan(@RequestPayload CloseLoanRequest request) {
-        log.debug("Entering closeLoan... ");
+        log.info("Call from network - closeLoan to close the loan of Id : [" + request.getId() + "]");
+
         CloseLoanResponse closeLoanResponse = new CloseLoanResponse();
         try {
             Optional<Loan> optional = loanManager.close(request.getId(), request.getTokenUUID());
@@ -170,7 +172,8 @@ public class LoanEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteLoanRequest")
     @ResponsePayload
     public DeleteLoanResponse deleteLoan(@RequestPayload DeleteLoanRequest request) throws ServiceFaultException {
-        log.debug("Entering deleteLoan... ");
+        log.info("Call from network - deleteLoan to close the loan of Id : [" + request.getLoan().getId() + "]");
+
         try {
             loanManager.delete(request.getLoan(), request.getTokenUUID());
         } catch (Exception ex) {
@@ -196,7 +199,8 @@ public class LoanEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getLoanRequest")
     @ResponsePayload
     public GetLoanResponse getLoan(@RequestPayload GetLoanRequest request) throws ServiceFaultException {
-        log.debug("Entering getLoan... ");
+        log.info("Call from network - getLoan to close the loan of Id : [" + request.getId() + "]");
+
         GetLoanResponse response = new GetLoanResponse();
         try {
             Optional<Loan> opt = loanManager.findById(request.getId(), request.getTokenUUID());
@@ -223,7 +227,7 @@ public class LoanEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllLoansRequest")
     @ResponsePayload
     public ListAllLoansResponse listAllLoans(@RequestPayload ListAllLoansRequest request) throws ServiceFaultException {
-        log.debug("Entering listAllLoans... ");
+        log.info("Call from network - listAllLoans to get a list of all loans stored in database");
         ListAllLoansResponse response = new ListAllLoansResponse();
         List<Loan> loans = response.getLoans();
         try {
@@ -251,7 +255,7 @@ public class LoanEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "findAllLoansByUserIdRequest")
     @ResponsePayload
     public FindAllLoansByUserIdResponse findAllLoansByUserId(@RequestPayload FindAllLoansByUserIdRequest request) throws ServiceFaultException {
-        log.debug("Entering findAllLoansByUserId... ");
+        log.info("Call from network - findAllLoansByUserId to find all loans related to user of Id : [" + request.getUserId() + "]");
         FindAllLoansByUserIdResponse response = new FindAllLoansByUserIdResponse();
         List<LoanDetailed> loans = response.getLoansDetailed();
         try {

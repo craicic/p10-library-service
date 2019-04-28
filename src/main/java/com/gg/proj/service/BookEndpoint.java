@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- *
  * <p>This class is registered with Spring WS as a candidate for processing incoming SOAP messages (via Endpoint annotation).</p>
  *
  * <p>Other annotations you'll find in this class :</p>
@@ -27,7 +26,6 @@ import java.util.Optional;
  * <p>PayloadRoot is then used by Spring WS to pick the handler method based on the message’s namespace and localPart.</p>
  * <p>RequestPayload indicates that the incoming message will be mapped to the method’s request parameter.</p>
  * <p>ResponsePayload annotation makes Spring WS map the returned value to the response payload.</p>
- *
  */
 @Endpoint
 public class BookEndpoint {
@@ -53,7 +51,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must possess a valid to perform this
@@ -68,7 +65,7 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createBookRequest")
     @ResponsePayload
     public CreateBookResponse createBook(@RequestPayload CreateBookRequest request) throws ServiceFaultException {
-        log.debug("createBook : calling the BookManager to create book");
+        log.info("Call from network - createBook : calling the BookManager to create book titled : [" + request.getBookMin().getTitle() + "]");
         CreateBookResponse createBookResponse = new CreateBookResponse();
         try {
             Optional<Book> optional = bookManager.create(request.getBookMin(), request.getTokenUUID());
@@ -80,7 +77,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must possess a valid to perform this
@@ -95,7 +91,7 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "saveBookRequest")
     @ResponsePayload
     public SaveBookResponse saveBook(@RequestPayload SaveBookRequest request) throws ServiceFaultException {
-        log.debug("saveBook : calling the BookManager to save book");
+        log.info("Call from network - saveBook : calling the BookManager to save book titled : [" + request.getBook().getTitle() + "]");
         SaveBookResponse saveBookResponse = new SaveBookResponse();
         try {
             saveBookResponse.setBook(bookManager.save(request.getBook(), request.getTokenUUID()));
@@ -106,7 +102,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must possess a valid to perform this
@@ -121,7 +116,7 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteBookRequest")
     @ResponsePayload
     public DeleteBookResponse deleteBook(@RequestPayload DeleteBookRequest request) throws ServiceFaultException {
-        log.debug("Entering deleteBook with UUID : [" + request.getTokenUUID() + "]");
+        log.info("Call from network - deleteBook to delete book : [" + request.getBook().getId() + "]");
         try {
             bookManager.delete(request.getBook(), request.getTokenUUID());
         } catch (Exception e) {
@@ -131,7 +126,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of GetBookRequest. It's mapped from the incoming SOAP message.
@@ -140,7 +134,7 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getBookRequest")
     @ResponsePayload
     public GetBookResponse getBook(@RequestPayload GetBookRequest request) {
-        log.debug("getBook : calling the BookManager to fetch a book by id");
+        log.info("Call from network - getBook : calling the BookManager to fetch a book by id : [" + request.getId() + "]");
         GetBookResponse response = new GetBookResponse();
         Optional<BookFull> opt = bookManager.findById(request.getId());
         opt.ifPresent(response::setBookFull);
@@ -148,7 +142,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of ListAllBooksRequest. It's mapped from the incoming SOAP message.
@@ -157,6 +150,7 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllBooksRequest")
     @ResponsePayload
     public ListAllBooksResponse listAllBooks(@RequestPayload ListAllBooksRequest request) {
+        log.info("Call from network - listAllBook to get a list of all book stored in database");
         ListAllBooksResponse response = new ListAllBooksResponse();
         List<Book> books = response.getBooks();
         books.addAll(bookManager.findAll());
@@ -164,7 +158,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of SearchBooksRequest. It's mapped from the incoming SOAP message.
@@ -173,12 +166,11 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "searchBooksRequest")
     @ResponsePayload
     public SearchBooksResponse searchBooks(@RequestPayload SearchBooksRequest request) {
-        log.debug("SearchBooks : calling the bookManager to filterBooks book");
+        log.info("Call from network - SearchBooks to find books with keyword : [" + request.getKeyWord() + "]");
         return bookManager.searchBooks(request.getKeyWord(), request.getPage(), request.getSize());
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of FilterBooksRequest. It's mapped from the incoming SOAP message.
@@ -187,14 +179,13 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "filterBooksRequest")
     @ResponsePayload
     public FilterBooksResponse filterBooks(@RequestPayload FilterBooksRequest request) {
-        log.debug("filterBooks : calling the bookManager to filterBooks book");
+        log.info("Call from network - filterBooks to find books with keyword : [" + request.getKeyWord() + "]");
 
         return bookManager.filterBooks(request.getKeyWord(), request.getLanguageId(), request.getLibraryId()
                 , request.getTopicId(), request.isAvailable(), request.getPage(), request.getSize());
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must possess a valid to perform this
@@ -209,6 +200,7 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createLanguageRequest")
     @ResponsePayload
     public CreateLanguageResponse createLanguage(@RequestPayload CreateLanguageRequest request) throws ServiceFaultException {
+        log.info("Call from network - createLanguage to create the language : [" + request.getLanguageName() + "]");
         CreateLanguageResponse response = new CreateLanguageResponse();
         try {
             Optional<Language> optional = languageManager.create(request.getLanguageName(), request.getTokenUUID());
@@ -220,7 +212,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must possess a valid to perform this
@@ -235,6 +226,7 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createLibraryRequest")
     @ResponsePayload
     public CreateLibraryResponse createLibrary(@RequestPayload CreateLibraryRequest request) throws ServiceFaultException {
+        log.info("Call from network - createLibrary to create the library : [" + request.getLibraryMin().getName() + "]");
         CreateLibraryResponse response = new CreateLibraryResponse();
         try {
             Optional<Library> optional = libraryManager.create(request.getLibraryMin(), request.getTokenUUID());
@@ -246,7 +238,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must possess a valid to perform this
@@ -262,6 +253,7 @@ public class BookEndpoint {
     @ResponsePayload
     public CreateTopicResponse createTopic(@RequestPayload CreateTopicRequest request) throws ServiceFaultException {
         CreateTopicResponse response = new CreateTopicResponse();
+        log.info("Call from network - createTopic to create the topic : [" + request.getTopicName() + "]");
         try {
             Optional<Topic> optional = topicManager.create(request.getTopicName(), request.getTokenUUID());
             optional.ifPresent(response::setTopic);
@@ -272,7 +264,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must possess a valid to perform this
@@ -288,6 +279,7 @@ public class BookEndpoint {
     @ResponsePayload
     public SaveLanguageResponse saveLanguage(@RequestPayload SaveLanguageRequest request) throws ServiceFaultException {
         SaveLanguageResponse response = new SaveLanguageResponse();
+        log.info("Call from network - saveLanguage to persist the language : [" + request.getLanguage().getName() + "]");
         try {
             Optional<Language> optional = languageManager.save(request.getLanguage(), request.getTokenUUID());
             optional.ifPresent(response::setLanguage);
@@ -298,7 +290,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must possess a valid to perform this
@@ -314,6 +305,7 @@ public class BookEndpoint {
     @ResponsePayload
     public SaveLibraryResponse saveLibrary(@RequestPayload SaveLibraryRequest request) throws ServiceFaultException {
         SaveLibraryResponse response = new SaveLibraryResponse();
+        log.info("Call from network - saveLibrary to persist the library : [" + request.getLibrary().getName() + "]");
         try {
             Optional<Library> optional = libraryManager.save(request.getLibrary(), request.getTokenUUID());
             optional.ifPresent(response::setLibrary);
@@ -324,7 +316,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must possess a valid to perform this
@@ -340,6 +331,7 @@ public class BookEndpoint {
     @ResponsePayload
     public SaveTopicResponse saveTopic(@RequestPayload SaveTopicRequest request) throws ServiceFaultException {
         SaveTopicResponse response = new SaveTopicResponse();
+        log.info("Call from network - saveTopic to persist the topic : [" + request.getTopic().getName() + "]");
         try {
             Optional<Topic> optional = topicManager.save(request.getTopic(), request.getTokenUUID());
             optional.ifPresent(response::setTopic);
@@ -350,7 +342,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must possess a valid to perform this
@@ -365,6 +356,8 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteLanguageRequest")
     @ResponsePayload
     public DeleteLanguageResponse deleteLanguage(@RequestPayload DeleteLanguageRequest request) throws ServiceFaultException {
+        log.info("Call from network - deleteLanguage to delete the language : [" + request.getLanguage().getName() + "]");
+
         try {
             languageManager.delete(request.getLanguage(), request.getTokenUUID());
         } catch (Exception e) {
@@ -374,7 +367,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must possess a valid to perform this
@@ -389,6 +381,8 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteLibraryRequest")
     @ResponsePayload
     public DeleteLibraryResponse deleteLibrary(@RequestPayload DeleteLibraryRequest request) throws ServiceFaultException {
+        log.info("Call from network - deleteLibrary to delete the library : [" + request.getLibrary().getName() + "]");
+
         try {
             libraryManager.delete(request.getLibrary(), request.getTokenUUID());
         } catch (Exception e) {
@@ -398,7 +392,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must possess a valid to perform this
@@ -413,6 +406,8 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteTopicRequest")
     @ResponsePayload
     public DeleteTopicResponse deleteTopic(@RequestPayload DeleteTopicRequest request) throws ServiceFaultException {
+        log.info("Call from network - deleteTopic to delete the topic : [" + request.getTopic().getName() + "]");
+
         try {
             topicManager.delete(request.getTopic(), request.getTokenUUID());
         } catch (Exception e) {
@@ -422,7 +417,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of GetLanguageRequest. It's mapped from the incoming SOAP message.
@@ -431,8 +425,8 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getLanguageRequest")
     @ResponsePayload
     public GetLanguageResponse getLanguage(@RequestPayload GetLanguageRequest request) {
-        log.debug("getLanguage : calling the LanguageManager to fetch a book by id");
         GetLanguageResponse response = new GetLanguageResponse();
+        log.info("Call from network - getLanguage : calling the LanguageManager to fetch a language by id : [" + request.getId() + "]");
 
         Optional<Language> opt = languageManager.findById(request.getId());
         opt.ifPresent(response::setLanguage);
@@ -440,7 +434,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of GetLibraryRequest. It's mapped from the incoming SOAP message.
@@ -449,8 +442,8 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getLibraryRequest")
     @ResponsePayload
     public GetLibraryResponse getLibrary(@RequestPayload GetLibraryRequest request) {
-        log.debug("getLibrary : calling the LibraryManager to fetch a book by id");
         GetLibraryResponse response = new GetLibraryResponse();
+        log.debug("Call from network - getLibrary : calling the LibraryManager to fetch a library by id : [" + request.getId() + "]");
 
         Optional<Library> opt = libraryManager.findById(request.getId());
         opt.ifPresent(response::setLibrary);
@@ -458,7 +451,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of GetTopicRequest. It's mapped from the incoming SOAP message.
@@ -467,8 +459,8 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getTopicRequest")
     @ResponsePayload
     public GetTopicResponse getTopic(@RequestPayload GetTopicRequest request) {
-        log.debug("getTopic : calling the TopicManager to fetch a book by id");
         GetTopicResponse response = new GetTopicResponse();
+        log.debug("Call from network - getTopic : calling the TopicManager to fetch a topic by id : [" + request.getId() + "]");
 
         Optional<Topic> opt = topicManager.findById(request.getId());
         opt.ifPresent(response::setTopic);
@@ -476,7 +468,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of ListAllLanguagesRequest. It's mapped from the incoming SOAP message.
@@ -485,6 +476,8 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllLanguagesRequest")
     @ResponsePayload
     public ListAllLanguagesResponse listAllLanguages(@RequestPayload ListAllLanguagesRequest request) {
+        log.info("Call from network - listAllLanguages to get a list of all languages stored in database");
+
         ListAllLanguagesResponse response = new ListAllLanguagesResponse();
         List<Language> languages = response.getLanguages();
         languages.addAll(languageManager.findAll());
@@ -492,7 +485,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of ListAllLibrariesRequest. It's mapped from the incoming SOAP message.
@@ -501,6 +493,8 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllLibrariesRequest")
     @ResponsePayload
     public ListAllLibrariesResponse listAllLibraries(@RequestPayload ListAllLibrariesRequest request) {
+        log.info("Call from network - listAllLibraries to get a list of all libraries stored in database");
+
         ListAllLibrariesResponse response = new ListAllLibrariesResponse();
         List<Library> libraries = response.getLibraries();
         libraries.addAll(libraryManager.findAll());
@@ -508,7 +502,6 @@ public class BookEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * @param request is an instance of ListAllTopicsRequest. It's mapped from the incoming SOAP message.
@@ -517,9 +510,28 @@ public class BookEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAllTopicsRequest")
     @ResponsePayload
     public ListAllTopicsResponse listAllTopics(@RequestPayload ListAllTopicsRequest request) {
+        log.info("Call from network - listAllTopics to get a list of all topics stored in database");
+
         ListAllTopicsResponse response = new ListAllTopicsResponse();
         List<Topic> topics = response.getTopics();
         topics.addAll(topicManager.findAll());
+        return response;
+    }
+
+    /**
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
+     * @param request is an instance of GetTopicListByBookIdRequest. It's mapped from the incoming SOAP message.
+     * @return GetTopicListByBookIdResponse the output message contains this response.
+     */
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getTopicListByBookIdRequest")
+    @ResponsePayload
+    public GetTopicListByBookIdResponse getTopicListByBookId(@RequestPayload GetTopicListByBookIdRequest request) {
+        log.info("Call from network - getTopicListByBookId to get a list of all topic related to the book of id : [" + request.getBookId() + "]");
+
+        GetTopicListByBookIdResponse response = new GetTopicListByBookIdResponse();
+        List<Topic> topics = response.getTopics();
+        topics.addAll(topicManager.findDistinctByBookId(request.getBookId()));
         return response;
     }
 }
