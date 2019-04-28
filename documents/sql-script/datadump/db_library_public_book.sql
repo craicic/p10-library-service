@@ -1,2 +1,0 @@
-INSERT INTO public.book (id, author, isbn, publication_date, quantity, summary, title, language_id, library_id) VALUES (1, 'Berberian', '', '2015-03-21 21:20:30.257000', 5, 'Une histoire du rock', 'jukebox', 1, 1);
-INSERT INTO public.book (id, author, isbn, publication_date, quantity, summary, title, language_id, library_id) VALUES (2, 'Charles Berberian', '', '2000-01-01 00:00:00.000000', 10, 'Une BD sur l''histoire du rock''n''roll', 'Jukebox', 1, 1);

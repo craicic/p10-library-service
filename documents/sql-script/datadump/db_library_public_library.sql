@@ -1,1 +1,0 @@
-INSERT INTO public.library (id, address, city, name, phone_number, postal_code) VALUES (1, 'Rue de l''Alma', 'Rennes', 'Médiathèque de l''Alma', '0299115544', 35000);

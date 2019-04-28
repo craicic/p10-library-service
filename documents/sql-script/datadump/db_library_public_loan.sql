@@ -1,1 +1,0 @@
-INSERT INTO public.loan (id, closed, extended, loan_end_date, loan_start_date, book_id, user_id) VALUES (1, false, false, '2019-04-02', '2019-04-01', 2, 1);
