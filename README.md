@@ -1,4 +1,4 @@
-# Web Service for the [library project](https://github.com/xxjokerx/library) 
+# Web Service for the [library project](https://github.com/xxjokerx/p10-library) 
   
 ## Description  
   
@@ -6,7 +6,7 @@ Based on SOAP, this service is the corner stone of this project : it must
 provide an access to multiple methods for various applications : a batch, a user webapp, and a professional webapp for internal workstation (the last one will not be developed).\
 It's a single module application where packages separate responsibilities - see diagram
 
-![Package diagram](https://raw.githubusercontent.com/xxjokerx/library-service/master/documents/uml/Package_proj.png)
+![Package diagram](https://raw.githubusercontent.com/xxjokerx/p10-library-service/master/documents/uml/Package_proj.png)
   
 ## Technologies  
   
@@ -40,11 +40,11 @@ Run SQL Shell (psql), press enter 3 times then fill username and password. Then 
 (You can either do this step via pgAdmin)
 
 ##### 3 - Create the tables
-Run pgAdmin 4, connect to the server, right click on your database | Queries tool and execute this [query](https://raw.githubusercontent.com/xxjokerx/library-service/master/documents/sql-script/creation/000-all_tables.sql).
+Run pgAdmin 4, connect to the server, right click on your database | Queries tool and execute this [query](https://raw.githubusercontent.com/xxjokerx/p10-library-service/master/documents/sql-script/creation/000-all_tables.sql).
 
 ##### 4 - Insert data
 In pgAdmin 4 | Right click on your DB | Query Tool
-Then you can run this [query](https://raw.githubusercontent.com/xxjokerx/library-service/master/documents/sql-script/datadump/db_library_all_data_edited.sql).
+Then you can run this [query](https://raw.githubusercontent.com/xxjokerx/p10-library-service/master/documents/sql-script/datadump/db_library_all_data_edited.sql).
 
 ##### 5 - Import the project
 Download or clone this repository.
@@ -54,7 +54,7 @@ Download or clone this repository.
 <!--Now your IDE should recognize custom properties in `src/main/application.properties` for auto-completion-->
 
 ##### 6 - Configure application.properties
-Edit application.properties in `library-service\src\main\resources` :
+Edit application.properties in `p10-library-service\src\main\resources` :
 
 `webservice.datasource.driverClassNam=org.postgresql.Driver`\
 `webservice.datasource.url` should be `jdbc:postgresql://localhost:5432/{your-db-name}`\
@@ -69,7 +69,7 @@ Then edit the wsdl location `webservice.location` : keep in mind that final loca
 <!--At this point hibernate should have created the tables. Stop the application.-->
 
 ##### 7 - Package the application
-In command prompt, go to library-service root folder and run `mvn package`
+In command prompt, go to p10-library-service root folder and run `mvn package`
 
 ##### 8 - Run tomcat manager :
 - Open tomcat_home\conf\tomcat-user.xml and add the following line inside tomcat-user tag :	user username="user" password="123" roles="standart,manager-gui" inside a tag.
@@ -93,5 +93,5 @@ Click Deploy and it's done !
 <!--Go to Deployment, then add an artifact (the war you've just packaged). Set a context folder and press OK.-->
 <!--/!\ Remember this context folder as it's need for deploying the webapp and run the batch.-->
 
-You can deploy the [client web application](https://github.com/xxjokerx/library-client#deployment).
+You can deploy the [client web application](https://github.com/xxjokerx/p10-library-client#deployment).
 
