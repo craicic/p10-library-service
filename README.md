@@ -95,3 +95,9 @@ Click Deploy and it's done !
 
 You can deploy the [client web application](https://github.com/xxjokerx/p10-library-client#deployment).
 
+## Release notes
+
+##### 1.0.0
+
+Web service for the library project. It provide a SOA api.
+
