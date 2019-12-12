@@ -1,4 +1,4 @@
-# Web Service for the [library project](https://github.com/xxjokerx/p10-library) 
+# Web Service 1.1.0-ALPHA-1 for the [library project](https://github.com/xxjokerx/p10-library) 
   
 ## Description  
   
@@ -95,9 +95,14 @@ Click Deploy and it's done !
 
 You can deploy the [client web application](https://github.com/xxjokerx/p10-library-client#deployment).
 
-## Release notes
+## Changelog
 
-##### 1.0.0
+##### 1.0.0 - 11 Dec 2019
 
 Web service for the library project. It provide a SOA api.
 
+## Upcoming Version
+
+##### 1.1.0
+
+Will provide an advanced booking system
