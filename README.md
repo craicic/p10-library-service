@@ -101,3 +101,6 @@ You can deploy the [client web application](https://github.com/xxjokerx/p10-libr
 
 Web service for the library project. It provide a SOA api.
 
+## Known bug
+
+A user can extends a loan 
