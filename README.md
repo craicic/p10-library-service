@@ -103,4 +103,4 @@ Web service for the library project. It provide a SOA api.
 
 ## Known bug
 
-A user can extends a loan 
+A user can extends a loan when out-of-date
