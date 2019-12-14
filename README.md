@@ -1,4 +1,4 @@
-# Web Service 1.0.1-BETA-2 for the [library project](https://github.com/xxjokerx/p10-library) 
+# Web Service 1.0.1 for the [library project](https://github.com/xxjokerx/p10-library) 
   
 ## Description  
   
@@ -101,12 +101,6 @@ You can deploy the [client web application](https://github.com/xxjokerx/p10-libr
 
 Web service for the library project. It provide a SOA api.
 
-## Upcoming Version
-
 ##### 1.0.1
 
-Will address a bug listed below.
-
-## Known bug
-
-A user can extends a loan while out-of-date.
+Will address a user could extend a loan while out-of-date.
