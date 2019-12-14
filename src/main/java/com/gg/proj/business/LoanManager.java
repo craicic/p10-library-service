@@ -116,7 +116,10 @@ public class LoanManager {
                     if (loanEntityFromDB.isExtended()) {
                         throw new InvalidLoanOperationException("This loan has already been extended");
                     }
-                    if (loanEntityFromDB.getLoanEndDate().equals(loanEntityFromEndpoint.getLoanEndDate()) || loanEntityFromEndpoint.getLoanEndDate() == null) {
+                    if (loanEntityFromDB.getLoanEndDate().isAfter(LocalDate.now())) {
+                        throw new InvalidLoanOperationException("You can't extend an expired loan");
+                    }
+                    else if (loanEntityFromDB.getLoanEndDate().equals(loanEntityFromEndpoint.getLoanEndDate()) || loanEntityFromEndpoint.getLoanEndDate() == null) {
                         newEndDate = loanEntityFromDB.getLoanEndDate().plus(4, ChronoUnit.WEEKS);
                         log.debug("Assigning a base value of +4 week to the EndDate : " + newEndDate);
                     } else if (loanEntityFromDB.getLoanEndDate().isBefore(loanEntityFromEndpoint.getLoanEndDate())) {

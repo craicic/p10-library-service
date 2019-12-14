@@ -14,7 +14,7 @@
 
     <groupId>com.gg.proj</groupId>
     <artifactId>library-service</artifactId>
-    <version>1.0.1-BETA-1</version>
+    <version>1.0.1-BETA-2</version>
     <packaging>war</packaging>
     <name>library-service</name>
     <description>A web service for the library project</description>
@@ -114,7 +114,7 @@
                         <annotationProcessorPath>
                             <groupId>org.springframework.boot</groupId>
                             <artifactId>spring-boot-configuration-processor</artifactId>
-                            <version>${parent.version}</version>
+                            <version>${project.parent.version}</version>
                         </annotationProcessorPath>
                         <annotationProcessorPath>
                             <groupId>org.mapstruct</groupId>
