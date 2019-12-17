@@ -47,7 +47,11 @@ public class LoanManager {
     public Optional<Loan> create(LoanMin loanMin, String tokenUUID) throws OutdatedTokenException, InvalidTokenException, InvalidLoanOperationException {
         log.debug("Entering create...");
 
-        tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception ex) {
+            GenericExceptionHelper.tokenExceptionHandler(ex);
+        }
 
         log.debug("... requesting consumer to persist a new loan with user id : [" + loanMin.getUserId() +
                 "] and book id : [" + loanMin.getBookId() + "]");
@@ -63,7 +67,9 @@ public class LoanManager {
         }
 
         Optional<Loan> opt = Optional.ofNullable(loanMapper.loanEntityToLoan(loanRepository.save(loanEntity)));
-        bookManager.decreaseQuantity(loanMin.getBookId());
+
+        // We decrease stock
+        bookManager.decreaseQuantity(loanEntity.getBook().getId());
         return opt;
     }
 
@@ -76,15 +82,13 @@ public class LoanManager {
 
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-
         } catch (Exception ex) {
             GenericExceptionHelper.tokenExceptionHandler(ex);
         }
+
         optionalFromEndpoint.orElseThrow(() -> new IllegalArgumentException("Invalid loan argument"));
 
-
         LoanEntity loanEntityFromEndpoint = loanMapper.loanToLoanEntity(optionalFromEndpoint.get());
-
 
         log.debug("... finding an existing loan with id : [" + loanEntityFromEndpoint.getId() + "]");
         optionalFromDB = loanRepository.findById(loanEntityFromEndpoint.getId());
@@ -112,56 +116,60 @@ public class LoanManager {
 
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-
-            if (optionalFromEndpoint.isPresent()) {
-                LoanEntity loanEntityFromEndpoint = loanMapper.loanToLoanEntity(optionalFromEndpoint.get());
-                optionalFromDB = loanRepository.findById(loanEntityFromEndpoint.getId());
-                LoanEntity loanEntityFromDB = optionalFromDB.orElse(null);
-
-                if (optionalFromDB.isPresent()) {
-                    if (loanEntityFromDB.isExtended()) {
-                        throw new InvalidLoanOperationException("This loan has already been extended");
-                    }
-                    if (loanEntityFromDB.getLoanEndDate().isAfter(LocalDate.now())) {
-                        throw new InvalidLoanOperationException("You can't extend an expired loan");
-                    } else if (loanEntityFromDB.getLoanEndDate().equals(loanEntityFromEndpoint.getLoanEndDate()) || loanEntityFromEndpoint.getLoanEndDate() == null) {
-                        newEndDate = loanEntityFromDB.getLoanEndDate().plus(4, ChronoUnit.WEEKS);
-                        log.debug("Assigning a base value of +4 week to the EndDate : " + newEndDate);
-                    } else if (loanEntityFromDB.getLoanEndDate().isBefore(loanEntityFromEndpoint.getLoanEndDate())) {
-                        newEndDate = loanEntityFromEndpoint.getLoanEndDate();
-                        log.debug("Assigning a specific value to the EndDate : " + newEndDate);
-                    } else {
-                        throw new InvalidLoanOperationException("The new endDate must be after the old one");
-                    }
-                    loanEntityFromDB.setLoanEndDate(newEndDate);
-                    loanEntityFromDB.setExtended(true);
-                    loanRepository.save(loanEntityFromDB);
-                }
-            }
         } catch (Exception ex) {
             GenericExceptionHelper.tokenExceptionHandler(ex);
+        }
+
+        if (optionalFromEndpoint.isPresent()) {
+            LoanEntity loanEntityFromEndpoint = loanMapper.loanToLoanEntity(optionalFromEndpoint.get());
+            optionalFromDB = loanRepository.findById(loanEntityFromEndpoint.getId());
+            LoanEntity loanEntityFromDB = optionalFromDB.orElse(null);
+
+            if (optionalFromDB.isPresent()) {
+                if (loanEntityFromDB.isExtended()) {
+                    throw new InvalidLoanOperationException("This loan has already been extended");
+                }
+                if (loanEntityFromDB.getLoanEndDate().isBefore(LocalDate.now())) {
+                    throw new InvalidLoanOperationException("You can't extend an expired loan");
+                } else if (loanEntityFromDB.getLoanEndDate().equals(loanEntityFromEndpoint.getLoanEndDate()) || loanEntityFromEndpoint.getLoanEndDate() == null) {
+                    newEndDate = loanEntityFromDB.getLoanEndDate().plus(4, ChronoUnit.WEEKS);
+                    log.debug("Assigning a base value of +4 week to the EndDate : " + newEndDate);
+                } else if (loanEntityFromDB.getLoanEndDate().isBefore(loanEntityFromEndpoint.getLoanEndDate())) {
+                    newEndDate = loanEntityFromEndpoint.getLoanEndDate();
+                    log.debug("Assigning a specific value to the EndDate : " + newEndDate);
+                } else {
+                    throw new InvalidLoanOperationException("The new endDate must be after the old one");
+                }
+                loanEntityFromDB.setLoanEndDate(newEndDate);
+                loanEntityFromDB.setExtended(true);
+                loanRepository.save(loanEntityFromDB);
+
+                return Optional.of(loanMapper.loanEntityToLoan(
+                        loanRepository.save(loanEntityFromDB))
+                );
+            }
         }
         return Optional.empty();
     }
 
-    public Optional<Loan> close(Integer id, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {
+    public Optional<Loan> close(Integer id, String tokenUUID) throws OutdatedTokenException, InvalidTokenException, InvalidLoanOperationException {
         log.debug("Entering close ...");
         Optional<LoanEntity> optionalFromDB;
 
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-            if (id != null) {
-                optionalFromDB = loanRepository.findById(id);
-                if (optionalFromDB.isPresent()) {
-                    optionalFromDB.get().setClosed(true);
-                    Optional<Loan> opt = Optional.ofNullable(loanMapper.loanEntityToLoan(loanRepository.save(optionalFromDB.get())));
-                    opt.ifPresent(loan -> bookManager.increaseQuantity(loan.getBookId()));
-                    return opt;
-                }
-            } else throw new InvalidLoanOperationException("Invalid id");
         } catch (Exception ex) {
             GenericExceptionHelper.tokenExceptionHandler(ex);
         }
+        if (id != null) {
+            optionalFromDB = loanRepository.findById(id);
+            if (optionalFromDB.isPresent()) {
+                optionalFromDB.get().setClosed(true);
+                Optional<Loan> opt = Optional.ofNullable(loanMapper.loanEntityToLoan(loanRepository.save(optionalFromDB.get())));
+                opt.ifPresent(loan -> bookManager.increaseQuantity(loan.getBookId()));
+                return opt;
+            }
+        } else throw new InvalidLoanOperationException("Invalid id");
         return Optional.empty();
     }
 
@@ -179,22 +187,20 @@ public class LoanManager {
     }
 
 
-    public Optional<Loan> findById(Integer loanId, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {
+    public Optional<Loan> findById(Integer loanId, String tokenUUID) throws OutdatedTokenException, InvalidTokenException, InvalidLoanOperationException {
         Optional<LoanEntity> optionalFromDB;
 
         try {
             tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-
-            optionalFromDB = loanRepository.findById(loanId);
-            if (optionalFromDB.isPresent())
-                return Optional.ofNullable(loanMapper.loanEntityToLoan(optionalFromDB.get()));
-            else throw new InvalidLoanOperationException("No loan found in database");
         } catch (
                 Exception ex) {
             GenericExceptionHelper.tokenExceptionHandler(ex);
         }
 
-        return Optional.empty();
+        optionalFromDB = loanRepository.findById(loanId);
+        if (optionalFromDB.isPresent())
+            return Optional.ofNullable(loanMapper.loanEntityToLoan(optionalFromDB.get()));
+        else throw new InvalidLoanOperationException("No loan found in database");
     }
 
 
