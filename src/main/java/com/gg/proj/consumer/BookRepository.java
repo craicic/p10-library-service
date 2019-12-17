@@ -42,4 +42,6 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer>, Book
 //    @Query("select distinct b from BookEntity b where (upper(b.title) like upper(:x) or upper(b.author) like upper(:x) or upper(b.summary) like upper(:x))and b.quantity > 0")
 //    Page<BookEntity> searchAvailable(@Param("x") String keyWord, Pageable pageable);
 
+    @Query("SELECT b.quantity FROM BookEntity b WHERE b.id = (:id)")
+    Integer getBookQuantityById(@Param("id") int bookId);
 }

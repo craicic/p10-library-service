@@ -209,4 +209,15 @@ public class BookManager {
     public void increaseQuantity(int bookId) {
         bookRepository.increaseQuantity(bookId);
     }
+
+    /**
+     *
+     * Call the consumer to get the associated quantity of a book
+     *
+     * @param bookId the book you want to know the quantity
+     * @return an Integer, the quantity
+     */
+    public Integer getQuantity(int bookId) {
+        return bookRepository.getBookQuantityById(bookId);
+    }
 }

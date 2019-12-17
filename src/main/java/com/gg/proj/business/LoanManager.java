@@ -1,7 +1,6 @@
 package com.gg.proj.business;
 
 import com.gg.proj.business.mapper.LoanMapper;
-import com.gg.proj.consumer.BookRepository;
 import com.gg.proj.consumer.LoanRepository;
 import com.gg.proj.model.LoanEntity;
 import com.gg.proj.model.UserEntity;
@@ -45,17 +44,24 @@ public class LoanManager {
     }
 
 
-    public Optional<Loan> create(LoanMin loanMin, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {
+    public Optional<Loan> create(LoanMin loanMin, String tokenUUID) throws OutdatedTokenException, InvalidTokenException, InvalidLoanOperationException {
         log.debug("Entering create...");
-        try {
-            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
-        } catch (Exception ex) {
-            GenericExceptionHelper.tokenExceptionHandler(ex);
-        }
+
+        tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
 
         log.debug("... requesting consumer to persist a new loan with user id : [" + loanMin.getUserId() +
                 "] and book id : [" + loanMin.getBookId() + "]");
+
+        // Mapping ...
         LoanEntity loanEntity = loanMapper.loanMinToLoanEntity(loanMin);
+
+        // We check if at least one book is available
+        Integer bookQuantity = bookManager.getQuantity(loanEntity.getBook().getId());
+        if (bookQuantity <= 0) {
+            log.warn("This book is not available : quantity=" + bookQuantity);
+            throw new InvalidLoanOperationException("You can't borrow a book which is not available in library");
+        }
+
         Optional<Loan> opt = Optional.ofNullable(loanMapper.loanEntityToLoan(loanRepository.save(loanEntity)));
         bookManager.decreaseQuantity(loanMin.getBookId());
         return opt;
@@ -118,8 +124,7 @@ public class LoanManager {
                     }
                     if (loanEntityFromDB.getLoanEndDate().isAfter(LocalDate.now())) {
                         throw new InvalidLoanOperationException("You can't extend an expired loan");
-                    }
-                    else if (loanEntityFromDB.getLoanEndDate().equals(loanEntityFromEndpoint.getLoanEndDate()) || loanEntityFromEndpoint.getLoanEndDate() == null) {
+                    } else if (loanEntityFromDB.getLoanEndDate().equals(loanEntityFromEndpoint.getLoanEndDate()) || loanEntityFromEndpoint.getLoanEndDate() == null) {
                         newEndDate = loanEntityFromDB.getLoanEndDate().plus(4, ChronoUnit.WEEKS);
                         log.debug("Assigning a base value of +4 week to the EndDate : " + newEndDate);
                     } else if (loanEntityFromDB.getLoanEndDate().isBefore(loanEntityFromEndpoint.getLoanEndDate())) {
