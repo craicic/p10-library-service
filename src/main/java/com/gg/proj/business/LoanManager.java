@@ -116,7 +116,7 @@ public class LoanManager {
                     if (loanEntityFromDB.isExtended()) {
                         throw new InvalidLoanOperationException("This loan has already been extended");
                     }
-                    if (loanEntityFromDB.getLoanEndDate().isAfter(LocalDate.now())) {
+                    if (loanEntityFromDB.getLoanEndDate().isBefore(LocalDate.now())) {
                         throw new InvalidLoanOperationException("You can't extend an expired loan");
                     }
                     else if (loanEntityFromDB.getLoanEndDate().equals(loanEntityFromEndpoint.getLoanEndDate()) || loanEntityFromEndpoint.getLoanEndDate() == null) {

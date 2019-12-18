@@ -1,4 +1,4 @@
-# Web Service 1.0.1 for the [library project](https://github.com/xxjokerx/p10-library) 
+# Web Service 1.0.1.1 for the [library project](https://github.com/xxjokerx/p10-library) 
   
 ## Description  
   
@@ -97,10 +97,20 @@ You can deploy the [client web application](https://github.com/xxjokerx/p10-libr
 
 ## Release notes
 
-##### 1.0.0
+##### 1.0.0 - 11 Dec 2019
 
 Web service for the library project. It provide a SOA api.
 
-##### 1.0.1
+##### 1.0.1 - 14 Dec 2019
 
-Will address a user could extend a loan while out-of-date.
+Address a bug where a user could extend a loan while out-of-date.
+
+##### 1.0.1.1 - 18 Dec 2019
+
+Address a bug found in version 1.0.1.
+
+## Upcoming Version
+
+##### 1.1.0
+
+Will provide an advanced booking system
