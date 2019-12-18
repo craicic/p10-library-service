@@ -14,7 +14,7 @@
 
     <groupId>com.gg.proj</groupId>
     <artifactId>library-service</artifactId>
-    <version>1.1.0-ALPHA-5</version>
+    <version>1.1.0-ALPHA-6</version>
     <packaging>war</packaging>
     <name>library-service</name>
     <description>A web service for the library project</description>

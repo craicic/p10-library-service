@@ -80,6 +80,16 @@ public class WebServiceConfig {
         return wsdl11Definition;
     }
 
+    @Bean(name="bookings")
+    public DefaultWsdl11Definition bookingWsdl11Definition(XsdSchema bookingsSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("BookingPort");
+        wsdl11Definition.setLocationUri(customWebServiceProperties.getLocation());
+        wsdl11Definition.setTargetNamespace("http://proj.gg.com/service/bookings");
+        wsdl11Definition.setSchema(bookingsSchema);
+        return wsdl11Definition;
+    }
+
     @Bean
     public XsdSchema booksSchema() {
         return new SimpleXsdSchema(new ClassPathResource("/xsd/books/books.xsd"));
@@ -98,6 +108,11 @@ public class WebServiceConfig {
     @Bean
     public XsdSchema profilesSchema() {
         return new SimpleXsdSchema(new ClassPathResource("/xsd/profiles/profiles.xsd"));
+    }
+
+    @Bean
+    public XsdSchema bookingsSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("/xsd/bookings/bookings.xsd"));
     }
 
     @Bean
