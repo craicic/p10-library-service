@@ -38,6 +38,7 @@
         </xs:complexType>
     </xs:element>
 
+
     <!-- call it if you need the list of booking related to a user -->
     <xs:element name="getBookingListByUserIdRequest">
         <xs:complexType>
@@ -83,6 +84,7 @@
     <!-- booking -->
     <xs:complexType name="bookingInfo">
         <xs:sequence>
+            <xs:element name="bookingId" type="xs:int"/>
             <xs:element name="positionInQueue" type="xs:int"/>
             <xs:element name="nearestReturnDate" type="xs:date" minOccurs="0"/>
             <xs:element name="bookMin" type="tns:bookMin"/>
