@@ -14,7 +14,7 @@
 
     <groupId>com.gg.proj</groupId>
     <artifactId>library-service</artifactId>
-    <version>1.1.0-ALPHA-4</version>
+    <version>1.1.0-ALPHA-5</version>
     <packaging>war</packaging>
     <name>library-service</name>
     <description>A web service for the library project</description>
@@ -171,6 +171,17 @@
                         </goals>
                         <configuration>
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/users/</schemaDirectory>
+                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java</outputDirectory>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xj5</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/bookings/</schemaDirectory>
                             <outputDirectory>${project.basedir}/target/generated-sources/generated-java</outputDirectory>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
