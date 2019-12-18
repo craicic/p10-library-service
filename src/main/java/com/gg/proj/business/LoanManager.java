@@ -231,5 +231,15 @@ public class LoanManager {
         }
         return new ArrayList<>(loanMapper.loanEntityListToLoanDetailedList(loanEntities));
     }
+
+    public Integer getBookCount(int bookId) {
+        log.debug("Entering getBookCount... ");
+        return loanRepository.countByBookId(bookId);
+    }
+
+    public LocalDate getNearestLoanEndDateByBookId(int bookId) {
+        log.debug("Entering getReturnDateByBookId... ");
+        return loanRepository.getNearestLoanEndDate(bookId);
+    }
 }
 

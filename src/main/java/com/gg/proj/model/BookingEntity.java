@@ -29,6 +29,12 @@ public class BookingEntity {
     public BookingEntity() {
     }
 
+    public BookingEntity(BookEntity book, UserEntity user, LocalDateTime bookingTime) {
+        this.book = book;
+        this.user = user;
+        this.bookingTime = bookingTime;
+    }
+
     public Integer getId() {
         return id;
     }
