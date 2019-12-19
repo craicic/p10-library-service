@@ -41,11 +41,11 @@ public class BookingEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "performBookingRequest")
     @ResponsePayload
     public PerformBookingResponse performBooking(@RequestPayload PerformBookingRequest request) {
-        log.info("Call from network - performBooking : [" + request.getUserId() + "]" + "[" + request.getBookId() + "]" + "[" + request.getTokenUUID() + "]");
+        log.info("Call from network - performBooking : [" + request.getBookingMin().getUserId() + "]" + "[" + request.getBookingMin().getBookId() + "]" + "[" + request.getTokenUUID() + "]");
         PerformBookingResponse response = new PerformBookingResponse();
 
         try {
-            Optional<BookingSummary> opt = bookingManager.performBooking(request.getUserId(), request.getBookId(), request.getTokenUUID());
+            Optional<BookingSummary> opt = bookingManager.performBooking(request.getBookingMin(), request.getTokenUUID());
             opt.ifPresent(response::setBookingSummary);
         } catch (Exception ex) {
             GenericExceptionHelper.serviceFaultExceptionHandler(ex);
