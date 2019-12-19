@@ -1,9 +1,7 @@
 package com.gg.proj.service;
 
 import com.gg.proj.business.BookingManager;
-import com.gg.proj.service.bookings.BookingSummary;
-import com.gg.proj.service.bookings.PerformBookingRequest;
-import com.gg.proj.service.bookings.PerformBookingResponse;
+import com.gg.proj.service.bookings.*;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,12 +39,32 @@ public class BookingEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "performBookingRequest")
     @ResponsePayload
     public PerformBookingResponse performBooking(@RequestPayload PerformBookingRequest request) {
-        log.info("Call from network - performBooking : [" + request.getBookingMin().getUserId() + "]" + "[" + request.getBookingMin().getBookId() + "]" + "[" + request.getTokenUUID() + "]");
+        log.info("Call from network - performBooking : userId=[" + request.getBookingMin().getUserId() + "]"
+                + ", bookId=[" + request.getBookingMin().getBookId() + "]"
+                + ", tokenUUID=[" + request.getTokenUUID() + "]");
         PerformBookingResponse response = new PerformBookingResponse();
 
         try {
             Optional<BookingSummary> opt = bookingManager.performBooking(request.getBookingMin(), request.getTokenUUID());
             opt.ifPresent(response::setBookingSummary);
+        } catch (Exception ex) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(ex);
+        }
+        return response;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "cancelBookingRequest")
+    @ResponsePayload
+    public CancelBookingResponse cancelBooking(@RequestPayload CancelBookingRequest request) {
+        log.info("Call from network - cancelBooking : userId=[" + request.getBooking().getUserId() + "]"
+                + ", bookId=[" + request.getBooking().getBookId() + "]"
+                + ", bookingId=[" + request.getBooking().getId() + "]"
+                + ", tokenUUID=[" + request.getTokenUUID() + "]");
+        CancelBookingResponse response = new CancelBookingResponse();
+        Integer confirmationCode = -1;
+        try {
+             confirmationCode = bookingManager.cancelBooking(request.getBooking(), request.getTokenUUID());
+             response.setConfirmationCode(confirmationCode);
         } catch (Exception ex) {
             GenericExceptionHelper.serviceFaultExceptionHandler(ex);
         }

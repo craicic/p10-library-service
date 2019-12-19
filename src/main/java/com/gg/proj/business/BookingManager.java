@@ -5,6 +5,7 @@ import com.gg.proj.consumer.BookingRepository;
 import com.gg.proj.model.BookEntity;
 import com.gg.proj.model.BookingEntity;
 import com.gg.proj.model.UserEntity;
+import com.gg.proj.service.bookings.Booking;
 import com.gg.proj.service.bookings.BookingMin;
 import com.gg.proj.service.bookings.BookingSummary;
 import com.gg.proj.service.bookings.PlaceInQueue;
@@ -115,5 +116,25 @@ public class BookingManager {
         // return the summary
 
         return Optional.of(summary);
+    }
+
+    public Integer cancelBooking(Booking booking, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {
+        log.debug("Entering cancelBooking...");
+
+        // Check UUID
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception ex) {
+            GenericExceptionHelper.tokenExceptionHandler(ex);
+        }
+
+        // Mapping
+        BookingEntity bookingEntity = bookingMapper.bookingToEntity(booking);
+
+        // Delete the row in database
+        bookingRepository.delete(bookingEntity);
+
+        // Returning the confirmation code
+        return 1;
     }
 }

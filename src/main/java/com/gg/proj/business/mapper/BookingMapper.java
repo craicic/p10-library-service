@@ -35,4 +35,10 @@ public interface BookingMapper {
             @Mapping(source = "user.id", target = "userId")
     })
     Booking bookingEntityToMin(BookingEntity persistedBookingEntity);
+
+    @Mappings({
+            @Mapping(source = "bookId", target = "book.id"),
+            @Mapping(source = "userId", target = "user.id")
+    })
+    BookingEntity bookingToEntity(Booking booking);
 }
