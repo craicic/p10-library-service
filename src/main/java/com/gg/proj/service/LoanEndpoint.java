@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- *
  * <p>This class is registered with Spring WS as a candidate for processing incoming SOAP messages (via Endpoint annotation)
  *
  * <p>Other annotations you'll find in this class :
@@ -24,7 +23,6 @@ import java.util.Optional;
  * <p>PayloadRoot is then used by Spring WS to pick the handler method based on the message’s namespace and localPart.</p>
  * <p>RequestPayload indicates that the incoming message will be mapped to the method’s request parameter.</p>
  * <p>ResponsePayload annotation makes Spring WS map the returned value to the response payload.</p>
- *
  */
 @Endpoint
 public class LoanEndpoint {
@@ -41,7 +39,6 @@ public class LoanEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -69,7 +66,6 @@ public class LoanEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -97,7 +93,6 @@ public class LoanEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -129,7 +124,6 @@ public class LoanEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -157,7 +151,6 @@ public class LoanEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -184,7 +177,6 @@ public class LoanEndpoint {
 
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -212,7 +204,6 @@ public class LoanEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -239,7 +230,6 @@ public class LoanEndpoint {
     }
 
     /**
-     *
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
      * <p>There is a verification on token UUID (the user must must possess a valid to perform this
@@ -249,6 +239,7 @@ public class LoanEndpoint {
      * serviceFaultExceptionHandler : depending the instance of the exception it builds a custom SOAP error.</p>
      * <p><b>Method's logic :</b> this method is to be called when a user request all active loan. You must provide a
      * valid UUID and a userID.It add to the response the list of loans. Then it return this response.</p>
+     *
      * @param request is an instance of FindAllLoansByUserIdRequest. It's mapped from the incoming SOAP message.
      * @return FindAllLoansByUserIdResponse the output message contains this response.
      */

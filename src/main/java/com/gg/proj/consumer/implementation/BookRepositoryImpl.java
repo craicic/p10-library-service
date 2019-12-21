@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,12 +35,12 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
     /**
      * <p>This method uses criteria API, it build a custom query to get the list of book filter by several criteria</p>
      *
-     * @param keyWord the keyWord of the search
+     * @param keyWord    the keyWord of the search
      * @param languageId a search criteria (a value of -1 means excluded from search)
-     * @param libraryId a search criteria (a value of -1 means excluded from search)
-     * @param topicId a search criteria (a value of -1 means excluded from search)
-     * @param available a search criteria (is the book in stock)
-     * @param pageable the Pageable object
+     * @param libraryId  a search criteria (a value of -1 means excluded from search)
+     * @param topicId    a search criteria (a value of -1 means excluded from search)
+     * @param available  a search criteria (is the book in stock)
+     * @param pageable   the Pageable object
      * @return a Page<BookEntity>
      */
     @Override

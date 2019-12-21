@@ -41,6 +41,12 @@ public class GenericExceptionHelper {
             serviceStatus.setMessage("Invalid operation on a loan");
             serviceStatus.setStatusCode("LOAN_ERROR");
             throw new ServiceFaultException(errorMessage, serviceStatus);
+        } else if (e instanceof InvalidBookingOperationException) {
+            String errorMessage = e.getMessage();
+            ServiceStatus serviceStatus = new ServiceStatus();
+            serviceStatus.setMessage("Invalid operation on a booking");
+            serviceStatus.setStatusCode("BOOKING_ERROR");
+            throw new ServiceFaultException(errorMessage, serviceStatus);
         } else if (e instanceof MailAddressAlreadyExistsException) {
             String errorMessage = e.getMessage();
             ServiceStatus serviceStatus = new ServiceStatus();

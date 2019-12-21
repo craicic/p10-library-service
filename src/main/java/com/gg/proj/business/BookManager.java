@@ -110,7 +110,6 @@ public class BookManager {
     }
 
     /**
-     *
      * <p>This method calls the Consumer layer several time in order to get following results :</p>
      * <ul>
      *     <li>A paged list of book matching the keyWord,</li>
@@ -120,8 +119,8 @@ public class BookManager {
      * </ul>
      *
      * @param keyWord the keyWord of the search
-     * @param page the current page
-     * @param size the size
+     * @param page    the current page
+     * @param size    the size
      * @return SearchBooksResponse an object that contains several lists (libraries, languages, searched books, etc...) plus other data
      */
     public SearchBooksResponse searchBooks(String keyWord, Integer page, Integer size) {
@@ -161,18 +160,17 @@ public class BookManager {
 
 
     /**
-     *
      * <p>This method call the consumer. It ask for a search with several parameters</p>
      * <p>It's design to work in pair with the method searchBooks. filterBooks must be executed after this one.
      * using its result, to give more define results to the user.</p>
      *
-     * @param keyWord the keyWord of the search
+     * @param keyWord    the keyWord of the search
      * @param languageId a search criteria (a value of -1 means excluded from search)
-     * @param libraryId a search criteria (a value of -1 means excluded from search)
-     * @param topicId a search criteria (a value of -1 means excluded from search)
-     * @param available a search criteria (is the book in stock)
-     * @param page the current page
-     * @param size the size of the page
+     * @param libraryId  a search criteria (a value of -1 means excluded from search)
+     * @param topicId    a search criteria (a value of -1 means excluded from search)
+     * @param available  a search criteria (is the book in stock)
+     * @param page       the current page
+     * @param size       the size of the page
      * @return FilterBooksResponse it contains the paged list of book that have been filtered, plus the total pages.
      */
     public FilterBooksResponse filterBooks(String keyWord, Integer languageId, Integer libraryId, Integer topicId, boolean available, Integer page, Integer size) {
@@ -191,7 +189,6 @@ public class BookManager {
 
 
     /**
-     *
      * This method calls the Consumer layer of a book to decrease its quantity
      *
      * @param bookId the Id of the book
@@ -201,7 +198,6 @@ public class BookManager {
     }
 
     /**
-     *
      * This method calls the Consumer layer of a book to increase its quantity
      *
      * @param bookId the Id of the book
@@ -211,7 +207,6 @@ public class BookManager {
     }
 
     /**
-     *
      * Call the consumer to get the associated quantity of a book
      *
      * @param bookId the book you want to know the quantity

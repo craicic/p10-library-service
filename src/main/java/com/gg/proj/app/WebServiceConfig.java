@@ -80,7 +80,7 @@ public class WebServiceConfig {
         return wsdl11Definition;
     }
 
-    @Bean(name="bookings")
+    @Bean(name = "bookings")
     public DefaultWsdl11Definition bookingWsdl11Definition(XsdSchema bookingsSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("BookingPort");

@@ -63,8 +63,22 @@ public class BookingEndpoint {
         CancelBookingResponse response = new CancelBookingResponse();
         Integer confirmationCode = -1;
         try {
-             confirmationCode = bookingManager.cancelBooking(request.getBooking(), request.getTokenUUID());
-             response.setConfirmationCode(confirmationCode);
+            confirmationCode = bookingManager.cancelBooking(request.getBooking(), request.getTokenUUID());
+            response.setConfirmationCode(confirmationCode);
+        } catch (Exception ex) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(ex);
+        }
+        return response;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getBookingListByUserIdRequest")
+    @ResponsePayload
+    public GetBookingListByUserIdResponse getBookingListByUserIdResponse(@RequestPayload GetBookingListByUserIdRequest request) {
+        log.info("Call from network - getBookingListByUserIdResponse : userId=[" + request.getUserId() + "]"
+                + ", tokenUUID=[" + request.getTokenUUID() + "]");
+        GetBookingListByUserIdResponse response = new GetBookingListByUserIdResponse();
+        try {
+            response.getBookingsInfo().addAll(bookingManager.getBookingsByUserId(request.getUserId(), request.getTokenUUID()));
         } catch (Exception ex) {
             GenericExceptionHelper.serviceFaultExceptionHandler(ex);
         }

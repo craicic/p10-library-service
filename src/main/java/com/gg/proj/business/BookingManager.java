@@ -2,13 +2,8 @@ package com.gg.proj.business;
 
 import com.gg.proj.business.mapper.BookingMapper;
 import com.gg.proj.consumer.BookingRepository;
-import com.gg.proj.model.BookEntity;
 import com.gg.proj.model.BookingEntity;
-import com.gg.proj.model.UserEntity;
-import com.gg.proj.service.bookings.Booking;
-import com.gg.proj.service.bookings.BookingMin;
-import com.gg.proj.service.bookings.BookingSummary;
-import com.gg.proj.service.bookings.PlaceInQueue;
+import com.gg.proj.service.bookings.*;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.InvalidBookingOperationException;
 import com.gg.proj.service.exceptions.InvalidTokenException;
@@ -20,10 +15,10 @@ import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -71,7 +66,7 @@ public class BookingManager {
         }
 
         // Sample count
-        Integer totalAmountOfBook = loanManager.getBookCount(bookingEntity.getBook().getId());
+        Integer totalAmountOfBook = bookManager.getQuantity(bookingEntity.getBook().getId()) + loanManager.getBookCount(bookingEntity.getBook().getId());
 
         // User count
         Integer totalAmountOfBooker = bookingRepository.countByBookId(bookingEntity.getBook().getId());
@@ -94,7 +89,6 @@ public class BookingManager {
         // Place in queue
         Long positionLong = bookingRepository.queryForPositionInQueue(
                 persistedBookingEntity.getBook().getId(),
-                persistedBookingEntity.getUser().getId(),
                 persistedBookingEntity.getBookingTime());
 
         int position = Math.toIntExact(positionLong);
@@ -136,5 +130,18 @@ public class BookingManager {
 
         // Returning the confirmation code
         return 1;
+    }
+
+    public List<BookingInfo> getBookingsByUserId(int userId, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {
+        log.debug("Entering getBookingsByUserId...");
+
+        // Check UUID
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception ex) {
+            GenericExceptionHelper.tokenExceptionHandler(ex);
+        }
+        BookingInfo bookingInfo = new BookingInfo();
+        return null;
     }
 }

@@ -13,7 +13,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @Transactional
@@ -122,6 +125,6 @@ public class ProfileManager {
     }
 
     public List<UserMin> findLatecomers() {
-        return profileMapper.userEntityListToUserMinList(profileRepository.findLatecomers()) ;
+        return profileMapper.userEntityListToUserMinList(profileRepository.findLatecomers());
     }
 }

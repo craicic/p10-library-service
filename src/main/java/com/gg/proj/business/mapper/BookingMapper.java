@@ -5,7 +5,6 @@ import com.gg.proj.service.bookings.Booking;
 import com.gg.proj.service.bookings.BookingMin;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
 import javax.xml.datatype.DatatypeConfigurationException;

@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.2.RELEASE</version>
+        <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -14,7 +14,7 @@
 
     <groupId>com.gg.proj</groupId>
     <artifactId>library-service</artifactId>
-    <version>1.1.0-ALPHA-10</version>
+    <version>1.1.0-ALPHA-11</version>
     <packaging>war</packaging>
     <name>library-service</name>
     <description>A web service for the library project</description>
@@ -138,7 +138,8 @@
                         </goals>
                         <configuration>
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/books/</schemaDirectory>
-                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java</outputDirectory>
+                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java
+                            </outputDirectory>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
@@ -149,7 +150,8 @@
                         </goals>
                         <configuration>
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/loans/</schemaDirectory>
-                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java</outputDirectory>
+                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java
+                            </outputDirectory>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
@@ -160,7 +162,8 @@
                         </goals>
                         <configuration>
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/profiles/</schemaDirectory>
-                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java</outputDirectory>
+                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java
+                            </outputDirectory>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
@@ -171,7 +174,8 @@
                         </goals>
                         <configuration>
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/users/</schemaDirectory>
-                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java</outputDirectory>
+                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java
+                            </outputDirectory>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
@@ -182,7 +186,8 @@
                         </goals>
                         <configuration>
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/bookings/</schemaDirectory>
-                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java</outputDirectory>
+                            <outputDirectory>${project.basedir}/target/generated-sources/generated-java
+                            </outputDirectory>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
