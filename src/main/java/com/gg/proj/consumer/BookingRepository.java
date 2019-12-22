@@ -27,7 +27,7 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Integer>
 //            "WHERE booking2.book.id = booking.book.id " +
 //            "AND booking2.bookingTime > booking.bookingTime)" +
 //            "AND EXISTS (SELECT loan ) ")
-//    List<BookingInfoModel> megaQueryByLeoEtGG(@Param("userId") int userId);
+//    List<BookingInfoModel> megaQuery(@Param("userId") int userId);
 
     @Query("SELECT new com.gg.proj.model.complex.BookingInfoModel(booking ,booking.book, COUNT(bookingForCount.user), MIN(loan.loanEndDate)) " +
     "FROM BookingEntity AS booking, " +
@@ -39,6 +39,6 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Integer>
     "AND booking.book.id = loan.book.id " +
     "GROUP BY booking"
     )
-    List<BookingInfoModel> megaQuery(@Param("userId") int userId);
+    List<BookingInfoModel> queryBookingInfo(@Param("userId") int userId);
 
 }

@@ -3,6 +3,7 @@ package com.gg.proj.business;
 import com.gg.proj.business.mapper.BookingMapper;
 import com.gg.proj.consumer.BookingRepository;
 import com.gg.proj.model.BookingEntity;
+import com.gg.proj.model.complex.BookingInfoModel;
 import com.gg.proj.service.bookings.*;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.InvalidBookingOperationException;
@@ -18,6 +19,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -141,7 +143,11 @@ public class BookingManager {
         } catch (Exception ex) {
             GenericExceptionHelper.tokenExceptionHandler(ex);
         }
-        BookingInfo bookingInfo = new BookingInfo();
-        return null;
+
+        // Fetch all bookingInfo
+        List<BookingInfoModel> models = bookingRepository.queryBookingInfo(userId);
+
+        // Mapping
+        return bookingMapper.modelsToDtos(models);
     }
 }

@@ -1,7 +1,9 @@
 package com.gg.proj.business.mapper;
 
 import com.gg.proj.model.BookingEntity;
+import com.gg.proj.model.complex.BookingInfoModel;
 import com.gg.proj.service.bookings.Booking;
+import com.gg.proj.service.bookings.BookingInfo;
 import com.gg.proj.service.bookings.BookingMin;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -11,6 +13,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * This is the interface that drive MapStruct framework, you simply add the method signature and the framework drive the
@@ -40,4 +43,12 @@ public interface BookingMapper {
             @Mapping(source = "userId", target = "user.id")
     })
     BookingEntity bookingToEntity(Booking booking);
+
+    @Mappings({
+            @Mapping(source = "nextReturnDate", target = "nearestReturnDate"),
+            @Mapping(source = "book", target = "bookMin")
+    })
+    BookingInfo modelToDto(BookingInfoModel model);
+
+    List<BookingInfo> modelsToDtos(List<BookingInfoModel> models);
 }
