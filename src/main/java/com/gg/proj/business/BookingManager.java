@@ -4,6 +4,7 @@ import com.gg.proj.business.mapper.BookingMapper;
 import com.gg.proj.consumer.BookingRepository;
 import com.gg.proj.model.BookingEntity;
 import com.gg.proj.model.complex.BookingInfoModel;
+import com.gg.proj.model.complex.BookingSummaryModel;
 import com.gg.proj.service.bookings.*;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.InvalidBookingOperationException;
@@ -85,33 +86,12 @@ public class BookingManager {
         // Save the booking
         BookingEntity persistedBookingEntity = bookingRepository.save(bookingEntity);
 
-        // Create a PlaceInQueue object, it contains the place in queue and the next return date
-        PlaceInQueue place = new PlaceInQueue();
+        BookingSummaryModel bookingSummaryModel = bookingRepository.queryBookingSummary(persistedBookingEntity.getId());
 
-        // Place in queue
-        Long positionLong = bookingRepository.queryForPositionInQueue(
-                persistedBookingEntity.getBook().getId(),
-                persistedBookingEntity.getBookingTime());
+        BookingSummary bookingSummaryDto = bookingMapper.bookingSummaryModelToBookingSummaryDto(bookingSummaryModel);
 
-        int position = Math.toIntExact(positionLong);
-        place.setPositionInQueue(position);
-
-        // The next return date
-        LocalDate nextDate = loanManager.getNearestLoanEndDateByBookId(bookingEntity.getBook().getId());
-
-        // Mapping it to XML date format and setting it into the PlaceInQueue Object
-        XMLGregorianCalendar nextDateXml = bookingMapper.localToXmlDate(nextDate);
-        place.setNearestReturnDate(nextDateXml);
-
-        // Set the summary
-        BookingSummary summary = new BookingSummary();
-
-        // Mapping the booking object that was return from save method.
-        summary.setBooking(bookingMapper.bookingEntityToMin(persistedBookingEntity));
-        summary.setPlaceInQueue(place);
         // return the summary
-
-        return Optional.of(summary);
+        return Optional.of(bookingSummaryDto);
     }
 
     public Integer cancelBooking(Booking booking, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {

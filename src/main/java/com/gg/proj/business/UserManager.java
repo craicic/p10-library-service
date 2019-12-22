@@ -127,7 +127,6 @@ public class UserManager {
         if (plaintextPassword.length() < 6)
             throw new IllegalArgumentException("Password must contains at least 6 characters");
 
-//        hash = Password.hashPassword(plaintextPassword);
         hash = passwordEncoder.encode(plaintextPassword);
         userEntity = userMapper.userToUserEntity(user);
         userEntity.setPasswordHash(hash);
@@ -150,9 +149,7 @@ public class UserManager {
             Optional<UserEntity> optional = userRepository.findById(userId);
 
             if (optional.isPresent()) {
-//                if (Password.checkPassword(oldPassword, optional.get().getPasswordHash())) {
                 if (passwordEncoder.matches(oldPassword, optional.get().getPasswordHash())) {
-//                    newHash = Password.hashPassword(newPassword);
                     newHash = passwordEncoder.encode(newPassword);
                     optional.get().setPasswordHash(newHash);
                     userRepository.save(optional.get());

@@ -2,9 +2,11 @@ package com.gg.proj.business.mapper;
 
 import com.gg.proj.model.BookingEntity;
 import com.gg.proj.model.complex.BookingInfoModel;
+import com.gg.proj.model.complex.BookingSummaryModel;
 import com.gg.proj.service.bookings.Booking;
 import com.gg.proj.service.bookings.BookingInfo;
 import com.gg.proj.service.bookings.BookingMin;
+import com.gg.proj.service.bookings.BookingSummary;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -51,4 +53,9 @@ public interface BookingMapper {
     BookingInfo modelToDto(BookingInfoModel model);
 
     List<BookingInfo> modelsToDtos(List<BookingInfoModel> models);
+
+    @Mappings({
+            @Mapping(source = "nextReturnDate", target = "nearestReturnDate"),
+    })
+    BookingSummary bookingSummaryModelToBookingSummaryDto(BookingSummaryModel bookingSummaryModel);
 }

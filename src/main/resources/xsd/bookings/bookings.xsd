@@ -98,7 +98,8 @@
     <xs:complexType name="bookingSummary">
         <xs:sequence>
             <xs:element name="booking" type="tns:booking"/>
-            <xs:element name="placeInQueue" type="tns:placeInQueue"/>
+            <xs:element name="positionInQueue" type="xs:int"/>
+            <xs:element name="nearestReturnDate" type="xs:date" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 
