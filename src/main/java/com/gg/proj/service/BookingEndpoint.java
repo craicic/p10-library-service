@@ -84,4 +84,19 @@ public class BookingEndpoint {
         }
         return response;
     }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getPlaceInQueueByBookingRequest")
+    @ResponsePayload
+    public GetPlaceInQueueByBookingResponse getPlaceInQueueByBookingResponse(@RequestPayload GetPlaceInQueueByBookingRequest request) {
+        log.info("Call from network - getPlaceInQueueByBookingResponse : bookId=[" + request.getBookId() + "], userId=[" + request.getUserId() + "]"
+                + ", tokenUUID=[" + request.getTokenUUID() + "]");
+        GetPlaceInQueueByBookingResponse response = new GetPlaceInQueueByBookingResponse();
+        try {
+            Optional<PlaceInQueue> opt = bookingManager.getPlaceInQueueByBooking(request.getBookId(), request.getUserId(), request.getTokenUUID());
+            opt.ifPresent(response::setPlaceInQueue);
+        } catch (Exception ex) {
+            GenericExceptionHelper.serviceFaultExceptionHandler(ex);
+        }
+        return response;
+    }
 }

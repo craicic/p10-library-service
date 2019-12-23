@@ -5,6 +5,7 @@ import com.gg.proj.consumer.BookingRepository;
 import com.gg.proj.model.BookingEntity;
 import com.gg.proj.model.complex.BookingInfoModel;
 import com.gg.proj.model.complex.BookingSummaryModel;
+import com.gg.proj.model.complex.PlaceInQueueModel;
 import com.gg.proj.service.bookings.*;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.InvalidBookingOperationException;
@@ -17,10 +18,7 @@ import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.XMLGregorianCalendar;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -129,5 +127,24 @@ public class BookingManager {
 
         // Mapping
         return bookingMapper.modelsToDtos(models);
+    }
+
+    public Optional<PlaceInQueue> getPlaceInQueueByBooking(int bookId, int userId, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {
+        log.debug("Entering getPlaceInQueueByBooking...");
+
+        // Check UUID
+        try {
+            tokenManager.checkIfValidByUuid(UUID.fromString(tokenUUID));
+        } catch (Exception ex) {
+            GenericExceptionHelper.tokenExceptionHandler(ex);
+        }
+
+        // Fetching info on the place in queue
+        PlaceInQueueModel model = bookingRepository.queryForPlaceInQueue(bookId, userId);
+
+        // Mapping
+        PlaceInQueue dto = bookingMapper.placeInQueueModelToDto(model);
+
+        return Optional.ofNullable(dto);
     }
 }
