@@ -44,4 +44,9 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer>, Book
 
     @Query("SELECT b.quantity FROM BookEntity b WHERE b.id = (:id)")
     Integer getBookQuantityById(@Param("id") int bookId);
+
+    @Query("SELECT SUM(book.quantity + book.loans.size) "+
+            "FROM BookEntity book " +
+            "WHERE book.id = (:bookId)")
+    Long queryTotalAmountOfBook(@Param("bookId") Integer bookId);
 }

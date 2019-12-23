@@ -66,11 +66,10 @@ public class BookingManager {
             throw new InvalidBookingOperationException("You can't book if the item is already available");
         }
 
-        // Sample count
-        Integer totalAmountOfBook = bookManager.getQuantity(bookingEntity.getBook().getId()) + loanManager.getBookCount(bookingEntity.getBook().getId());
-
+        // Sample book count
+        int totalAmountOfBook = bookManager.getTotalAmountOfBook(bookingEntity.getBook().getId()).intValue();
         // User count
-        Integer totalAmountOfBooker = bookingRepository.countByBookId(bookingEntity.getBook().getId());
+        int totalAmountOfBooker = bookingRepository.countByBookId(bookingEntity.getBook().getId());
 
         // Check queue vs booker
         if (totalAmountOfBooker >= 2 * totalAmountOfBook) {

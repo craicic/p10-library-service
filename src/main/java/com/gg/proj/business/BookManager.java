@@ -215,4 +215,8 @@ public class BookManager {
     public Integer getQuantity(int bookId) {
         return bookRepository.getBookQuantityById(bookId);
     }
+
+    public Long getTotalAmountOfBook(Integer id) {
+        return bookRepository.queryTotalAmountOfBook(id);
+    }
 }

@@ -7,18 +7,11 @@ import com.gg.proj.model.complex.PlaceInQueueModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface BookingRepository extends JpaRepository<BookingEntity, Integer> {
 
     Integer countByBookId(int bookId);
-
-    @Query("SELECT Count(bng) FROM BookingEntity AS bng WHERE bng.bookingTime <= (:bookingTime) AND bng.book.id = (:bookId)")
-    Long queryForPositionInQueue(
-            @Param("bookId") Integer bookId,
-            @Param("bookingTime") LocalDateTime bookingTime);
 
     @Query("SELECT new com.gg.proj.model.complex.BookingInfoModel(booking ,booking.book, COUNT(bookingForCount.user), MIN(loan.loanEndDate)) " +
             "FROM BookingEntity AS booking, " +
@@ -49,8 +42,8 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Integer>
             "WHERE booking.book.id = (:bookId) " +
             "AND booking.user.id = (:userId) " +
             "AND bookingForCount.book = (:bookId) " +
-            "AND bookingForCount.bookingTime = booking.bookingTime " +
-            "AND loan.book.id = (:bookId)" +
+            "AND bookingForCount.bookingTime <= booking.bookingTime " +
+            "AND loan.book.id = (:bookId) " +
             "GROUP BY booking ")
-    PlaceInQueueModel queryForPlaceInQueue(int bookId, int userId);
+    PlaceInQueueModel queryForPlaceInQueue(@Param("bookId") int bookId,@Param("userId") int userId);
 }
