@@ -109,4 +109,4 @@ Address a bug where a user could extend a loan while out-of-date.
 
 ##### 1.1.0
 
-Will provide an advanced booking system
+Will provide an advanced booking system.
