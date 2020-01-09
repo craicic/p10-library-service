@@ -25,6 +25,8 @@ public class BookingEntity {
     @Column(name = "time", nullable = false)
     private LocalDateTime bookingTime;
 
+    @Column(name = "notification_time")
+    private LocalDateTime notificationTime;
 
     public BookingEntity() {
     }
@@ -33,6 +35,14 @@ public class BookingEntity {
         this.book = book;
         this.user = user;
         this.bookingTime = bookingTime;
+    }
+
+
+    public BookingEntity(BookEntity book, UserEntity user, LocalDateTime bookingTime, LocalDateTime notificationTime) {
+        this.book = book;
+        this.user = user;
+        this.bookingTime = bookingTime;
+        this.notificationTime = notificationTime;
     }
 
     public Integer getId() {
@@ -67,6 +77,14 @@ public class BookingEntity {
         this.bookingTime = bookingTime;
     }
 
+    public LocalDateTime getNotificationTime() {
+        return notificationTime;
+    }
+
+    public void setNotificationTime(LocalDateTime notificationTime) {
+        this.notificationTime = notificationTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,12 +93,13 @@ public class BookingEntity {
         return id.equals(that.id) &&
                 book.equals(that.book) &&
                 user.equals(that.user) &&
-                bookingTime.equals(that.bookingTime);
+                bookingTime.equals(that.bookingTime) &&
+                Objects.equals(notificationTime, that.notificationTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, book, user, bookingTime);
+        return Objects.hash(id, book, user, bookingTime, notificationTime);
     }
 
     @Override
@@ -90,6 +109,7 @@ public class BookingEntity {
                 ", book=" + book +
                 ", user=" + user +
                 ", bookingTime=" + bookingTime +
+                ", notificationTime=" + notificationTime +
                 '}';
     }
 }
