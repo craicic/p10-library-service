@@ -34,13 +34,15 @@ public class LoanManager {
     private TokenManager tokenManager;
     private LoanMapper loanMapper;
     private BookManager bookManager;
+    private BookingManager bookingManager;
 
     @Autowired
-    public LoanManager(LoanRepository loanRepository, TokenManager tokenManager, LoanMapper loanMapper, BookManager bookManager) {
+    public LoanManager(LoanRepository loanRepository, TokenManager tokenManager, LoanMapper loanMapper, BookManager bookManager, BookingManager bookingManager) {
         this.loanRepository = loanRepository;
         this.tokenManager = tokenManager;
         this.loanMapper = loanMapper;
         this.bookManager = bookManager;
+        this.bookingManager = bookingManager;
     }
 
 
@@ -161,16 +163,25 @@ public class LoanManager {
         } catch (Exception ex) {
             GenericExceptionHelper.tokenExceptionHandler(ex);
         }
+
         if (id != null) {
             optionalFromDB = loanRepository.findById(id);
             if (optionalFromDB.isPresent()) {
                 optionalFromDB.get().setClosed(true);
-                Optional<Loan> opt = Optional.ofNullable(loanMapper.loanEntityToLoan(loanRepository.save(optionalFromDB.get())));
-                opt.ifPresent(loan -> bookManager.increaseQuantity(loan.getBookId()));
-                return opt;
-            }
+
+                LoanEntity persistedLoan = loanRepository.save(optionalFromDB.get());
+                int bookId = persistedLoan.getBook().getId();
+                bookManager.increaseQuantity(bookId);
+
+                // We check if quantity is now 1 (was 0 before closing the loan).
+                if (bookManager.getQuantity(bookId) == 1) {
+                    // If it's the case we have to notify users who have a booking on this book
+                    bookingManager.notifyUsersByBookId(bookId);
+
+                }
+                return Optional.ofNullable(loanMapper.loanEntityToLoan(persistedLoan));
+            } else throw new InvalidLoanOperationException("No Loan found of id:" + id );
         } else throw new InvalidLoanOperationException("Invalid id");
-        return Optional.empty();
     }
 
     public void delete(Loan loan, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {

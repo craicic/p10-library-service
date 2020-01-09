@@ -3,6 +3,7 @@ package com.gg.proj.business;
 import com.gg.proj.business.mapper.BookingMapper;
 import com.gg.proj.consumer.BookingRepository;
 import com.gg.proj.model.BookingEntity;
+import com.gg.proj.model.UserEntity;
 import com.gg.proj.model.complex.BookingInfoModel;
 import com.gg.proj.model.complex.BookingSummaryModel;
 import com.gg.proj.model.complex.PlaceInQueueModel;
@@ -31,7 +32,6 @@ public class BookingManager {
 
     private TokenManager tokenManager;
 
-    private LoanManager loanManager;
 
     private BookManager bookManager;
 
@@ -40,9 +40,8 @@ public class BookingManager {
     private BookingMapper bookingMapper;
 
     @Autowired
-    public BookingManager(TokenManager tokenManager, BookingRepository bookingRepository, LoanManager loanManager, BookManager bookManager, BookingMapper bookingMapper) {
+    public BookingManager(TokenManager tokenManager, BookingRepository bookingRepository, BookManager bookManager, BookingMapper bookingMapper) {
         this.tokenManager = tokenManager;
-        this.loanManager = loanManager;
         this.bookManager = bookManager;
         this.bookingRepository = bookingRepository;
         this.bookingMapper = bookingMapper;
@@ -145,5 +144,20 @@ public class BookingManager {
         PlaceInQueue dto = bookingMapper.placeInQueueModelToDto(model);
 
         return Optional.ofNullable(dto);
+    }
+
+    protected void notifyUsersByBookId(int bookId) {
+        log.debug("Entering notifyUsersByBookId...");
+        // No UUID check => already done
+        // Fetching next user in queue (this method should be public cause the batch could call it)
+        UserEntity nextBorrower = bookingRepository.queryForBorrower(bookId).get(0);
+
+        // Setting the bookingTime
+        if (nextBorrower != null) {
+            bookingRepository.updateNotificationTime(nextBorrower.getId(), bookId);
+            // Calling a mail util class to send them the mail
+            // TODO impl the mail sender
+            // CustomMailSender.sendMailTo(nextBorrower.getMailAddress());
+        }
     }
 }
