@@ -7,10 +7,14 @@ import com.gg.proj.model.complex.BorrowerModel;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.internal.verification.Times;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -30,6 +34,8 @@ public class LibraryServiceApplicationTests {
         expected.setMailAddress("rou@gmail.com");
         BorrowerModel actual = bookingRepository.queryForBorrower(26).get(0);
         Assert.assertNotEquals(expected.getMailAddress(), actual.getMailAddress());
+
+        bookingRepository.fetchExpiredBookings(LocalDateTime.now());
     }
 
 }

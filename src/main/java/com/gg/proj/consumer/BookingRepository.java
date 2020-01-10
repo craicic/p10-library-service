@@ -12,6 +12,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.persistence.SqlResultSetMapping;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface BookingRepository extends JpaRepository<BookingEntity, Integer> {
@@ -73,4 +75,8 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Integer>
             "WHERE booking.user.id = (:userId) " +
             "AND booking.book.id = (:bookId) ")
     void updateNotificationTime(@Param("userId") int  userId, @Param("bookId") int bookId);
+
+    @Query("SELECT booking FROM BookingEntity booking " +
+            "WHERE booking.notificationTime < (:twoDayBefore) ")
+    List<BookingEntity> fetchExpiredBookings(@Param("twoDayBefore") LocalDateTime twoDayBefore);
 }

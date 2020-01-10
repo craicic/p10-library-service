@@ -9,6 +9,8 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,6 +29,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@EnableScheduling
 public class ApplicationConfig {
 
     private CustomDataSourceProperties customDataSourceProperties;
@@ -82,7 +85,7 @@ public class ApplicationConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    //    ADDITIONAL PROPERTIES
+    //    ADDITIONAL PROPERTIES FOR SPRING DATA
     private Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");

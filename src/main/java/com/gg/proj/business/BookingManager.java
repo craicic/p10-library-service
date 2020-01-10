@@ -16,10 +16,12 @@ import com.gg.proj.util.CustomMailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import javax.xml.datatype.DatatypeConfigurationException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -156,5 +158,21 @@ public class BookingManager {
             // Calling a mail util class to send them the mail
             mailService.sendSimpleMail(nextBorrower.getMailAddress(), nextBorrower.getFirstName(), nextBorrower.getLastName(), nextBorrower.getBookName(), nextBorrower.getLibraryName());
         }
+    }
+
+    @Scheduled(cron = "0 */30 * ? * *")
+    public void refreshBookingRoutine() {
+        log.info("refreshBookingRoutine starts !!!");
+        // fetch all expired booking
+        List<BookingEntity> expiredBookings = bookingRepository.fetchExpiredBookings(LocalDateTime.now().minusDays(2));
+
+        // FOR EACH BOOKING
+        for (BookingEntity expired : expiredBookings) {
+            // delete the expired booking
+            bookingRepository.delete(expired);
+            // update time and notify the next user in list if exists
+            this.notifyUserByBookId(expired.getBook().getId());
+        }
+
     }
 }
