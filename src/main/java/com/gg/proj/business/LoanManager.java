@@ -176,8 +176,7 @@ public class LoanManager {
                 // We check if quantity is now 1 (was 0 before closing the loan).
                 if (bookManager.getQuantity(bookId) == 1) {
                     // If it's the case we have to notify users who have a booking on this book
-                    bookingManager.notifyUsersByBookId(bookId);
-
+                    bookingManager.notifyUserByBookId(bookId);
                 }
                 return Optional.ofNullable(loanMapper.loanEntityToLoan(persistedLoan));
             } else throw new InvalidLoanOperationException("No Loan found of id:" + id );

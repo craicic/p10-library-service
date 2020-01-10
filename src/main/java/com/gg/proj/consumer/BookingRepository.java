@@ -4,6 +4,7 @@ import com.gg.proj.model.BookingEntity;
 import com.gg.proj.model.UserEntity;
 import com.gg.proj.model.complex.BookingInfoModel;
 import com.gg.proj.model.complex.BookingSummaryModel;
+import com.gg.proj.model.complex.BorrowerModel;
 import com.gg.proj.model.complex.PlaceInQueueModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -59,11 +60,12 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Integer>
 //    )
 //    UserEntity queryForBorrower(@Param("bookId") int bookId);
 
-    @Query(value = "SELECT booking.user FROM BookingEntity booking " +
+    @Query(value = "SELECT new com.gg.proj.model.complex.BorrowerModel(booking.user.id, booking.user.mailAddress, booking.user.firstName, booking.user.lastName, booking.book.title, booking.book.library.name) " +
+            "FROM BookingEntity booking " +
             "WHERE booking.book.id = (:bookId) " +
             "ORDER BY booking.bookingTime ASC "
     )
-    List<UserEntity> queryForBorrower(@Param("bookId") int bookId);
+    List<BorrowerModel> queryForBorrower(@Param("bookId") int bookId);
 
     @Modifying
     @Query(value= "UPDATE BookingEntity booking " +

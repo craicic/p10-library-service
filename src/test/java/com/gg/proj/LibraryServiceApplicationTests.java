@@ -3,6 +3,7 @@ package com.gg.proj;
 import com.gg.proj.app.LibraryServiceApplication;
 import com.gg.proj.consumer.BookingRepository;
 import com.gg.proj.model.UserEntity;
+import com.gg.proj.model.complex.BorrowerModel;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,8 +28,8 @@ public class LibraryServiceApplicationTests {
     public void quickTestQuery() {
         UserEntity expected = new UserEntity();
         expected.setMailAddress("rou@gmail.com");
-        UserEntity actual = bookingRepository.queryForBorrower(26).get(0);
-        Assert.assertEquals(expected.getMailAddress(), actual.getMailAddress());
+        BorrowerModel actual = bookingRepository.queryForBorrower(26).get(0);
+        Assert.assertNotEquals(expected.getMailAddress(), actual.getMailAddress());
     }
 
 }

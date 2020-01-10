@@ -3,15 +3,16 @@ package com.gg.proj.business;
 import com.gg.proj.business.mapper.BookingMapper;
 import com.gg.proj.consumer.BookingRepository;
 import com.gg.proj.model.BookingEntity;
-import com.gg.proj.model.UserEntity;
 import com.gg.proj.model.complex.BookingInfoModel;
 import com.gg.proj.model.complex.BookingSummaryModel;
+import com.gg.proj.model.complex.BorrowerModel;
 import com.gg.proj.model.complex.PlaceInQueueModel;
 import com.gg.proj.service.bookings.*;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.InvalidBookingOperationException;
 import com.gg.proj.service.exceptions.InvalidTokenException;
 import com.gg.proj.service.exceptions.OutdatedTokenException;
+import com.gg.proj.util.CustomMailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,20 +32,18 @@ public class BookingManager {
     private static final Logger log = LoggerFactory.getLogger(BookingManager.class);
 
     private TokenManager tokenManager;
-
-
     private BookManager bookManager;
-
     private BookingRepository bookingRepository;
-
     private BookingMapper bookingMapper;
+    private CustomMailService mailService;
 
     @Autowired
-    public BookingManager(TokenManager tokenManager, BookingRepository bookingRepository, BookManager bookManager, BookingMapper bookingMapper) {
+    public BookingManager(TokenManager tokenManager, BookingRepository bookingRepository, BookManager bookManager, BookingMapper bookingMapper, CustomMailService mailService) {
         this.tokenManager = tokenManager;
         this.bookManager = bookManager;
         this.bookingRepository = bookingRepository;
         this.bookingMapper = bookingMapper;
+        this.mailService = mailService;
     }
 
     public Optional<BookingSummary> performBooking(BookingMin booking, String tokenUUID) throws OutdatedTokenException, InvalidTokenException, InvalidBookingOperationException, DatatypeConfigurationException {
@@ -146,18 +145,16 @@ public class BookingManager {
         return Optional.ofNullable(dto);
     }
 
-    protected void notifyUsersByBookId(int bookId) {
+    protected void notifyUserByBookId(int bookId) {
         log.debug("Entering notifyUsersByBookId...");
-        // No UUID check => already done
         // Fetching next user in queue (this method should be public cause the batch could call it)
-        UserEntity nextBorrower = bookingRepository.queryForBorrower(bookId).get(0);
+        BorrowerModel nextBorrower = bookingRepository.queryForBorrower(bookId).get(0);
 
         // Setting the bookingTime
         if (nextBorrower != null) {
             bookingRepository.updateNotificationTime(nextBorrower.getId(), bookId);
             // Calling a mail util class to send them the mail
-            // TODO impl the mail sender
-            // CustomMailSender.sendMailTo(nextBorrower.getMailAddress());
+            mailService.sendSimpleMail(nextBorrower.getMailAddress(), nextBorrower.getFirstName(), nextBorrower.getLastName(), nextBorrower.getBookName(), nextBorrower.getLibraryName());
         }
     }
 }
