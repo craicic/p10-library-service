@@ -21,7 +21,6 @@ import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import javax.xml.datatype.DatatypeConfigurationException;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -107,6 +106,12 @@ public class BookingManager {
         // Delete the row in database
         bookingRepository.delete(bookingEntity);
 
+        // if the user was first in list...
+        if (bookingRepository.queryForPlaceInQueue(booking.getBookId(), booking.getUserId()).getPositionInQueue() == 1) {
+            // ...we have to find the next one
+            // this method do the trick
+            this.notifyUserByBookId(booking.getBookId());
+        }
         // Returning the confirmation code
         return 1;
     }
@@ -148,31 +153,39 @@ public class BookingManager {
     }
 
     protected void notifyUserByBookId(int bookId) {
-        log.debug("Entering notifyUsersByBookId...");
+        log.debug("Entering notifyUsersByBookId... with bookId=" + bookId);
         // Fetching next user in queue (this method should be public cause the batch could call it)
         BorrowerModel nextBorrower = bookingRepository.queryForBorrower(bookId).get(0);
 
         // Setting the bookingTime
         if (nextBorrower != null) {
+            log.info("There's a user to notify : userId=" + nextBorrower.getId());
             bookingRepository.updateNotificationTime(nextBorrower.getId(), bookId);
             // Calling a mail util class to send them the mail
             mailService.sendSimpleMail(nextBorrower.getMailAddress(), nextBorrower.getFirstName(), nextBorrower.getLastName(), nextBorrower.getBookName(), nextBorrower.getLibraryName());
-        }
+        } else log.info("No user booked this item.");
     }
 
     @Scheduled(cron = "0 */30 * ? * *")
     public void refreshBookingRoutine() {
-        log.info("refreshBookingRoutine starts !!!");
+        log.info("refreshBookingRoutine starts !");
+
+        // Time calculation
+        final long start = System.nanoTime();
+
         // fetch all expired booking
         List<BookingEntity> expiredBookings = bookingRepository.fetchExpiredBookings(LocalDateTime.now().minusDays(2));
-
-        // FOR EACH BOOKING
+        log.info("There is " + expiredBookings.size() + " expired bookings.");
+        // FOR EACH BOOKING...
         for (BookingEntity expired : expiredBookings) {
-            // delete the expired booking
+            // ...delete the expired booking...
             bookingRepository.delete(expired);
-            // update time and notify the next user in list if exists
+            log.info("Booking deleted ! id=" + expired.getId());
+            // ... update time and notify the next user in list if exists
             this.notifyUserByBookId(expired.getBook().getId());
         }
 
+        final long finish = System.nanoTime();
+        log.info("refreshBookingRoutine ends ! Elapsed time : " + (finish - start));
     }
 }

@@ -1,17 +1,20 @@
 package com.gg.proj.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 /**
- *
  * This class manage mail sending
  */
 @Component
 public class CustomMailService {
 
+    private static final Logger log = LoggerFactory.getLogger(CustomMailService.class);
     private JavaMailSender mailSender;
 
     @Autowired
@@ -23,10 +26,10 @@ public class CustomMailService {
      * <p>Sends an Email to the following recipient using {@link StringBuilder} to write mail, and {@link JavaMailSender}
      * to send it.</p>
      *
-     * @param recipient mail recipient
-     * @param firstName the recipient name
-     * @param lastName the recipient surname
-     * @param bookName the booked book
+     * @param recipient   mail recipient
+     * @param firstName   the recipient name
+     * @param lastName    the recipient surname
+     * @param bookName    the booked book
      * @param libraryName the library
      */
     public void sendSimpleMail(String recipient, String firstName, String lastName, String bookName, String libraryName) {
@@ -43,6 +46,11 @@ public class CustomMailService {
         message.setSubject("[INFO] Booking info.");
 
         // Send mail
-        mailSender.send(message);
+        try {
+            mailSender.send(message);
+            log.info("A mail was sent to mailAddress=" + recipient);
+        } catch (MailException mailEx) {
+            log.info("Problem while sending the mail : stacktrace...\n" + mailEx);
+        }
     }
 }

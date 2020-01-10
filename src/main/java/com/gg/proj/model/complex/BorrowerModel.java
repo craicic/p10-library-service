@@ -71,5 +71,33 @@ public class BorrowerModel {
         this.libraryName = libraryName;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BorrowerModel that = (BorrowerModel) o;
+        return id.equals(that.id) &&
+                mailAddress.equals(that.mailAddress) &&
+                firstName.equals(that.firstName) &&
+                lastName.equals(that.lastName) &&
+                bookName.equals(that.bookName) &&
+                libraryName.equals(that.libraryName);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, mailAddress, firstName, lastName, bookName, libraryName);
+    }
+
+    @Override
+    public String toString() {
+        return "BorrowerModel{" +
+                "id=" + id +
+                ", mailAddress='" + mailAddress + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", bookName='" + bookName + '\'' +
+                ", libraryName='" + libraryName + '\'' +
+                '}';
+    }
 }

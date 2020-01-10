@@ -1,4 +1,4 @@
-# Web Service 1.1.0-BETA-2 for the [library project](https://github.com/xxjokerx/p10-library)
+# Web Service 1.1.0-BETA-3 for the [library project](https://github.com/xxjokerx/p10-library)
   
 ## Description  
   
