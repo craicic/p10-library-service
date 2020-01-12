@@ -410,6 +410,26 @@
         </xs:sequence>
     </xs:complexType>
 
+    <!-- a full book -->
+    <xs:complexType name="bookAndBookingInfo">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int" minOccurs="0"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="author" type="xs:string"/>
+            <xs:element name="isbn" type="xs:string" minOccurs="0"/>
+            <xs:element maxOccurs="unbounded" name="topics" type="tns:topic"/>
+            <xs:element name="language" type="tns:language"/>
+            <xs:element name="quantity" type="xs:int"/>
+            <xs:element name="publicationDate" type="xs:date"/>
+            <xs:element name="library" type="tns:library"/>
+            <xs:element name="summary" type="xs:string" minOccurs="0"/>
+            <xs:element name="bookingQueue" type="xs:int"/>
+            <xs:element name="nextReturnDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="availableToBooking" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
     <!-- a minimal book -->
     <xs:complexType name="bookMin">
         <xs:sequence>

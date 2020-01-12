@@ -4,8 +4,11 @@ import com.gg.proj.model.BookEntity;
 import com.gg.proj.model.LanguageEntity;
 import com.gg.proj.model.LibraryEntity;
 import com.gg.proj.model.TopicEntity;
+import com.gg.proj.model.complex.BookAndBookingInfoModel;
 import com.gg.proj.service.books.*;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -152,4 +155,19 @@ public interface BookMapper {
     List<Library> libraryEntityListToLibraryList(List<LibraryEntity> libraryEntities);
 
     BookFull bookEntityToBookFull(BookEntity bookEntity);
+
+    @Mappings({
+            @Mapping(source = "bookEntity.id", target = "id"),
+            @Mapping(source = "bookEntity.title", target = "title"),
+            @Mapping(source = "bookEntity.author", target = "author"),
+            @Mapping(source = "bookEntity.isbn", target = "isbn"),
+            @Mapping(source = "bookEntity.topics", target = "topics"),
+            @Mapping(source = "bookEntity.language", target = "language"),
+            @Mapping(source = "bookEntity.quantity", target = "quantity"),
+            @Mapping(source = "bookEntity.publicationDate", target = "publicationDate"),
+            @Mapping(source = "bookEntity.library", target = "library"),
+            @Mapping(source = "bookEntity.summary", target = "summary"),
+            @Mapping(source = "availableToBooking", target = "availableToBooking")
+    })
+    BookAndBookingInfo bookAndBookingInfoToDTO(BookAndBookingInfoModel bookAndBookingInfoModel);
 }

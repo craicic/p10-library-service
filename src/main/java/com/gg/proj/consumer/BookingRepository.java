@@ -62,7 +62,12 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Integer>
 //    )
 //    UserEntity queryForBorrower(@Param("bookId") int bookId);
 
-    @Query(value = "SELECT new com.gg.proj.model.complex.BorrowerModel(booking.user.id, booking.user.mailAddress, booking.user.firstName, booking.user.lastName, booking.book.title, booking.book.library.name) " +
+    @Query(value = "SELECT new com.gg.proj.model.complex.BorrowerModel(" +
+            "booking.user.id, " +
+            "booking.user.mailAddress, " +
+            "booking.user.firstName, " +
+            "booking.user.lastName, booking.book.title, " +
+            "booking.book.library.name) " +
             "FROM BookingEntity booking " +
             "WHERE booking.book.id = (:bookId) " +
             "ORDER BY booking.bookingTime ASC "

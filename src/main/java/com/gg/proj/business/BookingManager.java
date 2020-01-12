@@ -47,7 +47,9 @@ public class BookingManager {
         this.mailService = mailService;
     }
 
-    public Optional<BookingSummary> performBooking(BookingMin booking, String tokenUUID) throws OutdatedTokenException, InvalidTokenException, InvalidBookingOperationException, DatatypeConfigurationException {
+    public Optional<BookingSummary> performBooking(BookingMin booking, String tokenUUID)
+            throws OutdatedTokenException, InvalidTokenException
+            , InvalidBookingOperationException, DatatypeConfigurationException {
         log.debug("Entering performBooking...");
 
         // Check UUID
@@ -90,7 +92,8 @@ public class BookingManager {
         return Optional.of(bookingSummaryDto);
     }
 
-    public Integer cancelBooking(Booking booking, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {
+    public Integer cancelBooking(Booking booking, String tokenUUID)
+            throws OutdatedTokenException, InvalidTokenException {
         log.debug("Entering cancelBooking...");
 
         // Check UUID
@@ -116,7 +119,8 @@ public class BookingManager {
         return 1;
     }
 
-    public List<BookingInfo> getBookingsByUserId(int userId, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {
+    public List<BookingInfo> getBookingsByUserId(int userId, String tokenUUID)
+            throws OutdatedTokenException, InvalidTokenException {
         log.debug("Entering getBookingsByUserId...");
 
         // Check UUID
@@ -133,7 +137,8 @@ public class BookingManager {
         return bookingMapper.modelsToDtos(models);
     }
 
-    public Optional<PlaceInQueue> getPlaceInQueueByBooking(int bookId, int userId, String tokenUUID) throws OutdatedTokenException, InvalidTokenException {
+    public Optional<PlaceInQueue> getPlaceInQueueByBooking(int bookId, int userId, String tokenUUID)
+            throws OutdatedTokenException, InvalidTokenException {
         log.debug("Entering getPlaceInQueueByBooking...");
 
         // Check UUID
@@ -153,7 +158,7 @@ public class BookingManager {
     }
 
     protected void notifyUserByBookId(int bookId) {
-        log.debug("Entering notifyUsersByBookId... with bookId=" + bookId);
+        log.debug("Entering notifyUserByBookId... with bookId=" + bookId);
         // Fetching next user in queue (this method should be public cause the batch could call it)
         BorrowerModel nextBorrower = bookingRepository.queryForBorrower(bookId).get(0);
 
@@ -162,10 +167,15 @@ public class BookingManager {
             log.info("There's a user to notify : userId=" + nextBorrower.getId());
             bookingRepository.updateNotificationTime(nextBorrower.getId(), bookId);
             // Calling a mail util class to send them the mail
-            mailService.sendSimpleMail(nextBorrower.getMailAddress(), nextBorrower.getFirstName(), nextBorrower.getLastName(), nextBorrower.getBookName(), nextBorrower.getLibraryName());
+            mailService.sendSimpleMail(nextBorrower.getMailAddress(), nextBorrower.getFirstName()
+                    , nextBorrower.getLastName(), nextBorrower.getBookName(), nextBorrower.getLibraryName());
         } else log.info("No user booked this item.");
     }
 
+    /**
+     * This method periodically fetch all expired booking to cancel them and then call the notifyUserByBookId for each
+     * booking.
+     */
     @Scheduled(cron = "0 */30 * ? * *")
     public void refreshBookingRoutine() {
         log.info("refreshBookingRoutine starts !");

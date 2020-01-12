@@ -1,14 +1,12 @@
 package com.gg.proj.business;
 
 import com.gg.proj.business.mapper.BookMapper;
-import com.gg.proj.consumer.BookRepository;
-import com.gg.proj.consumer.LanguageRepository;
-import com.gg.proj.consumer.LibraryRepository;
-import com.gg.proj.consumer.TopicRepository;
+import com.gg.proj.consumer.*;
 import com.gg.proj.model.BookEntity;
 import com.gg.proj.model.LanguageEntity;
 import com.gg.proj.model.LibraryEntity;
 import com.gg.proj.model.TopicEntity;
+import com.gg.proj.model.complex.BookAndBookingInfoModel;
 import com.gg.proj.service.books.*;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.InvalidTokenException;
@@ -45,10 +43,12 @@ public class BookManager {
 
     private LibraryRepository libraryRepository;
 
+
     private TokenManager tokenManager;
 
     @Autowired
-    public BookManager(BookMapper bookMapper, BookRepository bookRepository, TopicRepository topicRepository, LanguageRepository languageRepository, LibraryRepository libraryRepository, TokenManager tokenManager) {
+    public BookManager(BookMapper bookMapper, BookRepository bookRepository, TopicRepository topicRepository,
+                       LanguageRepository languageRepository, LibraryRepository libraryRepository, TokenManager tokenManager) {
         this.bookMapper = bookMapper;
         this.bookRepository = bookRepository;
         this.topicRepository = topicRepository;
@@ -79,6 +79,12 @@ public class BookManager {
             log.info("findById : Requesting a book by id : " + id + " => id not found in database");
         }
         return Optional.ofNullable(bookMapper.bookEntityToBookFull(bookEntity));
+    }
+
+    public Optional<BookAndBookingInfo> findBookAndBookingInfoById(Integer bookId) {
+        BookAndBookingInfoModel bookAndBookingInfoModel = bookRepository.customQueryBookAndBookingInfoByBookId(bookId);
+
+        return Optional.ofNullable(bookMapper.bookAndBookingInfoToDTO(bookAndBookingInfoModel));
     }
 
     public Book save(Book book, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
