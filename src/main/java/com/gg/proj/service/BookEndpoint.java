@@ -144,6 +144,22 @@ public class BookEndpoint {
     /**
      * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
      *
+     * @param request is an instance of BookAndBookingInfo. It's mapped from the incoming SOAP message.
+     * @return BookAndBookingInfoResponse the output message contains this response.
+     */
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getBookAndBookingInfoRequest")
+    @ResponsePayload
+    public GetBookAndBookingInfoResponse getBookAndBookingInfo(@RequestPayload GetBookAndBookingInfoRequest request) {
+        log.info("Call from network - getBookAndBookingInfo : calling the BookManager to fetch a book and booking info by id : [" + request.getBookId() + "]");
+        GetBookAndBookingInfoResponse response = new GetBookAndBookingInfoResponse();
+        Optional<BookAndBookingInfo> opt = bookManager.findBookAndBookingInfoById(request.getBookId());
+        opt.ifPresent(response::setBookAndBookingInfo);
+        return response;
+    }
+
+    /**
+     * <p>This methods is exposed. It uses the RequestPayload to do a custom call to the Business layer.</p>
+     *
      * @param request is an instance of ListAllBooksRequest. It's mapped from the incoming SOAP message.
      * @return ListAllBooksResponse the output message contains this response.
      */

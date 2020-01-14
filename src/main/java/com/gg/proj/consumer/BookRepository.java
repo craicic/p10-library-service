@@ -53,7 +53,7 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer>, Book
 
     @Query("SELECT new com.gg.proj.model.complex.BookAndBookingInfoModel(" +
             "book, MIN(loan.loanEndDate) , COUNT(booking), " +
-            "(((book.quantity + book.loans.size) > 2*COUNT(booking))) " +
+            "((book.quantity + book.loans.size) > 2*COUNT(booking)) " +
             ") " +
             "FROM BookEntity book " +
             "LEFT JOIN BookingEntity booking ON book.id = booking.book.id " +

@@ -376,6 +376,21 @@
         </xs:complexType>
     </xs:element>
 
+    <!-- A method to get Book data and booking info -->
+    <xs:element name="getBookAndBookingInfoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getBookAndBookingInfoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookAndBookingInfo" type="tns:bookAndBookingInfo" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <!--================ OBJECTS ================-->
     <!-- a single book -->
@@ -483,7 +498,6 @@
             <xs:element name="name" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
-
 
     <!--================ SERVICE STATUS ================-->
     <xs:complexType name="serviceStatus">

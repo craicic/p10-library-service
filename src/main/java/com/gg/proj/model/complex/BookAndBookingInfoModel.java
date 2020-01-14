@@ -15,12 +15,6 @@ public class BookAndBookingInfoModel {
     public BookAndBookingInfoModel() {
     }
 
-    public BookAndBookingInfoModel(BookEntity bookEntity, LocalDate nextReturnDate, Long bookingQueue) {
-        this.bookEntity = bookEntity;
-        this.nextReturnDate = nextReturnDate;
-        this.bookingQueue = bookingQueue;
-    }
-
     public BookAndBookingInfoModel(BookEntity bookEntity, LocalDate nextReturnDate, Long bookingQueue, boolean availableToBooking) {
         this.bookEntity = bookEntity;
         this.nextReturnDate = nextReturnDate;
