@@ -1,7 +1,10 @@
 package com.gg.proj.business;
 
 import com.gg.proj.business.mapper.BookMapper;
-import com.gg.proj.consumer.*;
+import com.gg.proj.consumer.BookRepository;
+import com.gg.proj.consumer.LanguageRepository;
+import com.gg.proj.consumer.LibraryRepository;
+import com.gg.proj.consumer.TopicRepository;
 import com.gg.proj.model.BookEntity;
 import com.gg.proj.model.LanguageEntity;
 import com.gg.proj.model.LibraryEntity;
@@ -82,9 +85,24 @@ public class BookManager {
     }
 
     public Optional<BookAndBookingInfo> findBookAndBookingInfoById(Integer bookId) {
+        // Three properties to
+        boolean availableForBooking = true;
+        boolean bookReturned;
+        Integer bookQuantity;
+
         BookAndBookingInfoModel bookAndBookingInfoModel = bookRepository.customQueryBookAndBookingInfoByBookId(bookId);
 
-        return Optional.ofNullable(bookMapper.bookAndBookingInfoToDTO(bookAndBookingInfoModel));
+        if (bookAndBookingInfoModel != null) {
+            bookQuantity = bookAndBookingInfoModel.getBookEntity().getQuantity();
+            bookReturned = bookAndBookingInfoModel.isBookReturned();
+            availableForBooking = (!bookReturned && bookQuantity == 0) || (bookReturned && bookQuantity != 0);
+        }
+
+        BookAndBookingInfo bookAndBookingInfoDTO = bookMapper.bookAndBookingInfoToDTO(bookAndBookingInfoModel);
+
+        if (bookAndBookingInfoModel != null)
+            bookAndBookingInfoDTO.setAvailableToBooking(availableForBooking);
+        return Optional.ofNullable(bookAndBookingInfoDTO);
     }
 
     public Book save(Book book, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {

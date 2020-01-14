@@ -51,14 +51,19 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer>, Book
             "WHERE book.id = (:bookId)")
     Long queryTotalAmountOfBook(@Param("bookId") Integer bookId);
 
+//                      !bookReturned                                                       bookReturned
+//            "(((MAX(booking.notificationTime) IS NULL) AND (book.quantity = 0)) OR ((MAX(booking.notificationTime) IS NOT NULL) AND (loan.closed = TRUE))) ," +
+
     @Query("SELECT new com.gg.proj.model.complex.BookAndBookingInfoModel(" +
-            "book, MIN(loan.loanEndDate) , COUNT(booking), " +
-            "((book.quantity + book.loans.size) > 2*COUNT(booking)) " +
+            "book, MIN(loan.loanEndDate), " +
+            "COUNT(booking), " +
+            "(MAX(booking.notificationTime) IS NOT NULL), " +
+            "((book.quantity + book.loans.size) < 2*COUNT(booking)) " +
             ") " +
             "FROM BookEntity book " +
             "LEFT JOIN BookingEntity booking ON book.id = booking.book.id " +
             "LEFT JOIN LoanEntity loan ON book.id = loan.book.id " +
             "GROUP BY book " +
-            "HAVING book.id = (:bookId)")
+            "HAVING book.id = (:bookId) ")
     BookAndBookingInfoModel customQueryBookAndBookingInfoByBookId(@Param("bookId") Integer bookId);
 }

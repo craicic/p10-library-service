@@ -167,7 +167,6 @@ public interface BookMapper {
             @Mapping(source = "bookEntity.publicationDate", target = "publicationDate"),
             @Mapping(source = "bookEntity.library", target = "library"),
             @Mapping(source = "bookEntity.summary", target = "summary"),
-            @Mapping(source = "availableToBooking", target = "availableToBooking")
     })
     BookAndBookingInfo bookAndBookingInfoToDTO(BookAndBookingInfoModel bookAndBookingInfoModel);
 }

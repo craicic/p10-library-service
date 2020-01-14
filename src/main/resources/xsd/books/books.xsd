@@ -440,7 +440,8 @@
             <xs:element name="summary" type="xs:string" minOccurs="0"/>
             <xs:element name="bookingQueue" type="xs:int"/>
             <xs:element name="nextReturnDate" type="xs:date" minOccurs="0"/>
-            <xs:element name="availableToBooking" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="maxNotificationTime" type="xs:time" minOccurs="0"/>
+            <xs:element name="queueToLong" type="xs:boolean"/>
         </xs:sequence>
     </xs:complexType>
 

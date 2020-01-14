@@ -10,16 +10,18 @@ public class BookAndBookingInfoModel {
     private BookEntity bookEntity;
     private LocalDate nextReturnDate;
     private Long bookingQueue;
-    private boolean availableToBooking;
+    private boolean bookReturned;
+    private boolean queueToLong;
 
     public BookAndBookingInfoModel() {
     }
 
-    public BookAndBookingInfoModel(BookEntity bookEntity, LocalDate nextReturnDate, Long bookingQueue, boolean availableToBooking) {
+    public BookAndBookingInfoModel(BookEntity bookEntity, LocalDate nextReturnDate, Long bookingQueue, boolean bookReturned, boolean queueToLong) {
         this.bookEntity = bookEntity;
         this.nextReturnDate = nextReturnDate;
         this.bookingQueue = bookingQueue;
-        this.availableToBooking = availableToBooking;
+        this.bookReturned = bookReturned;
+        this.queueToLong = queueToLong;
     }
 
     public BookEntity getBookEntity() {
@@ -46,12 +48,20 @@ public class BookAndBookingInfoModel {
         this.bookingQueue = bookingQueue;
     }
 
-    public boolean isAvailableToBooking() {
-        return availableToBooking;
+    public boolean isBookReturned() {
+        return bookReturned;
     }
 
-    public void setAvailableToBooking(boolean availableToBooking) {
-        this.availableToBooking = availableToBooking;
+    public void setBookReturned(boolean bookReturned) {
+        this.bookReturned = bookReturned;
+    }
+
+    public boolean isQueueToLong() {
+        return queueToLong;
+    }
+
+    public void setQueueToLong(boolean queueToLong) {
+        this.queueToLong = queueToLong;
     }
 
     @Override
@@ -59,7 +69,7 @@ public class BookAndBookingInfoModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BookAndBookingInfoModel that = (BookAndBookingInfoModel) o;
-        return availableToBooking == that.availableToBooking &&
+        return queueToLong == that.queueToLong &&
                 bookEntity.equals(that.bookEntity) &&
                 Objects.equals(nextReturnDate, that.nextReturnDate) &&
                 Objects.equals(bookingQueue, that.bookingQueue);
@@ -67,7 +77,7 @@ public class BookAndBookingInfoModel {
 
     @Override
     public int hashCode() {
-        return Objects.hash(bookEntity, nextReturnDate, bookingQueue, availableToBooking);
+        return Objects.hash(bookEntity, nextReturnDate, bookingQueue, queueToLong);
     }
 
     @Override
@@ -76,7 +86,8 @@ public class BookAndBookingInfoModel {
                 "bookEntity=" + bookEntity +
                 ", nextReturnDate=" + nextReturnDate +
                 ", bookingQueue=" + bookingQueue +
-                ", availableToBooking=" + availableToBooking +
+                ", bookReturned=" + bookReturned +
+                ", queueToLong=" + queueToLong +
                 '}';
     }
 }
