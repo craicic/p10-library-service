@@ -101,7 +101,7 @@ public class BookManager {
         BookAndBookingInfo bookAndBookingInfoDTO = bookMapper.bookAndBookingInfoToDTO(bookAndBookingInfoModel);
 
         if (bookAndBookingInfoModel != null)
-            bookAndBookingInfoDTO.setAvailableToBooking(availableForBooking);
+            bookAndBookingInfoDTO.setAvailableForBooking(availableForBooking);
         return Optional.ofNullable(bookAndBookingInfoDTO);
     }
 

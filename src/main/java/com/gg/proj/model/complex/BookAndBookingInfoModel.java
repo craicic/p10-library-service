@@ -11,17 +11,21 @@ public class BookAndBookingInfoModel {
     private LocalDate nextReturnDate;
     private Long bookingQueue;
     private boolean bookReturned;
-    private boolean queueToLong;
+    private boolean queueTooLong;
 
     public BookAndBookingInfoModel() {
     }
 
-    public BookAndBookingInfoModel(BookEntity bookEntity, LocalDate nextReturnDate, Long bookingQueue, boolean bookReturned, boolean queueToLong) {
+    public BookAndBookingInfoModel(BookEntity bookEntity,
+                                   LocalDate nextReturnDate,
+                                   Long bookingQueue,
+                                   boolean bookReturned,
+                                   boolean queueTooLong) {
         this.bookEntity = bookEntity;
         this.nextReturnDate = nextReturnDate;
         this.bookingQueue = bookingQueue;
         this.bookReturned = bookReturned;
-        this.queueToLong = queueToLong;
+        this.queueTooLong = queueTooLong;
     }
 
     public BookEntity getBookEntity() {
@@ -56,12 +60,12 @@ public class BookAndBookingInfoModel {
         this.bookReturned = bookReturned;
     }
 
-    public boolean isQueueToLong() {
-        return queueToLong;
+    public boolean isQueueTooLong() {
+        return queueTooLong;
     }
 
-    public void setQueueToLong(boolean queueToLong) {
-        this.queueToLong = queueToLong;
+    public void setQueueTooLong(boolean queueTooLong) {
+        this.queueTooLong = queueTooLong;
     }
 
     @Override
@@ -69,7 +73,7 @@ public class BookAndBookingInfoModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BookAndBookingInfoModel that = (BookAndBookingInfoModel) o;
-        return queueToLong == that.queueToLong &&
+        return queueTooLong == that.queueTooLong &&
                 bookEntity.equals(that.bookEntity) &&
                 Objects.equals(nextReturnDate, that.nextReturnDate) &&
                 Objects.equals(bookingQueue, that.bookingQueue);
@@ -77,7 +81,7 @@ public class BookAndBookingInfoModel {
 
     @Override
     public int hashCode() {
-        return Objects.hash(bookEntity, nextReturnDate, bookingQueue, queueToLong);
+        return Objects.hash(bookEntity, nextReturnDate, bookingQueue, queueTooLong);
     }
 
     @Override
@@ -87,7 +91,7 @@ public class BookAndBookingInfoModel {
                 ", nextReturnDate=" + nextReturnDate +
                 ", bookingQueue=" + bookingQueue +
                 ", bookReturned=" + bookReturned +
-                ", queueToLong=" + queueToLong +
+                ", queueTooLong=" + queueTooLong +
                 '}';
     }
 }
