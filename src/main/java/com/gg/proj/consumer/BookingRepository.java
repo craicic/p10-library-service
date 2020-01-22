@@ -1,7 +1,6 @@
 package com.gg.proj.consumer;
 
 import com.gg.proj.model.BookingEntity;
-import com.gg.proj.model.UserEntity;
 import com.gg.proj.model.complex.BookingInfoModel;
 import com.gg.proj.model.complex.BookingSummaryModel;
 import com.gg.proj.model.complex.BorrowerModel;
@@ -11,8 +10,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import javax.persistence.SqlResultSetMapping;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -52,15 +49,7 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Integer>
             "AND bookingForCount.bookingTime <= booking.bookingTime " +
             "AND loan.book.id = (:bookId) " +
             "GROUP BY booking ")
-    PlaceInQueueModel queryForPlaceInQueue(@Param("bookId") int bookId,@Param("userId") int userId);
-
-//    @Query(value = "SELECT u.id, u.mail_address FROM booking AS b " +
-//            "JOIN users AS u ON b.user_id = u.id " +
-//            "WHERE b.book_id = (:bookId) " +
-//            "ORDER BY b.time LIMIT 1 "
-//            , nativeQuery = true
-//    )
-//    UserEntity queryForBorrower(@Param("bookId") int bookId);
+    PlaceInQueueModel queryForPlaceInQueue(@Param("bookId") int bookId, @Param("userId") int userId);
 
     @Query(value = "SELECT new com.gg.proj.model.complex.BorrowerModel(" +
             "booking.user.id, " +
@@ -75,13 +64,23 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Integer>
     List<BorrowerModel> queryForBorrower(@Param("bookId") int bookId);
 
     @Modifying
-    @Query(value= "UPDATE BookingEntity booking " +
+    @Query(value = "UPDATE BookingEntity booking " +
             "SET booking.notificationTime = CURRENT_TIMESTAMP " +
             "WHERE booking.user.id = (:userId) " +
             "AND booking.book.id = (:bookId) ")
-    void updateNotificationTime(@Param("userId") int  userId, @Param("bookId") int bookId);
+    void updateNotificationTime(@Param("userId") int userId, @Param("bookId") int bookId);
 
     @Query("SELECT booking FROM BookingEntity booking " +
             "WHERE booking.notificationTime < (:twoDayBefore) ")
     List<BookingEntity> fetchExpiredBookings(@Param("twoDayBefore") LocalDateTime twoDayBefore);
+
+    @Query("SELECT (COUNT(booking.notificationTime) > 0) FROM BookingEntity  booking " +
+            "WHERE booking.id = (:bookingId) ")
+    boolean queryIfAlreadyNotified(@Param("bookingId") int bookingId);
+
+    @Query("SELECT (COUNT(loan) > 0) FROM LoanEntity loan " +
+            "WHERE loan.user.id = (:userId) " +
+            "AND loan.book.id = (:bookId) " +
+            "AND loan.closed = false ")
+    boolean queryIfAlreadyBorrowed(@Param("bookId") int bookId, @Param("userId") int userId);
 }

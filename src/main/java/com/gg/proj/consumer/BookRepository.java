@@ -32,17 +32,6 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer>, Book
     @Query("UPDATE BookEntity b SET b.quantity = (b.quantity + 1) WHERE b.id = (:id)")
     void increaseQuantity(@Param("id") int bookId);
 
-//    @Query("select distinct la, li, t from  BookEntity b , LanguageEntity la , LibraryEntity li , TopicEntity t " +
-//            " inner join b.language  as la " +
-//            " inner join b.library  as li " +
-//            " inner join b.topics  as t " +
-//            " where(upper(b.title) like upper(:x) or upper(b.author) like upper(:x) or upper(b.summary) like upper(:x))")
-//    List<Object[]> searchAnnexData(@Param("x") String keyWord);
-
-//
-//    @Query("select distinct b from BookEntity b where (upper(b.title) like upper(:x) or upper(b.author) like upper(:x) or upper(b.summary) like upper(:x))and b.quantity > 0")
-//    Page<BookEntity> searchAvailable(@Param("x") String keyWord, Pageable pageable);
-
     @Query("SELECT b.quantity FROM BookEntity b WHERE b.id = (:id)")
     Integer getBookQuantityById(@Param("id") int bookId);
 
@@ -58,7 +47,7 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer>, Book
             "book, MIN(loan.loanEndDate), " +
             "COUNT(booking), " +
             "(MAX(booking.notificationTime) IS NOT NULL), " +
-            "((book.quantity + book.loans.size) < 2*COUNT(booking)) " +
+            "(2*(book.quantity + book.loans.size) <= COUNT(booking)) " +
             ") " +
             "FROM BookEntity book " +
             "LEFT JOIN BookingEntity booking ON book.id = booking.book.id " +

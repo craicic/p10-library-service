@@ -20,7 +20,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import javax.xml.datatype.DatatypeConfigurationException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -49,7 +48,7 @@ public class BookingManager {
 
     public Optional<BookingSummary> performBooking(BookingMin booking, String tokenUUID)
             throws OutdatedTokenException, InvalidTokenException
-            , InvalidBookingOperationException, DatatypeConfigurationException {
+            , InvalidBookingOperationException {
         log.debug("Entering performBooking...");
 
         // Check UUID
@@ -64,7 +63,12 @@ public class BookingManager {
 
         // Check if all sample are lend
         if (bookManager.getQuantity(bookingEntity.getBook().getId()) > 0) {
-            throw new InvalidBookingOperationException("You can't book if the item is already available");
+            throw new InvalidBookingOperationException("You can't book if the item is already available.");
+        }
+
+        // Check if the users has borrowed this book.
+        if (bookingRepository.queryIfAlreadyBorrowed(booking.getBookId(), booking.getUserId())) {
+            throw new InvalidBookingOperationException("You can't book an item you have borrowed currently.");
         }
 
         // Sample book count
@@ -109,8 +113,8 @@ public class BookingManager {
         // Delete the row in database
         bookingRepository.delete(bookingEntity);
 
-        // if the user was first in list...
-        if (bookingRepository.queryForPlaceInQueue(booking.getBookId(), booking.getUserId()).getPositionInQueue() == 1) {
+        // if the user was already notified...
+        if (bookingRepository.queryIfAlreadyNotified(booking.getId())) {
             // ...we have to find the next one
             // this method do the trick
             this.notifyUserByBookId(booking.getBookId());

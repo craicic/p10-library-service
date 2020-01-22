@@ -179,7 +179,7 @@ public class LoanManager {
                     bookingManager.notifyUserByBookId(bookId);
                 }
                 return Optional.ofNullable(loanMapper.loanEntityToLoan(persistedLoan));
-            } else throw new InvalidLoanOperationException("No Loan found of id:" + id );
+            } else throw new InvalidLoanOperationException("No Loan found of id:" + id);
         } else throw new InvalidLoanOperationException("Invalid id");
     }
 

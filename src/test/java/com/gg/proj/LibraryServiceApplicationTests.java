@@ -48,9 +48,7 @@ public class LibraryServiceApplicationTests {
     @Test
     public void testingAMapper() {
         BookAndBookingInfo dto = bookManager.findBookAndBookingInfoById(26).orElse(new BookAndBookingInfo());
-
         Assert.assertEquals(2, dto.getTopics().size());
-        Assert.assertEquals(2L, dto.getBookingQueue());
     }
 }
 
