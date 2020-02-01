@@ -21,7 +21,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         "com.gg.proj.business",
         "com.gg.proj.business.mapper"})
 @EnableJpaRepositories(basePackages = {"com.gg.proj.consumer"})
-@EntityScan(basePackages = "com.gg.proj.model")
+@EntityScan(basePackages = {"com.gg.proj.model"})
 public class LibraryServiceApplication {
 
     public static void main(String[] args) {

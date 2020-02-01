@@ -1,12 +1,13 @@
 create table topic
 (
-	id serial not null
-		constraint topic_pkey
-			primary key,
-	name varchar(255) not null
-		constraint topic_idx
-			unique
+    id   serial       not null
+        constraint topic_pkey
+            primary key,
+    name varchar(255) not null
+        constraint topic_idx
+            unique
 );
 
-alter table topic owner to "library-service";
+alter table topic
+    owner to "library-service";
 

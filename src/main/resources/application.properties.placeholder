@@ -1,0 +1,29 @@
+#Already defined in ConfigurationClass
+#SPRING DATA    spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults = false
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+debug=false
+spring.jpa.open-in-view=false
+#TOMCAT         Embedded tomcat port
+server.port=8080
+#LOG            Logging level
+logging.level.com.gg.proj=DEBUG
+logging.level.org.springframework=INFO
+#PROPERTIES     Custom datasource properties
+webservice.datasource.driverClassName=org.postgresql.Driver
+webservice.datasource.url=jdbc:postgresql://localhost:5432/databasename
+webservice.datasource.username=username
+webservice.datasource.password=passwrod
+#WSDL           Custom webservice wsdl publish address
+webservice.location=/ws
+#MAIL
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=username
+spring.mail.password=password
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.connectiontimeout=5000
+spring.mail.properties.mail.smtp.timeout=5000
+spring.mail.properties.mail.smtp.writetimeout=5000
+# TLS , port 587
+spring.mail.properties.mail.smtp.starttls.enable=true

@@ -9,6 +9,7 @@ import com.gg.proj.model.BookEntity;
 import com.gg.proj.model.LanguageEntity;
 import com.gg.proj.model.LibraryEntity;
 import com.gg.proj.model.TopicEntity;
+import com.gg.proj.model.complex.BookAndBookingInfoModel;
 import com.gg.proj.service.books.*;
 import com.gg.proj.service.exceptions.GenericExceptionHelper;
 import com.gg.proj.service.exceptions.InvalidTokenException;
@@ -45,10 +46,12 @@ public class BookManager {
 
     private LibraryRepository libraryRepository;
 
+
     private TokenManager tokenManager;
 
     @Autowired
-    public BookManager(BookMapper bookMapper, BookRepository bookRepository, TopicRepository topicRepository, LanguageRepository languageRepository, LibraryRepository libraryRepository, TokenManager tokenManager) {
+    public BookManager(BookMapper bookMapper, BookRepository bookRepository, TopicRepository topicRepository,
+                       LanguageRepository languageRepository, LibraryRepository libraryRepository, TokenManager tokenManager) {
         this.bookMapper = bookMapper;
         this.bookRepository = bookRepository;
         this.topicRepository = topicRepository;
@@ -81,6 +84,27 @@ public class BookManager {
         return Optional.ofNullable(bookMapper.bookEntityToBookFull(bookEntity));
     }
 
+    public Optional<BookAndBookingInfo> findBookAndBookingInfoById(Integer bookId) {
+        // Three properties to
+        boolean availableForBooking = true;
+        boolean bookReturned;
+        Integer bookQuantity;
+
+        BookAndBookingInfoModel bookAndBookingInfoModel = bookRepository.customQueryBookAndBookingInfoByBookId(bookId);
+
+        if (bookAndBookingInfoModel != null) {
+            bookQuantity = bookAndBookingInfoModel.getBookEntity().getQuantity();
+            bookReturned = bookAndBookingInfoModel.isBookReturned();
+            availableForBooking = (!bookReturned && bookQuantity == 0) || (bookReturned && bookQuantity != 0);
+        }
+
+        BookAndBookingInfo bookAndBookingInfoDTO = bookMapper.bookAndBookingInfoToDTO(bookAndBookingInfoModel);
+
+        if (bookAndBookingInfoModel != null)
+            bookAndBookingInfoDTO.setAvailableForBooking(availableForBooking);
+        return Optional.ofNullable(bookAndBookingInfoDTO);
+    }
+
     public Book save(Book book, String tokenUUID) throws InvalidTokenException, OutdatedTokenException {
 
         try {
@@ -110,7 +134,6 @@ public class BookManager {
     }
 
     /**
-     *
      * <p>This method calls the Consumer layer several time in order to get following results :</p>
      * <ul>
      *     <li>A paged list of book matching the keyWord,</li>
@@ -120,8 +143,8 @@ public class BookManager {
      * </ul>
      *
      * @param keyWord the keyWord of the search
-     * @param page the current page
-     * @param size the size
+     * @param page    the current page
+     * @param size    the size
      * @return SearchBooksResponse an object that contains several lists (libraries, languages, searched books, etc...) plus other data
      */
     public SearchBooksResponse searchBooks(String keyWord, Integer page, Integer size) {
@@ -161,18 +184,17 @@ public class BookManager {
 
 
     /**
-     *
      * <p>This method call the consumer. It ask for a search with several parameters</p>
      * <p>It's design to work in pair with the method searchBooks. filterBooks must be executed after this one.
      * using its result, to give more define results to the user.</p>
      *
-     * @param keyWord the keyWord of the search
+     * @param keyWord    the keyWord of the search
      * @param languageId a search criteria (a value of -1 means excluded from search)
-     * @param libraryId a search criteria (a value of -1 means excluded from search)
-     * @param topicId a search criteria (a value of -1 means excluded from search)
-     * @param available a search criteria (is the book in stock)
-     * @param page the current page
-     * @param size the size of the page
+     * @param libraryId  a search criteria (a value of -1 means excluded from search)
+     * @param topicId    a search criteria (a value of -1 means excluded from search)
+     * @param available  a search criteria (is the book in stock)
+     * @param page       the current page
+     * @param size       the size of the page
      * @return FilterBooksResponse it contains the paged list of book that have been filtered, plus the total pages.
      */
     public FilterBooksResponse filterBooks(String keyWord, Integer languageId, Integer libraryId, Integer topicId, boolean available, Integer page, Integer size) {
@@ -191,7 +213,6 @@ public class BookManager {
 
 
     /**
-     *
      * This method calls the Consumer layer of a book to decrease its quantity
      *
      * @param bookId the Id of the book
@@ -201,12 +222,25 @@ public class BookManager {
     }
 
     /**
-     *
      * This method calls the Consumer layer of a book to increase its quantity
      *
      * @param bookId the Id of the book
      */
     public void increaseQuantity(int bookId) {
         bookRepository.increaseQuantity(bookId);
+    }
+
+    /**
+     * Call the consumer to get the associated quantity of a book
+     *
+     * @param bookId the book you want to know the quantity
+     * @return an Integer, the quantity
+     */
+    public Integer getQuantity(int bookId) {
+        return bookRepository.getBookQuantityById(bookId);
+    }
+
+    public Long getTotalAmountOfBook(Integer id) {
+        return bookRepository.queryTotalAmountOfBook(id);
     }
 }

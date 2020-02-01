@@ -52,14 +52,13 @@ public class UserManager {
     }
 
     /**
-     *
      * <p>This is the method that login user. It receive a pseudo and a Base64 password. Then it uses a passwordEncoder to
      * check if password matches the hash stored in database.</p>
      *
-     * @param pseudo the user pseudo
+     * @param pseudo          the user pseudo
      * @param encodedPassword the user password coded in Base64 /!\ need to be improved
      * @return a Token containing a valid UUID
-     * @throws UserNotFoundException if no user with this pseudo was found
+     * @throws UserNotFoundException    if no user with this pseudo was found
      * @throws IllegalArgumentException if password and hash don't match
      */
     public Token loginUser(String pseudo, String encodedPassword) throws UserNotFoundException, IllegalArgumentException {
@@ -85,12 +84,11 @@ public class UserManager {
     }
 
     /**
-     *
      * <p>This method logout the user</p>
      *
      * @param tokenUUID a valid UUID
      * @return "SUCCESS"
-     * @throws UserNotFoundException if no user with this pseudo was found
+     * @throws UserNotFoundException    if no user with this pseudo was found
      * @throws IllegalArgumentException if password and hash don't match
      */
     public String logoutUser(String tokenUUID) throws UserNotFoundException, IllegalArgumentException {
@@ -111,14 +109,13 @@ public class UserManager {
     }
 
     /**
-     *
      * <p>This method is called to register a user. Pseudo & address must be unique, password has a minimal length</p>
      *
      * @param user the user to register
      * @return a valid Token
-     * @throws PseudoAlreadyExistsException if the pseudo is already stored in DB
+     * @throws PseudoAlreadyExistsException      if the pseudo is already stored in DB
      * @throws MailAddressAlreadyExistsException if the mail is already stored in DB
-     * @throws IllegalArgumentException if password is too short (6 characters)
+     * @throws IllegalArgumentException          if password is too short (6 characters)
      */
     public Token registerUser(User user) throws PseudoAlreadyExistsException, MailAddressAlreadyExistsException, IllegalArgumentException {
         log.debug("Entering registerUser...");
@@ -130,7 +127,6 @@ public class UserManager {
         if (plaintextPassword.length() < 6)
             throw new IllegalArgumentException("Password must contains at least 6 characters");
 
-//        hash = Password.hashPassword(plaintextPassword);
         hash = passwordEncoder.encode(plaintextPassword);
         userEntity = userMapper.userToUserEntity(user);
         userEntity.setPasswordHash(hash);
@@ -153,9 +149,7 @@ public class UserManager {
             Optional<UserEntity> optional = userRepository.findById(userId);
 
             if (optional.isPresent()) {
-//                if (Password.checkPassword(oldPassword, optional.get().getPasswordHash())) {
                 if (passwordEncoder.matches(oldPassword, optional.get().getPasswordHash())) {
-//                    newHash = Password.hashPassword(newPassword);
                     newHash = passwordEncoder.encode(newPassword);
                     optional.get().setPasswordHash(newHash);
                     userRepository.save(optional.get());
