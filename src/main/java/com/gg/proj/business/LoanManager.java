@@ -26,7 +26,7 @@ import java.util.UUID;
 
 
 @Component
-@Transactional
+@Transactional()
 public class LoanManager {
 
     private static final Logger log = LoggerFactory.getLogger(LoanManager.class);

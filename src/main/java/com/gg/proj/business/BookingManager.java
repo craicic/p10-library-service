@@ -78,7 +78,6 @@ public class BookingManager {
 
         // Check queue vs booker
         if (totalAmountOfBooker >= 2 * totalAmountOfBook) {
-            //TODO IDEA: could return useful infos
             throw new InvalidBookingOperationException("Too much users booked this item");
         }
 
@@ -164,16 +163,21 @@ public class BookingManager {
     protected void notifyUserByBookId(int bookId) {
         log.debug("Entering notifyUserByBookId... with bookId=" + bookId);
         // Fetching next user in queue (this method should be public cause the batch could call it)
-        BorrowerModel nextBorrower = bookingRepository.queryForBorrower(bookId).get(0);
+        List<BorrowerModel> borrowerModels = bookingRepository.queryForBorrower(bookId);
+        if (borrowerModels.isEmpty()) {
+            log.info("No user booked this item.");
+        } else {
+            BorrowerModel nextBorrower = bookingRepository.queryForBorrower(bookId).get(0);
 
-        // Setting the bookingTime
-        if (nextBorrower != null) {
-            log.info("There's a user to notify : userId=" + nextBorrower.getId());
-            bookingRepository.updateNotificationTime(nextBorrower.getId(), bookId);
-            // Calling a mail util class to send them the mail
-            mailService.sendSimpleMail(nextBorrower.getMailAddress(), nextBorrower.getFirstName()
-                    , nextBorrower.getLastName(), nextBorrower.getBookName(), nextBorrower.getLibraryName());
-        } else log.info("No user booked this item.");
+            // Setting the bookingTime
+            if (nextBorrower != null) {
+                log.info("There's a user to notify : userId=" + nextBorrower.getId());
+                bookingRepository.updateNotificationTime(nextBorrower.getId(), bookId);
+                // Calling a mail util class to send them the mail
+                mailService.sendSimpleMail(nextBorrower.getMailAddress(), nextBorrower.getFirstName()
+                        , nextBorrower.getLastName(), nextBorrower.getBookName(), nextBorrower.getLibraryName());
+            } else log.info("No user booked this item.");
+        }
     }
 
     /**

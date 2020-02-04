@@ -38,9 +38,9 @@ public class UserManagerLogoutUserTest {
     @Mock
     private TokenManager tokenManager;
     @Mock
-    private TokenRepository tokenRepository;
-    @Mock
     private PasswordEncoder passwordEncoder;
+    @Mock
+    private TokenRepository tokenRepository;
     @InjectMocks
     private UserManager userManager;
 
@@ -55,6 +55,5 @@ public class UserManagerLogoutUserTest {
                         userEntity));
 
         assertThat(userManager.logoutUser(VALID_UUID)).isEqualTo(expectedString);
-
     }
 }

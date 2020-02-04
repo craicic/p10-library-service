@@ -73,9 +73,6 @@ public class TokenManager {
             throw new InvalidTokenException("no such token in database");
         }
         if (foundTokenEntity.getExpirationDate().isBefore(LocalDate.now())) {
-            // Calling a private method to refresh the token
-//            log.debug("Refreshing token...");
-//            refreshToken(foundTokenEntity);
             throw new OutdatedTokenException("Token has expired, try to reconnect");
         }
     }
