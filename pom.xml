@@ -24,7 +24,7 @@
         <postgresql.version>9.4.1212</postgresql.version>
         <mapstruct.version>1.2.0.Final</mapstruct.version>
         <jasypt.version>2.1.1</jasypt.version>
-        <bcrypt.version>0.3m</bcrypt.version>
+        <bcrypt.version>0.4</bcrypt.version>
     </properties>
 
     <!-- Lots of dependencies added by Spring Initializr (selected options : JPA/Postgresql/Web Service) -->
